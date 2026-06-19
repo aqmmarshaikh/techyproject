@@ -1,0 +1,54 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if user is logged in
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+
+    // Admin check helper
+    function isUserAdmin() {
+      return isLoggedIn() && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /settings/{docId} {
+      // Anyone can read config to validate password, only admin can write
+      allow read: if true;
+      allow write: if isUserAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isLoggedIn() && (request.auth.uid == userId || isUserAdmin());
+    }
+
+    match /projects/{projectId} {
+      // Anyone can read approved projects; owners and admins can read any status
+      allow read: if resource.data.approvalStatus == 'approved' || (isLoggedIn() && (resource.data.ownerId == request.auth.uid || isUserAdmin()));
+      
+      // Creators can submit new projects as pending
+      allow create: if isLoggedIn() && request.resource.data.ownerId == request.auth.uid && request.resource.data.approvalStatus == 'pending';
+      
+      // Creators can update their own projects (resets to pending)
+      // Admins can update any project details
+      // Anyone can update viewsCount and likesCount (e.g. visitors)
+      // Anyone/functions can update previewImageUrl/previewSource
+      allow update: if isUserAdmin() || 
+        (isLoggedIn() && resource.data.ownerId == request.auth.uid && request.resource.data.ownerId == request.auth.uid && request.resource.data.approvalStatus == 'pending') || 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['viewsCount', 'likesCount']) ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['previewImageUrl', 'previewSource']);
+        
+      // Creators can delete their own projects, admins can delete any
+      allow delete: if isUserAdmin() || (isLoggedIn() && resource.data.ownerId == request.auth.uid);
+    }
+
+    match /likes/{likeId} {
+      // Anyone can read and write likes
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#12121a"/>
+  <rect x="0" y="0" width="1280" height="720" fill="url(#paint0_linear)" fill-opacity="0.2"/>
+  <circle cx="640" cy="360" r="120" fill="#1a1a2e"/>
+  <path d="M624 336H664V384H624V336Z" fill="#6c5ce7"/>
+  <path d="M608 384H672V400H608V384Z" fill="#00cec9"/>
+  <text x="640" y="520" font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#8888a0" text-anchor="middle" letter-spacing="4">TECHYBOY PROJECTS</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6c5ce7"/>
+      <stop offset="0.5" stop-color="#12121a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#00cec9"/>
+    </linearGradient>
+  </defs>
+</svg>

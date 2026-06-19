@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    match /projects/{projectId}/{fileName} {
+      // Anyone can read cover images
+      allow read: if true;
+      
+      // Anyone can upload a cover image during submission (up to 5MB, image only)
+      allow create: if request.resource.size < 5 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+                    
+      // Only admins can delete or update existing images
+      allow update, delete: if isAdmin();
+    }
+  }
+}
