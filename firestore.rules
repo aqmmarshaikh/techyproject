@@ -27,8 +27,8 @@ service cloud.firestore {
     }
 
     match /projects/{projectId} {
-      // Anyone can read approved projects; owners and admins can read any status
-      allow read: if resource.data.approvalStatus == 'approved' || (isLoggedIn() && (resource.data.ownerId == request.auth.uid || isUserAdmin()));
+      // Anyone can read any project (Option A - fixes query permission block)
+      allow read: if true;
       
       // Creators can submit new projects as pending
       allow create: if isLoggedIn() && request.resource.data.ownerId == request.auth.uid && request.resource.data.approvalStatus == 'pending';
@@ -48,6 +48,11 @@ service cloud.firestore {
 
     match /likes/{likeId} {
       // Anyone can read and write likes
+      allow read, write: if true;
+    }
+
+    match /signaling/{document=**} {
+      // Allow read and write for WebRTC signaling
       allow read, write: if true;
     }
   }
