@@ -6,6 +6,8 @@ import { DEFAULT_CATEGORIES } from '../utils/constants';
 import type { ProjectSubmission } from '../types';
 import { useAuth } from '../context/AuthContext';
 
+import { normalizeUrl } from '../utils/helpers';
+
 export const SubmitPage: React.FC = () => {
   const navigate = useNavigate();
   const { user, profile } = useAuth();
@@ -80,8 +82,13 @@ export const SubmitPage: React.FC = () => {
     setFormError('');
 
     try {
+      const normalizedDemoUrl = normalizeUrl(formData.liveDemoUrl);
+      const normalizedGithubUrl = formData.githubUrl ? normalizeUrl(formData.githubUrl) : '';
+
       const submissionData = {
         ...formData,
+        liveDemoUrl: normalizedDemoUrl,
+        githubUrl: normalizedGithubUrl,
         ownerId: user?.uid || '',
         ownerName: profile?.name || user?.displayName || 'Anonymous',
         ownerEmail: user?.email || '',
@@ -90,8 +97,8 @@ export const SubmitPage: React.FC = () => {
       const submissionId = await submitProject(submissionData);
       
       // Asynchronously trigger preview generation without blocking the user
-      if (!formData.coverImageUrl && formData.liveDemoUrl) {
-        generatePreviewForSubmission(submissionId, formData.liveDemoUrl).catch(console.error);
+      if (!formData.coverImageUrl && normalizedDemoUrl) {
+        generatePreviewForSubmission(submissionId, normalizedDemoUrl).catch(console.error);
       }
 
       setStep(2); // Success step

@@ -71,3 +71,26 @@ export const throttle = <F extends (...args: any[]) => any>(func: F, limit: numb
     }
   };
 };
+
+export const normalizeUrl = (rawUrl: string): string => {
+  if (!rawUrl) return '';
+  let url = rawUrl.trim();
+  if (!/^https?:\/\//i.test(url)) {
+    url = `https://${url}`;
+  }
+  return url;
+};
+
+export const getLiveScreenshotUrl = (rawUrl: string, provider: 'mshots' | 'thum' | 'microlink' = 'mshots'): string => {
+  const url = normalizeUrl(rawUrl);
+  if (!url) return '';
+  
+  if (provider === 'mshots') {
+    return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
+  } else if (provider === 'thum') {
+    return `https://image.thum.io/get/width/1200/crop/600/${url}`;
+  } else {
+    return `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&embed=screenshot.url`;
+  }
+};
+

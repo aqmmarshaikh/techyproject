@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PLACEHOLDER_IMAGE_URL } from '../utils/constants';
+import { getLiveScreenshotUrl, normalizeUrl } from '../utils/helpers';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
@@ -22,43 +23,46 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   ...props
 }) => {
   const [imgSrc, setImgSrc] = useState<string | undefined>(undefined);
+  const [fallbackStage, setFallbackStage] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
+  const normalizedLiveUrl = liveDemoUrl ? normalizeUrl(liveDemoUrl) : '';
   const isWebsitePreview = 
     previewSource === 'og' || 
     previewSource === 'microlink' || 
     previewSource === 'website' || 
-    previewSource === 'screenshot';
+    previewSource === 'screenshot' ||
+    Boolean(normalizedLiveUrl && !src);
 
   useEffect(() => {
-    // Reset states when src changes
-    setImgSrc(undefined);
+    // Reset state when inputs change
     setIsLoaded(false);
-    setHasError(false);
+    setFallbackStage(0);
 
-    // Determine the ideal source string
-    // Priority: 1. src (Cover) -> 2. previewSrc (OG/Screenshot) -> 3. fallbackSrc (Placeholder)
-    let idealSrc = src || previewSrc || fallbackSrc;
-    console.log("Rendering image:", idealSrc, " (src:", src, ", previewSrc:", previewSrc, ", fallbackSrc:", fallbackSrc, ")");
+    // Initial image choice
+    // Priority: 1. Cover Image (src) -> 2. Preview Image (previewSrc) -> 3. Dynamic Live Screenshot -> 4. Category Fallback
+    let initialSrc = src || previewSrc;
+    if (!initialSrc && normalizedLiveUrl) {
+      initialSrc = getLiveScreenshotUrl(normalizedLiveUrl, 'mshots');
+    }
+    if (!initialSrc) {
+      initialSrc = fallbackSrc;
+    }
+
+    setImgSrc(initialSrc);
 
     let observer: IntersectionObserver | null = null;
     if ('IntersectionObserver' in window && imgRef.current) {
       observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setImgSrc(idealSrc);
-          if (observer && imgRef.current) observer.unobserve(imgRef.current);
+          if (imgRef.current) observer?.unobserve(imgRef.current);
         }
       }, {
-        rootMargin: '100px 0px', // Load slightly before it comes into view
+        rootMargin: '100px 0px',
         threshold: 0.01
       });
-      
       observer.observe(imgRef.current);
-    } else {
-      // Fallback if no intersection observer
-      setImgSrc(idealSrc);
     }
 
     return () => {
@@ -66,13 +70,34 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         observer.unobserve(imgRef.current);
       }
     };
-  }, [src, previewSrc, fallbackSrc]);
+  }, [src, previewSrc, fallbackSrc, normalizedLiveUrl]);
 
   const handleError = () => {
-    if (!hasError) {
-      setHasError(true);
-      setImgSrc(fallbackSrc);
+    setIsLoaded(false);
+
+    if (fallbackStage === 0 && normalizedLiveUrl) {
+      // Stage 1: Try Automattic WordPress mShots API live screenshot
+      setFallbackStage(1);
+      const mShotsUrl = getLiveScreenshotUrl(normalizedLiveUrl, 'mshots');
+      if (mShotsUrl !== imgSrc) {
+        setImgSrc(mShotsUrl);
+        return;
+      }
     }
+
+    if (fallbackStage <= 1 && normalizedLiveUrl) {
+      // Stage 2: Try Thum.io live screenshot fallback
+      setFallbackStage(2);
+      const thumUrl = getLiveScreenshotUrl(normalizedLiveUrl, 'thum');
+      if (thumUrl !== imgSrc) {
+        setImgSrc(thumUrl);
+        return;
+      }
+    }
+
+    // Stage 3: Final Category / System Placeholder
+    setFallbackStage(3);
+    setImgSrc(fallbackSrc);
   };
 
   const handleLoad = () => {
@@ -81,11 +106,11 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 
   // Get address bar text for the browser mockup
   let displayUrl = 'localhost';
-  if (liveDemoUrl) {
+  if (normalizedLiveUrl) {
     try {
-      displayUrl = new URL(liveDemoUrl).hostname.replace('www.', '');
+      displayUrl = new URL(normalizedLiveUrl).hostname.replace(/^www\./, '');
     } catch (e) {
-      displayUrl = liveDemoUrl;
+      displayUrl = normalizedLiveUrl;
     }
   }
 
@@ -116,7 +141,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
       )}
 
       <div style={{ flex: 1, position: 'relative', width: '100%', overflow: 'hidden' }}>
-        {/* Skeleton loader / placeholder background */}
+        {/* Shimmer skeleton loader */}
         {!isLoaded && (
           <div 
             style={{

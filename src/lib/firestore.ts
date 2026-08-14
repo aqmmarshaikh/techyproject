@@ -14,6 +14,8 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import type { Project, ProjectSubmission, Settings } from '../types';
+import { normalizeUrl, getLiveScreenshotUrl } from '../utils/helpers';
+
 
 // ==========================================
 // SETTINGS
@@ -96,45 +98,48 @@ export const getUserProjects = async (uid: string): Promise<Project[]> => {
   return userProjects;
 };
 
-export const generatePreviewForSubmission = async (submissionId: string, liveDemoUrl: string): Promise<void> => {
-  console.log("Generating preview for:", liveDemoUrl);
+export const generatePreviewForSubmission = async (submissionId: string, rawLiveDemoUrl: string): Promise<void> => {
+  const normalizedUrl = normalizeUrl(rawLiveDemoUrl);
+  if (!normalizedUrl) return;
+
+  console.log("Generating preview for:", normalizedUrl);
+  const docRef = doc(db, 'projects', submissionId);
+
   try {
-    const url = `https://api.microlink.io?url=${encodeURIComponent(liveDemoUrl)}&screenshot=true&meta=true`;
-    console.log("Microlink URL:", url);
-    const res = await fetch(url);
-    const data = await res.json();
-    let previewUrl = '';
-    let source: "cover" | "og" | "microlink" | "placeholder" = 'placeholder';
+    const apiUrl = `https://api.microlink.io?url=${encodeURIComponent(normalizedUrl)}&screenshot=true&meta=true`;
+    console.log("Microlink API Query:", apiUrl);
+    const res = await fetch(apiUrl);
     
-    if (data.data?.image?.url) {
-      previewUrl = data.data.image.url;
-      source = 'og';
-    } else if (data.data?.screenshot?.url) {
-      previewUrl = data.data.screenshot.url;
-      source = 'microlink';
+    let previewUrl = '';
+    let source: "cover" | "og" | "microlink" | "placeholder" | "website" | "screenshot" = 'screenshot';
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.data?.image?.url) {
+        previewUrl = data.data.image.url;
+        source = 'og';
+      }
     }
 
-    console.log("Generated preview:", previewUrl, "Source:", source);
-
-    const docRef = doc(db, 'projects', submissionId);
-    if (previewUrl || source !== 'placeholder') {
-      console.log("Saving preview to document:", submissionId, "Url:", previewUrl, "Source:", source);
-      await updateDoc(docRef, {
-        previewImageUrl: previewUrl,
-        previewSource: source
-      });
-    } else {
-      console.log("Saving placeholder to document:", submissionId);
-      await updateDoc(docRef, {
-        previewSource: 'placeholder'
-      });
+    // If no OG image found or Microlink API rate limited, use durable Automattic mShots live screenshot
+    if (!previewUrl) {
+      previewUrl = getLiveScreenshotUrl(normalizedUrl, 'mshots');
+      source = 'screenshot';
     }
+
+    console.log("Saving generated preview to document:", submissionId, "Url:", previewUrl, "Source:", source);
+    await updateDoc(docRef, {
+      previewImageUrl: previewUrl,
+      previewSource: source
+    });
   } catch (error) {
-    console.error("Preview generation failed:", error);
+    console.error("Preview generation network error:", error);
+    // Non-destructive fallback: save non-expiring live screenshot link instead of blank placeholder
     try {
-      const docRef = doc(db, 'projects', submissionId);
+      const durablePreviewUrl = getLiveScreenshotUrl(normalizedUrl, 'mshots');
       await updateDoc(docRef, {
-        previewSource: 'placeholder'
+        previewImageUrl: durablePreviewUrl,
+        previewSource: 'screenshot'
       });
     } catch (e) {
       console.error('Fallback preview generation failed:', e);
