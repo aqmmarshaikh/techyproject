@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/auth/LoginPage';
 import { ResetPasswordPage } from '../pages/auth/ResetPasswordPage';
 
 // Main App Pages
+import { LandingPage, SESSION_ENTRY_KEY, INTENDED_DESTINATION_KEY } from '../pages/LandingPage';
 import { ExplorePage } from '../pages/ExplorePage';
 import { ArenaPage } from '../pages/ArenaPage';
 import { DashboardPage } from '../pages/DashboardPage';
@@ -85,23 +86,86 @@ const RoleGuard: React.FC<{
   return <>{children}</>;
 };
 
-export const AppRoutes: React.FC = () => {
-  return (
-    <Routes>
-      {/* Auth Routes */}
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-      </Route>
+/**
+ * Session Entry Gate
+ * Ensures visitors experience the public Landing Page once per new browser tab/session (sessionStorage).
+ * Direct visits to internal routes preserve the intended destination.
+ * Refreshing an entered session preserves the active route without returning to the landing page.
+ */
+const SessionEntryGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const hasEntered = typeof window !== 'undefined' && sessionStorage.getItem(SESSION_ENTRY_KEY) === 'true';
 
-      {/* Main App Routes (Public Browse Mode + Protected Private Pages) */}
-      <Route element={<AppLayout />}>
-        <Route path="/" element={<Navigate to="/explore" replace />} />
-        <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/projects" element={<Navigate to="/explore" replace />} />
-        <Route path="/arena" element={<ArenaPage />} />
-        <Route path="/directory" element={<DirectoryPage />} />
-        <Route path="/projects/:projectId" element={<ProjectDetailsPage />} />
+  // Allowed auth routes that bypass the gate (e.g. password reset or explicit login)
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/reset-password';
+  const isWelcomeRoute = location.pathname === '/welcome';
+
+  // If user has not completed entry in this tab session
+  if (!hasEntered && !isAuthRoute) {
+    // If visitor is trying to access an internal route directly without entering first
+    if (location.pathname !== '/' && !isWelcomeRoute) {
+      try {
+        sessionStorage.setItem(
+          INTENDED_DESTINATION_KEY,
+          location.pathname + location.search + location.hash
+        );
+      } catch {
+        // storage quota fallback
+      }
+      return <Navigate to="/" replace />;
+    }
+
+    // On '/' or '/welcome', show the Landing Page
+    return <LandingPage />;
+  }
+
+  // If user explicitly visits '/welcome', always show the landing page
+  if (isWelcomeRoute) {
+    return <LandingPage />;
+  }
+
+  // Otherwise, user has completed entry in this session
+  return <>{children}</>;
+};
+
+export const AppRoutes: React.FC = () => {
+  const { isAuthenticated, userProfile } = useAuth();
+
+  return (
+    <SessionEntryGate>
+      <Routes>
+        {/* Auth Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route>
+
+        {/* Public Welcome / Landing Route */}
+        <Route path="/welcome" element={<LandingPage />} />
+
+        {/* Main App Routes (Public Browse Mode + Protected Private Pages) */}
+        <Route element={<AppLayout />}>
+          <Route
+            path="/"
+            element={
+              isAuthenticated && userProfile ? (
+                userProfile.role === 'SUPER_ADMIN' ? (
+                  <Navigate to="/super-admin" replace />
+                ) : userProfile.role === 'ADMIN' ? (
+                  <Navigate to="/admin" replace />
+                ) : (
+                  <Navigate to="/dashboard" replace />
+                )
+              ) : (
+                <Navigate to="/explore" replace />
+              )
+            }
+          />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/projects" element={<Navigate to="/explore" replace />} />
+          <Route path="/arena" element={<ArenaPage />} />
+          <Route path="/directory" element={<DirectoryPage />} />
+          <Route path="/projects/:projectId" element={<ProjectDetailsPage />} />
 
         {/* Authenticated-only Employee Routes */}
         <Route
@@ -195,6 +259,7 @@ export const AppRoutes: React.FC = () => {
       {/* Catch-all fallback */}
       <Route path="*" element={<Navigate to="/explore" replace />} />
     </Routes>
+  </SessionEntryGate>
   );
 };
 

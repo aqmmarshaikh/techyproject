@@ -6029,7 +6029,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/projects/ProjectCard.tsx",
-      "source_location": "L219",
+      "source_location": "L226",
       "weight": 1.0
     },
     {
@@ -6461,7 +6461,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/pages/ArenaPage.tsx",
-      "source_location": "L336",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -6593,7 +6593,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/pages/NotificationsPage.tsx",
-      "source_location": "L150",
+      "source_location": "L161",
       "weight": 1.0
     },
     {
@@ -6605,7 +6605,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/pages/ProfilePage.tsx",
-      "source_location": "L268",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -21071,5 +21071,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "463b91f2a563633b8a383dbd0dd60d95a6238030"
+  "built_at_commit": "869e2b198aa72797f3cf58ab550af542fa2bba5a"
 }

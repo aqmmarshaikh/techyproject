@@ -1,6 +1,6 @@
 {
   "0": "useAuth.tsx",
-  "1": "AdminEmployeesPage.tsx",
+  "1": "Button.tsx",
   "2": "types/index.ts",
   "3": "ExplorePage.tsx",
   "4": "scripts",
@@ -24,11 +24,10 @@
   "22": "tailwind.config.js",
   "23": "tailwindcss",
   "24": "vite.config.ts",
-  "25": "ProfilePage.tsx",
+  "25": "firebase.ts",
   "26": "react",
   "27": "react-hook-form",
   "28": "@types/react",
   "29": "vitest",
-  "30": "Badge.tsx",
-  "31": "Button.tsx"
+  "30": "MockSessionStorage"
 }

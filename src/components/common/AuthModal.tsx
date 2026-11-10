@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { X, Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react';
 import { loginSchema, LoginFormData } from '../../schemas/authSchemas';
 import { useAuth } from '../../hooks/useAuth';
@@ -8,6 +9,8 @@ import { Button } from './Button';
 import { useToast } from './Toast';
 
 export const AuthModal: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { 
     isAuthModalOpen, 
     authModalPrompt, 
@@ -41,12 +44,37 @@ export const AuthModal: React.FC = () => {
     closeAuthModal();
   };
 
+  const handlePostAuthNavigation = (role: string) => {
+    try {
+      sessionStorage.setItem('projecthub_entry_completed', 'true');
+    } catch {}
+
+    const intended = sessionStorage.getItem('projecthub_intended_destination');
+    if (intended && intended !== '/' && intended !== '/welcome') {
+      sessionStorage.removeItem('projecthub_intended_destination');
+      navigate(intended);
+      return;
+    }
+
+    // If currently on landing page, navigate to dashboard
+    if (location.pathname === '/' || location.pathname === '/welcome') {
+      if (role === 'SUPER_ADMIN') {
+        navigate('/super-admin');
+      } else if (role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  };
+
   const onEmailSubmit = async (data: LoginFormData) => {
     setAuthError(null);
     try {
-      await login(data.email, data.password);
+      const profile = await login(data.email, data.password);
       toastSuccess('Authenticated', 'Signed in successfully.');
       handleClose();
+      handlePostAuthNavigation(profile.role);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid credentials. Please try again.';
       setAuthError(msg);
@@ -58,9 +86,10 @@ export const AuthModal: React.FC = () => {
     setAuthError(null);
     setIsGoogleSubmitting(true);
     try {
-      await loginWithGoogle();
+      const profile = await loginWithGoogle();
       toastSuccess('Authenticated', 'Signed in successfully with your Google account.');
       handleClose();
+      handlePostAuthNavigation(profile.role);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Google sign-in failed. Please try again.';
       setAuthError(msg);

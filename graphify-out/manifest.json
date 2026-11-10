@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794312956.6514127,
-    "seen": 1794313122.4486835,
-    "ast_hash": "625622198477c4e4e036178f086f2506",
+    "mtime": 1794316237.0126696,
+    "seen": 1794316414.7091527,
+    "ast_hash": "9befa415738f6d9e9acf96e6b0a29e41",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
-    "mtime": 1794312863.1798012,
-    "seen": 1794313122.4486964,
-    "ast_hash": "709fea675b5de5787812e7ada80c243d",
+    "mtime": 1794316304.146514,
+    "seen": 1794316414.7091658,
+    "ast_hash": "7f0b858c1f1728e98a0d5f0a2bc4989b",
     "semantic_hash": ""
   },
   "src/schemas/adminSchemas.ts": {
@@ -738,9 +738,9 @@
     "semantic_hash": ""
   },
   "src/components/common/AuthModal.tsx": {
-    "mtime": 1794308982.3673458,
-    "seen": 1794310756.2104163,
-    "ast_hash": "348b57c124046b95dd9b56512cc033be",
+    "mtime": 1794316271.3427858,
+    "seen": 1794316414.7091124,
+    "ast_hash": "62285f295e9d6c52ff9bed83c8984a59",
     "semantic_hash": ""
   },
   "src/services/imageUploadService.ts": {
@@ -807,6 +807,18 @@
     "mtime": 1794313953.6471753,
     "seen": 1794314463.6052163,
     "ast_hash": "a34bca55ff7b66be39de4c0426abe680",
+    "semantic_hash": ""
+  },
+  "src/pages/LandingPage.tsx": {
+    "mtime": 1794316118.0041535,
+    "seen": 1794316414.7091417,
+    "ast_hash": "72e0fc75a586577fa3dc22066cff8e27",
+    "semantic_hash": ""
+  },
+  "tests/landingSession.test.ts": {
+    "mtime": 1794316357.0863106,
+    "seen": 1794316414.7091942,
+    "ast_hash": "9b296b726efa7e37ff25f73064abd71a",
     "semantic_hash": ""
   }
 }

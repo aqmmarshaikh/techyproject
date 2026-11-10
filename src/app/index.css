@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   :root {
     --color-brand-navy: 15 27 61;
     --color-brand-pink: 255 61 136;

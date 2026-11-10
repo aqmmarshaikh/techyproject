@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react';
 import { loginSchema, LoginFormData } from '../../schemas/authSchemas';
 import { useAuth } from '../../hooks/useAuth';
@@ -10,6 +10,7 @@ import { useToast } from '../../components/common/Toast';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, loginWithGoogle } = useAuth();
   const { success: toastSuccess, error: toastError } = useToast();
   const [authError, setAuthError] = useState<string | null>(null);
@@ -28,18 +29,36 @@ export const LoginPage: React.FC = () => {
     },
   });
 
+  const handlePostLoginRedirect = (role: string) => {
+    try {
+      sessionStorage.setItem('projecthub_entry_completed', 'true');
+    } catch {}
+
+    const intended = 
+      (location.state as any)?.from?.pathname || 
+      sessionStorage.getItem('projecthub_intended_destination');
+
+    if (intended && intended !== '/' && intended !== '/welcome') {
+      sessionStorage.removeItem('projecthub_intended_destination');
+      navigate(intended);
+      return;
+    }
+
+    if (role === 'SUPER_ADMIN') {
+      navigate('/super-admin');
+    } else if (role === 'ADMIN') {
+      navigate('/admin');
+    } else {
+      navigate('/dashboard');
+    }
+  };
+
   const onSubmit = async (data: LoginFormData) => {
     setAuthError(null);
     try {
       const profile = await login(data.email, data.password);
       toastSuccess('Authenticated', 'Welcome back to Project Hub.');
-      if (profile.role === 'SUPER_ADMIN') {
-        navigate('/super-admin');
-      } else if (profile.role === 'ADMIN') {
-        navigate('/admin');
-      } else {
-        navigate('/explore');
-      }
+      handlePostLoginRedirect(profile.role);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid credentials';
       setAuthError(msg);
@@ -53,13 +72,7 @@ export const LoginPage: React.FC = () => {
     try {
       const profile = await loginWithGoogle();
       toastSuccess('Authenticated', 'Signed in successfully with your Google account.');
-      if (profile.role === 'SUPER_ADMIN') {
-        navigate('/super-admin');
-      } else if (profile.role === 'ADMIN') {
-        navigate('/admin');
-      } else {
-        navigate('/explore');
-      }
+      handlePostLoginRedirect(profile.role);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Google sign-in failed. Please try again.';
       setAuthError(msg);
