@@ -11,7 +11,8 @@ import {
   Mail, 
   AlertCircle,
   Eye,
-  X
+  X,
+  Trash2
 } from 'lucide-react';
 import { userRepository } from '../../repositories/userRepository';
 import { adminService } from '../../services/adminService';
@@ -41,6 +42,7 @@ export const AdminEmployeesPage: React.FC = () => {
 
   // Suspension confirmation state
   const [suspendTarget, setSuspendTarget] = useState<UserProfile | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<UserProfile | null>(null);
   const [isProcessingAction, setIsProcessingAction] = useState(false);
 
   // Role modification state (Super Admin only)
@@ -118,6 +120,23 @@ export const AdminEmployeesPage: React.FC = () => {
       loadEmployees();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Action failed';
+      toastError('Error', msg);
+    } finally {
+      setIsProcessingAction(false);
+    }
+  };
+
+  const handleDeleteEmployee = async () => {
+    if (!deleteTarget || !userProfile) return;
+
+    setIsProcessingAction(true);
+    try {
+      await adminService.deleteEmployee(deleteTarget.id, userProfile);
+      toastSuccess('Employee Deleted', `User ${deleteTarget.fullName} has been permanently deleted.`);
+      setDeleteTarget(null);
+      loadEmployees();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Delete failed';
       toastError('Error', msg);
     } finally {
       setIsProcessingAction(false);
@@ -282,6 +301,17 @@ export const AdminEmployeesPage: React.FC = () => {
                         )}
                       </button>
                     )}
+
+                    {/* Delete Employee Account (Super Admin only) */}
+                    {isSuperAdmin && emp.role !== 'SUPER_ADMIN' && (
+                      <button
+                        onClick={() => setDeleteTarget(emp)}
+                        className="p-1.5 rounded-lg border border-slate-200 text-rose-600 hover:bg-rose-50 hover:border-rose-300 transition-colors"
+                        title="Delete Employee Account"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -388,6 +418,18 @@ export const AdminEmployeesPage: React.FC = () => {
         }
         confirmLabel={suspendTarget?.accountStatus === 'ACTIVE' ? 'Confirm Suspension' : 'Reactivate'}
         variant={suspendTarget?.accountStatus === 'ACTIVE' ? 'danger' : 'primary'}
+        isLoading={isProcessingAction}
+      />
+
+      {/* Delete Confirmation Modal (Super Admin only) */}
+      <ConfirmationModal
+        isOpen={Boolean(deleteTarget)}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={handleDeleteEmployee}
+        title="Permanently Delete Employee Account"
+        message={`Are you sure you want to permanently delete the profile for ${deleteTarget?.fullName} (${deleteTarget?.email})? This action will remove the account from Firestore and cannot be undone.`}
+        confirmLabel="Permanently Delete"
+        variant="danger"
         isLoading={isProcessingAction}
       />
 

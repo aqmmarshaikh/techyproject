@@ -1,22 +1,22 @@
 # Graph Report - tehyprojects2  (2026-11-10)
 
 ## Corpus Check
-- 112 files · ~256,635 words
+- 112 files · ~256,444 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 468 nodes · 1145 edges · 26 communities
+- 470 nodes · 1139 edges · 26 communities
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f3f194d`
+- Built from commit: `c0278746`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- ProjectDetailsPage.tsx
-- ReportModal.tsx
+- cn
+- AdminEmployeesPage.tsx
 - types/index.ts
 - AdminReviewQueuePage.tsx
 - scripts
@@ -35,52 +35,52 @@
 - PROJECT HUB — Security Architecture & Guidelines
 - compilerOptions
 - PROJECT HUB — Master Architecture Specification
-- AppLayout.tsx
+- firebase.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `useAuth()` - 48 edges
 2. `useToast()` - 31 edges
 3. `Button` - 25 edges
 4. `formatDate()` - 22 edges
-5. `Project` - 20 edges
+5. `Project` - 19 edges
 6. `compilerOptions` - 18 edges
 7. `cn()` - 13 edges
-8. `projectRepository` - 12 edges
-9. `2. Detailed Schema Definitions` - 12 edges
-10. `EmptyState()` - 11 edges
+8. `2. Detailed Schema Definitions` - 12 edges
+9. `EmptyState()` - 11 edges
+10. `Modal()` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `NavItem` --references--> `UserRole`  [EXTRACTED]
-  src/constants/navigation.ts → src/types/user.ts
+- `Badge()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Badge.tsx → src/utils/cn.ts
+- `Button` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Button.tsx → src/utils/cn.ts
+- `EmptyState()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/EmptyState.tsx → src/utils/cn.ts
+- `Modal()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Modal.tsx → src/utils/cn.ts
 - `Skeleton()` --calls--> `cn()`  [EXTRACTED]
   src/components/common/Skeleton.tsx → src/utils/cn.ts
-- `ProjectCard()` --calls--> `useToast()`  [EXTRACTED]
-  src/features/projects/ProjectCard.tsx → src/components/common/Toast.tsx
-- `ProjectSubmitForm()` --calls--> `useToast()`  [EXTRACTED]
-  src/features/projects/ProjectSubmitForm.tsx → src/components/common/Toast.tsx
-- `VoteButtonPair()` --calls--> `useToast()`  [EXTRACTED]
-  src/features/voting/VoteButtonPair.tsx → src/components/common/Toast.tsx
 
 ## Import Cycles
 - None detected.
 
 ## Communities (26 total, 0 thin omitted)
 
-### Community 0 - "ProjectDetailsPage.tsx"
-Cohesion: 0.16
-Nodes (16): ProjectCard(), ProjectCardProps, VoteButtonPair(), VoteButtonPairProps, DashboardPage(), interactionRepository, interactionService, ArenaSection (+8 more)
+### Community 0 - "cn"
+Cohesion: 0.27
+Nodes (4): ProjectCardSkeleton(), Skeleton(), cn(), calculateTrendingScore()
 
-### Community 1 - "ReportModal.tsx"
-Cohesion: 0.18
-Nodes (11): ReportModalProps, reportRepository, CategoryFormData, categorySchema, ReportSubmissionFormData, reportSubmissionSchema, SystemSettingsFormData, systemSettingsSchema (+3 more)
+### Community 1 - "AdminEmployeesPage.tsx"
+Cohesion: 0.16
+Nodes (16): ConfirmationModal(), ConfirmationModalProps, Modal(), ModalProps, ReportModalProps, reportRepository, CategoryFormData, categorySchema (+8 more)
 
 ### Community 2 - "types/index.ts"
-Cohesion: 0.08
-Nodes (41): APP_CONFIG, analytics, app, auth, db, firebaseConfig, functions, googleProvider (+33 more)
+Cohesion: 0.12
+Nodes (34): ProjectStatusBadge(), Button, ButtonProps, EmptyState(), EmptyStateProps, ProjectCard(), ProjectCardProps, ProjectFilterBar() (+26 more)
 
 ### Community 3 - "AdminReviewQueuePage.tsx"
 Cohesion: 0.10
-Nodes (30): AccountStatusBadge(), ApprovalStatusBadge(), Badge(), BadgeProps, ProjectStatusBadge(), RoleBadge(), Button, ButtonProps (+22 more)
+Nodes (28): db, AccountStatusBadge(), ApprovalStatusBadge(), Badge(), BadgeProps, RoleBadge(), ADMIN_NAV_ITEMS, MAIN_NAV_ITEMS (+20 more)
 
 ### Community 4 - "scripts"
 Cohesion: 0.06
@@ -91,8 +91,8 @@ Cohesion: 0.10
 Nodes (21): clsx, firebase, @hookform/resolvers, lucide-react, dependencies, clsx, firebase, @hookform/resolvers (+13 more)
 
 ### Community 6 - "AppRoutes.tsx"
-Cohesion: 0.10
-Nodes (37): App(), AuthModal(), useToast(), ProjectDetailsPage(), ReportModal(), useAuth(), AdminLayout(), AppLayout() (+29 more)
+Cohesion: 0.08
+Nodes (42): App(), AuthModal(), ToastContext, ToastContextType, ToastItem, ToastProvider(), ToastType, useToast() (+34 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.08
@@ -103,8 +103,8 @@ Cohesion: 0.06
 Nodes (30): autoprefixer, devDependencies, autoprefixer, postcss, tailwindcss, @types/node, @types/react, @types/react-dom (+22 more)
 
 ### Community 9 - "ProjectSubmitForm.tsx"
-Cohesion: 0.18
-Nodes (13): ProjectSubmitForm(), ProjectSubmitFormProps, AdminReviewFormData, adminReviewSchema, ProjectRevisionFormData, projectRevisionSchema, projectStatuses, ProjectSubmissionFormData (+5 more)
+Cohesion: 0.11
+Nodes (18): DEFAULT_CATEGORIES, BRAND_COLORS, FONTS, ProjectSubmitFormProps, categoryRepository, AdminReviewFormData, adminReviewSchema, ProjectRevisionFormData (+10 more)
 
 ### Community 10 - "src/index.ts"
 Cohesion: 0.19
@@ -146,28 +146,28 @@ Nodes (8): vite.config.ts, compilerOptions, allowSyntheticDefaultImports, compos
 Cohesion: 0.33
 Nodes (5): 1. System Overview & Architecture Diagram, 2. Technology Stack & Component Responsibilities, 3. Modular Folder Structure, 4. Architectural Decisions & Principles, PROJECT HUB — Master Architecture Specification
 
-### Community 25 - "AppLayout.tsx"
-Cohesion: 0.28
-Nodes (5): ADMIN_NAV_ITEMS, MAIN_NAV_ITEMS, NavItem, BRAND_COLORS, FONTS
+### Community 25 - "firebase.ts"
+Cohesion: 0.15
+Nodes (13): APP_CONFIG, analytics, app, auth, firebaseConfig, functions, googleProvider, AuthProvider() (+5 more)
 
 ## Knowledge Gaps
-- **170 isolated node(s):** `name`, `lint`, `build`, `build:watch`, `serve` (+165 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 181 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **172 isolated node(s):** `name`, `lint`, `build`, `build:watch`, `serve` (+167 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 183 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useAuth()` connect `AppRoutes.tsx` to `ProjectDetailsPage.tsx`, `ReportModal.tsx`, `types/index.ts`, `AdminReviewQueuePage.tsx`, `ProjectSubmitForm.tsx`, `AppLayout.tsx`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `useToast()` connect `AppRoutes.tsx` to `ProjectDetailsPage.tsx`, `ReportModal.tsx`, `types/index.ts`, `AdminReviewQueuePage.tsx`, `ProjectSubmitForm.tsx`?**
+- **Why does `useAuth()` connect `AppRoutes.tsx` to `AdminEmployeesPage.tsx`, `types/index.ts`, `AdminReviewQueuePage.tsx`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `useToast()` connect `AppRoutes.tsx` to `ProjectSubmitForm.tsx`, `types/index.ts`, `AdminReviewQueuePage.tsx`, `AdminEmployeesPage.tsx`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `devDependencies`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `name`, `lint`, `build` to the rest of the system?**
-  _170 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _172 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `types/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11796733212341198 - nodes in this community are weakly interconnected._
 - **Should `AdminReviewQueuePage.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.1036734693877551 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09619450317124736 - nodes in this community are weakly interconnected._
 - **Should `scripts` be split into smaller, more focused modules?**
   _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._

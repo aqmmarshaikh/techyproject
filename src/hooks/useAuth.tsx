@@ -27,75 +27,25 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Built-in Seed/Demo Profiles for frictionless verification
-export const DEMO_PROFILES: Record<UserRole, UserProfile> = {
-  SUPER_ADMIN: {
-    id: 'usr_super_admin',
-    email: 'superadmin@company.com',
-    fullName: 'Elena Rostova',
-    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80',
-    designation: 'VP of Engineering',
-    department: 'Executive',
-    skills: ['System Architecture', 'Cloud Governance', 'Leadership', 'Security Audits'],
-    technologies: ['Kubernetes', 'Go', 'TypeScript', 'GCP', 'PostgreSQL'],
-    role: 'SUPER_ADMIN',
-    accountStatus: 'ACTIVE',
-    joinDate: '2023-01-15T09:00:00.000Z',
-    totalSubmittedProjects: 3,
-    totalApprovedProjects: 3,
-    totalLikesReceived: 42,
-    totalVotesReceived: 88,
-    createdAt: '2023-01-15T09:00:00.000Z',
-    updatedAt: new Date().toISOString(),
-  },
-  ADMIN: {
-    id: 'usr_admin',
-    email: 'admin@company.com',
-    fullName: 'Marcus Vance',
-    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
-    designation: 'Principal Architect & Tech Lead',
-    department: 'Engineering',
-    skills: ['Code Reviews', 'Platform Security', 'Performance Engineering', 'Mentorship'],
-    technologies: ['React', 'Next.js', 'Node.js', 'GraphQL', 'AWS'],
-    role: 'ADMIN',
-    accountStatus: 'ACTIVE',
-    joinDate: '2023-06-01T10:00:00.000Z',
-    totalSubmittedProjects: 4,
-    totalApprovedProjects: 4,
-    totalLikesReceived: 38,
-    totalVotesReceived: 64,
-    createdAt: '2023-06-01T10:00:00.000Z',
-    updatedAt: new Date().toISOString(),
-  },
-  EMPLOYEE: {
-    id: 'usr_employee',
-    email: 'employee@company.com',
-    fullName: 'Devon Sanders',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
-    designation: 'Senior Frontend Engineer',
-    department: 'Product Development',
-    skills: ['React', 'Design Systems', 'Microfrontends', 'Accessibility'],
-    technologies: ['TypeScript', 'Tailwind CSS', 'Vite', 'GraphQL', 'Jest'],
-    role: 'EMPLOYEE',
-    accountStatus: 'ACTIVE',
-    joinDate: '2024-02-10T08:30:00.000Z',
-    totalSubmittedProjects: 2,
-    totalApprovedProjects: 2,
-    totalLikesReceived: 29,
-    totalVotesReceived: 51,
-    createdAt: '2024-02-10T08:30:00.000Z',
-    updatedAt: new Date().toISOString(),
-  },
-};
-
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
-    // Check local storage for quick session persistence
+    // Check local storage for session persistence while discarding any stale dummy profiles
     const saved = localStorage.getItem('project_hub_active_profile');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (
+          parsed.id?.startsWith('usr_') || 
+          parsed.email?.toLowerCase().includes('@company.com') ||
+          parsed.email === 'superadmin@company.com' ||
+          parsed.email === 'admin@company.com' ||
+          parsed.email === 'employee@company.com'
+        ) {
+          localStorage.removeItem('project_hub_active_profile');
+          return null;
+        }
+        return parsed;
       } catch {
         return null;
       }

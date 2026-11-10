@@ -98,12 +98,9 @@ npm --prefix functions run build
 
 ---
 
-## 🧪 Persona Sandbox (Reviewer Mode)
+## 🔐 Authentication & Roles
 
-To make review and pair-programming immediate without manual Firebase console setup:
-- A **Dev Persona Switcher** is embedded in the application header / login page.
-- Switch between:
-  - **Employee (`Devon Sanders`)**: Submit projects, cast votes, like, view personal portfolio and saved projects.
-  - **Administrator (`Marcus Vance`)**: Access the Review Queue, moderate submissions, manage categories.
-  - **Super Administrator (`Elena Rostova`)**: Full platform control, audit logs, system settings, user role promotions/demotions.
+- **Super Administrator (`ammarshaikh6100@gmail.com`)**: Full platform control, project approvals, moderation, employee management, and system settings.
+- **Employees**: Any verified user signing in with Google or company credentials can submit projects, vote in the Arena, like peer innovations, and curate personal bookmarks.
+- **Zero Mock / Fake Users**: The platform operates strictly on real authenticated accounts. Dummy data and fake demo personas have been completely removed.
 

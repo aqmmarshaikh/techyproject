@@ -4,6 +4,7 @@ import {
   getDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   query,
   where,
   orderBy,
@@ -125,6 +126,9 @@ export const projectRepository = {
       }
     }
 
+    // Exclude dummy sample projects created with fake profiles
+    projects = projects.filter((p) => !p.creatorId?.startsWith('usr_'));
+
     return projects;
   },
 
@@ -165,6 +169,11 @@ export const projectRepository = {
 
     const snap = await getDocs(q);
     return snap.docs.map((d) => d.data() as Project);
+  },
+
+  async delete(projectId: string): Promise<void> {
+    const docRef = doc(db, PROJECTS_COLLECTION, projectId);
+    await deleteDoc(docRef);
   },
 };
 

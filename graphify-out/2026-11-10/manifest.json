@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "src/app/App.tsx": {
-    "mtime": 1794304550.061317,
-    "seen": 1794304719.542679,
-    "ast_hash": "9d9c3a4d29773abae93bfb2dff32d9b5",
+    "mtime": 1794308617.6999698,
+    "seen": 1794308928.4390628,
+    "ast_hash": "d567b389a77344056ea2a8f1e4381059",
     "semantic_hash": ""
   },
   "src/app/config.ts": {
@@ -168,15 +168,15 @@
     "semantic_hash": ""
   },
   "src/features/projects/ProjectCard.tsx": {
-    "mtime": 1794304560.2349064,
-    "seen": 1794304719.5426915,
-    "ast_hash": "2ef17dfd643284963a1068c9d12f3bbb",
+    "mtime": 1794308744.257907,
+    "seen": 1794308928.4390783,
+    "ast_hash": "e5afbfc10c9db8a5126f5f09abe1afa1",
     "semantic_hash": ""
   },
   "src/features/projects/ProjectDetailsPage.tsx": {
-    "mtime": 1794304560.9641368,
-    "seen": 1794304719.5426927,
-    "ast_hash": "d1110b3ca59b5f3e3f15d3514c21be4d",
+    "mtime": 1794308794.863452,
+    "seen": 1794308928.4390793,
+    "ast_hash": "62a181df2485633826d81df03f803f39",
     "semantic_hash": ""
   },
   "src/features/projects/ProjectFilterBar.tsx": {
@@ -198,15 +198,15 @@
     "semantic_hash": ""
   },
   "src/features/voting/VoteButtonPair.tsx": {
-    "mtime": 1794304565.5557387,
-    "seen": 1794304719.5426958,
-    "ast_hash": "88d077a1f572cbc9b50dd6ee3f200c1a",
+    "mtime": 1794308759.2117665,
+    "seen": 1794308928.4390843,
+    "ast_hash": "950a069a961b1391a90ab0b4684e5666",
     "semantic_hash": ""
   },
   "src/hooks/useAuth.tsx": {
-    "mtime": 1794307540.641434,
-    "seen": 1794307689.82572,
-    "ast_hash": "6360b5bae32ad16c2c3baccb2a132354",
+    "mtime": 1794308413.1320288,
+    "seen": 1794308928.4390848,
+    "ast_hash": "5dda917e73179d4f1c0f63198c2aaacf",
     "semantic_hash": ""
   },
   "src/layouts/AdminLayout.tsx": {
@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "src/layouts/AppLayout.tsx": {
-    "mtime": 1794307409.8550708,
-    "seen": 1794307689.8257215,
-    "ast_hash": "243f165e4da2e2e2ac8240b2c6320773",
+    "mtime": 1794308725.898813,
+    "seen": 1794308928.4390864,
+    "ast_hash": "f0c4a6d50e362a0f719e9b734f7b2f57",
     "semantic_hash": ""
   },
   "src/layouts/AuthLayout.tsx": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "src/pages/ExplorePage.tsx": {
-    "mtime": 1794304570.3200185,
-    "seen": 1794304719.5427022,
-    "ast_hash": "9cb4aa08fd2cd72373aa2edcfe286ac0",
+    "mtime": 1794308827.601377,
+    "seen": 1794308928.4390903,
+    "ast_hash": "144a3b070723dfb160bdde6ddc59ccf2",
     "semantic_hash": ""
   },
   "src/pages/MyProjectsPage.tsx": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
-    "mtime": 1794304581.6316516,
-    "seen": 1794304719.5427208,
-    "ast_hash": "0811e082a982074711c04b435b3b197e",
+    "mtime": 1794308652.7645378,
+    "seen": 1794308928.4391108,
+    "ast_hash": "6e9831808bfa07316f9f5694d9a608b0",
     "semantic_hash": ""
   },
   "src/schemas/adminSchemas.ts": {
@@ -726,15 +726,21 @@
     "semantic_hash": ""
   },
   "src/utils/roleResolver.ts": {
-    "mtime": 1794307134.123609,
-    "seen": 1794307689.8257678,
-    "ast_hash": "fa94846fe2c9efa2fc66c9f3ecca1ecd",
+    "mtime": 1794307743.627515,
+    "seen": 1794308928.439135,
+    "ast_hash": "e1fc4e1eee7fa7badef3e29fe6c73354",
     "semantic_hash": ""
   },
   "tests/roles.test.ts": {
-    "mtime": 1794307565.595675,
-    "seen": 1794307689.825773,
-    "ast_hash": "b45bc890e2ba3b39e85d2b071ce45749",
+    "mtime": 1794307743.6542814,
+    "seen": 1794308928.4391398,
+    "ast_hash": "f719403cda7d454b6d08c2336122be5a",
+    "semantic_hash": ""
+  },
+  "src/components/common/AuthModal.tsx": {
+    "mtime": 1794308437.0579302,
+    "seen": 1794308928.4390671,
+    "ast_hash": "8d7dafe02d79dcedceb04d6f854ade4c",
     "semantic_hash": ""
   }
 }

@@ -60,7 +60,7 @@ service cloud.firestore {
 
       // Employees create their initial profile during onboarding/Google sign-in
       allow create: if isAuthenticated() && (request.auth.uid == userId || isSuperAdmin());
-      allow delete: if false; // Soft suspension preferred
+      allow delete: if isSuperAdmin();
     }
 
     // -------------------------------------------------------------------------

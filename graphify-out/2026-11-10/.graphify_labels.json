@@ -1,7 +1,7 @@
 {
-  "0": "types/index.ts",
+  "0": "ProjectDetailsPage.tsx",
   "1": "ReportModal.tsx",
-  "2": "useAuth.tsx",
+  "2": "types/index.ts",
   "3": "AdminReviewQueuePage.tsx",
   "4": "scripts",
   "5": "dependencies",
@@ -23,5 +23,6 @@
   "21": "vite-env.d.ts",
   "22": "tailwind.config.js",
   "23": "tailwindcss",
-  "24": "vite.config.ts"
+  "24": "vite.config.ts",
+  "25": "AppLayout.tsx"
 }

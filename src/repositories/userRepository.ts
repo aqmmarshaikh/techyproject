@@ -3,6 +3,7 @@ import {
   getDoc, 
   setDoc, 
   updateDoc, 
+  deleteDoc,
   collection, 
   query, 
   where, 
@@ -82,7 +83,21 @@ export const userRepository = {
       );
     }
 
+    // Strictly exclude any legacy dummy/fake test profiles
+    users = users.filter((u) => 
+      !u.id?.startsWith('usr_') && 
+      !u.email?.toLowerCase().includes('@company.com') &&
+      u.email !== 'superadmin@company.com' &&
+      u.email !== 'admin@company.com' &&
+      u.email !== 'employee@company.com'
+    );
+
     return users;
+  },
+
+  async deleteProfile(uid: string): Promise<void> {
+    const docRef = doc(db, USERS_COLLECTION, uid);
+    await deleteDoc(docRef);
   },
 
   async setAccountStatus(uid: string, status: AccountStatus): Promise<void> {

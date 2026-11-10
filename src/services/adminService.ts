@@ -134,6 +134,33 @@ export const adminService = {
     });
   },
 
+  async deleteEmployee(targetUid: string, currentAdmin: UserProfile): Promise<void> {
+    if (currentAdmin.role !== 'SUPER_ADMIN') {
+      throw new Error('Only Super Administrators are permitted to permanently delete accounts.');
+    }
+
+    const target = await userRepository.getById(targetUid);
+    if (!target) throw new Error('User not found');
+
+    if (target.role === 'SUPER_ADMIN') {
+      throw new Error('Super Administrator accounts cannot be deleted.');
+    }
+
+    await userRepository.deleteProfile(targetUid);
+
+    await adminRepository.createAuditLog({
+      actorId: currentAdmin.id,
+      actorEmail: currentAdmin.email,
+      action: 'USER_DELETED',
+      targetEntity: 'users',
+      targetId: targetUid,
+      metadata: {
+        targetEmail: target.email,
+        fullName: target.fullName,
+      },
+    });
+  },
+
   async saveCategory(category: Category, currentAdmin: UserProfile): Promise<void> {
     const existing = await categoryRepository.getById(category.id);
     if (existing) {
