@@ -1,6 +1,11 @@
 export const APP_CONFIG = {
   appName: import.meta.env.VITE_APP_NAME || 'Project Hub',
   appUrl: import.meta.env.VITE_APP_URL || 'http://localhost:5173',
+  auth: {
+    // Designated Admin & Super Admin Email Addresses
+    superAdminEmails: ['ammarshaikh6100@gmail.com'],
+    adminEmails: ['ammarshaikh6100@gmail.com'],
+  },
   firebase: {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'AIzaSyDYC0k_j0SRoO01cQ1GIzAUGdATD0-7nuo',
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'techyprojects1-da98c.firebaseapp.com',

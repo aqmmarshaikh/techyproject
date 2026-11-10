@@ -1,6 +1,6 @@
 {
   "0": "types/index.ts",
-  "1": "AdminReportsPage.tsx",
+  "1": "ReportModal.tsx",
   "2": "useAuth.tsx",
   "3": "AdminReviewQueuePage.tsx",
   "4": "scripts",
@@ -8,7 +8,7 @@
   "6": "AppRoutes.tsx",
   "7": "compilerOptions",
   "8": "devDependencies",
-  "9": "ProjectDetailsPage.tsx",
+  "9": "ProjectSubmitForm.tsx",
   "10": "src/index.ts",
   "11": "manifest.json",
   "12": "2. Detailed Schema Definitions",

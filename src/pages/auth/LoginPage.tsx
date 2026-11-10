@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Mail, Lock, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react';
 import { loginSchema, LoginFormData } from '../../schemas/authSchemas';
-import { useAuth, DEMO_PROFILES } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/common/Button';
 import { useToast } from '../../components/common/Toast';
-import { UserRole } from '../../types';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const { login, loginWithGoogle, switchDemoRole } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const { success: toastSuccess, error: toastError } = useToast();
   const [authError, setAuthError] = useState<string | null>(null);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
@@ -56,15 +55,6 @@ export const LoginPage: React.FC = () => {
     } finally {
       setIsGoogleSubmitting(false);
     }
-  };
-
-  const handleQuickDemo = async (role: UserRole) => {
-    await switchDemoRole(role);
-    toastSuccess(
-      'Demo Profile Loaded',
-      `Signed in as ${role === 'SUPER_ADMIN' ? 'Super Admin (Elena)' : role === 'ADMIN' ? 'Admin (Marcus)' : 'Employee (Devon)'}`
-    );
-    navigate('/explore');
   };
 
   return (
@@ -182,38 +172,6 @@ export const LoginPage: React.FC = () => {
           Sign In
         </Button>
       </form>
-
-      {/* Quick Demo Access Bar for Test Verification */}
-      <div className="pt-4 border-t border-slate-100">
-        <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono mb-2">
-          <Sparkles className="w-3.5 h-3.5 text-[#FF3D88]" />
-          <span>Frictionless Persona Sandbox:</span>
-        </div>
-
-        <div className="grid grid-cols-3 gap-2">
-          <button
-            type="button"
-            onClick={() => handleQuickDemo('EMPLOYEE')}
-            className="px-2 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#0F1B3D] text-[11px] font-semibold transition-colors"
-          >
-            Employee
-          </button>
-          <button
-            type="button"
-            onClick={() => handleQuickDemo('ADMIN')}
-            className="px-2 py-2 rounded-xl bg-[#0F1B3D]/10 hover:bg-[#0F1B3D]/20 text-[#0F1B3D] text-[11px] font-semibold transition-colors"
-          >
-            Admin
-          </button>
-          <button
-            type="button"
-            onClick={() => handleQuickDemo('SUPER_ADMIN')}
-            className="px-2 py-2 rounded-xl bg-[#FF3D88]/15 hover:bg-[#FF3D88]/25 text-[#FF3D88] text-[11px] font-semibold transition-colors"
-          >
-            Super Admin
-          </button>
-        </div>
-      </div>
     </div>
   );
 };

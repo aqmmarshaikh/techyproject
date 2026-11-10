@@ -23,10 +23,9 @@ import { MAIN_NAV_ITEMS, ADMIN_NAV_ITEMS } from '../constants/navigation';
 import { RoleBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { notificationRepository } from '../repositories/notificationRepository';
-import { UserRole } from '../types';
 
 export const AppLayout: React.FC = () => {
-  const { userProfile, logout, isAdmin, isSuperAdmin, switchDemoRole } = useAuth();
+  const { userProfile, logout, isAdmin, isSuperAdmin } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const navigate = useNavigate();
@@ -91,29 +90,6 @@ export const AppLayout: React.FC = () => {
             <X className="w-5 h-5" />
           </button>
         )}
-      </div>
-
-      {/* Role Testing Quick Bar (Pair-Programming Tool) */}
-      <div className="px-5 py-2.5 bg-white/5 border-b border-white/10 text-xs">
-        <div className="flex items-center justify-between text-white/60 mb-1.5 font-mono text-[10px] uppercase">
-          <span>Active Persona</span>
-          <span className="text-[#FF3D88] font-bold">Dev Switch</span>
-        </div>
-        <div className="grid grid-cols-3 gap-1">
-          {(['EMPLOYEE', 'ADMIN', 'SUPER_ADMIN'] as UserRole[]).map((r) => (
-            <button
-              key={r}
-              onClick={() => switchDemoRole(r)}
-              className={`px-1.5 py-1 rounded text-[10px] font-semibold transition-all ${
-                userProfile?.role === r
-                  ? 'bg-[#FF3D88] text-white shadow'
-                  : 'bg-white/10 text-white/70 hover:bg-white/20'
-              }`}
-            >
-              {r === 'SUPER_ADMIN' ? 'Super' : r === 'ADMIN' ? 'Admin' : 'Emp'}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Navigation Links */}

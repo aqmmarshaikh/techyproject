@@ -3,6 +3,7 @@ import { User as FirebaseUser } from 'firebase/auth';
 import { authService } from '../services/authService';
 import { userRepository } from '../repositories/userRepository';
 import { UserProfile, UserRole } from '../types';
+import { resolveUserRoleByEmail } from '../utils/roleResolver';
 
 interface AuthContextType {
   firebaseUser: FirebaseUser | null;
@@ -17,7 +18,6 @@ interface AuthContextType {
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   refreshProfile: () => Promise<void>;
-  switchDemoRole: (role: UserRole) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -92,13 +92,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         return JSON.parse(saved);
       } catch {
-        return DEMO_PROFILES.EMPLOYEE;
+        return null;
       }
     }
-    // Default to active Employee so explorer/dashboard immediately load for reviewer
-    return DEMO_PROFILES.EMPLOYEE;
+    return null;
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   // Synchronize active profile with localStorage
@@ -115,20 +114,54 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setFirebaseUser(user);
       if (user) {
         try {
-          const profile = await userRepository.getById(user.uid);
+          const expectedRole = resolveUserRoleByEmail(user.email);
+          let profile = await userRepository.getById(user.uid);
+
           if (profile) {
             if (profile.accountStatus === 'SUSPENDED') {
               await authService.logout();
               setUserProfile(null);
               setError('Your account is currently suspended.');
             } else {
+              // Ensure role strictly reflects email policy
+              if (profile.role !== expectedRole) {
+                await userRepository.updateProfile(profile.id, { role: expectedRole });
+                profile.role = expectedRole;
+              }
               setUserProfile(profile);
             }
+          } else {
+            // First-time profile initialization with strictly resolved role
+            profile = {
+              id: user.uid,
+              email: user.email || '',
+              fullName: user.displayName || user.email?.split('@')[0] || 'Employee',
+              avatarUrl: user.photoURL || undefined,
+              designation: expectedRole === 'SUPER_ADMIN' ? 'Platform Director' : 'Employee',
+              department: expectedRole === 'SUPER_ADMIN' ? 'Executive' : 'Engineering',
+              skills: ['TypeScript', 'React'],
+              technologies: ['Vite', 'Firebase', 'Cloud Services'],
+              role: expectedRole,
+              accountStatus: 'ACTIVE',
+              joinDate: new Date().toISOString(),
+              lastLoginAt: new Date().toISOString(),
+              totalSubmittedProjects: 0,
+              totalApprovedProjects: 0,
+              totalLikesReceived: 0,
+              totalVotesReceived: 0,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            };
+            await userRepository.createProfile(profile);
+            setUserProfile(profile);
           }
         } catch (err) {
           console.warn('[useAuth] Failed to load Firestore profile:', err);
         }
+      } else {
+        setUserProfile(null);
       }
+      setIsLoading(false);
     });
 
     return () => unsubscribe();
@@ -201,21 +234,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  /**
-   * Quick role-switch capability for immediate pair-programming and testing
-   * across SUPER_ADMIN, ADMIN, and EMPLOYEE modes.
-   */
-  const switchDemoRole = async (role: UserRole) => {
-    const target = DEMO_PROFILES[role];
-    setUserProfile(target);
-    // Ensure demo user exists in repository so other operations succeed
-    try {
-      await userRepository.createProfile(target);
-    } catch (e) {
-      console.warn('[useAuth] Demo profile sync:', e);
-    }
-  };
-
   const isAuthenticated = Boolean(userProfile && userProfile.accountStatus !== 'SUSPENDED');
   const isAdmin = Boolean(userProfile && (userProfile.role === 'ADMIN' || userProfile.role === 'SUPER_ADMIN'));
   const isSuperAdmin = Boolean(userProfile && userProfile.role === 'SUPER_ADMIN');
@@ -235,7 +253,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         logout,
         resetPassword,
         refreshProfile,
-        switchDemoRole,
       }}
     >
       {children}
