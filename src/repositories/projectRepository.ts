@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../app/firebase';
 import { Project, ProjectFilterCriteria } from '../types';
+import { cleanFirestoreData } from '../utils/cleanFirestoreData';
 
 const PROJECTS_COLLECTION = 'projects';
 
@@ -26,20 +27,22 @@ export const projectRepository = {
 
   async create(project: Project): Promise<void> {
     const docRef = doc(db, PROJECTS_COLLECTION, project.id);
-    await setDoc(docRef, {
+    const payload = cleanFirestoreData({
       ...project,
       createdAt: project.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       serverTimestamp: serverTimestamp(),
     });
+    await setDoc(docRef, payload);
   },
 
   async update(projectId: string, updates: Partial<Project>): Promise<void> {
     const docRef = doc(db, PROJECTS_COLLECTION, projectId);
-    await updateDoc(docRef, {
+    const payload = cleanFirestoreData({
       ...updates,
       updatedAt: new Date().toISOString(),
     });
+    await updateDoc(docRef, payload);
   },
 
   async listApproved(criteria?: ProjectFilterCriteria, maxResults: number = 50): Promise<Project[]> {

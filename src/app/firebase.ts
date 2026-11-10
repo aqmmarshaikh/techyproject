@@ -1,16 +1,17 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getAuth, connectAuthEmulator, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 import { APP_CONFIG } from './config';
 
 const firebaseConfig = {
-  apiKey: APP_CONFIG.firebase.apiKey || 'AIzaSyDemoFallbackKeyOnlyForDevelopment',
-  authDomain: APP_CONFIG.firebase.authDomain || 'project-hub-demo.firebaseapp.com',
-  projectId: APP_CONFIG.firebase.projectId || 'project-hub-demo',
-  storageBucket: APP_CONFIG.firebase.storageBucket || 'project-hub-demo.appspot.com',
-  messagingSenderId: APP_CONFIG.firebase.messagingSenderId || '123456789012',
-  appId: APP_CONFIG.firebase.appId || '1:123456789012:web:abcdef123456',
+  apiKey: APP_CONFIG.firebase.apiKey,
+  authDomain: APP_CONFIG.firebase.authDomain,
+  projectId: APP_CONFIG.firebase.projectId,
+  storageBucket: APP_CONFIG.firebase.storageBucket,
+  messagingSenderId: APP_CONFIG.firebase.messagingSenderId,
+  appId: APP_CONFIG.firebase.appId,
   measurementId: APP_CONFIG.firebase.measurementId,
 };
 
@@ -19,6 +20,24 @@ export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getA
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
+
+// Google Auth Provider
+export const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: 'select_account',
+});
+
+// Analytics (Only initializes if supported in current browser environment)
+export let analytics: ReturnType<typeof getAnalytics> | null = null;
+if (typeof window !== 'undefined') {
+  isSupported().then((supported) => {
+    if (supported) {
+      analytics = getAnalytics(app);
+    }
+  }).catch((err) => {
+    console.warn('[Firebase] Analytics initialization skipped:', err);
+  });
+}
 
 // Connect to emulators if configured
 if (APP_CONFIG.firebase.useEmulators && typeof window !== 'undefined') {
@@ -37,4 +56,3 @@ if (APP_CONFIG.firebase.useEmulators && typeof window !== 'undefined') {
     console.warn('[Firebase] Emulator connection skipped or already initialized:', err);
   }
 }
-

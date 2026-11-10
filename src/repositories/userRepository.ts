@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../app/firebase';
 import { UserProfile, AccountStatus, UserRole } from '../types';
+import { cleanFirestoreData } from '../utils/cleanFirestoreData';
 
 const USERS_COLLECTION = 'users';
 
@@ -26,20 +27,22 @@ export const userRepository = {
 
   async createProfile(profile: UserProfile): Promise<void> {
     const docRef = doc(db, USERS_COLLECTION, profile.id);
-    await setDoc(docRef, {
+    const payload = cleanFirestoreData({
       ...profile,
       createdAt: profile.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       serverTimestamp: serverTimestamp(),
     });
+    await setDoc(docRef, payload);
   },
 
   async updateProfile(uid: string, data: Partial<UserProfile>): Promise<void> {
     const docRef = doc(db, USERS_COLLECTION, uid);
-    await updateDoc(docRef, {
+    const payload = cleanFirestoreData({
       ...data,
       updatedAt: new Date().toISOString(),
     });
+    await updateDoc(docRef, payload);
   },
 
   async listEmployees(params?: {

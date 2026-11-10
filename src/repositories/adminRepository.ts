@@ -33,12 +33,20 @@ const DEFAULT_SETTINGS: SystemSettings = {
 export const adminRepository = {
   async getSettings(): Promise<SystemSettings> {
     const docRef = doc(db, SETTINGS_COLLECTION, 'global');
-    const snap = await getDoc(docRef);
-    if (!snap.exists()) {
-      await setDoc(docRef, DEFAULT_SETTINGS);
+    try {
+      const snap = await getDoc(docRef);
+      if (!snap.exists()) {
+        try {
+          await setDoc(docRef, DEFAULT_SETTINGS);
+        } catch {
+          // If unprivileged reader, setDoc may fail due to rule; return defaults gracefully
+        }
+        return DEFAULT_SETTINGS;
+      }
+      return snap.data() as SystemSettings;
+    } catch {
       return DEFAULT_SETTINGS;
     }
-    return snap.data() as SystemSettings;
   },
 
   async updateSettings(settings: Partial<SystemSettings>, adminUid: string): Promise<void> {

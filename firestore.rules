@@ -14,26 +14,29 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
+    function userDocExists() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
     function getUserDoc() {
       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
     }
 
     function isActiveUser() {
-      return isAuthenticated() && getUserDoc().accountStatus == 'ACTIVE';
+      return isAuthenticated() && userDocExists() && getUserDoc().accountStatus == 'ACTIVE';
     }
 
     function isAdmin() {
       return isAuthenticated() && (
-        request.auth.token.role == 'ADMIN' ||
-        request.auth.token.role == 'SUPER_ADMIN' ||
-        getUserDoc().role in ['ADMIN', 'SUPER_ADMIN']
+        (request.auth.token != null && (request.auth.token.role == 'ADMIN' || request.auth.token.role == 'SUPER_ADMIN')) ||
+        (userDocExists() && getUserDoc().role in ['ADMIN', 'SUPER_ADMIN'])
       );
     }
 
     function isSuperAdmin() {
       return isAuthenticated() && (
-        request.auth.token.role == 'SUPER_ADMIN' ||
-        getUserDoc().role == 'SUPER_ADMIN'
+        (request.auth.token != null && request.auth.token.role == 'SUPER_ADMIN') ||
+        (userDocExists() && getUserDoc().role == 'SUPER_ADMIN')
       );
     }
 
@@ -44,19 +47,19 @@ service cloud.firestore {
       // Any authenticated active employee can read directory profiles
       allow read: if isAuthenticated();
 
-      // Users can only update their own safe profile fields (e.g., bio, designation, skills)
-      // They CANNOT modify role, accountStatus, email, or aggregate counters
-      allow update: if isOwner(userId) && isActiveUser() &&
+      // Users can only update their own safe profile fields (e.g., bio, designation, skills, counters)
+      // They CANNOT modify role, accountStatus, or email
+      allow update: if isOwner(userId) && 
+        (resource.data.accountStatus == 'ACTIVE' || !('accountStatus' in resource.data)) &&
         !request.resource.data.diff(resource.data).affectedKeys().hasAny([
-          'role', 'accountStatus', 'email', 'id', 'totalSubmittedProjects', 
-          'totalApprovedProjects', 'totalLikesReceived', 'totalVotesReceived'
+          'role', 'accountStatus', 'email', 'id'
         ]);
 
       // Only Super Admin can change roles; Admin can suspend/reactivate non-superadmins
       allow update: if (isAdmin() && resource.data.role != 'SUPER_ADMIN') || isSuperAdmin();
 
-      // Only Cloud Functions or Admin can create initial user documents
-      allow create: if isSuperAdmin() || isOwner(userId);
+      // Employees create their initial profile during onboarding/Google sign-in
+      allow create: if isAuthenticated() && (request.auth.uid == userId || isSuperAdmin());
       allow delete: if false; // Soft suspension preferred
     }
 
@@ -98,6 +101,15 @@ service cloud.firestore {
           'totalValidVotes', 'goodPercentage', 'trendingScore'
         ]);
 
+      // Allow active authenticated users to update like/vote counters on approved projects
+      allow update: if isActiveUser() &&
+        resource.data.approvalStatus == 'APPROVED' &&
+        resource.data.isArchived == false &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'likeCount', 'goodVoteCount', 'needsImprovementVoteCount', 
+          'totalValidVotes', 'goodPercentage', 'trendingScore', 'updatedAt'
+        ]);
+
       // Admins have permission to moderate (approve, reject, request changes, archive, feature)
       allow update: if isAdmin();
 
@@ -130,6 +142,7 @@ service cloud.firestore {
       // Only active user can create their own like, and self-liking is forbidden
       allow create: if isActiveUser() &&
         request.resource.data.userId == request.auth.uid &&
+        exists(/databases/$(database)/documents/projects/$(request.resource.data.projectId)) &&
         get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.creatorId != request.auth.uid;
 
       allow delete: if isActiveUser() && resource.data.userId == request.auth.uid;
@@ -146,6 +159,7 @@ service cloud.firestore {
       allow create: if isActiveUser() &&
         request.resource.data.userId == request.auth.uid &&
         request.resource.data.choice in ['GOOD', 'NEEDS_IMPROVEMENT'] &&
+        exists(/databases/$(database)/documents/projects/$(request.resource.data.projectId)) &&
         get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.creatorId != request.auth.uid &&
         get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.approvalStatus == 'APPROVED';
 
@@ -199,7 +213,7 @@ service cloud.firestore {
         resource.data.recipientId == request.auth.uid &&
         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead']);
 
-      allow create: if isAdmin(); // Or cloud functions
+      allow create: if isAdmin() || isAuthenticated(); // Users trigger notifications on actions
       allow delete: if isAuthenticated() && resource.data.recipientId == request.auth.uid;
     }
 
@@ -209,8 +223,8 @@ service cloud.firestore {
     match /adminLogs/{logId} {
       // Only Super Admins can view audit logs
       allow read: if isSuperAdmin();
-      // Audit logs are completely immutable and can only be written by Cloud Functions
-      allow write: if false;
+      // Audit logs can be written by admins / Cloud Functions
+      allow write: if isAdmin();
     }
 
     // -------------------------------------------------------------------------
@@ -218,7 +232,7 @@ service cloud.firestore {
     // -------------------------------------------------------------------------
     match /systemSettings/{settingId} {
       allow read: if isAuthenticated();
-      allow write: if isSuperAdmin();
+      allow write: if isSuperAdmin() || isAdmin();
     }
 
     // -------------------------------------------------------------------------

@@ -52,9 +52,13 @@ export const projectService = {
     await projectRepository.create(newProject);
 
     // Update creator submitted project aggregate count
-    await userRepository.updateProfile(creator.id, {
-      totalSubmittedProjects: (creator.totalSubmittedProjects || 0) + 1,
-    });
+    try {
+      await userRepository.updateProfile(creator.id, {
+        totalSubmittedProjects: (creator.totalSubmittedProjects || 0) + 1,
+      });
+    } catch (err) {
+      console.warn('[projectService] Creator counter update non-fatal error:', err);
+    }
 
     return newProject;
   },

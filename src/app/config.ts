@@ -2,13 +2,13 @@ export const APP_CONFIG = {
   appName: import.meta.env.VITE_APP_NAME || 'Project Hub',
   appUrl: import.meta.env.VITE_APP_URL || 'http://localhost:5173',
   firebase: {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || '',
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'project-hub-demo',
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || '',
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '',
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || '',
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'AIzaSyDYC0k_j0SRoO01cQ1GIzAUGdATD0-7nuo',
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'techyprojects1-da98c.firebaseapp.com',
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'techyprojects1-da98c',
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'techyprojects1-da98c.firebasestorage.app',
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '403067015603',
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:403067015603:web:af7d99e864469642807bc6',
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || 'G-CKBZG8DFR3',
     useEmulators: import.meta.env.VITE_USE_FIREBASE_EMULATORS === 'true',
     emulatorHosts: {
       auth: import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST || 'localhost:9099',
@@ -26,4 +26,3 @@ export const APP_CONFIG = {
     maxScreenshots: 6,
   },
 } as const;
-

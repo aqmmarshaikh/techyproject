@@ -24,6 +24,7 @@ import { ProjectStatusBadge, ApprovalStatusBadge, Badge } from '../../components
 import { Button } from '../../components/common/Button';
 import { Modal } from '../../components/common/Modal';
 import { EmptyState } from '../../components/common/EmptyState';
+import { RevisionDiff } from '../../features/projects/RevisionDiff';
 import { formatDate } from '../../utils/formatters';
 
 export const AdminReviewQueuePage: React.FC = () => {
@@ -544,28 +545,13 @@ export const AdminReviewQueuePage: React.FC = () => {
       <Modal
         isOpen={Boolean(inspectRevision)}
         onClose={() => setInspectRevision(null)}
-        maxWidth="lg"
+        maxWidth="2xl"
         title="Review Proposed Revision"
-        description="Verify proposed modifications against current project."
+        description="Verify proposed modifications side-by-side against the current project."
       >
         {inspectRevision && (
           <div className="space-y-4">
-            <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 font-sans">
-              <strong>Employee's Change Summary:</strong>
-              <p className="mt-1 text-slate-700">{inspectRevision.changeSummary}</p>
-            </div>
-
-            <div className="space-y-2 text-xs font-mono">
-              <h5 className="font-semibold text-slate-600 uppercase text-[10px]">Proposed Fields</h5>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
-                {Object.entries(inspectRevision.proposedChanges).map(([k, v]) => (
-                  <div key={k} className="flex justify-between">
-                    <span className="text-slate-400">{k}:</span>
-                    <span className="text-slate-800 truncate max-w-xs">{JSON.stringify(v)}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <RevisionDiff revision={inspectRevision} />
 
             <div className="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
               <Button

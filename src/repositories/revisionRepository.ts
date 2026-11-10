@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../app/firebase';
 import { ProjectRevision, RevisionStatus } from '../types';
+import { cleanFirestoreData } from '../utils/cleanFirestoreData';
 
 const REVISIONS_COLLECTION = 'projectRevisions';
 
@@ -25,11 +26,12 @@ export const revisionRepository = {
 
   async create(revision: ProjectRevision): Promise<void> {
     const docRef = doc(db, REVISIONS_COLLECTION, revision.id);
-    await setDoc(docRef, {
+    const payload = cleanFirestoreData({
       ...revision,
       createdAt: revision.createdAt || new Date().toISOString(),
       serverTimestamp: serverTimestamp(),
     });
+    await setDoc(docRef, payload);
   },
 
   async listByProject(projectId: string): Promise<ProjectRevision[]> {

@@ -8491,78 +8491,6 @@
     },
     {
       "source": "src_pages_admin_adminreportspage",
-      "target": "src_repositories_reportrepository_reportrepository",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L226",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_services_adminservice_adminservice",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L227",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_hooks_useauth_useauth",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L229",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_toast_usetoast",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L230",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_badge_badge",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L231",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_button_button",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L232",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
       "target": "src_components_common_emptystate_emptystate",
       "relation": "imports",
       "_origin": "ast",
@@ -8570,7 +8498,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L233",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -8582,7 +8510,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L234",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -8594,7 +8522,31 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L236",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_repositories_reportrepository_reportrepository",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_services_adminservice_adminservice",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -8619,6 +8571,54 @@
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_hooks_useauth_useauth",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_toast_usetoast",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_badge_badge",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_button_button",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -12415,90 +12415,6 @@
     },
     {
       "source": "src_pages_admin_adminreportspage",
-      "target": "src_repositories_reportrepository",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L226",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_services_adminservice",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L227",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_types_index",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L228",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_hooks_useauth",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L229",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_toast",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L230",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_badge",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L231",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
-      "target": "src_components_common_button",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L232",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_admin_adminreportspage",
       "target": "src_components_common_emptystate",
       "relation": "imports_from",
       "_origin": "ast",
@@ -12506,7 +12422,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L233",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -12518,7 +12434,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L234",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -12530,7 +12446,91 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L236",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_repositories_reportrepository",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_services_adminservice",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_hooks_useauth",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_toast",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_badge",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_admin_adminreportspage",
+      "target": "src_components_common_button",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -16623,7 +16623,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L238",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -17882,5 +17882,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "84d6e274c3487a605a22a9421ef78d38a2bd7cd1"
+  "built_at_commit": "fa1cd9202e40143b7acc17653519cbe09ea42c15"
 }

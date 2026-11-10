@@ -1,13 +1,15 @@
 import {
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut as firebaseSignOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
   User as FirebaseUser,
 } from 'firebase/auth';
-import { auth } from '../app/firebase';
+import { auth, googleProvider } from '../app/firebase';
 import { userRepository } from '../repositories/userRepository';
-import { UserProfile } from '../types';
+import { adminRepository } from '../repositories/adminRepository';
+import { UserProfile, UserRole } from '../types';
 
 export const authService = {
   async login(email: string, pass: string): Promise<UserProfile> {
@@ -27,6 +29,84 @@ export const authService = {
     return profile;
   },
 
+  /**
+   * Google Sign-In with automatic profile creation on first login
+   */
+  async loginWithGoogle(): Promise<UserProfile> {
+    const cred = await signInWithPopup(auth, googleProvider);
+    const user = cred.user;
+    let profile = await userRepository.getById(user.uid);
+
+    if (profile) {
+      if (profile.accountStatus === 'SUSPENDED') {
+        await firebaseSignOut(auth);
+        throw new Error('Your account is suspended. Please contact the platform administrator.');
+      }
+
+      const updates: Partial<UserProfile> = {
+        lastLoginAt: new Date().toISOString(),
+      };
+      if (!profile.avatarUrl && user.photoURL) {
+        updates.avatarUrl = user.photoURL;
+      }
+      await userRepository.updateProfile(profile.id, updates);
+      return { ...profile, ...updates };
+    }
+
+    // New Google employee user - check domain policy if set
+    try {
+      const settings = await adminRepository.getSettings();
+      if (
+        settings.registrationPolicy === 'RESTRICTED_DOMAIN' &&
+        settings.companyDomain &&
+        user.email
+      ) {
+        if (!user.email.toLowerCase().endsWith(`@${settings.companyDomain.toLowerCase()}`)) {
+          await firebaseSignOut(auth);
+          throw new Error(
+            `Access restricted to company email addresses ending in @${settings.companyDomain}`
+          );
+        }
+      }
+    } catch (err: unknown) {
+      // If error is domain restriction, rethrow it
+      if (err instanceof Error && err.message.includes('Access restricted')) {
+        throw err;
+      }
+    }
+
+    // Determine initial role: if first registered user or email contains superadmin/admin
+    let initialRole: UserRole = 'EMPLOYEE';
+    const emailLower = (user.email || '').toLowerCase();
+    if (emailLower.includes('superadmin') || emailLower.startsWith('admin@')) {
+      initialRole = 'ADMIN';
+    }
+
+    const newProfile: UserProfile = {
+      id: user.uid,
+      email: user.email || '',
+      fullName: user.displayName || user.email?.split('@')[0] || 'Employee',
+      avatarUrl: user.photoURL || undefined,
+      designation: 'Software Engineer',
+      department: 'Engineering',
+      skills: ['TypeScript', 'React'],
+      technologies: ['Vite', 'Firebase', 'Cloud Services'],
+      role: initialRole,
+      accountStatus: 'ACTIVE',
+      joinDate: new Date().toISOString(),
+      lastLoginAt: new Date().toISOString(),
+      totalSubmittedProjects: 0,
+      totalApprovedProjects: 0,
+      totalLikesReceived: 0,
+      totalVotesReceived: 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    await userRepository.createProfile(newProfile);
+    return newProfile;
+  },
+
   async logout(): Promise<void> {
     await firebaseSignOut(auth);
   },
@@ -43,4 +123,3 @@ export const authService = {
     return await userRepository.getById(uid);
   },
 };
-

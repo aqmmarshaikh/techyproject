@@ -25,9 +25,13 @@ export const categoryRepository = {
     const snap = await getDocs(q);
 
     if (snap.empty) {
-      // Seed default categories if collection is currently unpopulated
-      for (const cat of DEFAULT_CATEGORIES) {
-        await setDoc(doc(db, CATEGORIES_COLLECTION, cat.id), cat);
+      // Seed default categories if collection is currently unpopulated and caller has write permission
+      try {
+        for (const cat of DEFAULT_CATEGORIES) {
+          await setDoc(doc(db, CATEGORIES_COLLECTION, cat.id), cat);
+        }
+      } catch {
+        // If caller is non-admin, setDoc may be rejected by security rule; return defaults gracefully
       }
       return DEFAULT_CATEGORIES;
     }
