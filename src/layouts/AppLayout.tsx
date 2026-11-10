@@ -41,14 +41,29 @@ export const AppLayout: React.FC = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Fetch unread notification count
+  // Real-time unread notification count
   useEffect(() => {
-    if (userProfile?.id) {
-      notificationRepository.listUserNotifications(userProfile.id).then((items) => {
-        setUnreadNotifications(items.filter((n) => !n.isRead).length);
-      }).catch(console.warn);
+    if (!userProfile?.id) {
+      setUnreadNotifications(0);
+      return;
     }
-  }, [userProfile?.id, location.pathname]);
+    const unsubscribe = notificationRepository.subscribeToUserNotifications(
+      userProfile.id,
+      (items) => {
+        setUnreadNotifications(items.filter((n) => !n.isRead).length);
+      },
+      (err) => {
+        console.warn('Real-time notification listener error:', err);
+        notificationRepository
+          .listUserNotifications(userProfile.id)
+          .then((items) => {
+            setUnreadNotifications(items.filter((n) => !n.isRead).length);
+          })
+          .catch(console.warn);
+      }
+    );
+    return () => unsubscribe();
+  }, [userProfile?.id]);
 
   const handleLogout = async () => {
     await logout();
@@ -143,7 +158,7 @@ export const AppLayout: React.FC = () => {
           <div className="pt-2 border-t border-white/10">
             <div className="flex items-center justify-between px-3 mb-2">
               <p className="text-[10px] font-mono uppercase tracking-wider text-[#FF3D88] font-bold">
-                {effectiveRole === 'SUPER_ADMIN' ? 'Governance' : 'Admin Center'}
+                Admin Center
               </p>
               <RoleBadge role={effectiveRole} />
             </div>
@@ -174,7 +189,7 @@ export const AppLayout: React.FC = () => {
                 }
               >
                 <ShieldAlert className="w-5 h-5 text-[#FF3D88]" />
-                <span>Admin Panel</span>
+                <span>Control Center</span>
               </NavLink>
             </nav>
           </div>
@@ -192,6 +207,10 @@ export const AppLayout: React.FC = () => {
               }
               alt={userProfile?.fullName || 'User'}
               className="w-10 h-10 rounded-xl object-cover ring-2 ring-[#FF3D88]/30"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80';
+              }}
             />
             <div className="flex-1 min-w-0">
               <h4 className="text-sm font-semibold text-white truncate">{userProfile?.fullName || 'Authenticated User'}</h4>

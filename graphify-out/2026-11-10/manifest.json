@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "src/pages/ExplorePage.tsx": {
-    "mtime": 1794311894.3598063,
-    "seen": 1794312116.33385,
-    "ast_hash": "bf0e9e87987606967870f7c4230861fc",
+    "mtime": 1794313747.201628,
+    "seen": 1794313867.9985094,
+    "ast_hash": "6b24f678587c6cacb996f2809f8dbf2a",
     "semantic_hash": ""
   },
   "src/pages/MyProjectsPage.tsx": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "src/pages/SavedProjectsPage.tsx": {
-    "mtime": 1794304574.5513356,
-    "seen": 1794304719.542706,
-    "ast_hash": "cefb4fb4ba68a4cf30d882b425938e0c",
+    "mtime": 1794313726.0546238,
+    "seen": 1794313867.998531,
+    "ast_hash": "6e22d2a3b675788ad691769c57f46c95",
     "semantic_hash": ""
   },
   "src/pages/SubmitProjectPage.tsx": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "src/repositories/interactionRepository.ts": {
-    "mtime": 1794304339.9276922,
-    "seen": 1794304719.5427163,
-    "ast_hash": "9d525fb3873bc58bccfa1e5054451157",
+    "mtime": 1794313687.4021118,
+    "seen": 1794313868.0006242,
+    "ast_hash": "4340d985f220c39992eec0aeb0570933",
     "semantic_hash": ""
   },
   "src/repositories/notificationRepository.ts": {
@@ -750,27 +750,27 @@
     "semantic_hash": ""
   },
   "src/components/common/PreviewModeBanner.tsx": {
-    "mtime": 1794312559.4334693,
-    "seen": 1794313122.4486506,
-    "ast_hash": "17e14382664cab27cd47c848b92f2c94",
+    "mtime": 1794313491.6145134,
+    "seen": 1794313867.9981894,
+    "ast_hash": "e13c39afb05c8ac7a48f41e71cbb935b",
     "semantic_hash": ""
   },
   "src/components/common/RoleSwitcher.tsx": {
-    "mtime": 1794312547.393028,
-    "seen": 1794313122.4486516,
-    "ast_hash": "c627b5f49850938a19029728c1913fb3",
+    "mtime": 1794313491.42298,
+    "seen": 1794313867.998198,
+    "ast_hash": "cace15a1ade93104c27b01b77feeb13c",
     "semantic_hash": ""
   },
   "src/contexts/RolePreviewContext.tsx": {
-    "mtime": 1794312525.0978148,
-    "seen": 1794313122.4486594,
-    "ast_hash": "611aea47065261bc62be10a73d07b23e",
+    "mtime": 1794313493.293907,
+    "seen": 1794313867.9983914,
+    "ast_hash": "8ec6147827f3fd753a3575949518b4dc",
     "semantic_hash": ""
   },
   "src/layouts/SuperAdminLayout.tsx": {
-    "mtime": 1794312694.3047874,
-    "seen": 1794313122.4486697,
-    "ast_hash": "1d16013735af985f9d92b8e6b9b78f3e",
+    "mtime": 1794313496.9379475,
+    "seen": 1794313867.9984872,
+    "ast_hash": "2ccda4fa27e670d5879d4f1a76523d10",
     "semantic_hash": ""
   },
   "src/pages/super-admin/SuperAdminAdminsPage.tsx": {
@@ -792,15 +792,21 @@
     "semantic_hash": ""
   },
   "src/pages/super-admin/SuperAdminSecurityPage.tsx": {
-    "mtime": 1794312682.126679,
-    "seen": 1794313122.4486878,
-    "ast_hash": "9afebff59628890ca6b343325ee0754b",
+    "mtime": 1794313501.2206905,
+    "seen": 1794313868.0006025,
+    "ast_hash": "27e7899669a61f537efc6b2112f95778",
     "semantic_hash": ""
   },
   "tests/rolePreview.test.ts": {
-    "mtime": 1794313085.3555138,
-    "seen": 1794313122.4487286,
-    "ast_hash": "697204fd62ef59a4bcccad64fff322ca",
+    "mtime": 1794313504.8424973,
+    "seen": 1794313868.0008795,
+    "ast_hash": "d63187eadaab0407182905f84311bee1",
+    "semantic_hash": ""
+  },
+  "tests/bookmarks.test.ts": {
+    "mtime": 1794313768.7232416,
+    "seen": 1794313868.0008721,
+    "ast_hash": "c15954a93531fc72c2f3e3b9178a9359",
     "semantic_hash": ""
   }
 }

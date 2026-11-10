@@ -261,9 +261,13 @@ export const ArenaPage: React.FC = () => {
 
                   {/* Thumbnail */}
                   <img
-                    src={project.coverImageUrl}
+                    src={project.coverImageUrl || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80'}
                     alt={project.title}
                     className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shrink-0 border border-slate-200"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80';
+                    }}
                   />
 
                   {/* Content */}

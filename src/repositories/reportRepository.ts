@@ -26,14 +26,16 @@ export const reportRepository = {
 
   async list(statusFilter?: ReportStatus | 'ALL'): Promise<ProjectReport[]> {
     const colRef = collection(db, REPORTS_COLLECTION);
-    let q = query(colRef, orderBy('createdAt', 'desc'));
+    let q = query(colRef);
 
     if (statusFilter && statusFilter !== 'ALL') {
-      q = query(colRef, where('status', '==', statusFilter), orderBy('createdAt', 'desc'));
+      q = query(colRef, where('status', '==', statusFilter));
     }
 
     const snap = await getDocs(q);
-    return snap.docs.map((d) => d.data() as ProjectReport);
+    const items = snap.docs.map((d) => d.data() as ProjectReport);
+    items.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+    return items;
   },
 
   async updateStatus(

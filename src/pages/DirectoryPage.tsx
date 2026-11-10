@@ -149,6 +149,10 @@ export const DirectoryPage: React.FC = () => {
                     }
                     alt={emp.fullName}
                     className="w-14 h-14 rounded-2xl object-cover border border-slate-200 group-hover:ring-2 group-hover:ring-[#FF3D88]/30 transition-all"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
+                    }}
                   />
                   <RoleBadge role={emp.role} />
                 </div>
@@ -212,6 +216,10 @@ export const DirectoryPage: React.FC = () => {
                 src={selectedEmployee.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'}
                 alt={selectedEmployee.fullName}
                 className="w-16 h-16 rounded-2xl object-cover border border-slate-200"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
+                }}
               />
               <div className="space-y-1">
                 <div className="flex items-center gap-2">

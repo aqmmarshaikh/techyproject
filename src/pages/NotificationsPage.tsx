@@ -15,21 +15,32 @@ export const NotificationsPage: React.FC = () => {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const loadNotifications = async () => {
+  useEffect(() => {
     if (!userProfile?.id) return;
     setIsLoading(true);
-    try {
-      const items = await notificationRepository.listUserNotifications(userProfile.id);
-      setNotifications(items);
-    } catch (err) {
-      console.warn('Failed to load notifications:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  useEffect(() => {
-    loadNotifications();
+    const unsubscribe = notificationRepository.subscribeToUserNotifications(
+      userProfile.id,
+      (items) => {
+        setNotifications(items);
+        setIsLoading(false);
+      },
+      (err) => {
+        console.warn('Real-time notifications subscription error, falling back:', err);
+        notificationRepository
+          .listUserNotifications(userProfile.id)
+          .then((items) => {
+            setNotifications(items);
+            setIsLoading(false);
+          })
+          .catch((fetchErr) => {
+            console.error('Failed to load notifications:', fetchErr);
+            setIsLoading(false);
+          });
+      }
+    );
+
+    return () => unsubscribe();
   }, [userProfile?.id]);
 
   const handleMarkAsRead = async (e: React.MouseEvent, n: AppNotification) => {

@@ -94,10 +94,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Cover Image & Overlays */}
       <div className="relative w-full h-48 bg-slate-100 overflow-hidden">
         <img
-          src={project.coverImageUrl}
+          src={project.coverImageUrl || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80'}
           alt={project.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80';
+          }}
         />
         
         {/* Top Badges */}
@@ -179,6 +182,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               }
               alt={project.creatorName}
               className="w-7 h-7 rounded-full object-cover border border-slate-200"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80';
+              }}
             />
             <div className="text-left">
               <p className="text-xs font-semibold text-[#0F1B3D] leading-none line-clamp-1">

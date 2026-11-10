@@ -142,6 +142,10 @@ export const ProfilePage: React.FC = () => {
               }
               alt={userProfile.fullName}
               className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover border-2 border-slate-200 shadow-sm"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80';
+              }}
             />
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
