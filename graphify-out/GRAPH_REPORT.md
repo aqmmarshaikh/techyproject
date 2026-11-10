@@ -1,0 +1,168 @@
+# Graph Report - tehyprojects2  (2026-11-10)
+
+## Corpus Check
+- 105 files · ~41,248 words
+- Verdict: corpus is large enough that graph structure adds value.
+
+## Summary
+- 442 nodes · 1091 edges · 25 communities
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `84d6e274`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
+## Community Hubs (Navigation)
+- ExplorePage.tsx
+- types/index.ts
+- useAuth.tsx
+- Button.tsx
+- scripts
+- dependencies
+- AppRoutes.tsx
+- compilerOptions
+- devDependencies
+- ProjectSubmitForm.tsx
+- src/index.ts
+- ProjectDetailsPage.tsx
+- 2. Detailed Schema Definitions
+- 🚀 Key Features
+- compilerOptions
+- PROJECT HUB — Development Phases Checklist & Execution Plan
+- Toast.tsx
+- PROJECT HUB — Security Architecture & Guidelines
+- compilerOptions
+- PROJECT HUB — Master Architecture Specification
+
+## God Nodes (most connected - your core abstractions)
+1. `useAuth()` - 46 edges
+2. `useToast()` - 29 edges
+3. `Button` - 24 edges
+4. `formatDate()` - 22 edges
+5. `Project` - 20 edges
+6. `compilerOptions` - 18 edges
+7. `cn()` - 13 edges
+8. `projectRepository` - 12 edges
+9. `2. Detailed Schema Definitions` - 12 edges
+10. `EmptyState()` - 11 edges
+
+## Surprising Connections (you probably didn't know these)
+- `Badge()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Badge.tsx → src/utils/cn.ts
+- `Skeleton()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Skeleton.tsx → src/utils/cn.ts
+- `ToastProvider()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Toast.tsx → src/utils/cn.ts
+- `ProjectCard()` --calls--> `useToast()`  [EXTRACTED]
+  src/features/projects/ProjectCard.tsx → src/components/common/Toast.tsx
+- `ProjectSubmitForm()` --calls--> `useToast()`  [EXTRACTED]
+  src/features/projects/ProjectSubmitForm.tsx → src/components/common/Toast.tsx
+
+## Import Cycles
+- None detected.
+
+## Communities (25 total, 0 thin omitted)
+
+### Community 0 - "ExplorePage.tsx"
+Cohesion: 0.13
+Nodes (24): ProjectCard(), ProjectCardProps, ProjectFilterBar(), ProjectFilterBarProps, VoteButtonPairProps, AdminOverviewPage(), DashboardPage(), categoryRepository (+16 more)
+
+### Community 1 - "types/index.ts"
+Cohesion: 0.11
+Nodes (19): app, auth, db, firebaseConfig, functions, DEFAULT_CATEGORIES, BRAND_COLORS, FONTS (+11 more)
+
+### Community 2 - "useAuth.tsx"
+Cohesion: 0.11
+Nodes (24): AccountStatusBadge(), RoleBadge(), ADMIN_NAV_ITEMS, MAIN_NAV_ITEMS, NavItem, AuthContext, AuthContextType, DEMO_PROFILES (+16 more)
+
+### Community 3 - "Button.tsx"
+Cohesion: 0.13
+Nodes (21): Button, ButtonProps, ConfirmationModal(), ConfirmationModalProps, EmptyState(), EmptyStateProps, Modal(), ModalProps (+13 more)
+
+### Community 4 - "scripts"
+Cohesion: 0.06
+Nodes (30): cloudinary, cors, firebase-admin, firebase-functions, dependencies, cloudinary, cors, firebase-admin (+22 more)
+
+### Community 5 - "dependencies"
+Cohesion: 0.06
+Nodes (30): clsx, firebase, @hookform/resolvers, lucide-react, dependencies, clsx, firebase, @hookform/resolvers (+22 more)
+
+### Community 6 - "AppRoutes.tsx"
+Cohesion: 0.17
+Nodes (26): useToast(), ProjectDetailsPage(), ReportModal(), VoteButtonPair(), useAuth(), AdminLayout(), AppLayout(), AuthLayout() (+18 more)
+
+### Community 7 - "compilerOptions"
+Cohesion: 0.08
+Nodes (24): DOM, DOM.Iterable, ES2020, compilerOptions, allowImportingTsExtensions, baseUrl, isolatedModules, jsx (+16 more)
+
+### Community 8 - "devDependencies"
+Cohesion: 0.10
+Nodes (21): autoprefixer, devDependencies, autoprefixer, postcss, tailwindcss, @types/node, @types/react, @types/react-dom (+13 more)
+
+### Community 9 - "ProjectSubmitForm.tsx"
+Cohesion: 0.16
+Nodes (13): APP_CONFIG, ProjectSubmitForm(), ProjectSubmitFormProps, AdminReviewFormData, adminReviewSchema, ProjectRevisionFormData, projectRevisionSchema, projectStatuses (+5 more)
+
+### Community 10 - "src/index.ts"
+Cohesion: 0.19
+Nodes (13): createCloudinarySignature(), castVote, db, getCloudinaryUploadSignature, submitProject, toggleLike, processLikeToggle(), SubmitProjectInput (+5 more)
+
+### Community 11 - "ProjectDetailsPage.tsx"
+Cohesion: 0.27
+Nodes (11): ApprovalStatusBadge(), Badge(), BadgeProps, ProjectStatusBadge(), revisionRepository, projectService, ApprovalStatus, ProjectStatus (+3 more)
+
+### Community 12 - "2. Detailed Schema Definitions"
+Cohesion: 0.12
+Nodes (15): 1. Overview of Firestore Collections, 2.10 Collection: `adminLogs/{logId}`, 2.11 Collection: `systemSettings/global`, 2.1 Collection: `users/{userId}`, 2.2 Collection: `projects/{projectId}`, 2.3 Collection: `projectRevisions/{revisionId}`, 2.4 Collection: `likes/{likeId}`, 2.5 Collection: `votes/{voteId}` (+7 more)
+
+### Community 13 - "🚀 Key Features"
+Cohesion: 0.12
+Nodes (15): 1. Employee Innovation Showcase (Explore), 1. Install Dependencies, 2. Run Automated Verification Tests, 2. Server-Authoritative Voting Engine, 3. Project Arena & Ranking Engine, 3. Run Development Server, 4. Build for Production, 4. Dual-State Project Revision Workflow (+7 more)
+
+### Community 14 - "compilerOptions"
+Cohesion: 0.15
+Nodes (12): compileOnSave, compilerOptions, module, noImplicitReturns, noUnusedLocals, outDir, skipLibCheck, sourceMap (+4 more)
+
+### Community 15 - "PROJECT HUB — Development Phases Checklist & Execution Plan"
+Cohesion: 0.18
+Nodes (10): Phase 1: Environment Setup, Architecture & Foundational Configuration, Phase 2: Domain Types, Schemas, Repositories & Security Rules, Phase 3: Authentication, Authorization & User Management, Phase 4: Core Project Lifecycle & Submission Workflow, Phase 5: Social Engine & Server-Authoritative Voting, Phase 6: Project Arena & Ranking Engine, Phase 7: Admin Control Center, Phase 8: Cloudinary, App Check, Rate Limiting & Cloud Functions Backend (+2 more)
+
+### Community 16 - "Toast.tsx"
+Cohesion: 0.22
+Nodes (8): App(), ToastContext, ToastContextType, ToastItem, ToastProvider(), ToastType, AuthProvider(), AppRoutes()
+
+### Community 17 - "PROJECT HUB — Security Architecture & Guidelines"
+Cohesion: 0.22
+Nodes (8): 1. Zero-Trust Security Model, 2. Role-Based Access Control (RBAC) Matrix, 3. Firestore Security Rules Design, 4. Voting Integrity & Race Condition Mitigation, 5. Cloudinary Upload Security, 6. Distributed Rate Limiting, 7. App Check & Additional Defenses, PROJECT HUB — Security Architecture & Guidelines
+
+### Community 18 - "compilerOptions"
+Cohesion: 0.22
+Nodes (8): vite.config.ts, compilerOptions, allowSyntheticDefaultImports, composite, module, moduleResolution, skipLibCheck, include
+
+### Community 19 - "PROJECT HUB — Master Architecture Specification"
+Cohesion: 0.33
+Nodes (5): 1. System Overview & Architecture Diagram, 2. Technology Stack & Component Responsibilities, 3. Modular Folder Structure, 4. Architectural Decisions & Principles, PROJECT HUB — Master Architecture Specification
+
+## Knowledge Gaps
+- **157 isolated node(s):** `name`, `lint`, `build`, `build:watch`, `serve` (+152 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 168 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+
+## Suggested Questions
+_Questions this graph is uniquely positioned to answer:_
+
+- **Why does `useAuth()` connect `AppRoutes.tsx` to `ExplorePage.tsx`, `types/index.ts`, `useAuth.tsx`, `Button.tsx`, `ProjectSubmitForm.tsx`, `ProjectDetailsPage.tsx`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `devDependencies` connect `devDependencies` to `dependencies`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **What connects `name`, `lint`, `build` to the rest of the system?**
+  _157 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `ExplorePage.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.13205128205128205 - nodes in this community are weakly interconnected._
+- **Should `types/index.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.10953058321479374 - nodes in this community are weakly interconnected._
+- **Should `useAuth.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.112375533428165 - nodes in this community are weakly interconnected._
+- **Should `Button.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.12605042016806722 - nodes in this community are weakly interconnected._
