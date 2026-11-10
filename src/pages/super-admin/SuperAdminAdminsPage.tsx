@@ -19,6 +19,7 @@ import { Button } from '../../components/common/Button';
 import { Modal } from '../../components/common/Modal';
 import { ConfirmationModal } from '../../components/common/ConfirmationModal';
 import { RoleBadge } from '../../components/common/Badge';
+import { UserAvatar } from '../../components/common/UserAvatar';
 import { formatDate } from '../../utils/formatters';
 
 export const SuperAdminAdminsPage: React.FC = () => {
@@ -178,14 +179,7 @@ export const SuperAdminAdminsPage: React.FC = () => {
                     <tr key={adm.id} className="hover:bg-slate-50/60">
                       <td className="py-3.5 px-6">
                         <div className="flex items-center gap-3">
-                          <img
-                            src={
-                              adm.avatarUrl ||
-                              'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80'
-                            }
-                            alt={adm.fullName}
-                            className="w-8 h-8 rounded-full object-cover ring-1 ring-slate-200"
-                          />
+                          <UserAvatar user={adm} size="sm" className="ring-1 ring-slate-200" />
                           <div>
                             <p className="font-semibold text-slate-900">{adm.fullName}</p>
                             <p className="text-[11px] text-slate-400 font-mono">{adm.email}</p>

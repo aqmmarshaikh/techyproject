@@ -128,7 +128,7 @@ export const RoleSwitcher: React.FC = () => {
                       : 'hover:bg-slate-50'
                   }`}
                 >
-                  <div className="mt-0.5 p-1.5 rounded-lg bg-white border border-slate-200 shadow-2xs">
+                  <div className="mt-0.5 p-1.5 rounded-lg bg-white border border-slate-200 shadow-sm">
                     {opt.icon}
                   </div>
                   <div className="flex-1 min-w-0">

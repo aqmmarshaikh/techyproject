@@ -28,6 +28,7 @@ import { userRepository } from '../repositories/userRepository';
 import { leaderboardService, LeaderboardUser } from '../services/leaderboardService';
 import { LeaderboardPodium } from '../components/common/LeaderboardPodium';
 import { TechMarquee } from '../components/common/TechMarquee';
+import { UserAvatar } from '../components/common/UserAvatar';
 import { Project, UserProfile } from '../types';
 
 export const SESSION_ENTRY_KEY = 'projecthub_entry_completed';
@@ -546,7 +547,7 @@ export const LandingPage: React.FC = () => {
                   <img
                     src={showcaseLead.coverImageUrl || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80'}
                     alt={showcaseLead.title}
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
                         'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80';
@@ -613,7 +614,7 @@ export const LandingPage: React.FC = () => {
                         <img
                           src={p.coverImageUrl || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80'}
                           alt={p.title}
-                          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src =
                               'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80';
@@ -898,14 +899,10 @@ export const LandingPage: React.FC = () => {
                 onClick={() => handleEnterApp('/directory')}
                 className="bg-[#0A1229] border border-white/10 hover:border-[#FF3D88]/30 rounded-2xl p-5 transition-all cursor-pointer group flex items-center gap-4"
               >
-                <img
-                  src={member.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'}
-                  alt={member.fullName}
-                  className="w-12 h-12 rounded-xl object-cover border border-white/10 group-hover:border-[#FF3D88]/40 transition-colors shrink-0"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
-                  }}
+                <UserAvatar
+                  user={member}
+                  size="lg"
+                  className="rounded-xl border border-white/10 group-hover:border-[#FF3D88]/40 transition-colors"
                 />
                 <div className="min-w-0 flex-1">
                   <h4 className="font-sans font-semibold text-sm text-white group-hover:text-[#FF3D88] transition-colors truncate">

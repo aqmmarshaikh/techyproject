@@ -30,6 +30,17 @@ export const interactionRepository = {
     return snap.exists();
   },
 
+  /**
+   * Batch fetches all project IDs liked by a given user in a single query.
+   * Replaces N sequential getLike calls with 1 database query.
+   */
+  async listUserLikedProjectIds(userId: string): Promise<string[]> {
+    const colRef = collection(db, LIKES_COLLECTION);
+    const q = query(colRef, where('userId', '==', userId));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => (d.data() as LikeRecord).projectId);
+  },
+
   async toggleLike(projectId: string, userId: string): Promise<{ isLiked: boolean; newCount: number }> {
     const likeDocId = `${projectId}_${userId}`;
     const likeRef = doc(db, LIKES_COLLECTION, likeDocId);

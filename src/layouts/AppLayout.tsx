@@ -25,6 +25,7 @@ import { RoleBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { RoleSwitcher } from '../components/common/RoleSwitcher';
 import { PreviewModeBanner } from '../components/common/PreviewModeBanner';
+import { UserAvatar } from '../components/common/UserAvatar';
 import { useRolePreview } from '../contexts/RolePreviewContext';
 import { notificationRepository } from '../repositories/notificationRepository';
 
@@ -200,17 +201,10 @@ export const AppLayout: React.FC = () => {
       {isAuthenticated ? (
         <div className="p-4 border-t border-white/10 bg-[#0A1229]">
           <div className="flex items-center gap-3">
-            <img
-              src={
-                userProfile?.avatarUrl ||
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
-              }
-              alt={userProfile?.fullName || 'User'}
-              className="w-10 h-10 rounded-xl object-cover ring-2 ring-[#FF3D88]/30"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80';
-              }}
+            <UserAvatar
+              user={userProfile}
+              size="md"
+              className="ring-2 ring-[#FF3D88]/30 shrink-0"
             />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-white truncate font-sans">{userProfile?.fullName || 'Authenticated User'}</p>
@@ -219,6 +213,7 @@ export const AppLayout: React.FC = () => {
             <button
               onClick={handleLogout}
               title="Log out"
+              aria-label="Log out of ProjectHub"
               className="p-2 text-white/60 hover:text-[#FF3D88] hover:bg-white/10 rounded-lg transition-colors"
             >
               <LogOut className="w-4 h-4" />
@@ -330,14 +325,12 @@ export const AppLayout: React.FC = () => {
                   to="/profile"
                   className="flex items-center gap-2 pl-2 border-l border-slate-200"
                   title="View Profile"
+                  aria-label="View Profile"
                 >
-                  <img
-                    src={
-                      userProfile?.avatarUrl ||
-                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
-                    }
-                    alt={userProfile?.fullName || 'User'}
-                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#FF3D88]/30 hover:ring-[#FF3D88] transition-all"
+                  <UserAvatar
+                    user={userProfile}
+                    size="sm"
+                    className="ring-1 ring-[#FF3D88]/30 hover:ring-[#FF3D88] transition-all"
                   />
                 </NavLink>
               </>

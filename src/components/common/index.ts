@@ -5,4 +5,7 @@ export * from './ConfirmationModal';
 export * from './EmptyState';
 export * from './Skeleton';
 export * from './Toast';
+export * from './UserAvatar';
+export * from './ErrorBoundary';
+
 

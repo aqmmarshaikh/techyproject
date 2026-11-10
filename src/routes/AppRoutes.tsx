@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { AppLayout } from '../layouts/AppLayout';
@@ -6,37 +6,79 @@ import { AdminLayout } from '../layouts/AdminLayout';
 import { SuperAdminLayout } from '../layouts/SuperAdminLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
 
-// Auth Pages
+// Eagerly Loaded Public & Fast Primary Pages
 import { LoginPage } from '../pages/auth/LoginPage';
-import { ResetPasswordPage } from '../pages/auth/ResetPasswordPage';
-
-// Main App Pages
 import { LandingPage, SESSION_ENTRY_KEY, INTENDED_DESTINATION_KEY } from '../pages/LandingPage';
 import { ExplorePage } from '../pages/ExplorePage';
 import { ArenaPage } from '../pages/ArenaPage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { MyProjectsPage } from '../pages/MyProjectsPage';
-import { SavedProjectsPage } from '../pages/SavedProjectsPage';
-import { DirectoryPage } from '../pages/DirectoryPage';
-import { ProfilePage } from '../pages/ProfilePage';
-import { NotificationsPage } from '../pages/NotificationsPage';
-import { SubmitProjectPage } from '../pages/SubmitProjectPage';
-import { ProjectDetailsPage } from '../features/projects/ProjectDetailsPage';
 
-// Admin Pages
-import { AdminOverviewPage } from '../pages/admin/AdminOverviewPage';
-import { AdminReviewQueuePage } from '../pages/admin/AdminReviewQueuePage';
-import { AdminEmployeesPage } from '../pages/admin/AdminEmployeesPage';
-import { AdminCategoriesPage } from '../pages/admin/AdminCategoriesPage';
-import { AdminReportsPage } from '../pages/admin/AdminReportsPage';
-import { AdminAuditLogsPage } from '../pages/admin/AdminAuditLogsPage';
-import { AdminSettingsPage } from '../pages/admin/AdminSettingsPage';
+// Lazy-Loaded Secondary Pages & Heavy Workflows (Optimizes Initial Bundle Size)
+const ResetPasswordPage = React.lazy(() =>
+  import('../pages/auth/ResetPasswordPage').then((m) => ({ default: m.ResetPasswordPage }))
+);
+const SavedProjectsPage = React.lazy(() =>
+  import('../pages/SavedProjectsPage').then((m) => ({ default: m.SavedProjectsPage }))
+);
+const DirectoryPage = React.lazy(() =>
+  import('../pages/DirectoryPage').then((m) => ({ default: m.DirectoryPage }))
+);
+const ProfilePage = React.lazy(() =>
+  import('../pages/ProfilePage').then((m) => ({ default: m.ProfilePage }))
+);
+const NotificationsPage = React.lazy(() =>
+  import('../pages/NotificationsPage').then((m) => ({ default: m.NotificationsPage }))
+);
+const SubmitProjectPage = React.lazy(() =>
+  import('../pages/SubmitProjectPage').then((m) => ({ default: m.SubmitProjectPage }))
+);
+const ProjectDetailsPage = React.lazy(() =>
+  import('../features/projects/ProjectDetailsPage').then((m) => ({ default: m.ProjectDetailsPage }))
+);
 
-// Super Admin Pages
-import { SuperAdminOverviewPage } from '../pages/super-admin/SuperAdminOverviewPage';
-import { SuperAdminAdminsPage } from '../pages/super-admin/SuperAdminAdminsPage';
-import { SuperAdminProjectsPage } from '../pages/super-admin/SuperAdminProjectsPage';
-import { SuperAdminSecurityPage } from '../pages/super-admin/SuperAdminSecurityPage';
+// Lazy-Loaded Admin Pages
+const AdminOverviewPage = React.lazy(() =>
+  import('../pages/admin/AdminOverviewPage').then((m) => ({ default: m.AdminOverviewPage }))
+);
+const AdminReviewQueuePage = React.lazy(() =>
+  import('../pages/admin/AdminReviewQueuePage').then((m) => ({ default: m.AdminReviewQueuePage }))
+);
+const AdminEmployeesPage = React.lazy(() =>
+  import('../pages/admin/AdminEmployeesPage').then((m) => ({ default: m.AdminEmployeesPage }))
+);
+const AdminCategoriesPage = React.lazy(() =>
+  import('../pages/admin/AdminCategoriesPage').then((m) => ({ default: m.AdminCategoriesPage }))
+);
+const AdminReportsPage = React.lazy(() =>
+  import('../pages/admin/AdminReportsPage').then((m) => ({ default: m.AdminReportsPage }))
+);
+const AdminAuditLogsPage = React.lazy(() =>
+  import('../pages/admin/AdminAuditLogsPage').then((m) => ({ default: m.AdminAuditLogsPage }))
+);
+const AdminSettingsPage = React.lazy(() =>
+  import('../pages/admin/AdminSettingsPage').then((m) => ({ default: m.AdminSettingsPage }))
+);
+
+// Lazy-Loaded Super Admin Pages
+const SuperAdminOverviewPage = React.lazy(() =>
+  import('../pages/super-admin/SuperAdminOverviewPage').then((m) => ({ default: m.SuperAdminOverviewPage }))
+);
+const SuperAdminAdminsPage = React.lazy(() =>
+  import('../pages/super-admin/SuperAdminAdminsPage').then((m) => ({ default: m.SuperAdminAdminsPage }))
+);
+const SuperAdminProjectsPage = React.lazy(() =>
+  import('../pages/super-admin/SuperAdminProjectsPage').then((m) => ({ default: m.SuperAdminProjectsPage }))
+);
+const SuperAdminSecurityPage = React.lazy(() =>
+  import('../pages/super-admin/SuperAdminSecurityPage').then((m) => ({ default: m.SuperAdminSecurityPage }))
+);
+
+const RouteFallback: React.FC = () => (
+  <div className="min-h-[50vh] flex items-center justify-center p-8">
+    <div className="w-8 h-8 rounded-full border-2 border-[#FF3D88] border-t-transparent animate-spin" />
+  </div>
+);
 
 // Route Guards
 const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -133,8 +175,9 @@ export const AppRoutes: React.FC = () => {
 
   return (
     <SessionEntryGate>
-      <Routes>
-        {/* Auth Routes */}
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          {/* Auth Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
@@ -259,7 +302,8 @@ export const AppRoutes: React.FC = () => {
       {/* Catch-all fallback */}
       <Route path="*" element={<Navigate to="/explore" replace />} />
     </Routes>
-  </SessionEntryGate>
+  </Suspense>
+</SessionEntryGate>
   );
 };
 

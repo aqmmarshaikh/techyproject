@@ -25,6 +25,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../components/common/Toast';
 import { ProjectStatusBadge, ApprovalStatusBadge, Badge } from '../../components/common/Badge';
 import { Button } from '../../components/common/Button';
+import { UserAvatar } from '../../components/common/UserAvatar';
 import { VoteButtonPair } from '../voting/VoteButtonPair';
 import { formatDate, formatCompactNumber } from '../../utils/formatters';
 import { ProjectSubmitForm } from './ProjectSubmitForm';
@@ -409,13 +410,15 @@ export const ProjectDetailsPage: React.FC = () => {
               Project Creator
             </h4>
             <div className="flex items-center gap-3">
-              <img
-                src={
-                  project.creatorAvatarUrl ||
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'
-                }
-                alt={project.creatorName}
-                className="w-12 h-12 rounded-2xl object-cover border border-slate-200 ring-2 ring-[#FF3D88]/20"
+              <UserAvatar
+                user={{
+                  displayName: project.creatorName,
+                  avatarUrl: project.creatorAvatarUrl,
+                  creatorName: project.creatorName,
+                  creatorAvatarUrl: project.creatorAvatarUrl,
+                }}
+                size="lg"
+                className="rounded-2xl ring-2 ring-[#FF3D88]/20 shrink-0"
               />
               <div className="min-w-0">
                 <h4 className="font-sans font-bold text-sm text-[#0F1B3D] truncate">

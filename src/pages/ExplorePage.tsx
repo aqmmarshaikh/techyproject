@@ -63,16 +63,15 @@ export const ExplorePage: React.FC = () => {
           console.warn('Bookmarks batch load warning:', bErr);
         }
 
-        await Promise.all(
-          items.map(async (p) => {
-            try {
-              const liked = await interactionRepository.getLike(p.id, userProfile.id);
-              likesMap[p.id] = liked;
-            } catch {
-              likesMap[p.id] = false;
-            }
-          })
-        );
+        // Load all user likes in a single batch query
+        try {
+          const userLikedIds = await interactionRepository.listUserLikedProjectIds(userProfile.id);
+          userLikedIds.forEach((id) => {
+            likesMap[id] = true;
+          });
+        } catch (lErr) {
+          console.warn('Likes batch load warning:', lErr);
+        }
 
         setUserLikes(likesMap);
         setUserBookmarks(bookmarksMap);

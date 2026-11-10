@@ -29,8 +29,8 @@ const SIZE_CLASSES = {
   xl: 'w-16 h-16 text-lg',
   '2xl': 'w-20 h-20 text-xl font-bold',
   'podium-first': 'w-20 h-20 sm:w-24 sm:h-24 text-xl sm:text-2xl font-bold',
-  'podium-second': 'w-16 h-16 sm:w-18 sm:h-18 text-base sm:text-lg font-bold',
-  'podium-third': 'w-16 h-16 sm:w-18 sm:h-18 text-base sm:text-lg font-bold',
+  'podium-second': 'w-16 h-16 sm:w-20 sm:h-20 text-base sm:text-lg font-bold',
+  'podium-third': 'w-16 h-16 sm:w-20 sm:h-20 text-base sm:text-lg font-bold',
 };
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({
@@ -49,7 +49,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
   const hasValidImage = Boolean(avatarUrl && !imageError);
 
   return (
-    <div className="relative inline-flex items-center justify-center shrink-0">
+    <div className="relative inline-flex items-center justify-center shrink-0 aspect-square">
       {/* Crown indicator for Rank #1 */}
       {showCrown && (
         <div className="absolute -top-6 sm:-top-7 inset-x-0 flex justify-center z-10 animate-bounce">
@@ -61,18 +61,18 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
 
       {/* Main Avatar Circle */}
       <div
-        className={`rounded-full overflow-hidden flex items-center justify-center ${sizeClass} ${className}`}
+        className={`rounded-full overflow-hidden flex items-center justify-center shrink-0 aspect-square ${sizeClass} ${className}`}
       >
         {hasValidImage ? (
           <img
             src={avatarUrl}
             alt={displayName}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center rounded-full aspect-square"
             onError={() => setImageError(true)}
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#FF3D88] via-[#8C1448] to-[#0F1B3D] text-white flex items-center justify-center font-heading font-bold select-none shadow-inner">
+          <div className="w-full h-full bg-gradient-to-br from-[#FF3D88] via-[#8C1448] to-[#0F1B3D] text-white flex items-center justify-center font-heading font-bold select-none shadow-inner rounded-full aspect-square">
             <span>{initials}</span>
           </div>
         )}

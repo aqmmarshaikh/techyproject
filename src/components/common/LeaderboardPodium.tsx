@@ -67,7 +67,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
   const third = users.find((u) => u.rank === 3) || (users.length > 2 ? users[2] : null);
 
   return (
-    <div className="bg-[#0A1229]/90 border border-white/15 rounded-3xl p-5 sm:p-7 shadow-2xl relative overflow-hidden backdrop-blur-sm">
+    <div className="bg-[#0A1229]/90 border border-white/15 rounded-3xl p-3.5 sm:p-7 shadow-2xl relative overflow-hidden backdrop-blur-sm">
       {/* Subtle top header label */}
       <div className="flex items-center justify-between pb-4 sm:pb-6 border-b border-white/10 mb-4 sm:mb-6">
         <div className="flex items-center gap-2">
@@ -83,19 +83,19 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
       </div>
 
       {/* Podium Platform Area */}
-      <div className="flex items-end justify-center gap-2.5 sm:gap-4 md:gap-5 pt-8 sm:pt-10 min-h-[300px] sm:min-h-[340px]">
+      <div className="flex items-end justify-center gap-2 sm:gap-4 md:gap-5 pt-8 sm:pt-10 min-h-[300px] sm:min-h-[340px]">
         {/* RANK #2 — LEFT (Near-black / Charcoal) */}
         {second && (
           <div
             onClick={() => onUserClick?.(second)}
-            className="flex-1 max-w-[140px] sm:max-w-[170px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-1.5"
+            className="flex-1 min-w-0 max-w-[140px] sm:max-w-[170px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-1.5"
           >
             {/* User Avatar with Rank 2 */}
             <div className="relative mb-2.5">
               <UserAvatar
                 user={second}
                 size="podium-second"
-                className="ring-3 ring-slate-400/40 shadow-lg"
+                className="ring-2 ring-slate-400/40 shadow-lg"
               />
             </div>
 
@@ -113,7 +113,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
             </div>
 
             {/* Podium Pillar #2 */}
-            <div className="w-full h-28 sm:h-36 rounded-t-2xl bg-gradient-to-b from-[#1C1F2E] via-[#151722] to-[#0D0E15] border-t-2 border-x border-slate-500/30 flex flex-col items-center justify-between p-3 shadow-xl relative overflow-hidden">
+            <div className="w-full h-28 sm:h-36 rounded-t-2xl bg-gradient-to-b from-[#1C1F2E] via-[#151722] to-[#0D0E15] border-t-2 border-x border-slate-500/30 flex flex-col items-center justify-between p-2.5 sm:p-3 shadow-xl relative overflow-hidden">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-300/15 border border-slate-300/30 text-slate-200 font-heading font-bold text-sm sm:text-base flex items-center justify-center">
                 2
               </div>
@@ -129,7 +129,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
         {first && (
           <div
             onClick={() => onUserClick?.(first)}
-            className="flex-1 max-w-[160px] sm:max-w-[190px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-2 z-10"
+            className="flex-1 min-w-0 max-w-[160px] sm:max-w-[190px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-2 z-10"
           >
             {/* User Avatar with Crown */}
             <div className="relative mb-3">
@@ -155,7 +155,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
             </div>
 
             {/* Podium Pillar #1 */}
-            <div className="w-full h-40 sm:h-52 rounded-t-2xl bg-gradient-to-b from-[#FF3D88] via-[#E02D73] to-[#A81753] border-t-2 border-x border-pink-300/40 flex flex-col items-center justify-between p-3.5 shadow-[0_0_40px_rgba(255,61,136,0.35)] relative overflow-hidden">
+            <div className="w-full h-40 sm:h-52 rounded-t-2xl bg-gradient-to-b from-[#FF3D88] via-[#E02D73] to-[#A81753] border-t-2 border-x border-pink-300/40 flex flex-col items-center justify-between p-3 sm:p-3.5 shadow-[0_0_40px_rgba(255,61,136,0.35)] relative overflow-hidden">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 border border-white/40 text-white font-heading font-bold text-base sm:text-lg flex items-center justify-center shadow-inner">
                 1
               </div>
@@ -171,14 +171,14 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
         {third && (
           <div
             onClick={() => onUserClick?.(third)}
-            className="flex-1 max-w-[140px] sm:max-w-[170px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-1.5"
+            className="flex-1 min-w-0 max-w-[140px] sm:max-w-[170px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-1.5"
           >
             {/* User Avatar with Rank 3 */}
             <div className="relative mb-2.5">
               <UserAvatar
                 user={third}
                 size="podium-third"
-                className="ring-3 ring-slate-300 shadow-lg"
+                className="ring-2 ring-slate-300 shadow-lg"
               />
             </div>
 
@@ -196,7 +196,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
             </div>
 
             {/* Podium Pillar #3 */}
-            <div className="w-full h-24 sm:h-30 rounded-t-2xl bg-gradient-to-b from-[#FFFFFF] via-[#F1F5F9] to-[#E2E8F0] border-t-2 border-x border-white text-[#0F1B3D] flex flex-col items-center justify-between p-3 shadow-xl relative overflow-hidden">
+            <div className="w-full h-24 sm:h-30 rounded-t-2xl bg-gradient-to-b from-[#FFFFFF] via-[#F1F5F9] to-[#E2E8F0] border-t-2 border-x border-white text-[#0F1B3D] flex flex-col items-center justify-between p-2.5 sm:p-3 shadow-xl relative overflow-hidden">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#0F1B3D]/10 border border-[#0F1B3D]/20 text-[#0F1B3D] font-heading font-bold text-sm sm:text-base flex items-center justify-center">
                 3
               </div>

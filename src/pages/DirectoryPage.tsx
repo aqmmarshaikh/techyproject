@@ -8,6 +8,7 @@ import { RoleBadge, Badge } from '../components/common/Badge';
 import { EmptyState } from '../components/common/EmptyState';
 import { Button } from '../components/common/Button';
 import { Modal } from '../components/common/Modal';
+import { UserAvatar } from '../components/common/UserAvatar';
 import { ProjectCard } from '../features/projects/ProjectCard';
 
 export const DirectoryPage: React.FC = () => {
@@ -142,17 +143,10 @@ export const DirectoryPage: React.FC = () => {
             >
               <div>
                 <div className="flex items-start justify-between gap-3 mb-3">
-                  <img
-                    src={
-                      emp.avatarUrl ||
-                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'
-                    }
-                    alt={emp.fullName}
-                    className="w-14 h-14 rounded-2xl object-cover border border-slate-200 group-hover:ring-2 group-hover:ring-[#FF3D88]/30 transition-all"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
-                    }}
+                  <UserAvatar
+                    user={emp}
+                    size="lg"
+                    className="rounded-2xl border border-slate-200 group-hover:ring-2 group-hover:ring-[#FF3D88]/30 transition-all shrink-0"
                   />
                   <RoleBadge role={emp.role} />
                 </div>
@@ -212,14 +206,10 @@ export const DirectoryPage: React.FC = () => {
           <div className="space-y-6">
             {/* Header Bio */}
             <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-200">
-              <img
-                src={selectedEmployee.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'}
-                alt={selectedEmployee.fullName}
-                className="w-16 h-16 rounded-2xl object-cover border border-slate-200"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
-                }}
+              <UserAvatar
+                user={selectedEmployee}
+                size="xl"
+                className="rounded-2xl border border-slate-200 shrink-0"
               />
               <div className="space-y-1">
                 <div className="flex items-center gap-2">

@@ -1,8 +1,8 @@
 {
-  "0": "useAuth.tsx",
-  "1": "Button.tsx",
+  "0": "UserRole",
+  "1": "useToast",
   "2": "types/index.ts",
-  "3": "trending.ts",
+  "3": "firebase.ts",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
@@ -31,6 +31,7 @@
   "29": "vitest",
   "30": "MockSessionStorage",
   "31": "ExplorePage.tsx",
-  "32": "ProjectRevision",
-  "33": "TechMarquee.tsx"
+  "32": "AdminReviewQueuePage.tsx",
+  "33": "TechMarquee.tsx",
+  "34": "ErrorBoundary"
 }

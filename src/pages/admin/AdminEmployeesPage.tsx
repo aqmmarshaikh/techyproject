@@ -21,6 +21,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../components/common/Toast';
 import { RoleBadge, AccountStatusBadge } from '../../components/common/Badge';
 import { Button } from '../../components/common/Button';
+import { UserAvatar } from '../../components/common/UserAvatar';
 import { Modal } from '../../components/common/Modal';
 import { ConfirmationModal } from '../../components/common/ConfirmationModal';
 import { inviteEmployeeSchema, InviteEmployeeFormData } from '../../schemas/authSchemas';
@@ -230,11 +231,7 @@ export const AdminEmployeesPage: React.FC = () => {
                 <tr key={emp.id} className="hover:bg-slate-50/50">
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={emp.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80'}
-                        alt={emp.fullName}
-                        className="w-8 h-8 rounded-full object-cover border border-slate-200"
-                      />
+                      <UserAvatar user={emp} size="sm" className="border border-slate-200" />
                       <div>
                         <p className="font-semibold text-slate-900">{emp.fullName}</p>
                         <p className="text-[11px] text-slate-400 font-mono">{emp.email}</p>

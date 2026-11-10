@@ -71,7 +71,7 @@ export const AdminLayout: React.FC = () => {
       </header>
 
       {/* Admin Tab Navigation Bar */}
-      <nav className="bg-white border-b border-slate-200 px-4 sm:px-8 overflow-x-auto shadow-2xs">
+      <nav className="bg-white border-b border-slate-200 px-4 sm:px-8 overflow-x-auto shadow-sm">
         <div className="flex items-center gap-1 sm:gap-2 min-w-max py-2">
           {adminNav.map((item) => (
             <NavLink

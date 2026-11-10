@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, Bookmark, ExternalLink, ThumbsUp, ThumbsDown, Sparkles } from 'lucide-react';
 import { Project } from '../../types';
 import { ProjectStatusBadge, Badge } from '../../components/common/Badge';
+import { UserAvatar } from '../../components/common/UserAvatar';
 import { useAuth } from '../../hooks/useAuth';
 import { interactionService } from '../../services/interactionService';
 import { useToast } from '../../components/common/Toast';
@@ -119,6 +120,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           onClick={handleBookmark}
           disabled={isTogglingBookmark}
           title={isBookmarked ? 'Remove from Saved' : 'Save Project'}
+          aria-label={isBookmarked ? `Remove ${project.title} from bookmarks` : `Bookmark ${project.title}`}
           className={`absolute top-3 right-3 p-2 rounded-xl backdrop-blur-md transition-all ${
             isBookmarked
               ? 'bg-[#FF3D88] text-white shadow-md'
@@ -175,17 +177,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             title={`View ${project.creatorName}'s profile`}
           >
-            <img
-              src={
-                project.creatorAvatarUrl ||
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80'
-              }
-              alt={project.creatorName}
-              className="w-7 h-7 rounded-full object-cover border border-slate-200"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80';
+            <UserAvatar
+              user={{
+                displayName: project.creatorName,
+                avatarUrl: project.creatorAvatarUrl,
+                creatorName: project.creatorName,
+                creatorAvatarUrl: project.creatorAvatarUrl,
               }}
+              size="xs"
+              className="border border-slate-200"
             />
             <div className="text-left">
               <p className="text-xs font-semibold text-[#0F1B3D] leading-none line-clamp-1">
@@ -216,6 +216,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               onClick={handleLike}
               disabled={isTogglingLike || isOwner}
               title={isOwner ? 'You cannot like your own project' : isLiked ? 'Unlike' : 'Like'}
+              aria-label={isOwner ? 'You cannot like your own project' : isLiked ? `Unlike ${project.title}` : `Like ${project.title}`}
               className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold transition-all ${
                 isLiked
                   ? 'bg-rose-50 text-[#FF3D88] border border-rose-200'
