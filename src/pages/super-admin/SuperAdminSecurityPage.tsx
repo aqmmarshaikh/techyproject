@@ -155,3 +155,4 @@ export const SuperAdminSecurityPage: React.FC = () => {
     </div>
   );
 };
+

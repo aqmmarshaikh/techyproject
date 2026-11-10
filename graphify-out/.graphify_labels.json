@@ -1,8 +1,8 @@
 {
   "0": "useAuth.tsx",
-  "1": "Button.tsx",
-  "2": "ProjectDetailsPage.tsx",
-  "3": "types/index.ts",
+  "1": "AdminEmployeesPage.tsx",
+  "2": "types/index.ts",
+  "3": "ExplorePage.tsx",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
@@ -24,9 +24,11 @@
   "22": "tailwind.config.js",
   "23": "tailwindcss",
   "24": "vite.config.ts",
-  "25": "firebase.ts",
+  "25": "ProfilePage.tsx",
   "26": "react",
   "27": "react-hook-form",
   "28": "@types/react",
-  "29": "vitest"
+  "29": "vitest",
+  "30": "Badge.tsx",
+  "31": "Button.tsx"
 }

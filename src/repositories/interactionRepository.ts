@@ -9,6 +9,7 @@ import {
   getDocs,
   runTransaction,
   orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../app/firebase';
 import { VoteChoice, VoteRecord, LikeRecord, BookmarkRecord, Project } from '../types';
@@ -196,7 +197,7 @@ export const interactionRepository = {
   },
 
   async toggleBookmark(
-    project: Project, 
+    project: { id: string; title?: string; coverImageUrl?: string; category?: string }, 
     userId: string
   ): Promise<{ isBookmarked: boolean }> {
     const bookmarkDocId = `${userId}_${project.id}`;
@@ -211,9 +212,9 @@ export const interactionRepository = {
         id: bookmarkDocId,
         userId,
         projectId: project.id,
-        projectTitle: project.title,
-        projectCoverUrl: project.coverImageUrl,
-        projectCategory: project.category,
+        projectTitle: project.title || 'Untitled Project',
+        projectCoverUrl: project.coverImageUrl || '',
+        projectCategory: project.category || 'General',
         createdAt: new Date().toISOString(),
       };
       await setDoc(bookmarkRef, record);
@@ -221,14 +222,44 @@ export const interactionRepository = {
     }
   },
 
+  async removeBookmark(projectId: string, userId: string): Promise<void> {
+    const bookmarkDocId = `${userId}_${projectId}`;
+    const bookmarkRef = doc(db, BOOKMARKS_COLLECTION, bookmarkDocId);
+    await deleteDoc(bookmarkRef);
+  },
+
   async listUserBookmarks(userId: string): Promise<BookmarkRecord[]> {
     const colRef = collection(db, BOOKMARKS_COLLECTION);
-    const q = query(
-      colRef,
-      where('userId', '==', userId),
-      orderBy('createdAt', 'desc')
-    );
+    // Single equality query avoids requiring a Firestore composite index
+    const q = query(colRef, where('userId', '==', userId));
     const snap = await getDocs(q);
-    return snap.docs.map((d) => d.data() as BookmarkRecord);
+    const records = snap.docs.map((d) => d.data() as BookmarkRecord);
+    return records.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  },
+
+  subscribeToUserBookmarks(
+    userId: string,
+    callback: (bookmarks: BookmarkRecord[]) => void,
+    onError?: (error: Error) => void
+  ): () => void {
+    const colRef = collection(db, BOOKMARKS_COLLECTION);
+    const q = query(colRef, where('userId', '==', userId));
+
+    return onSnapshot(
+      q,
+      (snapshot) => {
+        const records = snapshot.docs.map((d) => d.data() as BookmarkRecord);
+        records.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        callback(records);
+      },
+      (err) => {
+        console.warn('Bookmarks real-time subscription warning:', err);
+        if (onError) onError(err);
+      }
+    );
   },
 };

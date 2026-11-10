@@ -18,21 +18,33 @@ export const SavedProjectsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  const loadBookmarks = async () => {
+  useEffect(() => {
     if (!userProfile?.id) return;
     setIsLoading(true);
-    try {
-      const records = await interactionRepository.listUserBookmarks(userProfile.id);
-      setBookmarks(records);
-    } catch (err) {
-      console.warn('Failed to load bookmarks:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  useEffect(() => {
-    loadBookmarks();
+    // Subscribe to real-time updates for user bookmarks
+    const unsubscribe = interactionRepository.subscribeToUserBookmarks(
+      userProfile.id,
+      (records) => {
+        setBookmarks(records);
+        setIsLoading(false);
+      },
+      (err) => {
+        console.warn('Real-time bookmarks subscription error, falling back to one-time query:', err);
+        interactionRepository
+          .listUserBookmarks(userProfile.id)
+          .then((records) => {
+            setBookmarks(records);
+            setIsLoading(false);
+          })
+          .catch((fetchErr) => {
+            console.error('Failed to load bookmarks:', fetchErr);
+            setIsLoading(false);
+          });
+      }
+    );
+
+    return () => unsubscribe();
   }, [userProfile?.id]);
 
   const handleRemove = async (e: React.MouseEvent, b: BookmarkRecord) => {
@@ -40,10 +52,7 @@ export const SavedProjectsPage: React.FC = () => {
     if (!userProfile) return;
 
     try {
-      await interactionRepository.toggleBookmark(
-        { id: b.projectId } as any,
-        userProfile.id
-      );
+      await interactionRepository.removeBookmark(b.projectId, userProfile.id);
       setBookmarks((prev) => prev.filter((item) => item.id !== b.id));
       toastSuccess('Bookmark Removed', `"${b.projectTitle}" removed from saved.`);
     } catch (err: unknown) {
@@ -53,8 +62,8 @@ export const SavedProjectsPage: React.FC = () => {
   };
 
   const filteredBookmarks = bookmarks.filter((b) =>
-    b.projectTitle.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
-    b.projectCategory.toLowerCase().includes(searchQuery.toLowerCase().trim())
+    (b.projectTitle || '').toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+    (b.projectCategory || '').toLowerCase().includes(searchQuery.toLowerCase().trim())
   );
 
   return (
@@ -112,9 +121,16 @@ export const SavedProjectsPage: React.FC = () => {
             >
               <div className="relative h-40 bg-slate-100 overflow-hidden">
                 <img
-                  src={b.projectCoverUrl}
+                  src={
+                    b.projectCoverUrl ||
+                    'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80'
+                  }
                   alt={b.projectTitle}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80';
+                  }}
                 />
                 <button
                   onClick={(e) => handleRemove(e, b)}

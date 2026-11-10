@@ -53,14 +53,24 @@ export const ExplorePage: React.FC = () => {
         const likesMap: Record<string, boolean> = {};
         const bookmarksMap: Record<string, boolean> = {};
 
+        // Load all user bookmarks in a single batch query
+        try {
+          const userBookmarksList = await interactionRepository.listUserBookmarks(userProfile.id);
+          userBookmarksList.forEach((b) => {
+            bookmarksMap[b.projectId] = true;
+          });
+        } catch (bErr) {
+          console.warn('Bookmarks batch load warning:', bErr);
+        }
+
         await Promise.all(
           items.map(async (p) => {
-            const [liked, bookmarked] = await Promise.all([
-              interactionRepository.getLike(p.id, userProfile.id),
-              interactionRepository.getBookmark(p.id, userProfile.id),
-            ]);
-            likesMap[p.id] = liked;
-            bookmarksMap[p.id] = bookmarked;
+            try {
+              const liked = await interactionRepository.getLike(p.id, userProfile.id);
+              likesMap[p.id] = liked;
+            } catch {
+              likesMap[p.id] = false;
+            }
           })
         );
 

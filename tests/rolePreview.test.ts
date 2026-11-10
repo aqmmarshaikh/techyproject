@@ -151,3 +151,4 @@ describe('Role Preview Security & Behavior Simulator', () => {
     expect(sim.isPreviewActive).toBe(false);
   });
 });
+

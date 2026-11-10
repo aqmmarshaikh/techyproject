@@ -1,24 +1,24 @@
 # Graph Report - tehyprojects2  (2026-11-10)
 
 ## Corpus Check
-- 122 files · ~263,813 words
+- 123 files · ~264,230 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 501 nodes · 1301 edges · 30 communities (21 shown, 4 thin omitted)
+- 502 nodes · 1303 edges · 32 communities (23 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6ce42345`
+- Built from commit: `463b91f2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - useAuth.tsx
-- Button.tsx
-- ProjectDetailsPage.tsx
+- AdminEmployeesPage.tsx
 - types/index.ts
+- ExplorePage.tsx
 - scripts
 - dependencies
 - AppRoutes.tsx
@@ -35,11 +35,13 @@
 - PROJECT HUB — Security Architecture & Guidelines
 - compilerOptions
 - PROJECT HUB — Master Architecture Specification
-- firebase.ts
+- ProfilePage.tsx
 - react
 - react-hook-form
 - @types/react
 - vitest
+- Badge.tsx
+- Button.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `useAuth()` - 58 edges
@@ -54,37 +56,37 @@
 10. `cn()` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `ProjectCardProps` --references--> `Project`  [EXTRACTED]
-  src/features/projects/ProjectCard.tsx → src/types/project.ts
+- `NavItem` --references--> `UserRole`  [EXTRACTED]
+  src/constants/navigation.ts → src/types/user.ts
 - `RolePreviewSimulator` --references--> `UserRole`  [EXTRACTED]
   tests/rolePreview.test.ts → src/types/user.ts
 - `RolePreviewSimulator` --references--> `UserProfile`  [EXTRACTED]
   tests/rolePreview.test.ts → src/types/user.ts
-- `RoleSwitcher()` --calls--> `useAuth()`  [EXTRACTED]
-  src/components/common/RoleSwitcher.tsx → src/hooks/useAuth.tsx
-- `Skeleton()` --calls--> `cn()`  [EXTRACTED]
-  src/components/common/Skeleton.tsx → src/utils/cn.ts
+- `Button` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Button.tsx → src/utils/cn.ts
+- `Modal()` --calls--> `cn()`  [EXTRACTED]
+  src/components/common/Modal.tsx → src/utils/cn.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (30 total, 4 thin omitted)
+## Communities (32 total, 4 thin omitted)
 
 ### Community 0 - "useAuth.tsx"
-Cohesion: 0.11
-Nodes (22): RoleBadge(), PreviewModeBanner(), RoleSwitcher(), ADMIN_NAV_ITEMS, MAIN_NAV_ITEMS, NavItem, BRAND_COLORS, FONTS (+14 more)
+Cohesion: 0.16
+Nodes (12): RolePreviewContextType, AuthContext, AuthContextType, AuthProvider(), userRepository, authService, AccountStatus, UserProfile (+4 more)
 
-### Community 1 - "Button.tsx"
-Cohesion: 0.09
-Nodes (42): AccountStatusBadge(), ApprovalStatusBadge(), Badge(), BadgeProps, ProjectStatusBadge(), Button, ButtonProps, ConfirmationModal() (+34 more)
+### Community 1 - "AdminEmployeesPage.tsx"
+Cohesion: 0.14
+Nodes (20): ConfirmationModal(), ConfirmationModalProps, Modal(), ModalProps, ToastContext, ToastContextType, ToastItem, ToastType (+12 more)
 
-### Community 2 - "ProjectDetailsPage.tsx"
-Cohesion: 0.17
-Nodes (15): ProjectCard(), ProjectCardProps, VoteButtonPair(), VoteButtonPairProps, DashboardPage(), interactionRepository, interactionService, ArenaSection (+7 more)
-
-### Community 3 - "types/index.ts"
+### Community 2 - "types/index.ts"
 Cohesion: 0.10
-Nodes (28): db, DEFAULT_CATEGORIES, ProjectFilterBar(), ProjectFilterBarProps, RevisionDiffProps, adminRepository, DEFAULT_SETTINGS, categoryRepository (+20 more)
+Nodes (33): db, ProjectCard(), ProjectCardProps, VoteButtonPair(), VoteButtonPairProps, AdminOverviewPage(), DashboardPage(), DirectoryPage() (+25 more)
+
+### Community 3 - "ExplorePage.tsx"
+Cohesion: 0.17
+Nodes (13): DEFAULT_CATEGORIES, BRAND_COLORS, FONTS, ProjectFilterBar(), ProjectFilterBarProps, categoryRepository, Category, ProjectFilterCriteria (+5 more)
 
 ### Community 4 - "scripts"
 Cohesion: 0.06
@@ -95,8 +97,8 @@ Cohesion: 0.12
 Nodes (17): clsx, firebase, @hookform/resolvers, lucide-react, dependencies, clsx, firebase, @hookform/resolvers (+9 more)
 
 ### Community 6 - "AppRoutes.tsx"
-Cohesion: 0.10
-Nodes (41): App(), AuthModal(), ToastProvider(), useToast(), RolePreviewProvider(), ProjectDetailsPage(), ProjectSubmitForm(), ReportModal() (+33 more)
+Cohesion: 0.11
+Nodes (38): App(), AuthModal(), ToastProvider(), useToast(), RolePreviewProvider(), ProjectDetailsPage(), ProjectSubmitForm(), ReportModal() (+30 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.08
@@ -150,9 +152,17 @@ Nodes (8): vite.config.ts, compilerOptions, allowSyntheticDefaultImports, compos
 Cohesion: 0.33
 Nodes (5): 1. System Overview & Architecture Diagram, 2. Technology Stack & Component Responsibilities, 3. Modular Folder Structure, 4. Architectural Decisions & Principles, PROJECT HUB — Master Architecture Specification
 
-### Community 25 - "firebase.ts"
-Cohesion: 0.10
-Nodes (21): APP_CONFIG, analytics, app, auth, firebaseConfig, functions, googleProvider, storage (+13 more)
+### Community 25 - "ProfilePage.tsx"
+Cohesion: 0.09
+Nodes (24): APP_CONFIG, analytics, app, auth, firebaseConfig, functions, googleProvider, storage (+16 more)
+
+### Community 30 - "Badge.tsx"
+Cohesion: 0.14
+Nodes (17): ApprovalStatusBadge(), Badge(), BadgeProps, ProjectStatusBadge(), EmptyState(), EmptyStateProps, ProjectCardSkeleton(), Skeleton() (+9 more)
+
+### Community 31 - "Button.tsx"
+Cohesion: 0.26
+Nodes (12): RoleBadge(), Button, ButtonProps, PreviewModeBanner(), RoleSwitcher(), ADMIN_NAV_ITEMS, MAIN_NAV_ITEMS, NavItem (+4 more)
 
 ## Knowledge Gaps
 - **172 isolated node(s):** `name`, `lint`, `build`, `build:watch`, `serve` (+167 more)
@@ -162,17 +172,17 @@ Nodes (21): APP_CONFIG, analytics, app, auth, firebaseConfig, functions, googleP
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useAuth()` connect `AppRoutes.tsx` to `useAuth.tsx`, `Button.tsx`, `ProjectDetailsPage.tsx`, `types/index.ts`?**
+- **Why does `useAuth()` connect `AppRoutes.tsx` to `useAuth.tsx`, `AdminEmployeesPage.tsx`, `types/index.ts`, `ExplorePage.tsx`, `ProfilePage.tsx`, `Badge.tsx`, `Button.tsx`?**
   _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `UserRole` connect `useAuth.tsx` to `Button.tsx`?**
+- **Why does `UserRole` connect `useAuth.tsx` to `AdminEmployeesPage.tsx`, `types/index.ts`, `Badge.tsx`, `Button.tsx`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `useToast()` connect `AppRoutes.tsx` to `Button.tsx`, `ProjectDetailsPage.tsx`, `firebase.ts`?**
+- **Why does `useToast()` connect `AppRoutes.tsx` to `AdminEmployeesPage.tsx`, `types/index.ts`, `ProfilePage.tsx`, `Badge.tsx`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `name`, `lint`, `build` to the rest of the system?**
   _172 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `useAuth.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.10520487264673312 - nodes in this community are weakly interconnected._
-- **Should `Button.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08611670020120725 - nodes in this community are weakly interconnected._
+- **Should `AdminEmployeesPage.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.14204545454545456 - nodes in this community are weakly interconnected._
 - **Should `types/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.1011764705882353 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09519230769230769 - nodes in this community are weakly interconnected._
+- **Should `scripts` be split into smaller, more focused modules?**
+  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._
