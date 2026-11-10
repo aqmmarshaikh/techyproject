@@ -14,8 +14,9 @@ export const BRAND_COLORS = {
 } as const;
 
 export const FONTS = {
-  heading: 'Space Grotesk, sans-serif',
-  body: 'Inter, sans-serif',
+  primary: '"Redaction 70", sans-serif',
+  heading: '"Redaction 70", sans-serif',
+  body: '"Redaction 70", sans-serif',
   mono: 'JetBrains Mono, monospace',
 } as const;
 

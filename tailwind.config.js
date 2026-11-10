@@ -26,8 +26,9 @@ export default {
         },
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', 'sans-serif'],
-        sans: ['"Inter"', 'sans-serif'],
+        primary: ['"Redaction 70"', 'sans-serif'],
+        heading: ['"Redaction 70"', 'sans-serif'],
+        sans: ['"Redaction 70"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {

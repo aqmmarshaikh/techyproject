@@ -2,25 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-brand-navy: 15 27 61;
+  --color-brand-pink: 255 61 136;
+  --color-brand-dark: 17 17 17;
+  --font-primary: "Redaction 70", sans-serif;
+}
+
+/* Global Website-Wide Typography System: Redaction 70 Default */
+html,
+body,
+#root {
+  font-family: var(--font-primary);
+}
+
+body,
+button,
+input,
+textarea,
+select,
+option,
+label,
+a,
+p,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table,
+th,
+td {
+  font-family: var(--font-primary);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
-  :root {
-    --color-brand-navy: 15 27 61;
-    --color-brand-pink: 255 61 136;
-    --color-brand-dark: 17 17 17;
-  }
-
   body {
-    @apply font-sans bg-[#F8FAFC] text-[#111111] antialiased selection:bg-[#FF3D88] selection:text-white min-h-screen;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-[#F8FAFC] text-[#111111] antialiased selection:bg-[#FF3D88] selection:text-white min-h-screen;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight;
+    @apply font-bold tracking-tight;
   }
+}
+
+/* Exact Redaction 70 Utility Classes */
+.redaction-70-regular {
+  font-family: "Redaction 70", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.redaction-70-bold {
+  font-family: "Redaction 70", sans-serif !important;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.redaction-70-regular-italic {
+  font-family: "Redaction 70", sans-serif !important;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Preserve technical code blocks and monospace elements */
+code,
+pre,
+kbd,
+samp,
+.font-mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
 }
 
 /* Custom scrollbars */
