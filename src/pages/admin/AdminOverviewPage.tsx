@@ -45,6 +45,21 @@ export const AdminOverviewPage: React.FC = () => {
       }
     };
     loadOverview();
+
+    // Real-time pending queue listener for instant overview counter synchronization
+    const unsubPending = projectRepository.subscribeToPendingReview((pending) => {
+      setPendingQueue(pending);
+      setAnalytics((prev) =>
+        prev
+          ? {
+              ...prev,
+              pendingSubmissions: pending.length,
+            }
+          : prev
+      );
+    });
+
+    return () => unsubPending();
   }, []);
 
   const stats = [

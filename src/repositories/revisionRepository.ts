@@ -6,8 +6,8 @@ import {
   updateDoc,
   query,
   where,
-  orderBy,
   getDocs,
+  onSnapshot,
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../app/firebase';
@@ -36,24 +36,41 @@ export const revisionRepository = {
 
   async listByProject(projectId: string): Promise<ProjectRevision[]> {
     const colRef = collection(db, REVISIONS_COLLECTION);
-    const q = query(
-      colRef,
-      where('projectId', '==', projectId),
-      orderBy('createdAt', 'desc')
-    );
+    const q = query(colRef, where('projectId', '==', projectId));
     const snap = await getDocs(q);
-    return snap.docs.map((d) => d.data() as ProjectRevision);
+    const items = snap.docs.map((d) => d.data() as ProjectRevision);
+    items.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+    return items;
   },
 
   async listPending(): Promise<ProjectRevision[]> {
     const colRef = collection(db, REVISIONS_COLLECTION);
-    const q = query(
-      colRef,
-      where('revisionStatus', '==', 'PENDING_REVIEW'),
-      orderBy('createdAt', 'desc')
-    );
+    const q = query(colRef, where('revisionStatus', '==', 'PENDING_REVIEW'));
     const snap = await getDocs(q);
-    return snap.docs.map((d) => d.data() as ProjectRevision);
+    const items = snap.docs.map((d) => d.data() as ProjectRevision);
+    items.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+    return items;
+  },
+
+  subscribeToPending(
+    onUpdate: (revisions: ProjectRevision[]) => void,
+    onError?: (err: Error) => void
+  ): () => void {
+    const colRef = collection(db, REVISIONS_COLLECTION);
+    const q = query(colRef, where('revisionStatus', '==', 'PENDING_REVIEW'));
+
+    return onSnapshot(
+      q,
+      (snap) => {
+        const items = snap.docs.map((d) => d.data() as ProjectRevision);
+        items.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+        onUpdate(items);
+      },
+      (err) => {
+        console.warn('[revisionRepository] Pending subscription error:', err);
+        if (onError) onError(err);
+      }
+    );
   },
 
   async updateStatus(
@@ -71,4 +88,3 @@ export const revisionRepository = {
     });
   },
 };
-

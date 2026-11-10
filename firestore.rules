@@ -23,11 +23,16 @@ service cloud.firestore {
     }
 
     function isActiveUser() {
-      return isAuthenticated() && userDocExists() && getUserDoc().accountStatus == 'ACTIVE';
+      return isAuthenticated() && (
+        !userDocExists() ||
+        !('accountStatus' in getUserDoc()) ||
+        getUserDoc().accountStatus != 'SUSPENDED'
+      );
     }
 
     function isAdmin() {
       return isAuthenticated() && (
+        (request.auth.token != null && request.auth.token.email == 'ammarshaikh6100@gmail.com') ||
         (request.auth.token != null && (request.auth.token.role == 'ADMIN' || request.auth.token.role == 'SUPER_ADMIN')) ||
         (userDocExists() && getUserDoc().role in ['ADMIN', 'SUPER_ADMIN'])
       );
@@ -35,6 +40,7 @@ service cloud.firestore {
 
     function isSuperAdmin() {
       return isAuthenticated() && (
+        (request.auth.token != null && request.auth.token.email == 'ammarshaikh6100@gmail.com') ||
         (request.auth.token != null && request.auth.token.role == 'SUPER_ADMIN') ||
         (userDocExists() && getUserDoc().role == 'SUPER_ADMIN')
       );
@@ -50,7 +56,7 @@ service cloud.firestore {
       // Users can only update their own safe profile fields (e.g., bio, designation, skills, counters)
       // They CANNOT modify role, accountStatus, or email
       allow update: if isOwner(userId) && 
-        (resource.data.accountStatus == 'ACTIVE' || !('accountStatus' in resource.data)) &&
+        (!userDocExists() || !('accountStatus' in resource.data) || resource.data.accountStatus != 'SUSPENDED') &&
         !request.resource.data.diff(resource.data).affectedKeys().hasAny([
           'role', 'accountStatus', 'email', 'id'
         ]);
@@ -67,10 +73,10 @@ service cloud.firestore {
     // 2. Projects Collection
     // -------------------------------------------------------------------------
     match /projects/{projectId} {
-      // Approved, non-archived projects are publicly readable for showcase discovery
+      // Approved projects are publicly readable for showcase discovery
       // Creators can read their own projects in any review state
       // Admins can read all projects
-      allow read: if (resource.data.approvalStatus == 'APPROVED' && resource.data.isArchived == false) ||
+      allow read: if resource.data.approvalStatus == 'APPROVED' ||
         (isAuthenticated() && (resource.data.creatorId == request.auth.uid || isAdmin()));
 
       // Submitting new project:

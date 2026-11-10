@@ -44,26 +44,50 @@ export const AdminReviewQueuePage: React.FC = () => {
   const [reviewText, setReviewText] = useState('');
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
-  const loadQueues = async () => {
-    setIsLoading(true);
-    try {
-      const [pending, revisions, all] = await Promise.all([
-        projectRepository.listPendingReview(),
-        revisionRepository.listPending(),
-        projectRepository.listAllForAdmin(),
-      ]);
-      setPendingProjects(pending);
-      setPendingRevisions(revisions);
-      setAllProjects(all);
-    } catch (err) {
-      console.warn('Failed to load review queues:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    loadQueues();
+    setIsLoading(true);
+
+    const unsubProjects = projectRepository.subscribeToPendingReview(
+      (items) => {
+        setPendingProjects(items);
+        setIsLoading(false);
+      },
+      (err) => {
+        console.warn('AdminReviewQueue pending projects subscription error:', err);
+        projectRepository
+          .listPendingReview()
+          .then(setPendingProjects)
+          .catch(console.error)
+          .finally(() => setIsLoading(false));
+      }
+    );
+
+    const unsubRevisions = revisionRepository.subscribeToPending(
+      (items) => {
+        setPendingRevisions(items);
+      },
+      (err) => {
+        console.warn('AdminReviewQueue revisions subscription error:', err);
+        revisionRepository.listPending().then(setPendingRevisions).catch(console.error);
+      }
+    );
+
+    const unsubAll = projectRepository.subscribeToAllForAdmin(
+      (items) => {
+        setAllProjects(items);
+      },
+      undefined,
+      (err) => {
+        console.warn('AdminReviewQueue all projects subscription error:', err);
+        projectRepository.listAllForAdmin().then(setAllProjects).catch(console.error);
+      }
+    );
+
+    return () => {
+      unsubProjects();
+      unsubRevisions();
+      unsubAll();
+    };
   }, []);
 
   const handleExecuteProjectReview = async () => {
@@ -97,7 +121,6 @@ export const AdminReviewQueuePage: React.FC = () => {
       setInspectProject(null);
       setReviewAction(null);
       setReviewText('');
-      loadQueues();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Review failed';
       toastError('Error', msg);
@@ -125,7 +148,6 @@ export const AdminReviewQueuePage: React.FC = () => {
 
       setInspectRevision(null);
       setReviewText('');
-      loadQueues();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Revision review failed';
       toastError('Error', msg);
@@ -142,7 +164,6 @@ export const AdminReviewQueuePage: React.FC = () => {
         project.isArchived ? 'Project Restored' : 'Project Archived',
         `Visibility updated.`
       );
-      loadQueues();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Action failed';
       toastError('Error', msg);
@@ -157,7 +178,6 @@ export const AdminReviewQueuePage: React.FC = () => {
         project.isFeatured ? 'Spotlight Removed' : 'Project Featured',
         `Featured status updated.`
       );
-      loadQueues();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Action failed';
       toastError('Error', msg);

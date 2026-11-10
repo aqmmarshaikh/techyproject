@@ -7,6 +7,7 @@ import {
   browserLocalPersistence 
 } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 import { APP_CONFIG } from './config';
@@ -33,6 +34,7 @@ if (typeof window !== 'undefined') {
 }
 
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 export const functions = getFunctions(app);
 
 // Google Auth Provider

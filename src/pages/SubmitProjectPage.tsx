@@ -38,7 +38,7 @@ export const SubmitProjectPage: React.FC = () => {
         'Submission Received',
         'Your project has been submitted for administrator review and will appear in Explore once approved.'
       );
-      navigate(`/projects/${created.id}`);
+      navigate(`/my-projects?submitted=${created.id}`);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Submission failed';
       toastError('Submission Error', msg);

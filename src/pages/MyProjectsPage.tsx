@@ -30,23 +30,41 @@ export const MyProjectsPage: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<TabKey>(
-    searchParams.get('tab') === 'action' ? 'ACTION' : 'ALL'
+    searchParams.get('tab') === 'action'
+      ? 'ACTION'
+      : searchParams.get('submitted')
+      ? 'PENDING'
+      : 'ALL'
   );
+  const newlySubmittedId = searchParams.get('submitted');
 
+  // Real-time synchronization for instant updates across tabs/devices
   useEffect(() => {
-    const load = async () => {
-      if (!userProfile?.id) return;
-      setIsLoading(true);
-      try {
-        const items = await projectRepository.listByCreator(userProfile.id);
+    if (!userProfile?.id) return;
+    setIsLoading(true);
+
+    const unsubscribe = projectRepository.subscribeToMyProjects(
+      userProfile.id,
+      (items) => {
         setProjects(items);
-      } catch (err) {
-        console.warn('Failed to load user projects:', err);
-      } finally {
         setIsLoading(false);
+      },
+      (err) => {
+        console.warn('MyProjects real-time subscription failed, falling back to manual fetch:', err);
+        projectRepository
+          .listByCreator(userProfile.id)
+          .then((items) => {
+            setProjects(items);
+            setIsLoading(false);
+          })
+          .catch((fetchErr) => {
+            console.error('Failed to load user projects:', fetchErr);
+            setIsLoading(false);
+          });
       }
-    };
-    load();
+    );
+
+    return () => unsubscribe();
   }, [userProfile?.id]);
 
   const filteredProjects = projects.filter((p) => {
@@ -112,6 +130,27 @@ export const MyProjectsPage: React.FC = () => {
           Submit Project
         </Button>
       </div>
+
+      {/* Newly Submitted Confirmation Banner */}
+      {newlySubmittedId && (
+        <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-start justify-between gap-3 shadow-sm">
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+            <div>
+              <h4 className="text-sm font-semibold">Project Submitted Successfully!</h4>
+              <p className="text-xs text-emerald-800 mt-0.5">
+                Your project has been recorded in the database and is currently under <strong>Pending Review</strong>. Administrators can now inspect and approve it.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setSearchParams({})}
+            className="text-xs font-semibold text-emerald-700 hover:text-emerald-900 px-2 py-1 rounded-lg hover:bg-emerald-100 transition-colors"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex border-b border-slate-200 overflow-x-auto gap-2">

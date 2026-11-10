@@ -33,6 +33,8 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
   const [isUploadingCover, setIsUploadingCover] = useState(false);
   const [isUploadingScreenshot, setIsUploadingScreenshot] = useState(false);
   const [changeSummary, setChangeSummary] = useState('');
+  const [coverUrlInput, setCoverUrlInput] = useState('');
+  const [screenshotUrlInput, setScreenshotUrlInput] = useState('');
 
   // Load available categories
   useEffect(() => {
@@ -406,20 +408,50 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
             </div>
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-slate-300 rounded-2xl hover:border-[#FF3D88] hover:bg-slate-50 transition-all cursor-pointer">
-            <Upload className="w-8 h-8 text-slate-400 mb-2" />
-            <span className="text-xs font-semibold text-[#0F1B3D]">
-              {isUploadingCover ? 'Uploading securely...' : 'Click or drop cover image here'}
-            </span>
-            <span className="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, or WebP up to 5MB</span>
-            <input
-              type="file"
-              accept="image/jpeg,image/png,image/webp"
-              className="hidden"
-              onChange={handleCoverUpload}
-              disabled={isUploadingCover}
-            />
-          </label>
+          <div className="space-y-2">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 rounded-2xl hover:border-[#FF3D88] hover:bg-slate-50 transition-all cursor-pointer">
+              <Upload className="w-7 h-7 text-slate-400 mb-1.5" />
+              <span className="text-xs font-semibold text-[#0F1B3D]">
+                {isUploadingCover ? 'Uploading securely...' : 'Click or drop cover image here'}
+              </span>
+              <span className="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, or WebP up to 5MB</span>
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={handleCoverUpload}
+                disabled={isUploadingCover}
+              />
+            </label>
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <Link className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="url"
+                  placeholder="Or paste direct image URL (https://...)"
+                  value={coverUrlInput}
+                  onChange={(e) => setCoverUrlInput(e.target.value)}
+                  className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-sans focus:outline-none focus:ring-1 focus:ring-[#FF3D88]"
+                />
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  if (coverUrlInput.trim().startsWith('http')) {
+                    setValue('coverImageUrl', coverUrlInput.trim(), { shouldValidate: true });
+                    setCoverUrlInput('');
+                    toastSuccess('Cover URL Applied', 'Direct cover image URL linked successfully.');
+                  } else {
+                    toastError('Invalid URL', 'Please enter a valid image URL starting with http:// or https://');
+                  }
+                }}
+              >
+                Apply URL
+              </Button>
+            </div>
+          </div>
         )}
         {errors.coverImageUrl && (
           <p className="mt-1 text-xs text-rose-600 flex items-center gap-1">
@@ -468,6 +500,42 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
             </label>
           )}
         </div>
+
+        {currentScreenshots.length < 6 && (
+          <div className="flex items-center gap-2 mt-2">
+            <div className="relative flex-1">
+              <Link className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="url"
+                placeholder="Or paste screenshot image URL (https://...)"
+                value={screenshotUrlInput}
+                onChange={(e) => setScreenshotUrlInput(e.target.value)}
+                className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-sans focus:outline-none focus:ring-1 focus:ring-[#FF3D88]"
+              />
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              disabled={currentScreenshots.length >= 6}
+              onClick={() => {
+                if (!screenshotUrlInput.trim().startsWith('http')) {
+                  toastError('Invalid URL', 'Please enter a valid image URL starting with http:// or https://');
+                  return;
+                }
+                if (currentScreenshots.length >= 6) {
+                  toastError('Limit Reached', 'Maximum 6 screenshots allowed.');
+                  return;
+                }
+                setValue('screenshots', [...currentScreenshots, screenshotUrlInput.trim()], { shouldValidate: true });
+                setScreenshotUrlInput('');
+                toastSuccess('Screenshot Added', 'Image URL added to screenshots.');
+              }}
+            >
+              Add URL
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Form Action Buttons */}

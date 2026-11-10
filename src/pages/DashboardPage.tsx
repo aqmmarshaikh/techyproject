@@ -28,19 +28,31 @@ export const DashboardPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadDashboard = async () => {
-      if (!userProfile?.id) return;
-      setIsLoading(true);
-      try {
-        const userProjects = await projectRepository.listByCreator(userProfile.id);
+    if (!userProfile?.id) return;
+    setIsLoading(true);
+
+    const unsubscribe = projectRepository.subscribeToMyProjects(
+      userProfile.id,
+      (userProjects) => {
         setMyProjects(userProjects);
-      } catch (err) {
-        console.warn('Dashboard load failed:', err);
-      } finally {
         setIsLoading(false);
+      },
+      (err) => {
+        console.warn('Dashboard real-time subscription error, falling back:', err);
+        projectRepository
+          .listByCreator(userProfile.id)
+          .then((userProjects) => {
+            setMyProjects(userProjects);
+            setIsLoading(false);
+          })
+          .catch((fetchErr) => {
+            console.error('Dashboard load failed:', fetchErr);
+            setIsLoading(false);
+          });
       }
-    };
-    loadDashboard();
+    );
+
+    return () => unsubscribe();
   }, [userProfile?.id]);
 
   // Aggregate stats directly from actual user project entities (Zero fake statistics!)

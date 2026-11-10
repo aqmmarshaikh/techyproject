@@ -76,6 +76,14 @@ export const ExplorePage: React.FC = () => {
 
   useEffect(() => {
     fetchProjects();
+
+    // Set up real-time sync when on default view to show approved projects instantly
+    if (!criteria.searchQuery && criteria.category === 'all' && criteria.technology === 'all') {
+      const unsubscribe = projectRepository.subscribeToApproved((items) => {
+        setProjects(items);
+      });
+      return () => unsubscribe();
+    }
   }, [criteria, userProfile?.id]);
 
   const handleFilterChange = (updates: Partial<ProjectFilterCriteria>) => {
