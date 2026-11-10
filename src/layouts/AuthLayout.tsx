@@ -18,14 +18,21 @@ export const AuthLayout: React.FC = () => {
 
       <div className="relative w-full max-w-md z-10">
         <div className="text-center mb-8">
-          <div className="inline-flex w-14 h-14 rounded-2xl bg-[#FF3D88] items-center justify-center font-heading font-bold text-white text-3xl shadow-pinkGlow mb-4">
-            P
+          <div className="inline-block mb-3">
+            <img
+              src="/android-chrome-192x192.png"
+              alt="ProjectHub Logo"
+              className="w-16 h-16 mx-auto rounded-2xl object-contain shadow-pinkGlow border border-[#FF3D88]/30"
+            />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
-            PROJECT<span className="text-[#FF3D88]">HUB</span>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight flex items-center justify-center">
+            <span>Project</span><span className="text-[#FF3D88]">Hub</span>
           </h1>
-          <p className="mt-2 text-sm text-white/60 font-sans">
-            Company Innovation Showcase & Community Platform
+          <p className="mt-1 text-xs font-mono uppercase tracking-wider text-[#FF3D88]/90">
+            Team Project Arena
+          </p>
+          <p className="mt-2 text-xs sm:text-sm text-white/60 font-sans">
+            Showcase, Discover &amp; Celebrate Team Innovation
           </p>
         </div>
 

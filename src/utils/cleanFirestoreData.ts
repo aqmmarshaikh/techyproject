@@ -21,3 +21,4 @@ export function cleanFirestoreData<T extends Record<string, any>>(obj: T): T {
 
   return result as T;
 }
+

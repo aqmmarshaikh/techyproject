@@ -78,15 +78,15 @@
     "semantic_hash": ""
   },
   "src/app/config.ts": {
-    "mtime": 1794304552.9879189,
-    "seen": 1794304719.5426798,
-    "ast_hash": "ee73d5c5a0416606bc40f7f31c90aa4e",
+    "mtime": 1794305100.639631,
+    "seen": 1794305804.205971,
+    "ast_hash": "5b28456bfc2e2ff83f3ea611b46b9547",
     "semantic_hash": ""
   },
   "src/app/firebase.ts": {
-    "mtime": 1794304553.0036733,
-    "seen": 1794304719.5426805,
-    "ast_hash": "15aed5cdfbc69e1f81dab112fa3d5e28",
+    "mtime": 1794305114.8927417,
+    "seen": 1794305804.2059722,
+    "ast_hash": "fa3fe423a5a8db95360eba7700d6cdfa",
     "semantic_hash": ""
   },
   "src/app/main.tsx": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "src/hooks/useAuth.tsx": {
-    "mtime": 1794304565.0963697,
-    "seen": 1794304719.5426965,
-    "ast_hash": "12f27ad49e6c35fcb83a9e73cc72bc1c",
+    "mtime": 1794305168.135491,
+    "seen": 1794305804.2059948,
+    "ast_hash": "006720e1a871cc15aab93bc6d1477dd9",
     "semantic_hash": ""
   },
   "src/layouts/AdminLayout.tsx": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminReviewQueuePage.tsx": {
-    "mtime": 1794304580.5765793,
-    "seen": 1794304719.542711,
-    "ast_hash": "3fe4b03532b2d4350f743903d02189ee",
+    "mtime": 1794305410.7829597,
+    "seen": 1794305804.2060103,
+    "ast_hash": "821ccf82d42c89a24989d4baef554f12",
     "semantic_hash": ""
   },
   "src/pages/admin/AdminSettingsPage.tsx": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794304580.7282343,
-    "seen": 1794304719.5427127,
-    "ast_hash": "500d6243a888fc23247bdf571ad3beb9",
+    "mtime": 1794305389.5265863,
+    "seen": 1794305804.2060122,
+    "ast_hash": "f04f4c2fbe70eae3b43e3736e074fbc9",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -336,15 +336,15 @@
     "semantic_hash": ""
   },
   "src/repositories/adminRepository.ts": {
-    "mtime": 1794304580.8229275,
-    "seen": 1794304719.542714,
-    "ast_hash": "509298450fc1b2335789c1470c684c37",
+    "mtime": 1794305421.3049514,
+    "seen": 1794305804.2060137,
+    "ast_hash": "ef83b7f48bb47e65260401b13f6bc5ea",
     "semantic_hash": ""
   },
   "src/repositories/categoryRepository.ts": {
-    "mtime": 1794304580.932188,
-    "seen": 1794304719.5427146,
-    "ast_hash": "c163034ef01353115e34c1dd0dfdec5f",
+    "mtime": 1794305581.6279047,
+    "seen": 1794305804.2060144,
+    "ast_hash": "13d0eaf327e014315d5cc8fb16d35d05",
     "semantic_hash": ""
   },
   "src/repositories/index.ts": {
@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "src/repositories/projectRepository.ts": {
-    "mtime": 1794304581.1534035,
-    "seen": 1794304719.5427177,
-    "ast_hash": "273c7be53fdae20272962a32eff0e67e",
+    "mtime": 1794305528.8192892,
+    "seen": 1794305804.2060177,
+    "ast_hash": "df144aaf3c9a21ea7b9390cf4fa8695f",
     "semantic_hash": ""
   },
   "src/repositories/reportRepository.ts": {
@@ -378,15 +378,15 @@
     "semantic_hash": ""
   },
   "src/repositories/revisionRepository.ts": {
-    "mtime": 1794304581.526737,
-    "seen": 1794304719.5427191,
-    "ast_hash": "97445a1de6d7f999c44a85a659c9b545",
+    "mtime": 1794305568.671921,
+    "seen": 1794305804.2060199,
+    "ast_hash": "2ffc3bb9d0d63ca01398989356d04b48",
     "semantic_hash": ""
   },
   "src/repositories/userRepository.ts": {
-    "mtime": 1794304581.5798614,
-    "seen": 1794304719.54272,
-    "ast_hash": "18a30ccfb86ee749af05e38389348bb0",
+    "mtime": 1794305515.2530043,
+    "seen": 1794305804.2060206,
+    "ast_hash": "2e229b17cd4c4f8612904d898be49480",
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
@@ -432,9 +432,9 @@
     "semantic_hash": ""
   },
   "src/services/authService.ts": {
-    "mtime": 1794304581.9625628,
-    "seen": 1794304719.5427265,
-    "ast_hash": "6d4264e09ff6713437f1ba2637526661",
+    "mtime": 1794305136.4814546,
+    "seen": 1794305804.2060275,
+    "ast_hash": "62c37ec854b2c3516dc06b6b7827102c",
     "semantic_hash": ""
   },
   "src/services/cloudinaryService.ts": {
@@ -456,9 +456,9 @@
     "semantic_hash": ""
   },
   "src/services/projectService.ts": {
-    "mtime": 1794304582.1636477,
-    "seen": 1794304719.5427296,
-    "ast_hash": "c33df5e11a3ad50ca37a75232eef8644",
+    "mtime": 1794305763.109358,
+    "seen": 1794305804.2060308,
+    "ast_hash": "7eae15cdac50853845ca3a6131175862",
     "semantic_hash": ""
   },
   "src/types/admin.ts": {
@@ -633,6 +633,18 @@
     "mtime": 1794304549.5683858,
     "seen": 1794304719.5427547,
     "ast_hash": "fab8fa34270a6ac8a44e06eba26e97e7",
+    "semantic_hash": ""
+  },
+  "src/features/projects/RevisionDiff.tsx": {
+    "mtime": 1794305039.8399312,
+    "seen": 1794305804.2059927,
+    "ast_hash": "e7a45302cc36f37e0478af0a54863e1d",
+    "semantic_hash": ""
+  },
+  "src/utils/cleanFirestoreData.ts": {
+    "mtime": 1794305498.1101875,
+    "seen": 1794305804.20604,
+    "ast_hash": "a158dea0c71a6fe1e0ae6c3521bfaa13",
     "semantic_hash": ""
   }
 }

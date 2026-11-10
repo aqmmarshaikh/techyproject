@@ -2,9 +2,106 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Hub — Company Showcase & Innovation Platform</title>
+    
+    <!-- Primary Page Metadata & SEO -->
+    <title>ProjectHub – Team Project Arena | Showcase, Discover &amp; Celebrate Projects</title>
+    <meta
+      name="description"
+      content="Discover and showcase amazing projects created by your team. Explore innovative work, share projects, connect with teammates, and discover the best projects through ProjectHub Arena."
+    />
+    <link rel="canonical" href="https://techyprojecthub.vercel.app/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="ProjectHub" />
+    <meta name="application-name" content="ProjectHub – Team Project Arena" />
+
+    <!-- Favicon & Mobile Touch Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0F1B3D" />
+    <meta name="msapplication-TileColor" content="#0F1B3D" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn / Instagram Link Previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ProjectHub" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://techyprojecthub.vercel.app/" />
+    <meta property="og:title" content="ProjectHub – Team Project Arena" />
+    <meta
+      property="og:description"
+      content="Showcase your projects, explore your team's creativity, and discover the best work through ProjectHub Arena."
+    />
+    <!-- WhatsApp & Facebook Primary Cover Image (Optimized 1200x630 JPEG for fast network crawling) -->
+    <meta property="og:image" content="https://techyprojecthub.vercel.app/projecthub-cover.jpg" />
+    <meta property="og:image:secure_url" content="https://techyprojecthub.vercel.app/projecthub-cover.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ProjectHub – Team Project Arena official website cover" />
+    <!-- Secondary High-Res PNG Cover Image -->
+    <meta property="og:image" content="https://techyprojecthub.vercel.app/projecthub-cover.png" />
+    <meta property="og:image:secure_url" content="https://techyprojecthub.vercel.app/projecthub-cover.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ProjectHub – Team Project Arena official website cover" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://techyprojecthub.vercel.app/" />
+    <meta name="twitter:title" content="ProjectHub – Team Project Arena" />
+    <meta name="twitter:description" content="Showcase, discover and celebrate your team's projects." />
+    <meta name="twitter:image" content="https://techyprojecthub.vercel.app/projecthub-cover.jpg" />
+    <meta name="twitter:image:alt" content="ProjectHub – Team Project Arena official website cover" />
+
+    <!-- Structured Data (JSON-LD): WebSite, Organization & WebApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://techyprojecthub.vercel.app/#website",
+            "url": "https://techyprojecthub.vercel.app/",
+            "name": "ProjectHub – Team Project Arena",
+            "description": "Discover and showcase amazing projects created by your team. Explore innovative work, share projects, connect with teammates, and discover the best projects through ProjectHub Arena.",
+            "publisher": {
+              "@id": "https://techyprojecthub.vercel.app/#organization"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://techyprojecthub.vercel.app/#organization",
+            "name": "ProjectHub",
+            "alternateName": "Team Project Arena",
+            "url": "https://techyprojecthub.vercel.app/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://techyprojecthub.vercel.app/projecthub-logo.png",
+              "caption": "ProjectHub Logo"
+            }
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://techyprojecthub.vercel.app/#webapp",
+            "name": "ProjectHub – Team Project Arena",
+            "url": "https://techyprojecthub.vercel.app/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires HTML5 and JavaScript",
+            "description": "A Unified Platform to Showcase, Review, Vote and Celebrate Team Projects.",
+            "screenshot": "https://techyprojecthub.vercel.app/projecthub-cover.jpg"
+          }
+        ]
+      }
+    </script>
+
     <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,4 +115,3 @@
     <script type="module" src="/src/app/main.tsx"></script>
   </body>
 </html>
-

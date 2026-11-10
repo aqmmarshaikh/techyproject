@@ -71,14 +71,16 @@ export const AppLayout: React.FC = () => {
       {/* Brand Header */}
       <div className="px-6 py-5 border-b border-white/10 flex items-center justify-between">
         <NavLink to="/explore" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-[#FF3D88] flex items-center justify-center font-heading font-bold text-white text-xl shadow-pinkGlow group-hover:scale-105 transition-transform">
-            P
-          </div>
+          <img
+            src="/android-chrome-192x192.png"
+            alt="ProjectHub Logo"
+            className="w-10 h-10 rounded-xl object-contain shadow-pinkGlow group-hover:scale-105 transition-transform border border-[#FF3D88]/30 shrink-0"
+          />
           <div>
-            <h1 className="font-heading font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
-              PROJECT<span className="text-[#FF3D88]">HUB</span>
+            <h1 className="font-heading font-bold text-lg tracking-tight text-white flex items-center">
+              <span>Project</span><span className="text-[#FF3D88]">Hub</span>
             </h1>
-            <p className="text-[11px] text-white/50 font-mono tracking-wider uppercase">Enterprise Showcase</p>
+            <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">Team Project Arena</p>
           </div>
         </NavLink>
         {mobileMenuOpen && (

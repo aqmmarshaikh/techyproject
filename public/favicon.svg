@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141829" />
+      <stop offset="100%" stop-color="#070913" />
+    </radialGradient>
+    <linearGradient id="pinkSwoosh" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF1A75" />
+      <stop offset="50%" stop-color="#FF3D88" />
+      <stop offset="100%" stop-color="#FF75AC" />
+    </linearGradient>
+    <linearGradient id="whiteP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)" />
+  <rect width="504" height="504" x="4" y="4" rx="108" stroke="#FF3D88" stroke-opacity="0.25" stroke-width="2" />
+
+  <!-- Background Star Sparkle at Top-Right -->
+  <path d="M440 120 Q440 95 450 85 Q440 75 440 50 Q440 75 430 85 Q440 95 440 120 Z" fill="#FF3D88" filter="url(#neonGlow)" />
+  <circle cx="440" cy="85" r="3" fill="#FFFFFF" />
+
+  <!-- Outer Hot Pink Orbit Swoosh -->
+  <path d="M96 350 C55 310 65 240 145 190 C185 165 245 155 320 155 C370 155 420 180 445 220 C465 255 460 300 410 335 C380 355 330 365 290 365 C250 365 170 380 140 375 C120 372 105 362 96 350 Z" 
+        fill="none" 
+        stroke="url(#pinkSwoosh)" 
+        stroke-width="22" 
+        stroke-linecap="round" 
+        filter="url(#neonGlow)" />
+
+  <!-- Inner hot pink accent wedge behind P -->
+  <path d="M125 350 L195 240 L160 365 Z" fill="#FF1A75" opacity="0.85" />
+
+  <!-- Stylized Letter P Body -->
+  <path d="M210 165 L375 165 C410 165 435 195 435 245 C435 305 395 335 330 335 L245 335 L190 415 L145 415 L210 165 Z" 
+        fill="url(#whiteP)" 
+        filter="drop-shadow(0 8px 16px rgba(0,0,0,0.6))" />
+
+  <!-- Cutout within the P -->
+  <path d="M255 205 L345 205 C365 205 385 220 385 250 C385 280 365 295 345 295 L235 295 Z" fill="#0A0D1A" />
+
+  <!-- Code Brackets < > Inside P -->
+  <!-- Left Bracket < -->
+  <path d="M295 230 L260 250 L295 270" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+
+  <!-- Right Bracket > -->
+  <path d="M320 230 L355 250 L320 270" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+</svg>

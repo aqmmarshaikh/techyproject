@@ -216,15 +216,15 @@
     "semantic_hash": ""
   },
   "src/layouts/AppLayout.tsx": {
-    "mtime": 1794304567.272753,
-    "seen": 1794304719.542698,
-    "ast_hash": "565daae3d53013385f169e97d7cf56fe",
+    "mtime": 1794306440.0953002,
+    "seen": 1794306629.3929284,
+    "ast_hash": "af650f9622a96509586d2f0af780445d",
     "semantic_hash": ""
   },
   "src/layouts/AuthLayout.tsx": {
-    "mtime": 1794304566.8789215,
-    "seen": 1794304719.542699,
-    "ast_hash": "f17ad6294a2a8c1cfc3d496c41c28bb6",
+    "mtime": 1794306481.1166635,
+    "seen": 1794306629.39293,
+    "ast_hash": "be543bdb0a39ed25f37fc7628ed7b1f5",
     "semantic_hash": ""
   },
   "src/pages/ArenaPage.tsx": {
@@ -630,21 +630,99 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1794304549.5683858,
-    "seen": 1794304719.5427547,
-    "ast_hash": "fab8fa34270a6ac8a44e06eba26e97e7",
+    "mtime": 1794306374.2014084,
+    "seen": 1794306629.3930817,
+    "ast_hash": "ae66394bf878ae6d7fc8de55adff843f",
     "semantic_hash": ""
   },
   "src/features/projects/RevisionDiff.tsx": {
-    "mtime": 1794305039.8399312,
-    "seen": 1794305804.2059927,
-    "ast_hash": "e7a45302cc36f37e0478af0a54863e1d",
+    "mtime": 1794305849.3536222,
+    "seen": 1794306629.392921,
+    "ast_hash": "39febb0e3763594535b9c9467b7550a7",
     "semantic_hash": ""
   },
   "src/utils/cleanFirestoreData.ts": {
-    "mtime": 1794305498.1101875,
-    "seen": 1794305804.20604,
-    "ast_hash": "a158dea0c71a6fe1e0ae6c3521bfaa13",
+    "mtime": 1794305849.835161,
+    "seen": 1794306629.393043,
+    "ast_hash": "ef905f072251b6bbcdadec6c9d324d34",
+    "semantic_hash": ""
+  },
+  "public/manifest.json": {
+    "mtime": 1794306249.4327042,
+    "seen": 1794306629.392878,
+    "ast_hash": "e287b554a1954b147788e9713407aa16",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1794306328.5715947,
+    "seen": 1794306629.3930583,
+    "ast_hash": "d6b348dd823c692f04cc6b1fdb640ff5",
+    "semantic_hash": ""
+  },
+  "public/robots.txt": {
+    "mtime": 1794306290.815617,
+    "seen": 1794306629.3930829,
+    "ast_hash": "9662445db658dec9f117c198d6eb2c4f",
+    "semantic_hash": ""
+  },
+  "public/android-chrome-192x192.png": {
+    "mtime": 1794306207.3837552,
+    "seen": 1794306629.393084,
+    "ast_hash": "88c07bac4856f80d58ad6432a2ca81e3",
+    "semantic_hash": ""
+  },
+  "public/android-chrome-512x512.png": {
+    "mtime": 1794306207.3744893,
+    "seen": 1794306629.3930852,
+    "ast_hash": "7dbf052747de2871247a30f37891faa6",
+    "semantic_hash": ""
+  },
+  "public/apple-touch-icon.png": {
+    "mtime": 1794306207.38765,
+    "seen": 1794306629.3930862,
+    "ast_hash": "6f7039566c7e79626ead83a61ba6da51",
+    "semantic_hash": ""
+  },
+  "public/favicon-16x16.png": {
+    "mtime": 1794306207.38765,
+    "seen": 1794306629.393087,
+    "ast_hash": "624a203c9dacb27cdee75c85bda0c224",
+    "semantic_hash": ""
+  },
+  "public/favicon-32x32.png": {
+    "mtime": 1794306207.38765,
+    "seen": 1794306629.393088,
+    "ast_hash": "c48af6354dd04326b09baaeba7b187bd",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1794306237.3501284,
+    "seen": 1794306629.3930888,
+    "ast_hash": "4fd13f8c82b302ddaa88ef67c4a8cc4a",
+    "semantic_hash": ""
+  },
+  "public/projecthub-cover-original.png": {
+    "mtime": 1794304915.670977,
+    "seen": 1794306629.3930895,
+    "ast_hash": "a90e322b257f43e3930df2b33bdd45b7",
+    "semantic_hash": ""
+  },
+  "public/projecthub-cover.jpg": {
+    "mtime": 1794306167.1866672,
+    "seen": 1794306629.3930902,
+    "ast_hash": "e18f1e0e596576a17fb5eb6b1f64a1a2",
+    "semantic_hash": ""
+  },
+  "public/projecthub-cover.png": {
+    "mtime": 1794306133.6128373,
+    "seen": 1794306629.393091,
+    "ast_hash": "4df21146c25590b51f9244e7ec9e75a1",
+    "semantic_hash": ""
+  },
+  "public/projecthub-logo.png": {
+    "mtime": 1794305010.7013242,
+    "seen": 1794306629.3930922,
+    "ast_hash": "271295024567ccfdae2ee110949f2e7b",
     "semantic_hash": ""
   }
 }
