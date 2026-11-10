@@ -1,0 +1,237 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------------------
+    // Helper Functions
+    // -------------------------------------------------------------------------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function getUserDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isActiveUser() {
+      return isAuthenticated() && getUserDoc().accountStatus == 'ACTIVE';
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'ADMIN' ||
+        request.auth.token.role == 'SUPER_ADMIN' ||
+        getUserDoc().role in ['ADMIN', 'SUPER_ADMIN']
+      );
+    }
+
+    function isSuperAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'SUPER_ADMIN' ||
+        getUserDoc().role == 'SUPER_ADMIN'
+      );
+    }
+
+    // -------------------------------------------------------------------------
+    // 1. Users Collection
+    // -------------------------------------------------------------------------
+    match /users/{userId} {
+      // Any authenticated active employee can read directory profiles
+      allow read: if isAuthenticated();
+
+      // Users can only update their own safe profile fields (e.g., bio, designation, skills)
+      // They CANNOT modify role, accountStatus, email, or aggregate counters
+      allow update: if isOwner(userId) && isActiveUser() &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'role', 'accountStatus', 'email', 'id', 'totalSubmittedProjects', 
+          'totalApprovedProjects', 'totalLikesReceived', 'totalVotesReceived'
+        ]);
+
+      // Only Super Admin can change roles; Admin can suspend/reactivate non-superadmins
+      allow update: if (isAdmin() && resource.data.role != 'SUPER_ADMIN') || isSuperAdmin();
+
+      // Only Cloud Functions or Admin can create initial user documents
+      allow create: if isSuperAdmin() || isOwner(userId);
+      allow delete: if false; // Soft suspension preferred
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. Projects Collection
+    // -------------------------------------------------------------------------
+    match /projects/{projectId} {
+      // Ordinary users can only read approved, non-archived projects
+      // Creators can read their own projects in any state
+      // Admins can read all projects
+      allow read: if isAuthenticated() && (
+        (resource.data.approvalStatus == 'APPROVED' && resource.data.isArchived == false) ||
+        resource.data.creatorId == request.auth.uid ||
+        isAdmin()
+      );
+
+      // Submitting new project:
+      // Must be authenticated, creatorId must match UID, status must be PENDING_REVIEW or DRAFT,
+      // and client cannot initialize fake likes or votes.
+      allow create: if isActiveUser() &&
+        request.resource.data.creatorId == request.auth.uid &&
+        request.resource.data.approvalStatus in ['DRAFT', 'PENDING_REVIEW'] &&
+        request.resource.data.isArchived == false &&
+        request.resource.data.likeCount == 0 &&
+        request.resource.data.goodVoteCount == 0 &&
+        request.resource.data.needsImprovementVoteCount == 0 &&
+        request.resource.data.totalValidVotes == 0 &&
+        request.resource.data.goodPercentage == 0 &&
+        request.resource.data.trendingScore == 0;
+
+      // Creator edits draft or pending project (cannot alter counters, approvalStatus, or creatorId)
+      allow update: if isActiveUser() &&
+        resource.data.creatorId == request.auth.uid &&
+        resource.data.approvalStatus in ['DRAFT', 'CHANGES_REQUESTED'] &&
+        request.resource.data.creatorId == resource.data.creatorId &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'approvalStatus', 'reviewedBy', 'rejectionReason', 'adminFeedback', 
+          'isFeatured', 'likeCount', 'goodVoteCount', 'needsImprovementVoteCount', 
+          'totalValidVotes', 'goodPercentage', 'trendingScore'
+        ]);
+
+      // Admins have permission to moderate (approve, reject, request changes, archive, feature)
+      allow update: if isAdmin();
+
+      // Projects are never hard deleted by ordinary users
+      allow delete: if isSuperAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. Project Revisions Collection
+    // -------------------------------------------------------------------------
+    match /projectRevisions/{revisionId} {
+      allow read: if isAuthenticated() && (
+        resource.data.creatorId == request.auth.uid || isAdmin()
+      );
+
+      allow create: if isActiveUser() &&
+        request.resource.data.creatorId == request.auth.uid &&
+        request.resource.data.revisionStatus == 'PENDING_REVIEW';
+
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. Likes Collection (Deterministic: ${projectId}_${userId})
+    // -------------------------------------------------------------------------
+    match /likes/{likeId} {
+      allow read: if isAuthenticated();
+
+      // Only active user can create their own like, and self-liking is forbidden
+      allow create: if isActiveUser() &&
+        request.resource.data.userId == request.auth.uid &&
+        get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.creatorId != request.auth.uid;
+
+      allow delete: if isActiveUser() && resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. Votes Collection (Deterministic: ${projectId}_${userId})
+    // -------------------------------------------------------------------------
+    match /votes/{voteId} {
+      allow read: if isAuthenticated();
+
+      // Voting is allowed only if active, target project is APPROVED, choice is valid, and not self-vote
+      allow create: if isActiveUser() &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.choice in ['GOOD', 'NEEDS_IMPROVEMENT'] &&
+        get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.creatorId != request.auth.uid &&
+        get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.approvalStatus == 'APPROVED';
+
+      allow update: if isActiveUser() &&
+        resource.data.userId == request.auth.uid &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.choice in ['GOOD', 'NEEDS_IMPROVEMENT'];
+
+      allow delete: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. Bookmarks Collection (Deterministic: ${userId}_${projectId})
+    // -------------------------------------------------------------------------
+    match /bookmarks/{bookmarkId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isActiveUser() && request.resource.data.userId == request.auth.uid;
+      allow delete: if isActiveUser() && resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. Categories Collection
+    // -------------------------------------------------------------------------
+    match /categories/{categoryId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 8. Reports Collection
+    // -------------------------------------------------------------------------
+    match /reports/{reportId} {
+      // Ordinary active user can submit a report
+      allow create: if isActiveUser() &&
+        request.resource.data.reporterId == request.auth.uid &&
+        request.resource.data.status == 'PENDING';
+
+      // Only admins can view and resolve reports
+      allow read, update: if isAdmin();
+      allow delete: if isSuperAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 9. Notifications Collection
+    // -------------------------------------------------------------------------
+    match /notifications/{notificationId} {
+      // User can read and mark read only their own notifications
+      allow read: if isAuthenticated() && resource.data.recipientId == request.auth.uid;
+      allow update: if isAuthenticated() && 
+        resource.data.recipientId == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead']);
+
+      allow create: if isAdmin(); // Or cloud functions
+      allow delete: if isAuthenticated() && resource.data.recipientId == request.auth.uid;
+    }
+
+    // -------------------------------------------------------------------------
+    // 10. Audit Logs Collection
+    // -------------------------------------------------------------------------
+    match /adminLogs/{logId} {
+      // Only Super Admins can view audit logs
+      allow read: if isSuperAdmin();
+      // Audit logs are completely immutable and can only be written by Cloud Functions
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 11. System Settings
+    // -------------------------------------------------------------------------
+    match /systemSettings/{settingId} {
+      allow read: if isAuthenticated();
+      allow write: if isSuperAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 12. Rate Limits & Arena Stats
+    // -------------------------------------------------------------------------
+    match /rateLimits/{limitId} {
+      allow read, write: if false; // Internal to Cloud Functions
+    }
+
+    match /arenaStats/{statId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Maintained by Cloud Functions
+    }
+  }
+}
+
