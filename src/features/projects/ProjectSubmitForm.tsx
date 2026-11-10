@@ -212,18 +212,18 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
         )}
       </div>
 
-      {/* 2. Project Description (approx. 3-4 meaningful lines) */}
+      {/* 2. Project Description (minimum 2 lines) */}
       <div>
         <div className="flex justify-between items-baseline mb-1.5">
           <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
             Project Description <span className="text-[#FF3D88]">*</span>
           </label>
-          <span className="text-[11px] text-slate-400">Aim for ~3-4 meaningful lines</span>
+          <span className="text-[11px] text-slate-400">Minimum 2 lines required</span>
         </div>
         <textarea
-          rows={4}
+          rows={3}
           {...register('description')}
-          placeholder="Describe the architecture, problem solved, primary business impact, and how colleagues can utilize this project..."
+          placeholder="Describe the architecture, problem solved, primary business impact, and how colleagues can utilize this project (minimum 2 lines)..."
           className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans leading-relaxed"
         />
         {errors.description && (

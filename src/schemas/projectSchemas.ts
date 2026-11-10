@@ -10,7 +10,7 @@ export const projectSubmissionSchema = z.object({
     .trim(),
   description: z
     .string()
-    .min(50, 'Description must contain approximately 3-4 meaningful lines (at least 50 characters)')
+    .min(25, 'Description must be at least 2 lines (at least 25 characters)')
     .max(1200, 'Description cannot exceed 1200 characters')
     .trim(),
   coverImageUrl: z
@@ -91,7 +91,7 @@ export type ProjectSubmissionFormData = z.infer<typeof projectSubmissionSchema>;
 
 export const projectRevisionSchema = z.object({
   title: z.string().min(3).max(100).trim(),
-  description: z.string().min(50).max(1200).trim(),
+  description: z.string().min(25, 'Description must be at least 2 lines (at least 25 characters)').max(1200).trim(),
   coverImageUrl: z.string().url(),
   screenshots: z.array(z.string().url()).max(6).default([]),
   category: z.string().min(1),

@@ -30,15 +30,23 @@ describe('Zod Validation Schemas', () => {
     }
   });
 
-  it('rejects descriptions that are too short (<50 characters / meaningful lines)', () => {
+  it('rejects descriptions that are too short (<2 lines / <25 characters)', () => {
     const result = projectSubmissionSchema.safeParse({
       ...validBaseProject,
       description: 'Short demo description.',
     });
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues[0].message).toContain('at least 50 characters');
+      expect(result.error.issues[0].message).toContain('at least 2 lines');
     }
+  });
+
+  it('accepts descriptions with 2 lines or at least 25 characters', () => {
+    const result = projectSubmissionSchema.safeParse({
+      ...validBaseProject,
+      description: 'Internal project hub.\nBuilt for team innovations.',
+    });
+    expect(result.success).toBe(true);
   });
 
   it('strictly requires liveWebsiteUrl when projectStatus is LIVE', () => {
