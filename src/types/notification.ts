@@ -3,6 +3,8 @@ export type NotificationType =
   | 'REJECTION' 
   | 'CHANGES_REQUESTED' 
   | 'REVISION_STATUS'
+  | 'PROJECT_LIKED'
+  | 'PROJECT_DELETED'
   | 'SYSTEM';
 
 export interface AppNotification {
@@ -14,5 +16,10 @@ export interface AppNotification {
   targetUrl?: string;
   isRead: boolean;
   createdAt: string;
+  actorId?: string;
+  actorName?: string;
+  actorAvatarUrl?: string;
+  projectId?: string;
+  projectTitle?: string;
 }
 

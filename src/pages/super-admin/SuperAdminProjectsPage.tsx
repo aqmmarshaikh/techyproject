@@ -9,7 +9,8 @@ import {
   CheckCircle2, 
   Clock, 
   XCircle, 
-  AlertTriangle 
+  AlertTriangle,
+  Images
 } from 'lucide-react';
 import { projectRepository } from '../../repositories/projectRepository';
 import { projectService } from '../../services/projectService';
@@ -20,6 +21,7 @@ import { Button } from '../../components/common/Button';
 import { ConfirmationModal } from '../../components/common/ConfirmationModal';
 import { Modal } from '../../components/common/Modal';
 import { ApprovalStatusBadge } from '../../components/common/Badge';
+import { ProjectMediaGalleryModal } from '../../components/common/ProjectMediaGalleryModal';
 import { formatDate } from '../../utils/formatters';
 import { NavLink } from 'react-router-dom';
 
@@ -36,6 +38,14 @@ export const SuperAdminProjectsPage: React.FC = () => {
   const [deleteTarget, setDeleteTarget] = useState<Project | null>(null);
   const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Dedicated Media Review Gallery State
+  const [galleryProject, setGalleryProject] = useState<{
+    title: string;
+    coverImageUrl?: string;
+    screenshots?: string[];
+    initialIndex?: number;
+  } | null>(null);
 
   const countWords = (text: string) => {
     const trimmed = text.trim();
@@ -252,6 +262,22 @@ export const SuperAdminProjectsPage: React.FC = () => {
                     </td>
 
                     <td className="py-3.5 px-6 text-right space-x-1">
+                      {/* View Media & Screenshots */}
+                      <button
+                        onClick={() =>
+                          setGalleryProject({
+                            title: p.title,
+                            coverImageUrl: p.coverImageUrl,
+                            screenshots: p.screenshots,
+                            initialIndex: 0,
+                          })
+                        }
+                        className="inline-flex p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-[#FF3D88] hover:bg-slate-100"
+                        title={`View Screenshots & Media (${1 + (p.screenshots?.length || 0)})`}
+                      >
+                        <Images className="w-3.5 h-3.5" />
+                      </button>
+
                       {/* View details */}
                       <NavLink
                         to={`/projects/${p.id}`}
@@ -379,6 +405,18 @@ export const SuperAdminProjectsPage: React.FC = () => {
           </div>
         )}
       </Modal>
+
+      {/* Dedicated Project Media Gallery Modal */}
+      {galleryProject && (
+        <ProjectMediaGalleryModal
+          isOpen={Boolean(galleryProject)}
+          onClose={() => setGalleryProject(null)}
+          projectTitle={galleryProject.title}
+          coverImageUrl={galleryProject.coverImageUrl}
+          screenshots={galleryProject.screenshots}
+          initialIndex={galleryProject.initialIndex || 0}
+        />
+      )}
     </div>
   );
 };

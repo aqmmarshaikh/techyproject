@@ -186,15 +186,15 @@
     "semantic_hash": ""
   },
   "src/features/projects/ProjectSubmitForm.tsx": {
-    "mtime": 1794315545.333768,
-    "seen": 1794315613.8995433,
-    "ast_hash": "6115bbad1c7cf0ae9d61f7a5c941df47",
+    "mtime": 1794325453.2299912,
+    "seen": 1794325771.2605038,
+    "ast_hash": "1277f60a4adb519d8adcaf3cc443272c",
     "semantic_hash": ""
   },
   "src/features/projects/ReportModal.tsx": {
-    "mtime": 1794304565.1337788,
-    "seen": 1794304719.5426948,
-    "ast_hash": "472435d14abdb5fbdcee5aba01ebb594",
+    "mtime": 1794325500.5830112,
+    "seen": 1794325771.2605126,
+    "ast_hash": "c55e81426235c5e671266e36edc5daef",
     "semantic_hash": ""
   },
   "src/features/voting/VoteButtonPair.tsx": {
@@ -264,9 +264,9 @@
     "semantic_hash": ""
   },
   "src/pages/ProfilePage.tsx": {
-    "mtime": 1794323718.71872,
-    "seen": 1794323867.019176,
-    "ast_hash": "1ad426f7ffedc4605a0a01a8a85b7dc3",
+    "mtime": 1794325666.993507,
+    "seen": 1794325771.260592,
+    "ast_hash": "a72002b5335c86248a2d8494bf025929",
     "semantic_hash": ""
   },
   "src/pages/SavedProjectsPage.tsx": {
@@ -288,9 +288,9 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminCategoriesPage.tsx": {
-    "mtime": 1794319929.6075313,
-    "seen": 1794320225.699401,
-    "ast_hash": "e4331ccda617e2548383028277d58f0a",
+    "mtime": 1794325614.3436892,
+    "seen": 1794325771.2606127,
+    "ast_hash": "3e1ca2ad3dedc60b6a5dbc7ee76a00b1",
     "semantic_hash": ""
   },
   "src/pages/admin/AdminEmployeesPage.tsx": {
@@ -306,15 +306,15 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminReportsPage.tsx": {
-    "mtime": 1794319981.673306,
-    "seen": 1794320225.6994035,
-    "ast_hash": "e7084a4dbd012f9d43aa7ba0428e2535",
+    "mtime": 1794325627.3740523,
+    "seen": 1794325771.2606287,
+    "ast_hash": "a5f82b77e9bf32b8cefb73c01893da5f",
     "semantic_hash": ""
   },
   "src/pages/admin/AdminReviewQueuePage.tsx": {
-    "mtime": 1794320021.4846687,
-    "seen": 1794320225.6994042,
-    "ast_hash": "2538d942d82521b6ce264d4dcb64ee27",
+    "mtime": 1794325537.7814505,
+    "seen": 1794325771.260634,
+    "ast_hash": "81dd871a04b8a88887091e6903b7223e",
     "semantic_hash": ""
   },
   "src/pages/admin/AdminSettingsPage.tsx": {
@@ -744,9 +744,9 @@
     "semantic_hash": ""
   },
   "src/services/imageUploadService.ts": {
-    "mtime": 1794324580.116069,
-    "seen": 1794324629.125664,
-    "ast_hash": "c357c5f1e2f48b8a9e4b617b61bf59e5",
+    "mtime": 1794325700.9208786,
+    "seen": 1794325771.260775,
+    "ast_hash": "abf5dda2bef215729c6152df2f18b61a",
     "semantic_hash": ""
   },
   "src/components/common/PreviewModeBanner.tsx": {
@@ -786,9 +786,9 @@
     "semantic_hash": ""
   },
   "src/pages/super-admin/SuperAdminProjectsPage.tsx": {
-    "mtime": 1794320076.208205,
-    "seen": 1794320225.699409,
-    "ast_hash": "68ac25d4c819d5fbadee3639aaffdba6",
+    "mtime": 1794325562.2311995,
+    "seen": 1794325771.2606657,
+    "ast_hash": "2817019d9907a1f4ac6ed451da7abcf9",
     "semantic_hash": ""
   },
   "src/pages/super-admin/SuperAdminSecurityPage.tsx": {

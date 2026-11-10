@@ -13,7 +13,9 @@ import {
   ExternalLink,
   Layers,
   FileDiff,
-  Trash2
+  Trash2,
+  Images,
+  Maximize2
 } from 'lucide-react';
 import { projectRepository } from '../../repositories/projectRepository';
 import { revisionRepository } from '../../repositories/revisionRepository';
@@ -26,6 +28,7 @@ import { Button } from '../../components/common/Button';
 import { Modal } from '../../components/common/Modal';
 import { EmptyState } from '../../components/common/EmptyState';
 import { RevisionDiff } from '../../features/projects/RevisionDiff';
+import { ProjectMediaGalleryModal } from '../../components/common/ProjectMediaGalleryModal';
 import { formatDate } from '../../utils/formatters';
 
 export const AdminReviewQueuePage: React.FC = () => {
@@ -49,6 +52,14 @@ export const AdminReviewQueuePage: React.FC = () => {
   const [projectToDelete, setProjectToDelete] = useState<Project | null>(null);
   const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Dedicated Media Review Gallery State
+  const [galleryProject, setGalleryProject] = useState<{
+    title: string;
+    coverImageUrl?: string;
+    screenshots?: string[];
+    initialIndex?: number;
+  } | null>(null);
 
   const countWords = (text: string) => {
     const trimmed = text.trim();
@@ -321,6 +332,10 @@ export const AdminReviewQueuePage: React.FC = () => {
                         <ApprovalStatusBadge status={p.approvalStatus} />
                         <ProjectStatusBadge status={p.projectStatus} />
                         <span className="text-[11px] font-mono text-slate-400">{p.category}</span>
+                        <span className="text-[11px] font-mono text-[#FF3D88] bg-[#FF3D88]/10 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold">
+                          <Images className="w-3 h-3" />
+                          {1 + (p.screenshots?.length || 0)} Media
+                        </span>
                       </div>
                       <h3 className="font-heading font-bold text-base text-[#0F1B3D] truncate">
                         {p.title}
@@ -335,6 +350,21 @@ export const AdminReviewQueuePage: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-2 self-end md:self-center shrink-0">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        setGalleryProject({
+                          title: p.title,
+                          coverImageUrl: p.coverImageUrl,
+                          screenshots: p.screenshots,
+                          initialIndex: 0,
+                        })
+                      }
+                      leftIcon={<Images className="w-4 h-4 text-[#FF3D88]" />}
+                    >
+                      View Media ({1 + (p.screenshots?.length || 0)})
+                    </Button>
                     <Button
                       variant="primary"
                       size="sm"
@@ -432,6 +462,21 @@ export const AdminReviewQueuePage: React.FC = () => {
                     </td>
                     <td className="py-3.5 px-4 text-right space-x-1">
                       <button
+                        onClick={() =>
+                          setGalleryProject({
+                            title: p.title,
+                            coverImageUrl: p.coverImageUrl,
+                            screenshots: p.screenshots,
+                            initialIndex: 0,
+                          })
+                        }
+                        title={`View Screenshots & Media (${1 + (p.screenshots?.length || 0)})`}
+                        className="p-1.5 rounded-lg border border-slate-200 text-slate-500 hover:text-[#FF3D88] hover:bg-slate-100 transition-colors"
+                      >
+                        <Images className="w-3.5 h-3.5" />
+                      </button>
+
+                      <button
                         onClick={() => handleToggleFeature(p)}
                         title={p.isFeatured ? 'Remove Feature' : 'Spotlight Feature'}
                         className={`p-1.5 rounded-lg border transition-colors ${
@@ -488,12 +533,142 @@ export const AdminReviewQueuePage: React.FC = () => {
       >
         {inspectProject && (
           <div className="space-y-5">
-            <div className="h-44 rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
-              <img
-                src={inspectProject.coverImageUrl}
-                alt="Cover"
-                className="w-full h-full object-cover"
-              />
+            {/* Complete Media Review Section */}
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Images className="w-4 h-4 text-[#FF3D88]" />
+                  <span className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                    Project Media & Screenshots
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-500 font-semibold">
+                  1 Cover • {inspectProject.screenshots?.length || 0} Screenshots
+                </span>
+              </div>
+
+              {/* Cover Image Main Preview */}
+              <div className="relative h-48 rounded-xl overflow-hidden border border-slate-200 bg-slate-900 group">
+                <img
+                  src={inspectProject.coverImageUrl}
+                  alt={inspectProject.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-[#FF3D88] text-white text-[10px] font-mono font-bold shadow-sm">
+                  Cover Image
+                </div>
+                <div className="absolute inset-0 bg-[#0F1B3D]/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <Button
+                    type="button"
+                    variant="primary"
+                    size="sm"
+                    onClick={() =>
+                      setGalleryProject({
+                        title: inspectProject.title,
+                        coverImageUrl: inspectProject.coverImageUrl,
+                        screenshots: inspectProject.screenshots,
+                        initialIndex: 0,
+                      })
+                    }
+                    leftIcon={<Maximize2 className="w-4 h-4" />}
+                  >
+                    Open Fullscreen Gallery
+                  </Button>
+                </div>
+              </div>
+
+              {/* Additional Screenshots Preview Thumbnails */}
+              {inspectProject.screenshots && inspectProject.screenshots.length > 0 ? (
+                <div className="space-y-2 pt-1">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-semibold text-slate-700">
+                      Additional Screenshots ({inspectProject.screenshots.length})
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setGalleryProject({
+                          title: inspectProject.title,
+                          coverImageUrl: inspectProject.coverImageUrl,
+                          screenshots: inspectProject.screenshots,
+                          initialIndex: 1,
+                        })
+                      }
+                      className="text-xs text-[#FF3D88] hover:underline font-semibold flex items-center gap-1"
+                    >
+                      <Images className="w-3.5 h-3.5" />
+                      View All Screenshots & Media
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    {inspectProject.screenshots.map((shot, idx) => (
+                      <div
+                        key={shot}
+                        onClick={() =>
+                          setGalleryProject({
+                            title: inspectProject.title,
+                            coverImageUrl: inspectProject.coverImageUrl,
+                            screenshots: inspectProject.screenshots,
+                            initialIndex: idx + 1,
+                          })
+                        }
+                        className="relative h-16 rounded-lg overflow-hidden border border-slate-200 cursor-pointer group hover:border-[#FF3D88] transition-all"
+                      >
+                        <img
+                          src={shot}
+                          alt={`Screenshot ${idx + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                        <span className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] font-mono text-center py-0.5">
+                          #{idx + 1}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="p-3 rounded-xl bg-white border border-slate-200/80 text-xs text-slate-500 italic flex items-center justify-between">
+                  <span>No additional screenshots or media uploaded.</span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setGalleryProject({
+                        title: inspectProject.title,
+                        coverImageUrl: inspectProject.coverImageUrl,
+                        screenshots: [],
+                        initialIndex: 0,
+                      })
+                    }
+                    className="text-xs text-slate-700 font-semibold hover:text-[#FF3D88] underline flex items-center gap-1"
+                  >
+                    <Eye className="w-3.5 h-3.5" /> Inspect Cover
+                  </button>
+                </div>
+              )}
+
+              {/* Dedicated Media Review Button */}
+              <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between">
+                <span className="text-[11px] text-slate-500">
+                  Inspect full-resolution presentation before deciding
+                </span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    setGalleryProject({
+                      title: inspectProject.title,
+                      coverImageUrl: inspectProject.coverImageUrl,
+                      screenshots: inspectProject.screenshots,
+                      initialIndex: 0,
+                    })
+                  }
+                  leftIcon={<Images className="w-4 h-4 text-[#FF3D88]" />}
+                >
+                  View Screenshots & Media ({1 + (inspectProject.screenshots?.length || 0)})
+                </Button>
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -740,6 +915,18 @@ export const AdminReviewQueuePage: React.FC = () => {
           </div>
         )}
       </Modal>
+
+      {/* Dedicated Project Media Gallery Modal */}
+      {galleryProject && (
+        <ProjectMediaGalleryModal
+          isOpen={Boolean(galleryProject)}
+          onClose={() => setGalleryProject(null)}
+          projectTitle={galleryProject.title}
+          coverImageUrl={galleryProject.coverImageUrl}
+          screenshots={galleryProject.screenshots}
+          initialIndex={galleryProject.initialIndex || 0}
+        />
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { userRepository } from '../repositories/userRepository';
 import { notificationRepository } from '../repositories/notificationRepository';
 import { VoteChoice, Project } from '../types';
 import { calculateTrendingScore } from '../utils/trending';
+import { getUserDisplayName, resolveUserAvatarUrl } from '../utils/userDisplay';
 
 export const interactionService = {
   async toggleLike(projectId: string, userId: string): Promise<{ isLiked: boolean; newCount: number }> {
@@ -29,11 +30,39 @@ export const interactionService = {
         });
       }
 
+      // Real-Time Project Like Notification to project owner
+      // Only when a user genuinely likes another employee's project (no self-notification, no unlike notification)
+      if (result.isLiked && project.creatorId && project.creatorId !== userId) {
+        try {
+          const actor = await userRepository.getById(userId);
+          const actorName = getUserDisplayName(actor);
+          const actorAvatarUrl = resolveUserAvatarUrl(actor);
+
+          await notificationRepository.create({
+            id: `notif_like_${projectId}_${userId}`,
+            recipientId: project.creatorId,
+            actorId: userId,
+            actorName,
+            actorAvatarUrl,
+            projectId: project.id,
+            projectTitle: project.title,
+            title: `${actorName} liked your project`,
+            message: `${actorName} liked your project "${project.title}".`,
+            type: 'PROJECT_LIKED',
+            targetUrl: `/projects/${project.id}`,
+            isRead: false,
+            createdAt: new Date().toISOString(),
+          });
+        } catch (notifErr) {
+          console.warn('[interactionService] Like notification non-fatal warning:', notifErr);
+        }
+      }
+
       // Check like milestone for creator notification (5, 10, 25, 50, 100, 250, 500)
       if (result.isLiked && [5, 10, 25, 50, 100, 250, 500].includes(result.newCount)) {
         try {
           await notificationRepository.create({
-            id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+            id: `notif_ms_${projectId}_${result.newCount}`,
             recipientId: project.creatorId,
             title: '🔥 New Like Milestone!',
             message: `Awesome! Your project "${project.title}" has reached ${result.newCount} likes!`,

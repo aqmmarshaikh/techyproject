@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Check, CheckCheck, Clock, AlertTriangle, ArrowRight, Sparkles, Trash2 } from 'lucide-react';
+import { Bell, Check, CheckCheck, Clock, AlertTriangle, ArrowRight, Sparkles, Trash2, Heart } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { notificationRepository } from '../repositories/notificationRepository';
+import { projectRepository } from '../repositories/projectRepository';
 import { AppNotification } from '../types';
 import { EmptyState } from '../components/common/EmptyState';
 import { Button } from '../components/common/Button';
+import { UserAvatar } from '../components/common/UserAvatar';
+import { useToast } from '../components/common/Toast';
 import { useNavigate } from 'react-router-dom';
 import { formatDate, formatRelativeTime } from '../utils/formatters';
 
 export const NotificationsPage: React.FC = () => {
   const { userProfile } = useAuth();
+  const { error: toastError } = useToast();
   const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
@@ -68,6 +72,8 @@ export const NotificationsPage: React.FC = () => {
 
   const getIcon = (type: string) => {
     switch (type) {
+      case 'PROJECT_LIKED':
+        return <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />;
       case 'APPROVAL':
         return <Check className="w-4 h-4 text-emerald-600" />;
       case 'REJECTION':
@@ -77,6 +83,42 @@ export const NotificationsPage: React.FC = () => {
         return <Trash2 className="w-4 h-4 text-rose-600" />;
       default:
         return <Sparkles className="w-4 h-4 text-[#FF3D88]" />;
+    }
+  };
+
+  const handleNotificationClick = async (n: AppNotification) => {
+    if (!n.isRead) {
+      try {
+        await notificationRepository.markAsRead(n.id);
+        setNotifications((prev) =>
+          prev.map((item) => (item.id === n.id ? { ...item, isRead: true } : item))
+        );
+      } catch (err) {
+        console.warn('Failed to mark read:', err);
+      }
+    }
+
+    if (n.targetUrl) {
+      // Validate that project is still active/accessible if it's a project link
+      if (n.projectId) {
+        try {
+          const proj = await projectRepository.getById(n.projectId);
+          if (!proj || proj.isArchived) {
+            toastError(
+              'Project Unavailable',
+              'This project has been removed or is no longer accessible.'
+            );
+            return;
+          }
+        } catch {
+          toastError(
+            'Project Unavailable',
+            'This project has been removed or is no longer accessible.'
+          );
+          return;
+        }
+      }
+      navigate(n.targetUrl);
     }
   };
 
@@ -127,9 +169,7 @@ export const NotificationsPage: React.FC = () => {
           {notifications.map((n) => (
             <div
               key={n.id}
-              onClick={() => {
-                if (n.targetUrl) navigate(n.targetUrl);
-              }}
+              onClick={() => handleNotificationClick(n)}
               className={`p-4 sm:p-5 rounded-2xl border transition-all flex items-start justify-between gap-4 cursor-pointer ${
                 n.isRead
                   ? 'bg-white border-slate-200/80 text-slate-700'
@@ -137,13 +177,30 @@ export const NotificationsPage: React.FC = () => {
               }`}
             >
               <div className="flex items-start gap-3.5 min-w-0">
-                <div
-                  className={`p-2.5 rounded-xl shrink-0 mt-0.5 ${
-                    n.isRead ? 'bg-slate-100' : 'bg-white shadow-sm'
-                  }`}
-                >
-                  {getIcon(n.type)}
-                </div>
+                {n.type === 'PROJECT_LIKED' ? (
+                  <div className="relative shrink-0 mt-0.5">
+                    <UserAvatar
+                      user={{
+                        displayName: n.actorName,
+                        fullName: n.actorName,
+                        avatarUrl: n.actorAvatarUrl,
+                      }}
+                      size="md"
+                      className="ring-2 ring-rose-300"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-rose-500 border border-white flex items-center justify-center text-white shadow-sm">
+                      <Heart className="w-2.5 h-2.5 fill-white text-white" />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className={`p-2.5 rounded-xl shrink-0 mt-0.5 ${
+                      n.isRead ? 'bg-slate-100' : 'bg-white shadow-sm'
+                    }`}
+                  >
+                    {getIcon(n.type)}
+                  </div>
+                )}
 
                 <div className="min-w-0 space-y-1">
                   <div className="flex items-center gap-2">

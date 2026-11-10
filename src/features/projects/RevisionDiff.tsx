@@ -18,6 +18,7 @@ export const RevisionDiff: React.FC<RevisionDiffProps> = ({ revision }) => {
     { key: 'githubRepoUrl', label: 'GitHub Repository' },
     { key: 'technologies', label: 'Technologies' },
     { key: 'coverImageUrl', label: 'Cover Image' },
+    { key: 'screenshots', label: 'Screenshots & Media' },
   ];
 
   const renderValue = (val: any) => {
@@ -25,6 +26,28 @@ export const RevisionDiff: React.FC<RevisionDiffProps> = ({ revision }) => {
       return <span className="text-slate-400 italic">None</span>;
     }
     if (Array.isArray(val)) {
+      // Check if it's an array of image URLs (screenshots)
+      const isImageArray = val.length > 0 && typeof val[0] === 'string' && (
+        val[0].startsWith('http') || val[0].startsWith('data:image/') || val[0].startsWith('blob:')
+      );
+      if (isImageArray) {
+        return (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {val.map((imgUrl, i) => (
+              <div key={i} className="relative h-16 rounded-lg overflow-hidden border border-slate-200">
+                <img
+                  src={imgUrl}
+                  alt={`Screenshot ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                <span className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] font-mono text-center py-0.5">
+                  #{i + 1}
+                </span>
+              </div>
+            ))}
+          </div>
+        );
+      }
       return (
         <div className="flex flex-wrap gap-1">
           {val.map((item) => (
@@ -35,9 +58,9 @@ export const RevisionDiff: React.FC<RevisionDiffProps> = ({ revision }) => {
         </div>
       );
     }
-    if (typeof val === 'string' && (val.startsWith('http://') || val.startsWith('https://')) && val.match(/\.(jpeg|jpg|png|webp|gif)/i)) {
+    if (typeof val === 'string' && (val.startsWith('http://') || val.startsWith('https://') || val.startsWith('data:image/'))) {
       return (
-        <img src={val} alt="Preview" className="w-20 h-14 object-cover rounded-lg border border-slate-200" />
+        <img src={val} alt="Preview" className="w-24 h-16 object-cover rounded-lg border border-slate-200 shadow-sm" />
       );
     }
     return <span className="text-slate-800 break-words">{String(val)}</span>;

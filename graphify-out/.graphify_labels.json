@@ -2,6 +2,7 @@
   "0": "useAuth.tsx",
   "1": "ProjectDetailsPage.tsx",
   "2": "types/index.ts",
+  "3": "trending.ts",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
@@ -23,11 +24,11 @@
   "22": "tailwind.config.js",
   "23": "tailwindcss",
   "24": "vite.config.ts",
-  "25": "firebase.ts",
+  "25": "ProjectSubmitForm.tsx",
   "26": "react",
   "27": "react-hook-form",
   "28": "@types/react",
   "29": "vitest",
-  "30": "UserProfile",
+  "30": "MockSessionStorage",
   "31": "ExplorePage.tsx"
 }
