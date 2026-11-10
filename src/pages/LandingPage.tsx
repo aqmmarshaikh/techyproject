@@ -27,6 +27,7 @@ import { projectRepository } from '../repositories/projectRepository';
 import { userRepository } from '../repositories/userRepository';
 import { leaderboardService, LeaderboardUser } from '../services/leaderboardService';
 import { LeaderboardPodium } from '../components/common/LeaderboardPodium';
+import { TechMarquee } from '../components/common/TechMarquee';
 import { Project, UserProfile } from '../types';
 
 export const SESSION_ENTRY_KEY = 'projecthub_entry_completed';
@@ -420,9 +421,14 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* ========================================================= */}
+      {/* INFINITE TECHNOLOGY LOGO MARQUEE                         */}
+      {/* ========================================================= */}
+      <TechMarquee />
+
+      {/* ========================================================= */}
       {/* SECTION 03 — PLATFORM INTRODUCTION                        */}
       {/* ========================================================= */}
-      <section id="about" className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+      <section id="about" className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="max-w-3xl mb-14 space-y-3">
           <span className="text-xs font-decorative uppercase tracking-wider text-[#FF3D88]">
             PLATFORM PILLARS

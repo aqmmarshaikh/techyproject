@@ -176,3 +176,35 @@ samp,
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
+
+/* ========================================================= */
+/* Infinite Technology Marquee Animation                     */
+/* Continuous smooth right-to-left ticker with hover pause   */
+/* ========================================================= */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

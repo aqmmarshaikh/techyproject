@@ -1,6 +1,6 @@
 {
   "0": "useAuth.tsx",
-  "1": "ProjectDetailsPage.tsx",
+  "1": "Button.tsx",
   "2": "types/index.ts",
   "3": "trending.ts",
   "4": "scripts",
@@ -30,5 +30,7 @@
   "28": "@types/react",
   "29": "vitest",
   "30": "MockSessionStorage",
-  "31": "ExplorePage.tsx"
+  "31": "ExplorePage.tsx",
+  "32": "ProjectRevision",
+  "33": "TechMarquee.tsx"
 }
