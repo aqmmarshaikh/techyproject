@@ -14,6 +14,7 @@ export const APP_CONFIG = {
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '403067015603',
     appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:403067015603:web:af7d99e864469642807bc6',
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || 'G-CKBZG8DFR3',
+    enableStorage: import.meta.env.VITE_ENABLE_FIREBASE_STORAGE === 'true',
     useEmulators: import.meta.env.VITE_USE_FIREBASE_EMULATORS === 'true',
     emulatorHosts: {
       auth: import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST || 'localhost:9099',

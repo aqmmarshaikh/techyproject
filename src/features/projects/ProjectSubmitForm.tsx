@@ -67,6 +67,13 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
   const currentTechnologies = watch('technologies') || [];
   const currentScreenshots = watch('screenshots') || [];
   const coverImageUrl = watch('coverImageUrl');
+  const currentTitle = watch('title') || '';
+  const currentDescription = watch('description') || '';
+
+  const countWords = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  };
 
   const handleAddTechnology = () => {
     const trimmed = techInput.trim();
@@ -180,27 +187,48 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
       {/* Revision Change Summary Field */}
       {isRevision && (
         <div>
-          <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1.5">
-            What changed in this revision? <span className="text-[#FF3D88]">*</span>
-          </label>
+          <div className="flex justify-between items-baseline mb-1.5">
+            <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+              What changed in this revision? <span className="text-[#FF3D88]">*</span>
+            </label>
+            <span className={`text-[11px] font-mono ${
+              changeSummary.length > 450 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+            }`}>
+              {changeSummary.length}/500 chars • {countWords(changeSummary)} words
+            </span>
+          </div>
           <textarea
             rows={2}
+            maxLength={500}
             value={changeSummary}
             onChange={(e) => setChangeSummary(e.target.value)}
             placeholder="E.g., Updated screenshots, added new Docker deployment instructions, upgraded to React 19."
             className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
           />
-          <p className="text-[11px] text-slate-400 mt-1">Minimum 10 characters.</p>
+          <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+            <span>Minimum 10 characters.</span>
+            {changeSummary.length > 0 && changeSummary.trim().length < 10 && (
+              <span className="text-rose-500 font-medium">{10 - changeSummary.trim().length} more characters needed</span>
+            )}
+          </div>
         </div>
       )}
 
       {/* 1. Project Title */}
       <div>
-        <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1.5">
-          Project Title <span className="text-[#FF3D88]">*</span>
-        </label>
+        <div className="flex justify-between items-baseline mb-1.5">
+          <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+            Project Title <span className="text-[#FF3D88]">*</span>
+          </label>
+          <span className={`text-[11px] font-mono ${
+            currentTitle.length > 85 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+          }`}>
+            {currentTitle.length}/100 chars • {countWords(currentTitle)} words
+          </span>
+        </div>
         <input
           type="text"
+          maxLength={100}
           {...register('title')}
           placeholder="E.g., Real-Time Fraud Detection Engine"
           className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
@@ -218,14 +246,31 @@ export const ProjectSubmitForm: React.FC<ProjectSubmitFormProps> = ({
           <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
             Project Description <span className="text-[#FF3D88]">*</span>
           </label>
-          <span className="text-[11px] text-slate-400">Minimum 2 lines required</span>
+          <span className={`text-[11px] font-mono ${
+            currentDescription.length > 1100
+              ? 'text-rose-600 font-semibold'
+              : currentDescription.length > 950
+              ? 'text-amber-600 font-semibold'
+              : 'text-slate-400'
+          }`}>
+            {currentDescription.length}/1200 chars • {countWords(currentDescription)} words
+          </span>
         </div>
         <textarea
           rows={3}
+          maxLength={1200}
           {...register('description')}
           placeholder="Describe the architecture, problem solved, primary business impact, and how colleagues can utilize this project (minimum 2 lines)..."
           className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans leading-relaxed"
         />
+        <div className="flex justify-between items-center text-[11px] mt-1 text-slate-400">
+          <span>Minimum 2 lines / 25 characters required.</span>
+          {currentDescription.length > 0 && currentDescription.trim().length < 25 && (
+            <span className="text-rose-500 font-medium">
+              {25 - currentDescription.trim().length} more characters needed
+            </span>
+          )}
+        </div>
         {errors.description && (
           <p className="mt-1 text-xs text-rose-600 flex items-center gap-1">
             <AlertCircle className="w-3.5 h-3.5" /> {errors.description.message}

@@ -25,10 +25,10 @@ export const AuthLayout: React.FC = () => {
               className="w-16 h-16 mx-auto rounded-2xl object-contain shadow-pinkGlow border border-[#FF3D88]/30"
             />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight flex items-center justify-center">
+          <h1 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight flex items-center justify-center">
             <span>Project</span><span className="text-[#FF3D88]">Hub</span>
           </h1>
-          <p className="mt-1 text-xs font-mono uppercase tracking-wider text-[#FF3D88]/90">
+          <p className="mt-1 text-xs font-decorative uppercase tracking-wider text-[#FF3D88]/90">
             Team Project Arena
           </p>
           <p className="mt-2 text-xs sm:text-sm text-white/60 font-sans">

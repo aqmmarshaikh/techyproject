@@ -58,12 +58,12 @@ export const SuperAdminSecurityPage: React.FC = () => {
       {/* Title */}
       <div>
         <div className="flex items-center gap-2 mb-1">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-decorative font-bold tracking-wider uppercase bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
             Security Posture Verified
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           System Security & Governance Controls
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">

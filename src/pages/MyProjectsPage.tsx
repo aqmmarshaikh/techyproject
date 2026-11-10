@@ -144,7 +144,7 @@ export const MyProjectsPage: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
             My Projects & Submissions
           </h2>
           <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -195,7 +195,7 @@ export const MyProjectsPage: React.FC = () => {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key as TabKey)}
-            className={`flex items-center gap-2 px-4 py-3 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 px-4 py-3 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
               activeTab === tab.key
                 ? 'border-[#FF3D88] text-[#0F1B3D]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'

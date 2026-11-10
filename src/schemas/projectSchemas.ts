@@ -2,6 +2,44 @@ import { z } from 'zod';
 
 export const projectStatuses = ['IN_DEVELOPMENT', 'LIVE', 'COMPLETED', 'ON_HOLD'] as const;
 
+/**
+ * Universal Image Schema: accepts valid HTTP/HTTPS URLs, Blob URLs,
+ * and client-compressed Base64 Data URLs (data:image/...).
+ */
+export const imageUrlSchema = z
+  .string()
+  .min(1, 'Cover image is required')
+  .refine(
+    (val) => {
+      if (!val) return false;
+      const trimmed = val.trim();
+      return (
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('http://') ||
+        trimmed.startsWith('data:image/') ||
+        trimmed.startsWith('blob:')
+      );
+    },
+    { message: 'Cover image must be a valid image URL (http/https) or uploaded image' }
+  );
+
+export const screenshotUrlSchema = z
+  .string()
+  .min(1, 'Screenshot cannot be empty')
+  .refine(
+    (val) => {
+      if (!val) return false;
+      const trimmed = val.trim();
+      return (
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('http://') ||
+        trimmed.startsWith('data:image/') ||
+        trimmed.startsWith('blob:')
+      );
+    },
+    { message: 'Each screenshot must be a valid image URL (http/https) or uploaded image' }
+  );
+
 export const projectSubmissionSchema = z.object({
   title: z
     .string()
@@ -13,12 +51,9 @@ export const projectSubmissionSchema = z.object({
     .min(25, 'Description must be at least 2 lines (at least 25 characters)')
     .max(1200, 'Description cannot exceed 1200 characters')
     .trim(),
-  coverImageUrl: z
-    .string()
-    .url('Cover image must be a valid image URL')
-    .min(1, 'Cover image is required'),
+  coverImageUrl: imageUrlSchema,
   screenshots: z
-    .array(z.string().url('Each screenshot must be a valid URL'))
+    .array(screenshotUrlSchema)
     .max(6, 'You can upload a maximum of 6 screenshots')
     .default([]),
   category: z
@@ -92,8 +127,8 @@ export type ProjectSubmissionFormData = z.infer<typeof projectSubmissionSchema>;
 export const projectRevisionSchema = z.object({
   title: z.string().min(3).max(100).trim(),
   description: z.string().min(25, 'Description must be at least 2 lines (at least 25 characters)').max(1200).trim(),
-  coverImageUrl: z.string().url(),
-  screenshots: z.array(z.string().url()).max(6).default([]),
+  coverImageUrl: imageUrlSchema,
+  screenshots: z.array(screenshotUrlSchema).max(6).default([]),
   category: z.string().min(1),
   technologies: z.array(z.string().trim().min(1)).min(1).max(15),
   projectStatus: z.enum(projectStatuses),

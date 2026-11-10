@@ -26,9 +26,13 @@ export default {
         },
       },
       fontFamily: {
-        primary: ['"Redaction 70"', 'sans-serif'],
-        heading: ['"Redaction 70"', 'sans-serif'],
-        sans: ['"Redaction 70"', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        heading: ['"Space Grotesk"', 'sans-serif'],
+        headingSecondary: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Inter"', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif'],
+        decorative: ['"Space Grotesk"', 'sans-serif'],
+        accent: ['"Space Grotesk"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {

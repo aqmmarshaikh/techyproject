@@ -1,8 +1,7 @@
 {
   "0": "useAuth.tsx",
-  "1": "Button.tsx",
+  "1": "ProjectDetailsPage.tsx",
   "2": "types/index.ts",
-  "3": "ExplorePage.tsx",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
@@ -29,5 +28,6 @@
   "27": "react-hook-form",
   "28": "@types/react",
   "29": "vitest",
-  "30": "MockSessionStorage"
+  "30": "UserProfile",
+  "31": "ExplorePage.tsx"
 }

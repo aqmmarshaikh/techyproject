@@ -30,6 +30,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ReportSubmissionFormData>({
     resolver: zodResolver(reportSubmissionSchema),
@@ -40,6 +41,12 @@ export const ReportModal: React.FC<ReportModalProps> = ({
       details: '',
     },
   });
+
+  const currentDetails = watch('details') || '';
+  const countWords = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  };
 
   const onSubmit = async (data: ReportSubmissionFormData) => {
     if (!userProfile) return;
@@ -102,15 +109,29 @@ export const ReportModal: React.FC<ReportModalProps> = ({
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1.5">
-            Explanation & Details <span className="text-[#FF3D88]">*</span>
-          </label>
+          <div className="flex justify-between items-baseline mb-1.5">
+            <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+              Explanation & Details <span className="text-[#FF3D88]">*</span>
+            </label>
+            <span className={`text-[11px] font-mono ${
+              currentDetails.length > 450 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+            }`}>
+              {currentDetails.length}/500 chars • {countWords(currentDetails)} words
+            </span>
+          </div>
           <textarea
             rows={3}
+            maxLength={500}
             {...register('details')}
             placeholder="Please detail why this project requires administrator attention..."
             className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
           />
+          <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+            <span>Minimum 10 characters required.</span>
+            {currentDetails.length > 0 && currentDetails.trim().length < 10 && (
+              <span className="text-rose-500 font-medium">{10 - currentDetails.trim().length} more characters needed</span>
+            )}
+          </div>
           {errors.details && (
             <p className="mt-1 text-xs text-rose-600 flex items-center gap-1">
               <AlertCircle className="w-3.5 h-3.5" /> {errors.details.message}

@@ -165,7 +165,7 @@ export const AdminEmployeesPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
             Employee & Access Management
           </h2>
           <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -215,7 +215,7 @@ export const AdminEmployeesPage: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-heading uppercase text-[10px] tracking-wider">
+            <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
               <tr>
                 <th className="py-3 px-4">Employee</th>
                 <th className="py-3 px-4">Role</th>

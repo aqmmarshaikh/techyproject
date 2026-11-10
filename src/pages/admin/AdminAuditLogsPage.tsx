@@ -38,11 +38,11 @@ export const AdminAuditLogsPage: React.FC = () => {
       <div>
         <div className="flex items-center gap-2 mb-1">
           <Shield className="w-4 h-4 text-[#FF3D88]" />
-          <span className="text-xs font-mono uppercase tracking-wider text-[#FF3D88] font-bold">
+          <span className="text-[11px] font-decorative uppercase tracking-wider text-[#FF3D88] font-bold">
             Super Admin Exclusive
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           System Audit Logs
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -79,7 +79,7 @@ export const AdminAuditLogsPage: React.FC = () => {
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-heading uppercase text-[10px] tracking-wider">
+              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-mono uppercase text-[10px] tracking-wider">
                 <tr>
                   <th className="py-3 px-4">Timestamp</th>
                   <th className="py-3 px-4">Action</th>

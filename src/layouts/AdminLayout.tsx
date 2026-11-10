@@ -47,7 +47,7 @@ export const AdminLayout: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-heading font-bold text-base sm:text-lg tracking-tight">Admin Control Center</h2>
+              <h2 className="font-display font-bold text-base sm:text-lg tracking-tight">Admin Control Center</h2>
               <RoleBadge role="ADMIN" />
             </div>
             <p className="text-xs text-white/60 font-sans">Project Approvals, Moderation & Category Taxonomy</p>

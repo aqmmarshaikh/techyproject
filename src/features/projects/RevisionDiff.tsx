@@ -51,7 +51,7 @@ export const RevisionDiff: React.FC<RevisionDiffProps> = ({ revision }) => {
       </div>
 
       <div className="border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100">
-        <div className="grid grid-cols-2 bg-slate-50 font-heading font-semibold text-slate-600 px-4 py-2 uppercase text-[10px] tracking-wider">
+        <div className="grid grid-cols-2 bg-slate-50 font-sans font-semibold text-slate-600 px-4 py-2 uppercase text-[10px] tracking-wider">
           <div>Current Live Version</div>
           <div>Proposed Revision Updates</div>
         </div>

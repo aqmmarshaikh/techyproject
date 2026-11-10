@@ -40,7 +40,7 @@ export const ResetPasswordPage: React.FC = () => {
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back to sign in
         </NavLink>
-        <h2 className="text-xl font-heading font-bold text-[#0F1B3D]">
+        <h2 className="text-xl font-display font-bold text-[#0F1B3D]">
           Reset your password
         </h2>
         <p className="mt-1 text-xs text-slate-500 font-sans">

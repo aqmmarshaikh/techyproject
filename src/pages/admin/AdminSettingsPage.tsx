@@ -84,11 +84,11 @@ export const AdminSettingsPage: React.FC = () => {
       <div>
         <div className="flex items-center gap-2 mb-1">
           <Shield className="w-4 h-4 text-[#FF3D88]" />
-          <span className="text-xs font-mono uppercase tracking-wider text-[#FF3D88] font-bold">
+          <span className="text-[11px] font-decorative uppercase tracking-wider text-[#FF3D88] font-bold">
             Super Admin Exclusive
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Platform Governance Settings
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">

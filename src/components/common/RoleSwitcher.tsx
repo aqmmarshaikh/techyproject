@@ -87,7 +87,7 @@ export const RoleSwitcher: React.FC = () => {
       >
         <span className="flex items-center gap-1.5">
           {currentOption.icon}
-          <span className="font-heading font-medium tracking-wide">
+          <span className="font-sans font-medium tracking-wide">
             {effectiveRole === 'SUPER_ADMIN' ? 'Super Admin' : `Preview: ${currentOption.title}`}
           </span>
         </span>
@@ -99,10 +99,10 @@ export const RoleSwitcher: React.FC = () => {
         <div className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white shadow-2xl border border-slate-200/90 py-3 z-50 animate-in fade-in zoom-in-95 duration-100">
           <div className="px-4 pb-2.5 border-b border-slate-100">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+              <span className="text-[10px] font-decorative uppercase tracking-wider text-slate-400 font-bold">
                 Current Role Preview
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-decorative bg-emerald-50 text-emerald-700 border border-emerald-200">
                 Safe Preview
               </span>
             </div>

@@ -6,7 +6,10 @@ export interface UserProfile {
   id: string; // Firebase Auth UID
   email: string;
   fullName: string;
+  displayName?: string; // User-edited custom display name
   avatarUrl?: string;
+  customAvatarUrl?: string; // Custom uploaded avatar in ProjectHub
+  googlePhotoUrl?: string; // Google account profile picture
   designation: string; // e.g. "Senior Full-Stack Engineer"
   department: string;  // e.g. "Engineering", "Product", "Design"
   skills: string[];

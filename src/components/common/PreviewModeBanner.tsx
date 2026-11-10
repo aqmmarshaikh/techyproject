@@ -66,7 +66,7 @@ export const PreviewModeBanner: React.FC = () => {
 
           <button
             onClick={exitPreview}
-            className="px-3 py-1 bg-white text-[#0F1B3D] hover:bg-slate-100 rounded-lg font-heading font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5"
+            className="px-3 py-1 bg-white text-[#0F1B3D] hover:bg-slate-100 rounded-lg font-sans font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5"
             title="Exit preview and return to Super Admin dashboard"
           >
             <span>Exit Preview</span>

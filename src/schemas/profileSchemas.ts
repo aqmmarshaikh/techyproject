@@ -4,8 +4,15 @@ export const profileUpdateSchema = z.object({
   fullName: z
     .string()
     .trim()
-    .min(2, 'Full name must be at least 2 characters')
-    .max(80, 'Full name cannot exceed 80 characters'),
+    .min(2, 'Display name must be at least 2 characters')
+    .max(80, 'Display name cannot exceed 80 characters'),
+  displayName: z
+    .string()
+    .trim()
+    .min(2, 'Display name must be at least 2 characters')
+    .max(50, 'Display name cannot exceed 50 characters')
+    .optional()
+    .or(z.literal('')),
   designation: z
     .string()
     .trim()
@@ -18,7 +25,14 @@ export const profileUpdateSchema = z.object({
     .max(80, 'Department cannot exceed 80 characters'),
   avatarUrl: z
     .string()
-    .url('Avatar must be a valid URL')
+    .optional()
+    .or(z.literal('')),
+  customAvatarUrl: z
+    .string()
+    .optional()
+    .or(z.literal('')),
+  googlePhotoUrl: z
+    .string()
     .optional()
     .or(z.literal('')),
   skills: z
@@ -32,4 +46,3 @@ export const profileUpdateSchema = z.object({
 });
 
 export type ProfileUpdateFormData = z.infer<typeof profileUpdateSchema>;
-

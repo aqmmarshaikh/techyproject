@@ -52,6 +52,11 @@ export async function compressImage(
         }
 
         ctx.drawImage(img, 0, 0, width, height);
+        // Prefer modern WebP for 30-50% smaller Base64 size; fallback to JPEG
+        const mimeType = canvas.toDataURL('image/webp').startsWith('data:image/webp')
+          ? 'image/webp'
+          : 'image/jpeg';
+
         canvas.toBlob(
           (blob) => {
             if (blob) {
@@ -60,7 +65,7 @@ export async function compressImage(
               resolve(file);
             }
           },
-          'image/jpeg',
+          mimeType,
           quality
         );
       };
@@ -94,26 +99,30 @@ export const imageUploadService = {
   async uploadImage(file: File, options: ImageUploadOptions): Promise<string> {
     this.validateFile(file, options.maxSizeMb || 5);
 
-    // 1. Compress image to max 1280px / 0.8 quality (~70KB)
+    // 1. Compress image client-side to ensure lightweight storage and shorter Base64 strings
+    // Covers & Screenshots: 960px @ 0.72 (~20-30KB)
+    // Avatars: 320px @ 0.75 (~10KB)
     const compressedBlob = await compressImage(
       file,
-      options.maxWidth || 1280,
-      options.quality || 0.8
+      options.maxWidth || (options.folder === 'avatars' ? 320 : 960),
+      options.quality || (options.folder === 'avatars' ? 0.75 : 0.72)
     );
 
     const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const storagePath = `${options.folder}/${Date.now()}_${cleanName}`;
 
-    // 2. Try Firebase Storage directly
-    try {
-      const storageRef = ref(storage, storagePath);
-      const snapshot = await uploadBytes(storageRef, compressedBlob, {
-        contentType: 'image/jpeg',
-      });
-      const downloadUrl = await getDownloadURL(snapshot.ref);
-      return downloadUrl;
-    } catch (fbErr) {
-      console.warn('[ImageUploadService] Firebase Storage upload skipped/failed:', fbErr);
+    // 2. Try Firebase Storage directly ONLY if explicitly enabled
+    if (APP_CONFIG.firebase.enableStorage) {
+      try {
+        const storageRef = ref(storage, storagePath);
+        const snapshot = await uploadBytes(storageRef, compressedBlob, {
+          contentType: 'image/jpeg',
+        });
+        const downloadUrl = await getDownloadURL(snapshot.ref);
+        return downloadUrl;
+      } catch (fbErr) {
+        console.warn('[ImageUploadService] Firebase Storage upload skipped/failed:', fbErr);
+      }
     }
 
     // 3. Try Cloudinary if environment variables are configured
@@ -165,8 +174,14 @@ export const imageUploadService = {
 
     for (const url of validUrls) {
       try {
+        // Data URLs require no remote network cleanup
+        if (url.startsWith('data:')) {
+          cleaned++;
+          continue;
+        }
+
         // Firebase Storage URL cleanup
-        if (url.includes('firebasestorage.googleapis.com')) {
+        if (APP_CONFIG.firebase.enableStorage && url.includes('firebasestorage.googleapis.com')) {
           try {
             const match = url.match(/\/o\/([^?]+)/);
             if (match && match[1]) {

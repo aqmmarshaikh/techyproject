@@ -118,7 +118,7 @@ export const ExplorePage: React.FC = () => {
       {/* Welcome & Discover Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
             Discover Company Projects
           </h2>
           <p className="mt-1 text-sm text-slate-500 font-sans">

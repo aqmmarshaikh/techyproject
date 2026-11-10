@@ -112,7 +112,7 @@ export const AdminOverviewPage: React.FC = () => {
     <div className="space-y-8">
       {/* Title */}
       <div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Platform Governance & Metrics
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -135,7 +135,7 @@ export const AdminOverviewPage: React.FC = () => {
               </span>
               {s.icon}
             </div>
-            <span className="text-2xl font-heading font-bold text-[#0F1B3D]">
+            <span className="text-2xl font-display font-bold text-[#0F1B3D]">
               {isLoading ? '...' : s.value}
             </span>
           </div>

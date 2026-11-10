@@ -130,21 +130,21 @@ export const ArenaPage: React.FC = () => {
   const getRankBadge = (rank: number) => {
     if (rank === 1) {
       return (
-        <div className="w-9 h-9 rounded-xl bg-amber-400 text-amber-950 font-heading font-bold text-base flex items-center justify-center shadow-md">
+        <div className="w-9 h-9 rounded-xl bg-amber-400 text-amber-950 font-display font-bold text-base flex items-center justify-center shadow-md">
           1
         </div>
       );
     }
     if (rank === 2) {
       return (
-        <div className="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 font-heading font-bold text-base flex items-center justify-center shadow-sm">
+        <div className="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 font-display font-bold text-base flex items-center justify-center shadow-sm">
           2
         </div>
       );
     }
     if (rank === 3) {
       return (
-        <div className="w-9 h-9 rounded-xl bg-amber-700/20 text-amber-800 font-heading font-bold text-base flex items-center justify-center">
+        <div className="w-9 h-9 rounded-xl bg-amber-700/20 text-amber-800 font-display font-bold text-base flex items-center justify-center">
           3
         </div>
       );
@@ -162,10 +162,10 @@ export const ArenaPage: React.FC = () => {
       <div className="relative rounded-3xl bg-gradient-to-r from-[#0F1B3D] via-[#182B5C] to-[#0A1229] p-6 sm:p-10 text-white overflow-hidden shadow-xl">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[#FF3D88]/10 blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono mb-3">
-            <Trophy className="w-3.5 h-3.5 text-amber-400" /> Company Innovation Arena
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs mb-3">
+            <Trophy className="w-3.5 h-3.5 text-amber-400" /> <span className="font-decorative tracking-wider">Company Innovation Arena</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-heading font-bold tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight">
             Project Arena Leaderboards
           </h2>
           <p className="mt-2 text-sm text-white/70 font-sans leading-relaxed">
@@ -186,7 +186,7 @@ export const ArenaPage: React.FC = () => {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key as ArenaSection)}
-            className={`flex items-center gap-2 px-4 py-3 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 px-4 py-3 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
               activeTab === tab.key
                 ? 'border-[#FF3D88] text-[#0F1B3D]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'

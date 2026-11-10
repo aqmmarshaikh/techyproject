@@ -37,6 +37,11 @@ export const SuperAdminProjectsPage: React.FC = () => {
   const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const countWords = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  };
+
   const loadProjects = async () => {
     setIsLoading(true);
     try {
@@ -127,7 +132,7 @@ export const SuperAdminProjectsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
             Global Project Moderation
           </h2>
           <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -346,19 +351,30 @@ export const SuperAdminProjectsPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                Administrative Reason <span className="text-[#FF3D88]">*</span>
-              </label>
+              <div className="flex justify-between items-baseline mb-1">
+                <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                  Administrative Reason <span className="text-[#FF3D88]">*</span>
+                </label>
+                <span className={`text-[11px] font-mono ${
+                  deleteReason.length > 270 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+                }`}>
+                  {deleteReason.length}/300 chars • {countWords(deleteReason)} words
+                </span>
+              </div>
               <textarea
                 rows={3}
+                maxLength={300}
                 value={deleteReason}
                 onChange={(e) => setDeleteReason(e.target.value)}
                 placeholder="Specify the reason for this administrative removal (minimum 5 characters)..."
                 className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/30 font-sans"
               />
-              <p className="text-[11px] text-slate-400 mt-1">
-                {deleteReason.trim().length}/5 characters minimum
-              </p>
+              <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+                <span>Minimum 5 characters required.</span>
+                {deleteReason.length > 0 && deleteReason.trim().length < 5 && (
+                  <span className="text-rose-500 font-medium">{5 - deleteReason.trim().length} more characters needed</span>
+                )}
+              </div>
             </div>
           </div>
         )}

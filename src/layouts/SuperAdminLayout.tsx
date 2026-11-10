@@ -48,7 +48,7 @@ export const SuperAdminLayout: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-heading font-bold text-base sm:text-lg tracking-tight">
+              <h2 className="font-display font-bold text-base sm:text-lg tracking-tight">
                 Super Admin Command Center
               </h2>
               <RoleBadge role="SUPER_ADMIN" />

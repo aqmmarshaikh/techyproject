@@ -74,7 +74,7 @@ export const AdminReportsPage: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Flagged Project Reports
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -88,7 +88,7 @@ export const AdminReportsPage: React.FC = () => {
           <button
             key={s}
             onClick={() => setStatusFilter(s)}
-            className={`px-4 py-2.5 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all ${
+            className={`px-4 py-2.5 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all ${
               statusFilter === s
                 ? 'border-[#FF3D88] text-[#0F1B3D]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -183,11 +183,17 @@ export const AdminReportsPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                Admin Notes / Action Log
-              </label>
+              <div className="flex justify-between items-baseline mb-1">
+                <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                  Admin Notes / Action Log
+                </label>
+                <span className="text-[11px] font-mono text-slate-400">
+                  {adminNotes.length}/300 chars
+                </span>
+              </div>
               <textarea
                 rows={2}
+                maxLength={300}
                 value={adminNotes}
                 onChange={(e) => setAdminNotes(e.target.value)}
                 placeholder="Optional notes explaining resolution..."

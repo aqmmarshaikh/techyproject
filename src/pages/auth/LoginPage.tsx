@@ -85,7 +85,7 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-heading font-bold text-[#0F1B3D]">
+        <h2 className="text-xl font-display font-bold text-[#0F1B3D]">
           Sign in to your account
         </h2>
         <p className="mt-1 text-xs text-slate-500 font-sans">

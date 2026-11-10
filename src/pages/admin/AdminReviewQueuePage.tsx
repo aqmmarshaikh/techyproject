@@ -50,6 +50,11 @@ export const AdminReviewQueuePage: React.FC = () => {
   const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const countWords = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  };
+
   useEffect(() => {
     setIsLoading(true);
 
@@ -229,7 +234,7 @@ export const AdminReviewQueuePage: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Project Moderation & Review Queue
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -241,7 +246,7 @@ export const AdminReviewQueuePage: React.FC = () => {
       <div className="flex border-b border-slate-200 overflow-x-auto gap-2">
         <button
           onClick={() => setActiveTab('NEW_SUBMISSIONS')}
-          className={`flex items-center gap-2 px-4 py-3 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-4 py-3 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'NEW_SUBMISSIONS'
               ? 'border-[#FF3D88] text-[#0F1B3D]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -255,7 +260,7 @@ export const AdminReviewQueuePage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('REVISIONS')}
-          className={`flex items-center gap-2 px-4 py-3 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-4 py-3 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'REVISIONS'
               ? 'border-[#FF3D88] text-[#0F1B3D]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -270,7 +275,7 @@ export const AdminReviewQueuePage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('ALL_PROJECTS')}
-          className={`flex items-center gap-2 px-4 py-3 font-heading font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
+          className={`flex items-center gap-2 px-4 py-3 font-sans font-semibold text-xs sm:text-sm border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'ALL_PROJECTS'
               ? 'border-[#FF3D88] text-[#0F1B3D]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -397,7 +402,7 @@ export const AdminReviewQueuePage: React.FC = () => {
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-sans">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-heading uppercase text-[10px] tracking-wider">
+              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                 <tr>
                   <th className="py-3 px-4">Project</th>
                   <th className="py-3 px-4">Category</th>
@@ -582,17 +587,30 @@ export const AdminReviewQueuePage: React.FC = () => {
               {/* Conditional text input for Reason or Feedback */}
               {(reviewAction === 'REJECT' || reviewAction === 'CHANGES_REQUESTED') && (
                 <div>
-                  <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                    {reviewAction === 'REJECT' ? 'Mandatory Rejection Reason' : 'Actionable Feedback for Employee'} <span className="text-[#FF3D88]">*</span>
-                  </label>
+                  <div className="flex justify-between items-baseline mb-1">
+                    <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                      {reviewAction === 'REJECT' ? 'Mandatory Rejection Reason' : 'Actionable Feedback for Employee'} <span className="text-[#FF3D88]">*</span>
+                    </label>
+                    <span className={`text-[11px] font-mono ${
+                      reviewText.length > 450 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+                    }`}>
+                      {reviewText.length}/500 chars • {countWords(reviewText)} words
+                    </span>
+                  </div>
                   <textarea
                     rows={3}
+                    maxLength={500}
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     placeholder="Provide specific notes so the employee can address the concern..."
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
                   />
-                  <p className="text-[11px] text-slate-400 mt-1">Minimum 10 characters required.</p>
+                  <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+                    <span>Minimum 10 characters required.</span>
+                    {reviewText.length > 0 && reviewText.trim().length < 10 && (
+                      <span className="text-rose-500 font-medium">{10 - reviewText.trim().length} more characters needed</span>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -694,19 +712,30 @@ export const AdminReviewQueuePage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                Mandatory Removal Reason <span className="text-[#FF3D88]">*</span>
-              </label>
+              <div className="flex justify-between items-baseline mb-1">
+                <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                  Mandatory Removal Reason <span className="text-[#FF3D88]">*</span>
+                </label>
+                <span className={`text-[11px] font-mono ${
+                  deleteReason.length > 270 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+                }`}>
+                  {deleteReason.length}/300 chars • {countWords(deleteReason)} words
+                </span>
+              </div>
               <textarea
                 rows={3}
+                maxLength={300}
                 value={deleteReason}
                 onChange={(e) => setDeleteReason(e.target.value)}
                 placeholder="Explain why this project is being removed (e.g. policy violation, duplicated submission, employee request)..."
                 className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/30 font-sans"
               />
-              <p className="text-[11px] text-slate-400 mt-1">
-                {deleteReason.trim().length}/5 characters minimum
-              </p>
+              <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+                <span>Minimum 5 characters required.</span>
+                {deleteReason.length > 0 && deleteReason.trim().length < 5 && (
+                  <span className="text-rose-500 font-medium">{5 - deleteReason.trim().length} more characters needed</span>
+                )}
+              </div>
             </div>
           </div>
         )}

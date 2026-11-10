@@ -2,30 +2,25 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { 
-  UserCircle, 
-  Mail, 
-  Briefcase, 
   Building, 
-  Calendar, 
-  Shield, 
-  Heart, 
-  Vote, 
-  FolderGit2, 
   Edit3, 
-  Plus, 
   X, 
   Upload,
-  Check
+  Trash2,
+  Sparkles,
+  Info
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userRepository } from '../repositories/userRepository';
 import { cloudinaryService } from '../services/cloudinaryService';
 import { profileUpdateSchema, ProfileUpdateFormData } from '../schemas/profileSchemas';
-import { RoleBadge, AccountStatusBadge, Badge } from '../components/common/Badge';
+import { RoleBadge, AccountStatusBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { Modal } from '../components/common/Modal';
 import { useToast } from '../components/common/Toast';
 import { formatDate } from '../utils/formatters';
+import { UserAvatar } from '../components/common/UserAvatar';
+import { getUserDisplayName } from '../utils/userDisplay';
 
 export const ProfilePage: React.FC = () => {
   const { userProfile, refreshProfile } = useAuth();
@@ -47,9 +42,12 @@ export const ProfilePage: React.FC = () => {
     resolver: zodResolver(profileUpdateSchema),
     defaultValues: {
       fullName: userProfile?.fullName || '',
+      displayName: userProfile?.displayName || userProfile?.fullName || '',
       designation: userProfile?.designation || '',
       department: userProfile?.department || '',
       avatarUrl: userProfile?.avatarUrl || '',
+      customAvatarUrl: userProfile?.customAvatarUrl || '',
+      googlePhotoUrl: userProfile?.googlePhotoUrl || '',
       skills: userProfile?.skills || [],
       technologies: userProfile?.technologies || [],
     },
@@ -58,13 +56,20 @@ export const ProfilePage: React.FC = () => {
   const currentSkills = watch('skills') || [];
   const currentTechs = watch('technologies') || [];
   const currentAvatar = watch('avatarUrl');
+  const watchedFullName = watch('fullName');
+  const watchedDisplayName = watch('displayName');
+  const watchedDesignation = watch('designation') || '';
+  const watchedDepartment = watch('department') || '';
 
   const handleOpenEdit = () => {
     reset({
       fullName: userProfile?.fullName || '',
+      displayName: userProfile?.displayName || userProfile?.fullName || '',
       designation: userProfile?.designation || '',
       department: userProfile?.department || '',
       avatarUrl: userProfile?.avatarUrl || '',
+      customAvatarUrl: userProfile?.customAvatarUrl || '',
+      googlePhotoUrl: userProfile?.googlePhotoUrl || '',
       skills: userProfile?.skills || [],
       technologies: userProfile?.technologies || [],
     });
@@ -101,25 +106,60 @@ export const ProfilePage: React.FC = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      toastError('Invalid Format', 'Supported formats are JPG, PNG, and WebP.');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toastError('File Too Large', 'Maximum profile picture size is 5 MB.');
+      return;
+    }
+
     setIsUploadingAvatar(true);
     try {
-      const url = await cloudinaryService.uploadImage(file, { folder: 'avatars', maxSizeMb: 2 });
+      const url = await cloudinaryService.uploadImage(file, { folder: 'avatars', maxSizeMb: 5 });
       setValue('avatarUrl', url, { shouldValidate: true });
-      toastSuccess('Avatar Uploaded', 'Profile image updated.');
+      setValue('customAvatarUrl', url, { shouldValidate: true });
+      toastSuccess('Photo Uploaded', 'New custom profile photo uploaded. Click "Save Profile" to persist changes.');
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Avatar upload failed';
-      toastError('Error', msg);
+      const msg = err instanceof Error ? err.message : 'Photo upload failed';
+      toastError('Upload Failed', msg);
     } finally {
       setIsUploadingAvatar(false);
     }
   };
 
+  const handleRemoveCustomAvatar = () => {
+    // If the user has a Google photo available, restore it; otherwise clear to empty string (branded initials fallback)
+    const fallbackPhoto = userProfile?.googlePhotoUrl || '';
+    setValue('avatarUrl', fallbackPhoto, { shouldValidate: true });
+    setValue('customAvatarUrl', '', { shouldValidate: true });
+    toastSuccess(
+      'Custom Photo Removed',
+      fallbackPhoto ? 'Restored Google account photo.' : 'Restored branded fallback initials avatar.'
+    );
+  };
+
   const onSaveProfile = async (data: ProfileUpdateFormData) => {
     if (!userProfile?.id) return;
     try {
-      await userRepository.updateProfile(userProfile.id, data);
+      const trimmedName = (data.displayName?.trim() || data.fullName.trim());
+      const payload = {
+        fullName: trimmedName,
+        displayName: trimmedName,
+        designation: data.designation.trim(),
+        department: data.department.trim(),
+        avatarUrl: data.avatarUrl || '',
+        customAvatarUrl: data.customAvatarUrl || (data.avatarUrl && data.avatarUrl !== userProfile.googlePhotoUrl ? data.avatarUrl : ''),
+        googlePhotoUrl: userProfile.googlePhotoUrl || '',
+        skills: data.skills,
+        technologies: data.technologies,
+      };
+
+      await userRepository.updateProfile(userProfile.id, payload);
       await refreshProfile();
-      toastSuccess('Profile Updated', 'Your changes have been saved successfully.');
+      toastSuccess('Profile Updated', 'Your display name and profile photo have been saved successfully.');
       setIsEditModalOpen(false);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Update failed';
@@ -129,28 +169,23 @@ export const ProfilePage: React.FC = () => {
 
   if (!userProfile) return null;
 
+  const effectiveDisplayName = getUserDisplayName(userProfile);
+
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8 font-sans">
       {/* Profile Card Header */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm relative overflow-hidden">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <img
-              src={
-                userProfile.avatarUrl ||
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80'
-              }
-              alt={userProfile.fullName}
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover border-2 border-slate-200 shadow-sm"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80';
-              }}
+            <UserAvatar
+              user={userProfile}
+              size="2xl"
+              className="border-2 border-slate-200 shadow-sm ring-4 ring-[#FF3D88]/20"
             />
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="text-xl sm:text-2xl font-heading font-bold text-[#0F1B3D]">
-                  {userProfile.fullName}
+                  {effectiveDisplayName}
                 </h2>
                 <RoleBadge role={userProfile.role} />
                 <AccountStatusBadge status={userProfile.accountStatus} />
@@ -178,104 +213,107 @@ export const ProfilePage: React.FC = () => {
 
         {/* Engagement Stats Strip */}
         <div className="mt-8 pt-6 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center sm:text-left">
-          <div>
-            <span className="text-[11px] font-mono text-slate-400 block uppercase">Approved Projects</span>
-            <span className="text-xl font-heading font-bold text-[#0F1B3D]">
-              {userProfile.totalApprovedProjects || 0}
-            </span>
+          <div className="p-3 bg-slate-50/60 rounded-2xl border border-slate-100">
+            <span className="text-[11px] font-medium text-slate-400 block font-sans">Approved Projects</span>
+            <span className="text-xl font-heading font-bold text-[#0F1B3D]">{userProfile.totalApprovedProjects || 0}</span>
           </div>
-
-          <div>
-            <span className="text-[11px] font-mono text-slate-400 block uppercase">Submitted Total</span>
-            <span className="text-xl font-heading font-bold text-[#0F1B3D]">
-              {userProfile.totalSubmittedProjects || 0}
-            </span>
+          <div className="p-3 bg-slate-50/60 rounded-2xl border border-slate-100">
+            <span className="text-[11px] font-medium text-slate-400 block font-sans">Submitted Projects</span>
+            <span className="text-xl font-heading font-bold text-[#0F1B3D]">{userProfile.totalSubmittedProjects || 0}</span>
           </div>
-
-          <div>
-            <span className="text-[11px] font-mono text-slate-400 block uppercase">Likes Received</span>
-            <span className="text-xl font-heading font-bold text-[#FF3D88]">
-              {userProfile.totalLikesReceived || 0}
-            </span>
+          <div className="p-3 bg-pink-50/40 rounded-2xl border border-pink-100">
+            <span className="text-[11px] font-medium text-[#FF3D88] block font-sans">Valid Likes Received</span>
+            <span className="text-xl font-heading font-bold text-[#FF3D88]">{userProfile.totalLikesReceived || 0}</span>
           </div>
-
-          <div>
-            <span className="text-[11px] font-mono text-slate-400 block uppercase">Votes Received</span>
-            <span className="text-xl font-heading font-bold text-emerald-600">
-              {userProfile.totalVotesReceived || 0}
-            </span>
+          <div className="p-3 bg-indigo-50/40 rounded-2xl border border-indigo-100">
+            <span className="text-[11px] font-medium text-indigo-600 block font-sans">Peer Votes Received</span>
+            <span className="text-xl font-heading font-bold text-indigo-700">{userProfile.totalVotesReceived || 0}</span>
           </div>
         </div>
       </div>
 
-      {/* Profile Details & Read-Only System Security Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Skills & Technologies */}
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-4">
-          <h3 className="font-heading font-bold text-base text-[#0F1B3D]">
-            Skills & Competencies
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {userProfile.skills && userProfile.skills.length > 0 ? (
-              userProfile.skills.map((s) => (
-                <Badge key={s} variant="navy">{s}</Badge>
-              ))
-            ) : (
-              <span className="text-xs text-slate-400 italic">No skills listed yet. Click Edit Profile.</span>
-            )}
+      {/* Account Info Details */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
+        <h3 className="font-heading font-bold text-lg text-[#0F1B3D]">
+          Professional Portfolio &amp; Details
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Display Name
+            </span>
+            <span className="text-slate-800 font-medium">{effectiveDisplayName}</span>
           </div>
 
-          <h3 className="font-heading font-bold text-base text-[#0F1B3D] pt-2">
-            Technologies & Tools
-          </h3>
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Email Address (Protected)
+            </span>
+            <span className="text-slate-800 font-medium font-mono text-xs">{userProfile.email}</span>
+          </div>
+
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Designation
+            </span>
+            <span className="text-slate-800 font-medium">{userProfile.designation}</span>
+          </div>
+
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Department
+            </span>
+            <span className="text-slate-800 font-medium">{userProfile.department}</span>
+          </div>
+
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Member Since
+            </span>
+            <span className="text-slate-800 font-medium">{formatDate(userProfile.joinDate)}</span>
+          </div>
+        </div>
+
+        {/* Skills Section */}
+        <div className="pt-4 border-t border-slate-100">
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+            Skills &amp; Competencies
+          </span>
           <div className="flex flex-wrap gap-1.5">
-            {userProfile.technologies && userProfile.technologies.length > 0 ? (
-              userProfile.technologies.map((t) => (
-                <Badge key={t} variant="tech">{t}</Badge>
+            {userProfile.skills && userProfile.skills.length > 0 ? (
+              userProfile.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-medium text-slate-700"
+                >
+                  {skill}
+                </span>
               ))
             ) : (
-              <span className="text-xs text-slate-400 italic">No technologies listed yet.</span>
+              <span className="text-xs text-slate-400 italic">No skills listed yet.</span>
             )}
           </div>
         </div>
 
-        {/* System & Identity Information (Non-editable for integrity) */}
-        <div className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-4">
-          <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-slate-400" />
-            <h3 className="font-heading font-bold text-base text-[#0F1B3D]">
-              Verified Employee Identity
-            </h3>
-          </div>
-          <p className="text-xs text-slate-500 font-sans">
-            Administrative, role, and security credentials are authenticated and managed by company administrators.
-          </p>
-
-          <div className="space-y-2.5 text-xs font-mono">
-            <div className="flex justify-between py-1 border-b border-slate-200/60">
-              <span className="text-slate-400">Work Email:</span>
-              <span className="text-slate-800 font-semibold">{userProfile.email}</span>
-            </div>
-
-            <div className="flex justify-between py-1 border-b border-slate-200/60">
-              <span className="text-slate-400">Assigned Role:</span>
-              <RoleBadge role={userProfile.role} />
-            </div>
-
-            <div className="flex justify-between py-1 border-b border-slate-200/60">
-              <span className="text-slate-400">Account Status:</span>
-              <AccountStatusBadge status={userProfile.accountStatus} />
-            </div>
-
-            <div className="flex justify-between py-1 border-b border-slate-200/60">
-              <span className="text-slate-400">Member Since:</span>
-              <span className="text-slate-800">{formatDate(userProfile.joinDate)}</span>
-            </div>
-
-            <div className="flex justify-between py-1">
-              <span className="text-slate-400">Employee UID:</span>
-              <span className="text-slate-500 text-[10px] truncate max-w-[150px]">{userProfile.id}</span>
-            </div>
+        {/* Technologies Section */}
+        <div className="pt-2">
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+            Technologies &amp; Frameworks
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {userProfile.technologies && userProfile.technologies.length > 0 ? (
+              userProfile.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-700"
+                >
+                  {tech}
+                </span>
+              ))
+            ) : (
+              <span className="text-xs text-slate-400 italic">No technologies listed yet.</span>
+            )}
           </div>
         </div>
       </div>
@@ -285,50 +323,100 @@ export const ProfilePage: React.FC = () => {
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         maxWidth="lg"
-        title="Edit Employee Profile"
-        description="Update your display details, designation, and skills portfolio."
+        title="Edit Profile Settings"
+        description="Update your display name, profile photo, and professional information."
       >
-        <form onSubmit={handleSubmit(onSaveProfile)} className="space-y-4">
-          {/* Avatar Upload */}
-          <div className="flex items-center gap-4">
-            <img
-              src={currentAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'}
-              alt="Avatar preview"
-              className="w-16 h-16 rounded-2xl object-cover border border-slate-200"
-            />
-            <label className="cursor-pointer">
-              <span className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 transition-colors inline-block">
-                {isUploadingAvatar ? 'Uploading...' : 'Change Avatar'}
-              </span>
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                className="hidden"
-                onChange={handleAvatarUpload}
-                disabled={isUploadingAvatar}
+        <form onSubmit={handleSubmit(onSaveProfile)} className="space-y-5 font-sans">
+          {/* Profile Picture Section */}
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold text-[#0F1B3D] uppercase tracking-wider">
+                Profile Photo
+              </label>
+              <span className="text-[11px] text-slate-400">JPG, PNG, WebP (Max 5MB)</span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <UserAvatar
+                user={{
+                  ...userProfile,
+                  avatarUrl: currentAvatar,
+                  displayName: watchedDisplayName || watchedFullName,
+                }}
+                size="xl"
+                className="ring-2 ring-slate-200 shadow-sm"
               />
-            </label>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <label className="cursor-pointer">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 transition-colors shadow-sm">
+                    <Upload className="w-3.5 h-3.5 text-slate-500" />
+                    <span>{isUploadingAvatar ? 'Uploading...' : 'Upload New Photo'}</span>
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    className="hidden"
+                    onChange={handleAvatarUpload}
+                    disabled={isUploadingAvatar}
+                  />
+                </label>
+
+                {currentAvatar && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveCustomAvatar}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-xs font-semibold text-rose-600 transition-colors"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Remove Photo</span>
+                  </button>
+                )}
+              </div>
+            </div>
+            <p className="text-[11px] text-slate-500">
+              Your profile picture will be shown across ProjectHub and on the homepage Leaderboard Podium.
+            </p>
           </div>
 
+          {/* Display Name Section */}
           <div>
-            <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-              Full Name <span className="text-[#FF3D88]">*</span>
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-bold text-[#0F1B3D] uppercase tracking-wider">
+                Display Name <span className="text-[#FF3D88]">*</span>
+              </label>
+              <span className="text-[10px] text-slate-400 font-mono">
+                {(watchedDisplayName || watchedFullName || '').length}/50
+              </span>
+            </div>
             <input
               type="text"
-              {...register('fullName')}
-              className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
+              {...register('displayName')}
+              placeholder="e.g. Alex Morgan"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
+              maxLength={50}
             />
-            {errors.fullName && <p className="text-xs text-rose-600 mt-1">{errors.fullName.message}</p>}
+            {errors.displayName && <p className="text-xs text-rose-600 mt-1">{errors.displayName.message}</p>}
+            <p className="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-[#FF3D88]" />
+              This name represents you on project initiatives and team ranking podiums.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          {/* Designation & Department */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                Designation <span className="text-[#FF3D88]">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                  Designation <span className="text-[#FF3D88]">*</span>
+                </label>
+                <span className="text-[10px] text-slate-400 font-mono">
+                  {watchedDesignation.length}/100
+                </span>
+              </div>
               <input
                 type="text"
+                maxLength={100}
                 {...register('designation')}
                 className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
               />
@@ -336,16 +424,30 @@ export const ProfilePage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-                Department <span className="text-[#FF3D88]">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                  Department <span className="text-[#FF3D88]">*</span>
+                </label>
+                <span className="text-[10px] text-slate-400 font-mono">
+                  {watchedDepartment.length}/80
+                </span>
+              </div>
               <input
                 type="text"
+                maxLength={80}
                 {...register('department')}
                 className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30 font-sans"
               />
               {errors.department && <p className="text-xs text-rose-600 mt-1">{errors.department.message}</p>}
             </div>
+          </div>
+
+          {/* Protected Info Note */}
+          <div className="p-3 rounded-xl bg-slate-100 border border-slate-200/80 flex items-center gap-2 text-xs text-slate-600">
+            <Info className="w-4 h-4 text-slate-500 shrink-0" />
+            <span>
+              Your account email (<span className="font-mono text-slate-800">{userProfile.email}</span>) and authorization role (<span className="font-semibold text-slate-800">{userProfile.role}</span>) are system-protected.
+            </span>
           </div>
 
           {/* Skills Tag Input */}
@@ -364,7 +466,7 @@ export const ProfilePage: React.FC = () => {
                     handleAddSkill();
                   }
                 }}
-                placeholder="Add a skill and press Enter..."
+                placeholder="Add skill and press Enter..."
                 className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30"
               />
               <Button type="button" variant="outline" size="sm" onClick={handleAddSkill}>
@@ -402,7 +504,7 @@ export const ProfilePage: React.FC = () => {
                     handleAddTech();
                   }
                 }}
-                placeholder="Add technology (e.g., React, Go) and press Enter..."
+                placeholder="Add technology (e.g. React, Go) and press Enter..."
                 className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30"
               />
               <Button type="button" variant="outline" size="sm" onClick={handleAddTech}>
@@ -437,4 +539,3 @@ export const ProfilePage: React.FC = () => {
     </div>
   );
 };
-

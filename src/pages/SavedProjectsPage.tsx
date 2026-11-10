@@ -70,7 +70,7 @@ export const SavedProjectsPage: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Saved Projects
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans">

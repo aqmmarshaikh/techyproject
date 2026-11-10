@@ -31,6 +31,7 @@ export const AdminCategoriesPage: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<CategoryFormData>({
     resolver: zodResolver(categorySchema),
@@ -41,6 +42,13 @@ export const AdminCategoriesPage: React.FC = () => {
       isActive: true,
     },
   });
+
+  const currentName = watch('name') || '';
+  const currentDesc = watch('description') || '';
+  const countWords = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  };
 
   const loadCategories = async () => {
     setIsLoading(true);
@@ -131,7 +139,7 @@ export const AdminCategoriesPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
             Project Category Taxonomy
           </h2>
           <p className="mt-1 text-sm text-slate-500 font-sans">
@@ -235,11 +243,19 @@ export const AdminCategoriesPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-              Display Name <span className="text-[#FF3D88]">*</span>
-            </label>
+            <div className="flex justify-between items-baseline mb-1">
+              <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                Display Name <span className="text-[#FF3D88]">*</span>
+              </label>
+              <span className={`text-[11px] font-mono ${
+                currentName.length > 50 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+              }`}>
+                {currentName.length}/60 chars
+              </span>
+            </div>
             <input
               type="text"
+              maxLength={60}
               {...register('name')}
               placeholder="e.g. Data Pipelines & Analytics"
               className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-sans focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30"
@@ -248,15 +264,29 @@ export const AdminCategoriesPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
-              Description <span className="text-[#FF3D88]">*</span>
-            </label>
+            <div className="flex justify-between items-baseline mb-1">
+              <label className="text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider">
+                Description <span className="text-[#FF3D88]">*</span>
+              </label>
+              <span className={`text-[11px] font-mono ${
+                currentDesc.length > 270 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+              }`}>
+                {currentDesc.length}/300 chars • {countWords(currentDesc)} words
+              </span>
+            </div>
             <textarea
               rows={3}
+              maxLength={300}
               {...register('description')}
               placeholder="Short explanation of what projects fall under this category..."
               className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-sans focus:outline-none focus:ring-2 focus:ring-[#FF3D88]/30"
             />
+            <div className="flex justify-between items-center text-[11px] text-slate-400 mt-1">
+              <span>Minimum 5 characters.</span>
+              {currentDesc.length > 0 && currentDesc.trim().length < 5 && (
+                <span className="text-rose-500 font-medium">{5 - currentDesc.trim().length} more characters needed</span>
+              )}
+            </div>
             {errors.description && <p className="text-xs text-rose-600 mt-1">{errors.description.message}</p>}
           </div>
 

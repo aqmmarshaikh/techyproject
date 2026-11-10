@@ -96,10 +96,10 @@ export const AppLayout: React.FC = () => {
             className="w-10 h-10 rounded-xl object-contain shadow-pinkGlow group-hover:scale-105 transition-transform border border-[#FF3D88]/30 shrink-0"
           />
           <div>
-            <h1 className="font-heading font-bold text-lg tracking-tight text-white flex items-center">
+            <h1 className="font-display font-bold text-lg tracking-tight text-white flex items-center">
               <span>Project</span><span className="text-[#FF3D88]">Hub</span>
             </h1>
-            <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">Team Project Arena</p>
+            <p className="text-[10px] text-slate-400 font-decorative tracking-wider uppercase">Team Project Arena</p>
           </div>
         </NavLink>
         {mobileMenuOpen && (
@@ -116,7 +116,7 @@ export const AppLayout: React.FC = () => {
       <div className="flex-1 px-4 py-4 space-y-6 overflow-y-auto">
         {/* Main Section */}
         <div>
-          <p className="px-3 mb-2 text-[10px] font-mono uppercase tracking-wider text-white/40">Navigation</p>
+          <p className="px-3 mb-2 text-[10px] font-decorative uppercase tracking-wider text-white/40">Navigation</p>
           <nav className="space-y-1">
             {MAIN_NAV_ITEMS.map((item) => {
               const isAuthRequired = !['/explore', '/arena', '/directory'].includes(item.path);
@@ -131,7 +131,7 @@ export const AppLayout: React.FC = () => {
                     }
                   }}
                   className={({ isActive }) =>
-                    `flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-150 ${
+                    `flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm font-sans transition-all duration-150 ${
                       isActive && (isAuthenticated || !isAuthRequired)
                         ? 'bg-gradient-to-r from-[#FF3D88] to-[#E02D73] text-white shadow-md'
                         : 'text-white/75 hover:text-white hover:bg-white/10'
@@ -157,7 +157,7 @@ export const AppLayout: React.FC = () => {
         {effectiveRole !== 'EMPLOYEE' && (
           <div className="pt-2 border-t border-white/10">
             <div className="flex items-center justify-between px-3 mb-2">
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#FF3D88] font-bold">
+              <p className="text-[10px] font-decorative uppercase tracking-wider text-[#FF3D88] font-bold">
                 Admin Center
               </p>
               <RoleBadge role={effectiveRole} />
@@ -167,7 +167,7 @@ export const AppLayout: React.FC = () => {
                 <NavLink
                   to="/super-admin"
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all ${
+                    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm font-sans transition-all ${
                       isActive
                         ? 'bg-purple-600/30 text-white border-l-4 border-purple-400'
                         : 'text-white/75 hover:text-white hover:bg-white/10'
@@ -181,7 +181,7 @@ export const AppLayout: React.FC = () => {
               <NavLink
                 to="/admin"
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all ${
+                  `flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm font-sans transition-all ${
                     isActive
                       ? 'bg-white/20 text-white border-l-4 border-[#FF3D88]'
                       : 'text-white/75 hover:text-white hover:bg-white/10'
@@ -213,8 +213,8 @@ export const AppLayout: React.FC = () => {
               }}
             />
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-semibold text-white truncate">{userProfile?.fullName || 'Authenticated User'}</h4>
-              <p className="text-xs text-white/50 truncate">{userProfile?.designation || 'Employee'}</p>
+              <p className="text-sm font-semibold text-white truncate font-sans">{userProfile?.fullName || 'Authenticated User'}</p>
+              <p className="text-xs text-white/50 truncate font-sans">{userProfile?.designation || 'Employee'}</p>
             </div>
             <button
               onClick={handleLogout}

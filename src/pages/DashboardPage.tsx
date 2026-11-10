@@ -120,10 +120,10 @@ export const DashboardPage: React.FC = () => {
       {/* Welcome Banner */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-decorative text-slate-400 uppercase tracking-wider">
             Employee Workspace
           </span>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight mt-1">
             Welcome back, {userProfile?.fullName || 'Colleague'}
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-slate-500 font-sans">
@@ -155,7 +155,7 @@ export const DashboardPage: React.FC = () => {
               </span>
               {card.icon}
             </div>
-            <span className="text-2xl font-heading font-bold text-[#0F1B3D]">
+            <span className="text-2xl font-display font-bold text-[#0F1B3D]">
               {isLoading ? '...' : card.value}
             </span>
           </div>

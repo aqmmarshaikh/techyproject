@@ -70,6 +70,29 @@ describe('Zod Validation Schemas', () => {
     expect(result.success).toBe(true);
   });
 
+  it('accepts client-compressed base64 data URLs for coverImageUrl and screenshots', () => {
+    const base64Cover = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP...';
+    const base64Screenshot = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...';
+
+    const result = projectSubmissionSchema.safeParse({
+      ...validBaseProject,
+      coverImageUrl: base64Cover,
+      screenshots: [base64Screenshot],
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects invalid cover image strings that are neither URL nor data:image/', () => {
+    const result = projectSubmissionSchema.safeParse({
+      ...validBaseProject,
+      coverImageUrl: 'not-an-image-or-url',
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.path.includes('coverImageUrl'))).toBe(true);
+    }
+  });
+
   it('requires a mandatory reason when admin decision is REJECT', () => {
     const result = adminReviewSchema.safeParse({
       decision: 'REJECT',

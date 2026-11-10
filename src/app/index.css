@@ -6,37 +6,132 @@
   --color-brand-navy: 15 27 61;
   --color-brand-pink: 255 61 136;
   --color-brand-dark: 17 17 17;
-  --font-primary: "Redaction 70", sans-serif;
+
+  /* Typography System: Space Grotesk for Headings & Big Titles, Inter for Descriptions & Details */
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-heading-secondary: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-decorative: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
-/* Global Website-Wide Typography System: Redaction 70 Default */
+/* Base Global Font Assignment: Inter for descriptions, details & body content */
 html,
 body,
 #root {
-  font-family: var(--font-primary);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
 }
 
-body,
+body {
+  font-family: var(--font-body);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Form controls, menus, inputs, buttons, labels and body text inherit Inter */
 button,
 input,
 textarea,
 select,
 option,
+optgroup,
 label,
-a,
 p,
 span,
-div,
+a,
+li,
+td,
+th,
+div {
+  font-family: inherit;
+}
+
+/* All headings, titles and big display fonts use Space Grotesk */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-table,
-th,
-td {
-  font-family: var(--font-primary);
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Space Grotesk Classes for Headings, Titles and Display Typography */
+.font-heading,
+.font-heading-secondary,
+.font-display,
+.display-hero,
+.display-heading {
+  font-family: var(--font-heading) !important;
+}
+
+/* Inter Classes for Descriptions, Details, and Readable Text */
+.font-body,
+.font-sans {
+  font-family: var(--font-body) !important;
+}
+
+/* Eyebrows, Badges, and Small Decorative Labels use Space Grotesk with tracking */
+.font-decorative,
+.font-accent,
+.sekuya {
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0.05em;
+}
+
+/* Space Grotesk Helper Classes (as requested by user) */
+.space-grotesk-light {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.space-grotesk-regular {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-grotesk-medium {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.space-grotesk-semibold {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.space-grotesk-bold {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Legacy font aliases safely mapped to Space Grotesk so no deprecated serif fonts appear */
+.redaction-70-regular,
+.redaction-70-bold,
+.redaction-70-regular-italic,
+.redaction-50-regular,
+.redaction-50-bold,
+.redaction-50-regular-italic,
+.sekuya-regular {
+  font-family: "Space Grotesk", sans-serif !important;
 }
 
 @layer base {
@@ -45,39 +140,21 @@ td {
   }
 
   body {
-    @apply bg-[#F8FAFC] text-[#111111] antialiased selection:bg-[#FF3D88] selection:text-white min-h-screen;
+    @apply font-sans bg-[#F8FAFC] text-[#111111] antialiased selection:bg-[#FF3D88] selection:text-white min-h-screen;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-heading tracking-tight;
   }
 }
 
-/* Exact Redaction 70 Utility Classes */
-.redaction-70-regular {
-  font-family: "Redaction 70", sans-serif !important;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.redaction-70-bold {
-  font-family: "Redaction 70", sans-serif !important;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.redaction-70-regular-italic {
-  font-family: "Redaction 70", sans-serif !important;
-  font-weight: 400;
-  font-style: italic;
-}
-
-/* Preserve technical code blocks and monospace elements */
+/* Technical code blocks and monospace elements */
 code,
 pre,
 kbd,
 samp,
-.font-mono {
+.font-mono,
+.font-mono * {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
 }
 
@@ -99,4 +176,3 @@ samp,
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
-

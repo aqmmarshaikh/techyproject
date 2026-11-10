@@ -58,11 +58,11 @@ export const SubmitProjectPage: React.FC = () => {
 
         <div className="flex items-center gap-2 mb-1">
           <Sparkles className="w-5 h-5 text-[#FF3D88]" />
-          <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
+          <span className="text-xs font-decorative uppercase tracking-wider text-slate-400">
             Internal Innovation Submission
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-[#0F1B3D] tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0F1B3D] tracking-tight">
           Submit a Company Project
         </h2>
         <p className="mt-1 text-sm text-slate-500 font-sans leading-relaxed">

@@ -265,7 +265,7 @@ export const ProjectDetailsPage: React.FC = () => {
             <span className="text-xs font-mono font-medium text-white/70 uppercase tracking-wider">
               {project.category}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-heading font-bold text-white mt-1">
+            <h1 className="text-2xl sm:text-3xl font-display font-bold text-white mt-1">
               {project.title}
             </h1>
           </div>
@@ -418,7 +418,7 @@ export const ProjectDetailsPage: React.FC = () => {
                 className="w-12 h-12 rounded-2xl object-cover border border-slate-200 ring-2 ring-[#FF3D88]/20"
               />
               <div className="min-w-0">
-                <h4 className="font-heading font-bold text-sm text-[#0F1B3D] truncate">
+                <h4 className="font-sans font-bold text-sm text-[#0F1B3D] truncate">
                   {project.creatorName}
                 </h4>
                 <p className="text-xs text-slate-500 font-sans truncate">
