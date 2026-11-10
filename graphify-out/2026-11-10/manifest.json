@@ -78,15 +78,15 @@
     "semantic_hash": ""
   },
   "src/app/config.ts": {
-    "mtime": 1794305100.639631,
-    "seen": 1794305804.205971,
-    "ast_hash": "5b28456bfc2e2ff83f3ea611b46b9547",
+    "mtime": 1794307113.1210449,
+    "seen": 1794307689.8256996,
+    "ast_hash": "0b290e020e0c133594771a4bf73a309b",
     "semantic_hash": ""
   },
   "src/app/firebase.ts": {
-    "mtime": 1794305114.8927417,
-    "seen": 1794305804.2059722,
-    "ast_hash": "fa3fe423a5a8db95360eba7700d6cdfa",
+    "mtime": 1794307213.1920345,
+    "seen": 1794307689.8257005,
+    "ast_hash": "58eaead775ff932430acbcbfb3413757",
     "semantic_hash": ""
   },
   "src/app/main.tsx": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "src/hooks/useAuth.tsx": {
-    "mtime": 1794305168.135491,
-    "seen": 1794305804.2059948,
-    "ast_hash": "006720e1a871cc15aab93bc6d1477dd9",
+    "mtime": 1794307540.641434,
+    "seen": 1794307689.82572,
+    "ast_hash": "6360b5bae32ad16c2c3baccb2a132354",
     "semantic_hash": ""
   },
   "src/layouts/AdminLayout.tsx": {
@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "src/layouts/AppLayout.tsx": {
-    "mtime": 1794306440.0953002,
-    "seen": 1794306629.3929284,
-    "ast_hash": "af650f9622a96509586d2f0af780445d",
+    "mtime": 1794307409.8550708,
+    "seen": 1794307689.8257215,
+    "ast_hash": "243f165e4da2e2e2ac8240b2c6320773",
     "semantic_hash": ""
   },
   "src/layouts/AuthLayout.tsx": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794305389.5265863,
-    "seen": 1794305804.2060122,
-    "ast_hash": "f04f4c2fbe70eae3b43e3736e074fbc9",
+    "mtime": 1794307336.8997905,
+    "seen": 1794307689.8257368,
+    "ast_hash": "12980222d2efa215f26968ec387dd265",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -432,9 +432,9 @@
     "semantic_hash": ""
   },
   "src/services/authService.ts": {
-    "mtime": 1794305136.4814546,
-    "seen": 1794305804.2060275,
-    "ast_hash": "62c37ec854b2c3516dc06b6b7827102c",
+    "mtime": 1794307173.2177827,
+    "seen": 1794307689.8257518,
+    "ast_hash": "f6d5a4c88fcb25a724b248c790a9db87",
     "semantic_hash": ""
   },
   "src/services/cloudinaryService.ts": {
@@ -654,15 +654,15 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1794306328.5715947,
-    "seen": 1794306629.3930583,
-    "ast_hash": "d6b348dd823c692f04cc6b1fdb640ff5",
+    "mtime": 1794306676.31671,
+    "seen": 1794307689.8257782,
+    "ast_hash": "cc4569614c3a0bb4c9124b8b38b6224b",
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1794306290.815617,
-    "seen": 1794306629.3930829,
-    "ast_hash": "9662445db658dec9f117c198d6eb2c4f",
+    "mtime": 1794306676.013892,
+    "seen": 1794307689.8257852,
+    "ast_hash": "452a71b753fd9a01038154ef9762b30d",
     "semantic_hash": ""
   },
   "public/android-chrome-192x192.png": {
@@ -696,9 +696,9 @@
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1794306237.3501284,
-    "seen": 1794306629.3930888,
-    "ast_hash": "4fd13f8c82b302ddaa88ef67c4a8cc4a",
+    "mtime": 1794306675.9442544,
+    "seen": 1794307689.8257937,
+    "ast_hash": "b6525c0eabb938d709854434bae8120d",
     "semantic_hash": ""
   },
   "public/projecthub-cover-original.png": {
@@ -723,6 +723,18 @@
     "mtime": 1794305010.7013242,
     "seen": 1794306629.3930922,
     "ast_hash": "271295024567ccfdae2ee110949f2e7b",
+    "semantic_hash": ""
+  },
+  "src/utils/roleResolver.ts": {
+    "mtime": 1794307134.123609,
+    "seen": 1794307689.8257678,
+    "ast_hash": "fa94846fe2c9efa2fc66c9f3ecca1ecd",
+    "semantic_hash": ""
+  },
+  "tests/roles.test.ts": {
+    "mtime": 1794307565.595675,
+    "seen": 1794307689.825773,
+    "ast_hash": "b45bc890e2ba3b39e85d2b071ce45749",
     "semantic_hash": ""
   }
 }

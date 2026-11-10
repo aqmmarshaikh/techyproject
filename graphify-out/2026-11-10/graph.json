@@ -127,7 +127,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportmodalprops",
       "source_file": "src/features/projects/ReportModal.tsx",
@@ -140,7 +140,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "categoryformdata",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -153,7 +153,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportsubmissionformdata",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -166,50 +166,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "systemsettingsformdata",
       "source_file": "src/schemas/adminSchemas.ts",
       "source_location": "L57"
-    },
-    {
-      "id": "src_types_admin_adminanalyticssummary",
-      "label": "AdminAnalyticsSummary",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminanalyticssummary",
-      "source_file": "src/types/admin.ts",
-      "source_location": "L25"
-    },
-    {
-      "id": "src_types_admin_auditlog",
-      "label": "AuditLog",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "auditlog",
-      "source_file": "src/types/admin.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_types_admin_systemsettings",
-      "label": "SystemSettings",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "systemsettings",
-      "source_file": "src/types/admin.ts",
-      "source_location": "L12"
     },
     {
       "id": "src_types_report_projectreport",
@@ -218,7 +179,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "projectreport",
       "source_file": "src/types/report.ts",
@@ -231,7 +192,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportreason",
       "source_file": "src/types/report.ts",
@@ -244,7 +205,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportstatus",
       "source_file": "src/types/report.ts",
@@ -313,7 +274,7 @@
       "file_type": "code",
       "norm_label": "authcontexttype",
       "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L7"
+      "source_location": "L8"
     },
     {
       "id": "src_services_cloudinaryservice_imageuploadoptions",
@@ -327,6 +288,32 @@
       "norm_label": "imageuploadoptions",
       "source_file": "src/services/cloudinaryService.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "src_types_admin_adminanalyticssummary",
+      "label": "AdminAnalyticsSummary",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "adminanalyticssummary",
+      "source_file": "src/types/admin.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "src_types_admin_systemsettings",
+      "label": "SystemSettings",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "systemsettings",
+      "source_file": "src/types/admin.ts",
+      "source_location": "L12"
     },
     {
       "id": "src_types_notification_appnotification",
@@ -589,13 +576,26 @@
       "source_location": "L3"
     },
     {
-      "id": "src_features_projects_projectcard_projectcardprops",
-      "label": "ProjectCardProps",
+      "id": "src_types_admin_auditlog",
+      "label": "AuditLog",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "auditlog",
+      "source_file": "src/types/admin.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_features_projects_projectcard_projectcardprops",
+      "label": "ProjectCardProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectcardprops",
       "source_file": "src/features/projects/ProjectCard.tsx",
@@ -608,7 +608,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmitformprops",
       "source_file": "src/features/projects/ProjectSubmitForm.tsx",
@@ -621,7 +621,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "revisiondiffprops",
       "source_file": "src/features/projects/RevisionDiff.tsx",
@@ -634,7 +634,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "adminreviewformdata",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -647,7 +647,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectrevisionformdata",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -660,7 +660,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmissionformdata",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -673,7 +673,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "project",
       "source_file": "src/types/project.ts",
@@ -686,7 +686,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectstatus",
       "source_file": "src/types/project.ts",
@@ -699,7 +699,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmissioninput",
       "source_file": "src/types/project.ts",
@@ -712,7 +712,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectrevision",
       "source_file": "src/types/revision.ts",
@@ -725,7 +725,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "revisionstatus",
       "source_file": "src/types/revision.ts",
@@ -744,6 +744,18 @@
       "source_location": "L14"
     },
     {
+      "id": "src_features_voting_votebuttonpair_votebuttonpair",
+      "label": "VoteButtonPair()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "votebuttonpair()",
+      "source_file": "src/features/voting/VoteButtonPair.tsx",
+      "source_location": "L19"
+    },
+    {
       "id": "src_pages_explorepage_explorepage",
       "label": "ExplorePage()",
       "_callable": true,
@@ -754,18 +766,6 @@
       "norm_label": "explorepage()",
       "source_file": "src/pages/ExplorePage.tsx",
       "source_location": "L16"
-    },
-    {
-      "id": "src_utils_cleanfirestoredata_cleanfirestoredata",
-      "label": "cleanFirestoreData()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "cleanfirestoredata()",
-      "source_file": "src/utils/cleanFirestoreData.ts",
-      "source_location": "L5"
     },
     {
       "id": "src_utils_seeddata_ensureinitialseeddata",
@@ -864,18 +864,6 @@
       "source_location": "L7"
     },
     {
-      "id": "src_components_common_toast_toastprovider",
-      "label": "ToastProvider()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "useAuth.tsx",
-      "file_type": "code",
-      "norm_label": "toastprovider()",
-      "source_file": "src/components/common/Toast.tsx",
-      "source_location": "L24"
-    },
-    {
       "id": "src_hooks_useauth_authprovider",
       "label": "AuthProvider()",
       "_callable": true,
@@ -898,6 +886,30 @@
       "norm_label": "approutes()",
       "source_file": "src/routes/AppRoutes.tsx",
       "source_location": "L81"
+    },
+    {
+      "id": "src_utils_cleanfirestoredata_cleanfirestoredata",
+      "label": "cleanFirestoreData()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "cleanfirestoredata()",
+      "source_file": "src/utils/cleanFirestoreData.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_utils_roleresolver_resolveuserrolebyemail",
+      "label": "resolveUserRoleByEmail()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "resolveuserrolebyemail()",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L9"
     },
     {
       "id": "src_components_common_badge_accountstatusbadge",
@@ -1032,28 +1044,16 @@
       "source_location": "L41"
     },
     {
-      "id": "src_features_projects_revisiondiff_revisiondiff",
-      "label": "RevisionDiff()",
+      "id": "src_components_common_toast_toastprovider",
+      "label": "ToastProvider()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
       "community_name": "AdminReviewQueuePage.tsx",
       "file_type": "code",
-      "norm_label": "revisiondiff()",
-      "source_file": "src/features/projects/RevisionDiff.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_pages_directorypage_directorypage",
-      "label": "DirectoryPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "AdminReviewQueuePage.tsx",
-      "file_type": "code",
-      "norm_label": "directorypage()",
-      "source_file": "src/pages/DirectoryPage.tsx",
-      "source_location": "L13"
+      "norm_label": "toastprovider()",
+      "source_file": "src/components/common/Toast.tsx",
+      "source_location": "L24"
     },
     {
       "id": "src_utils_cn_cn",
@@ -1116,18 +1116,6 @@
       "source_location": "L20"
     },
     {
-      "id": "src_features_voting_votebuttonpair_votebuttonpair",
-      "label": "VoteButtonPair()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "votebuttonpair()",
-      "source_file": "src/features/voting/VoteButtonPair.tsx",
-      "source_location": "L19"
-    },
-    {
       "id": "src_hooks_useauth_useauth",
       "label": "useAuth()",
       "_callable": true,
@@ -1137,7 +1125,7 @@
       "file_type": "code",
       "norm_label": "useauth()",
       "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L246"
+      "source_location": "L263"
     },
     {
       "id": "src_layouts_adminlayout_adminlayout",
@@ -1161,7 +1149,7 @@
       "file_type": "code",
       "norm_label": "applayout()",
       "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L28"
+      "source_location": "L27"
     },
     {
       "id": "src_layouts_authlayout_authlayout",
@@ -1281,7 +1269,7 @@
       "file_type": "code",
       "norm_label": "loginpage()",
       "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L12"
+      "source_location": "L11"
     },
     {
       "id": "src_pages_auth_resetpasswordpage_resetpasswordpage",
@@ -1306,6 +1294,18 @@
       "norm_label": "dashboardpage()",
       "source_file": "src/pages/DashboardPage.tsx",
       "source_location": "L23"
+    },
+    {
+      "id": "src_pages_directorypage_directorypage",
+      "label": "DirectoryPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "directorypage()",
+      "source_file": "src/pages/DirectoryPage.tsx",
+      "source_location": "L13"
     },
     {
       "id": "src_pages_myprojectspage_myprojectspage",
@@ -1445,22 +1445,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmitform()",
       "source_file": "src/features/projects/ProjectSubmitForm.tsx",
       "source_location": "L24"
     },
     {
-      "id": "src_app_firebase_db",
-      "label": "db",
+      "id": "src_features_projects_revisiondiff_revisiondiff",
+      "label": "RevisionDiff()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
+      "community": 9,
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
-      "norm_label": "db",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L21"
+      "norm_label": "revisiondiff()",
+      "source_file": "src/features/projects/RevisionDiff.tsx",
+      "source_location": "L9"
     },
     {
       "id": "src_constants_categories",
@@ -1485,6 +1486,61 @@
       "source_location": "L3"
     },
     {
+      "id": "src_constants_index",
+      "label": "constants/index.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "constants/index.ts",
+      "source_file": "src/constants/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme",
+      "label": "theme.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "theme.ts",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme_brand_colors",
+      "label": "BRAND_COLORS",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "brand_colors",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme_fonts",
+      "label": "FONTS",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "fonts",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "src_features_projects_projectdetailspage",
+      "label": "ProjectDetailsPage.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "projectdetailspage.tsx",
+      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_features_projects_projectfilterbar",
       "label": "ProjectFilterBar.tsx",
       "_origin": "ast",
@@ -1493,6 +1549,17 @@
       "file_type": "code",
       "norm_label": "projectfilterbar.tsx",
       "source_file": "src/features/projects/ProjectFilterBar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_features_voting_votebuttonpair",
+      "label": "VoteButtonPair.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "votebuttonpair.tsx",
+      "source_file": "src/features/voting/VoteButtonPair.tsx",
       "source_location": "L1"
     },
     {
@@ -1540,17 +1607,6 @@
       "source_location": "L21"
     },
     {
-      "id": "src_repositories_index",
-      "label": "repositories/index.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "repositories/index.ts",
-      "source_file": "src/repositories/index.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_repositories_interactionrepository",
       "label": "interactionRepository.ts",
       "_origin": "ast",
@@ -1595,28 +1651,6 @@
       "source_location": "L20"
     },
     {
-      "id": "src_repositories_revisionrepository",
-      "label": "revisionRepository.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "revisionrepository.ts",
-      "source_file": "src/repositories/revisionRepository.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_repositories_userrepository",
-      "label": "userRepository.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "userrepository.ts",
-      "source_file": "src/repositories/userRepository.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_services_interactionservice",
       "label": "interactionService.ts",
       "_origin": "ast",
@@ -1626,6 +1660,17 @@
       "norm_label": "interactionservice.ts",
       "source_file": "src/services/interactionService.ts",
       "source_location": "L1"
+    },
+    {
+      "id": "src_services_interactionservice_interactionservice",
+      "label": "interactionService",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "interactionservice",
+      "source_file": "src/services/interactionService.ts",
+      "source_location": "L7"
     },
     {
       "id": "src_types_category",
@@ -1658,17 +1703,6 @@
       "file_type": "code",
       "norm_label": "interaction.ts",
       "source_file": "src/types/interaction.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_cleanfirestoredata",
-      "label": "cleanFirestoreData.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "cleanfirestoredata.ts",
-      "source_file": "src/utils/cleanFirestoreData.ts",
       "source_location": "L1"
     },
     {
@@ -1731,54 +1765,10 @@
       "label": "ReportModal.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportmodal.tsx",
       "source_file": "src/features/projects/ReportModal.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_adminauditlogspage",
-      "label": "AdminAuditLogsPage.tsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminauditlogspage.tsx",
-      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_admincategoriespage",
-      "label": "AdminCategoriesPage.tsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "admincategoriespage.tsx",
-      "source_file": "src/pages/admin/AdminCategoriesPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_adminoverviewpage",
-      "label": "AdminOverviewPage.tsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminoverviewpage.tsx",
-      "source_file": "src/pages/admin/AdminOverviewPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_adminreportspage",
-      "label": "AdminReportsPage.tsx",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminreportspage.tsx",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
       "source_location": "L1"
     },
     {
@@ -1786,51 +1776,18 @@
       "label": "AdminSettingsPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "adminsettingspage.tsx",
       "source_file": "src/pages/admin/AdminSettingsPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_repositories_adminrepository",
-      "label": "adminRepository.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminrepository.ts",
-      "source_file": "src/repositories/adminRepository.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_repositories_adminrepository_adminrepository",
-      "label": "adminRepository",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminrepository",
-      "source_file": "src/repositories/adminRepository.ts",
-      "source_location": "L33"
-    },
-    {
-      "id": "src_repositories_adminrepository_default_settings",
-      "label": "DEFAULT_SETTINGS",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "default_settings",
-      "source_file": "src/repositories/adminRepository.ts",
-      "source_location": "L20"
-    },
-    {
       "id": "src_repositories_reportrepository",
       "label": "reportRepository.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportrepository.ts",
       "source_file": "src/repositories/reportRepository.ts",
@@ -1841,7 +1798,7 @@
       "label": "reportRepository",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportrepository",
       "source_file": "src/repositories/reportRepository.ts",
@@ -1852,7 +1809,7 @@
       "label": "adminSchemas.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "adminschemas.ts",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -1863,7 +1820,7 @@
       "label": "categorySchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "categoryschema",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -1874,7 +1831,7 @@
       "label": "reportSubmissionSchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "reportsubmissionschema",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -1885,51 +1842,18 @@
       "label": "systemSettingsSchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "systemsettingsschema",
       "source_file": "src/schemas/adminSchemas.ts",
       "source_location": "L48"
     },
     {
-      "id": "src_services_adminservice",
-      "label": "adminService.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminservice.ts",
-      "source_file": "src/services/adminService.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_services_adminservice_adminservice",
-      "label": "adminService",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "adminservice",
-      "source_file": "src/services/adminService.ts",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_types_admin",
-      "label": "admin.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "AdminReportsPage.tsx",
-      "file_type": "code",
-      "norm_label": "admin.ts",
-      "source_file": "src/types/admin.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_types_report",
       "label": "report.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "AdminReportsPage.tsx",
+      "community_name": "ReportModal.tsx",
       "file_type": "code",
       "norm_label": "report.ts",
       "source_file": "src/types/report.ts",
@@ -3201,7 +3125,7 @@
       "file_type": "code",
       "norm_label": "analytics",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L31"
+      "source_location": "L45"
     },
     {
       "id": "src_app_firebase_app",
@@ -3212,7 +3136,7 @@
       "file_type": "code",
       "norm_label": "app",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L19"
+      "source_location": "L25"
     },
     {
       "id": "src_app_firebase_auth",
@@ -3223,7 +3147,18 @@
       "file_type": "code",
       "norm_label": "auth",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L20"
+      "source_location": "L26"
+    },
+    {
+      "id": "src_app_firebase_db",
+      "label": "db",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "db",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L35"
     },
     {
       "id": "src_app_firebase_firebaseconfig",
@@ -3234,7 +3169,7 @@
       "file_type": "code",
       "norm_label": "firebaseconfig",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L8"
+      "source_location": "L14"
     },
     {
       "id": "src_app_firebase_functions",
@@ -3245,7 +3180,7 @@
       "file_type": "code",
       "norm_label": "functions",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L22"
+      "source_location": "L36"
     },
     {
       "id": "src_app_firebase_googleprovider",
@@ -3256,7 +3191,7 @@
       "file_type": "code",
       "norm_label": "googleprovider",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L25"
+      "source_location": "L39"
     },
     {
       "id": "src_app_main",
@@ -3267,17 +3202,6 @@
       "file_type": "code",
       "norm_label": "main.tsx",
       "source_file": "src/app/main.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_constants_index",
-      "label": "constants/index.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "useAuth.tsx",
-      "file_type": "code",
-      "norm_label": "constants/index.ts",
-      "source_file": "src/constants/index.ts",
       "source_location": "L1"
     },
     {
@@ -3314,39 +3238,6 @@
       "source_location": "L11"
     },
     {
-      "id": "src_constants_theme",
-      "label": "theme.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "useAuth.tsx",
-      "file_type": "code",
-      "norm_label": "theme.ts",
-      "source_file": "src/constants/theme.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_constants_theme_brand_colors",
-      "label": "BRAND_COLORS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "useAuth.tsx",
-      "file_type": "code",
-      "norm_label": "brand_colors",
-      "source_file": "src/constants/theme.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_constants_theme_fonts",
-      "label": "FONTS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "useAuth.tsx",
-      "file_type": "code",
-      "norm_label": "fonts",
-      "source_file": "src/constants/theme.ts",
-      "source_location": "L16"
-    },
-    {
       "id": "src_hooks_useauth",
       "label": "useAuth.tsx",
       "_origin": "ast",
@@ -3369,6 +3260,17 @@
       "source_location": "L23"
     },
     {
+      "id": "src_hooks_useauth_demo_profiles",
+      "label": "DEMO_PROFILES",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "demo_profiles",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L26"
+    },
+    {
       "id": "src_layouts_applayout",
       "label": "AppLayout.tsx",
       "_origin": "ast",
@@ -3377,6 +3279,50 @@
       "file_type": "code",
       "norm_label": "applayout.tsx",
       "source_file": "src/layouts/AppLayout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_repositories_adminrepository",
+      "label": "adminRepository.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "adminrepository.ts",
+      "source_file": "src/repositories/adminRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_repositories_adminrepository_adminrepository",
+      "label": "adminRepository",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "adminrepository",
+      "source_file": "src/repositories/adminRepository.ts",
+      "source_location": "L33"
+    },
+    {
+      "id": "src_repositories_adminrepository_default_settings",
+      "label": "DEFAULT_SETTINGS",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "default_settings",
+      "source_file": "src/repositories/adminRepository.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "src_repositories_index",
+      "label": "repositories/index.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "repositories/index.ts",
+      "source_file": "src/repositories/index.ts",
       "source_location": "L1"
     },
     {
@@ -3402,6 +3348,39 @@
       "source_location": "L17"
     },
     {
+      "id": "src_repositories_revisionrepository",
+      "label": "revisionRepository.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "revisionrepository.ts",
+      "source_file": "src/repositories/revisionRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_repositories_revisionrepository_revisionrepository",
+      "label": "revisionRepository",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "revisionrepository",
+      "source_file": "src/repositories/revisionRepository.ts",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_repositories_userrepository",
+      "label": "userRepository.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "userrepository.ts",
+      "source_file": "src/repositories/userRepository.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_repositories_userrepository_userrepository",
       "label": "userRepository",
       "_origin": "ast",
@@ -3411,6 +3390,17 @@
       "norm_label": "userrepository",
       "source_file": "src/repositories/userRepository.ts",
       "source_location": "L20"
+    },
+    {
+      "id": "src_services_adminservice",
+      "label": "adminService.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "adminservice.ts",
+      "source_file": "src/services/adminService.ts",
+      "source_location": "L1"
     },
     {
       "id": "src_services_authservice",
@@ -3432,7 +3422,7 @@
       "file_type": "code",
       "norm_label": "authservice",
       "source_file": "src/services/authService.ts",
-      "source_location": "L14"
+      "source_location": "L15"
     },
     {
       "id": "src_services_cloudinaryservice",
@@ -3479,6 +3469,28 @@
       "source_location": "L1"
     },
     {
+      "id": "src_services_projectservice",
+      "label": "projectService.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "projectservice.ts",
+      "source_file": "src/services/projectService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_types_admin",
+      "label": "admin.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "admin.ts",
+      "source_file": "src/types/admin.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_types_notification",
       "label": "notification.ts",
       "_origin": "ast",
@@ -3498,6 +3510,39 @@
       "file_type": "code",
       "norm_label": "user.ts",
       "source_file": "src/types/user.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_cleanfirestoredata",
+      "label": "cleanFirestoreData.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "cleanfirestoredata.ts",
+      "source_file": "src/utils/cleanFirestoreData.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_roleresolver",
+      "label": "roleResolver.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roleresolver.ts",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_roles_test",
+      "label": "roles.test.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roles.test.ts",
+      "source_file": "tests/roles.test.ts",
       "source_location": "L1"
     },
     {
@@ -3666,28 +3711,6 @@
       "source_location": "L22"
     },
     {
-      "id": "src_features_projects_revisiondiff",
-      "label": "RevisionDiff.tsx",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "AdminReviewQueuePage.tsx",
-      "file_type": "code",
-      "norm_label": "revisiondiff.tsx",
-      "source_file": "src/features/projects/RevisionDiff.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_hooks_useauth_demo_profiles",
-      "label": "DEMO_PROFILES",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "AdminReviewQueuePage.tsx",
-      "file_type": "code",
-      "norm_label": "demo_profiles",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L26"
-    },
-    {
       "id": "src_layouts_adminlayout",
       "label": "AdminLayout.tsx",
       "_origin": "ast",
@@ -3699,6 +3722,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_pages_admin_admincategoriespage",
+      "label": "AdminCategoriesPage.tsx",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "AdminReviewQueuePage.tsx",
+      "file_type": "code",
+      "norm_label": "admincategoriespage.tsx",
+      "source_file": "src/pages/admin/AdminCategoriesPage.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_pages_admin_adminemployeespage",
       "label": "AdminEmployeesPage.tsx",
       "_origin": "ast",
@@ -3707,6 +3741,17 @@
       "file_type": "code",
       "norm_label": "adminemployeespage.tsx",
       "source_file": "src/pages/admin/AdminEmployeesPage.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_admin_adminreportspage",
+      "label": "AdminReportsPage.tsx",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "AdminReviewQueuePage.tsx",
+      "file_type": "code",
+      "norm_label": "adminreportspage.tsx",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
       "source_location": "L1"
     },
     {
@@ -3820,6 +3865,17 @@
       "source_location": "L16"
     },
     {
+      "id": "src_schemas_index",
+      "label": "schemas/index.ts",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "AdminReviewQueuePage.tsx",
+      "file_type": "code",
+      "norm_label": "schemas/index.ts",
+      "source_file": "src/schemas/index.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_schemas_profileschemas",
       "label": "profileSchemas.ts",
       "_origin": "ast",
@@ -3840,6 +3896,17 @@
       "norm_label": "profileupdateschema",
       "source_file": "src/schemas/profileSchemas.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "src_services_adminservice_adminservice",
+      "label": "adminService",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "AdminReviewQueuePage.tsx",
+      "file_type": "code",
+      "norm_label": "adminservice",
+      "source_file": "src/services/adminService.ts",
+      "source_location": "L15"
     },
     {
       "id": "src_utils_cn",
@@ -4194,6 +4261,17 @@
       "source_location": "L24"
     },
     {
+      "id": "package",
+      "label": "package.json",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "package.json",
+      "source_file": "package.json",
+      "source_location": "L1"
+    },
+    {
       "id": "package_dependencies",
       "label": "dependencies",
       "_origin": "ast",
@@ -4313,6 +4391,105 @@
       "norm_label": "zod",
       "source_file": "package.json",
       "source_location": "L22"
+    },
+    {
+      "id": "package_name",
+      "label": "name",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "name",
+      "source_file": "package.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "package_private",
+      "label": "private",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "private",
+      "source_file": "package.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "scripts",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "package_scripts_build",
+      "label": "build",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "build",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "package_scripts_dev",
+      "label": "dev",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "dev",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "package_scripts_preview",
+      "label": "preview",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "preview",
+      "source_file": "package.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "package_scripts_test",
+      "label": "test",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "test",
+      "source_file": "package.json",
+      "source_location": "L10"
+    },
+    {
+      "id": "package_type",
+      "label": "type",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "type",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "package_version",
+      "label": "version",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "dependencies",
+      "file_type": "code",
+      "norm_label": "version",
+      "source_file": "package.json",
+      "source_location": "L4"
     },
     {
       "id": "clsx",
@@ -4436,17 +4613,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_features_voting_votebuttonpair",
-      "label": "VoteButtonPair.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "votebuttonpair.tsx",
-      "source_file": "src/features/voting/VoteButtonPair.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_layouts_authlayout",
       "label": "AuthLayout.tsx",
       "_origin": "ast",
@@ -4455,6 +4621,28 @@
       "file_type": "code",
       "norm_label": "authlayout.tsx",
       "source_file": "src/layouts/AuthLayout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_admin_adminauditlogspage",
+      "label": "AdminAuditLogsPage.tsx",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "adminauditlogspage.tsx",
+      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_admin_adminoverviewpage",
+      "label": "AdminOverviewPage.tsx",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "adminoverviewpage.tsx",
+      "source_file": "src/pages/admin/AdminOverviewPage.tsx",
       "source_location": "L1"
     },
     {
@@ -4500,17 +4688,6 @@
       "norm_label": "approutes.tsx",
       "source_file": "src/routes/AppRoutes.tsx",
       "source_location": "L1"
-    },
-    {
-      "id": "src_services_interactionservice_interactionservice",
-      "label": "interactionService",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "interactionservice",
-      "source_file": "src/services/interactionService.ts",
-      "source_location": "L7"
     },
     {
       "id": "src_utils_formatters",
@@ -4810,17 +4987,6 @@
       "source_location": "L23"
     },
     {
-      "id": "package",
-      "label": "package.json",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "package.json",
-      "source_file": "package.json",
-      "source_location": "L1"
-    },
-    {
       "id": "package_devdependencies",
       "label": "devDependencies",
       "_origin": "ast",
@@ -4942,105 +5108,6 @@
       "source_location": "L34"
     },
     {
-      "id": "package_name",
-      "label": "name",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "name",
-      "source_file": "package.json",
-      "source_location": "L2"
-    },
-    {
-      "id": "package_private",
-      "label": "private",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "private",
-      "source_file": "package.json",
-      "source_location": "L3"
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "scripts",
-      "source_file": "package.json",
-      "source_location": "L6"
-    },
-    {
-      "id": "package_scripts_build",
-      "label": "build",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "build",
-      "source_file": "package.json",
-      "source_location": "L8"
-    },
-    {
-      "id": "package_scripts_dev",
-      "label": "dev",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "dev",
-      "source_file": "package.json",
-      "source_location": "L7"
-    },
-    {
-      "id": "package_scripts_preview",
-      "label": "preview",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "preview",
-      "source_file": "package.json",
-      "source_location": "L9"
-    },
-    {
-      "id": "package_scripts_test",
-      "label": "test",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "test",
-      "source_file": "package.json",
-      "source_location": "L10"
-    },
-    {
-      "id": "package_type",
-      "label": "type",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "type",
-      "source_file": "package.json",
-      "source_location": "L5"
-    },
-    {
-      "id": "package_version",
-      "label": "version",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "version",
-      "source_file": "package.json",
-      "source_location": "L4"
-    },
-    {
       "id": "autoprefixer",
       "label": "autoprefixer",
       "_origin": "ast",
@@ -5151,25 +5218,25 @@
       "source_location": "L34"
     },
     {
-      "id": "src_features_projects_projectdetailspage",
-      "label": "ProjectDetailsPage.tsx",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
-      "file_type": "code",
-      "norm_label": "projectdetailspage.tsx",
-      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_features_projects_projectsubmitform",
       "label": "ProjectSubmitForm.tsx",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmitform.tsx",
       "source_file": "src/features/projects/ProjectSubmitForm.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_features_projects_revisiondiff",
+      "label": "RevisionDiff.tsx",
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "ProjectSubmitForm.tsx",
+      "file_type": "code",
+      "norm_label": "revisiondiff.tsx",
+      "source_file": "src/features/projects/RevisionDiff.tsx",
       "source_location": "L1"
     },
     {
@@ -5177,32 +5244,10 @@
       "label": "SubmitProjectPage.tsx",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "submitprojectpage.tsx",
       "source_file": "src/pages/SubmitProjectPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_repositories_revisionrepository_revisionrepository",
-      "label": "revisionRepository",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
-      "file_type": "code",
-      "norm_label": "revisionrepository",
-      "source_file": "src/repositories/revisionRepository.ts",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_schemas_index",
-      "label": "schemas/index.ts",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
-      "file_type": "code",
-      "norm_label": "schemas/index.ts",
-      "source_file": "src/schemas/index.ts",
       "source_location": "L1"
     },
     {
@@ -5210,7 +5255,7 @@
       "label": "projectSchemas.ts",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectschemas.ts",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -5221,7 +5266,7 @@
       "label": "adminReviewSchema",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "adminreviewschema",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -5232,7 +5277,7 @@
       "label": "projectRevisionSchema",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectrevisionschema",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -5243,7 +5288,7 @@
       "label": "projectStatuses",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectstatuses",
       "source_file": "src/schemas/projectSchemas.ts",
@@ -5254,29 +5299,18 @@
       "label": "projectSubmissionSchema",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectsubmissionschema",
       "source_file": "src/schemas/projectSchemas.ts",
       "source_location": "L5"
     },
     {
-      "id": "src_services_projectservice",
-      "label": "projectService.ts",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
-      "file_type": "code",
-      "norm_label": "projectservice.ts",
-      "source_file": "src/services/projectService.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_services_projectservice_projectservice",
       "label": "projectService",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "projectservice",
       "source_file": "src/services/projectService.ts",
@@ -5287,7 +5321,7 @@
       "label": "project.ts",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "project.ts",
       "source_file": "src/types/project.ts",
@@ -5298,7 +5332,7 @@
       "label": "revision.ts",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "revision.ts",
       "source_file": "src/types/revision.ts",
@@ -5309,7 +5343,7 @@
       "label": "arena.test.ts",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "arena.test.ts",
       "source_file": "tests/arena.test.ts",
@@ -5320,7 +5354,7 @@
       "label": "schemas.test.ts",
       "_origin": "ast",
       "community": 9,
-      "community_name": "ProjectDetailsPage.tsx",
+      "community_name": "ProjectSubmitForm.tsx",
       "file_type": "code",
       "norm_label": "schemas.test.ts",
       "source_file": "tests/schemas.test.ts",
@@ -5665,6 +5699,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_hooks_useauth_authprovider",
+      "target": "src_utils_roleresolver_resolveuserrolebyemail",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
       "source": "src_layouts_adminlayout_adminlayout",
       "target": "src_hooks_useauth_useauth",
       "relation": "calls",
@@ -5685,7 +5731,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -5901,7 +5947,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L14",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -5913,7 +5959,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -6710,18 +6756,6 @@
     },
     {
       "source": "src_hooks_useauth_authcontexttype",
-      "target": "src_types_user_userrole",
-      "relation": "references",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "field",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "src_hooks_useauth_authcontexttype",
       "target": "src_types_user_userprofile",
       "relation": "references",
       "_origin": "ast",
@@ -6729,7 +6763,7 @@
       "confidence_score": 1.0,
       "context": "field",
       "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -7269,7 +7303,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L6",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -8173,6 +8207,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_hooks_useauth",
+      "target": "src_utils_roleresolver_resolveuserrolebyemail",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "src_layouts_adminlayout",
       "target": "src_hooks_useauth_useauth",
       "relation": "imports",
@@ -8278,18 +8324,6 @@
       "context": "import",
       "source_file": "src/layouts/AppLayout.tsx",
       "source_location": "L25",
-      "weight": 1.0
-    },
-    {
-      "source": "src_layouts_applayout",
-      "target": "src_types_user_userrole",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -9326,18 +9360,6 @@
     },
     {
       "source": "src_pages_auth_loginpage",
-      "target": "src_types_user_userrole",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_auth_loginpage",
       "target": "src_schemas_authschemas_loginformdata",
       "relation": "imports",
       "_origin": "ast",
@@ -9358,18 +9380,6 @@
       "context": "import",
       "source_file": "src/pages/auth/LoginPage.tsx",
       "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_auth_loginpage",
-      "target": "src_hooks_useauth_demo_profiles",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -11162,6 +11172,18 @@
     },
     {
       "source": "src_services_authservice",
+      "target": "src_utils_roleresolver_resolveuserrolebyemail",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/services/authService.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice",
       "target": "src_app_firebase_auth",
       "relation": "imports",
       "_origin": "ast",
@@ -11401,6 +11423,30 @@
       "weight": 1.0
     },
     {
+      "source": "src_utils_roleresolver",
+      "target": "src_app_config_app_config",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_roleresolver",
+      "target": "src_types_user_userrole",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "src_utils_seeddata",
       "target": "src_repositories_projectrepository_projectrepository",
       "relation": "imports",
@@ -11481,6 +11527,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/arena.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_roles_test",
+      "target": "src_utils_roleresolver_resolveuserrolebyemail",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/roles.test.ts",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -11637,7 +11695,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/firebase.ts",
-      "source_location": "L6",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -12325,6 +12383,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_hooks_useauth",
+      "target": "src_utils_roleresolver",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "src_layouts_adminlayout",
       "target": "src_hooks_useauth",
       "relation": "imports_from",
@@ -12418,18 +12488,6 @@
       "context": "import",
       "source_file": "src/layouts/AppLayout.tsx",
       "source_location": "L25",
-      "weight": 1.0
-    },
-    {
-      "source": "src_layouts_applayout",
-      "target": "src_types_index",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -13234,18 +13292,6 @@
       "context": "import",
       "source_file": "src/pages/ArenaPage.tsx",
       "source_location": "L22",
-      "weight": 1.0
-    },
-    {
-      "source": "src_pages_auth_loginpage",
-      "target": "src_types_index",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -14678,6 +14724,18 @@
     },
     {
       "source": "src_services_authservice",
+      "target": "src_utils_roleresolver",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/services/authService.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice",
       "target": "src_app_firebase",
       "relation": "imports_from",
       "_origin": "ast",
@@ -14845,6 +14903,30 @@
       "weight": 1.0
     },
     {
+      "source": "src_utils_roleresolver",
+      "target": "src_app_config",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_roleresolver",
+      "target": "src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "src_utils_seeddata",
       "target": "src_repositories_projectrepository",
       "relation": "imports_from",
@@ -14925,6 +15007,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/arena.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_roles_test",
+      "target": "src_utils_roleresolver",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/roles.test.ts",
       "source_location": "L2",
       "weight": 1.0
     },
@@ -16517,51 +16611,18 @@
     },
     {
       "source": "src_app_firebase",
+      "target": "src_app_firebase_firebaseconfig",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_firebase",
       "target": "src_app_firebase_app",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L19",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_firebase",
-      "target": "src_app_firebase_auth",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_firebase",
-      "target": "src_app_firebase_db",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L21",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_firebase",
-      "target": "src_app_firebase_functions",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L22",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_firebase",
-      "target": "src_app_firebase_googleprovider",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16572,24 +16633,57 @@
     },
     {
       "source": "src_app_firebase",
+      "target": "src_app_firebase_auth",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_firebase",
+      "target": "src_app_firebase_db",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_firebase",
+      "target": "src_app_firebase_functions",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_firebase",
+      "target": "src_app_firebase_googleprovider",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_firebase",
       "target": "src_app_firebase_analytics",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/firebase.ts",
-      "source_location": "L31",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_firebase",
-      "target": "src_app_firebase_firebaseconfig",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L8",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -17067,17 +17161,6 @@
     },
     {
       "source": "src_hooks_useauth",
-      "target": "src_hooks_useauth_useauth",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L246",
-      "weight": 1.0
-    },
-    {
-      "source": "src_hooks_useauth",
       "target": "src_hooks_useauth_demo_profiles",
       "relation": "contains",
       "_origin": "ast",
@@ -17089,13 +17172,24 @@
     },
     {
       "source": "src_hooks_useauth",
+      "target": "src_hooks_useauth_useauth",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L263",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_useauth",
       "target": "src_hooks_useauth_authcontexttype",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -17128,7 +17222,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L28",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -17238,7 +17332,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L12",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -17733,7 +17827,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/services/authService.ts",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -18133,6 +18227,17 @@
       "weight": 1.0
     },
     {
+      "source": "src_utils_roleresolver",
+      "target": "src_utils_roleresolver_resolveuserrolebyemail",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
       "source": "src_utils_seeddata",
       "target": "src_utils_seeddata_ensureinitialseeddata",
       "relation": "contains",
@@ -18508,5 +18613,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7b796900b46b5b15abb90e12a409a297ee68e8d1"
+  "built_at_commit": "b07310044b6048e88e021a9dae5be6e751b24f01"
 }

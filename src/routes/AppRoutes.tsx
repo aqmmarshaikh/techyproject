@@ -87,25 +87,63 @@ export const AppRoutes: React.FC = () => {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Route>
 
-      {/* Main Authenticated Employee Routes */}
-      <Route
-        element={
-          <AuthGuard>
-            <AppLayout />
-          </AuthGuard>
-        }
-      >
+      {/* Main App Routes (Public Browse Mode + Protected Private Pages) */}
+      <Route element={<AppLayout />}>
         <Route path="/" element={<Navigate to="/explore" replace />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/arena" element={<ArenaPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/my-projects" element={<MyProjectsPage />} />
-        <Route path="/saved" element={<SavedProjectsPage />} />
         <Route path="/directory" element={<DirectoryPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/submit" element={<SubmitProjectPage />} />
         <Route path="/projects/:projectId" element={<ProjectDetailsPage />} />
+
+        {/* Authenticated-only Employee Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <AuthGuard>
+              <DashboardPage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/my-projects"
+          element={
+            <AuthGuard>
+              <MyProjectsPage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/saved"
+          element={
+            <AuthGuard>
+              <SavedProjectsPage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <AuthGuard>
+              <ProfilePage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <AuthGuard>
+              <NotificationsPage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/submit"
+          element={
+            <AuthGuard>
+              <SubmitProjectPage />
+            </AuthGuard>
+          }
+        />
       </Route>
 
       {/* Admin Protected Routes */}

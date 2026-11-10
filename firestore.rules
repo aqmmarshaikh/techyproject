@@ -44,8 +44,8 @@ service cloud.firestore {
     // 1. Users Collection
     // -------------------------------------------------------------------------
     match /users/{userId} {
-      // Any authenticated active employee can read directory profiles
-      allow read: if isAuthenticated();
+      // Directory profiles are viewable for team collaboration
+      allow read: if true;
 
       // Users can only update their own safe profile fields (e.g., bio, designation, skills, counters)
       // They CANNOT modify role, accountStatus, or email
@@ -67,14 +67,11 @@ service cloud.firestore {
     // 2. Projects Collection
     // -------------------------------------------------------------------------
     match /projects/{projectId} {
-      // Ordinary users can only read approved, non-archived projects
-      // Creators can read their own projects in any state
+      // Approved, non-archived projects are publicly readable for showcase discovery
+      // Creators can read their own projects in any review state
       // Admins can read all projects
-      allow read: if isAuthenticated() && (
-        (resource.data.approvalStatus == 'APPROVED' && resource.data.isArchived == false) ||
-        resource.data.creatorId == request.auth.uid ||
-        isAdmin()
-      );
+      allow read: if (resource.data.approvalStatus == 'APPROVED' && resource.data.isArchived == false) ||
+        (isAuthenticated() && (resource.data.creatorId == request.auth.uid || isAdmin()));
 
       // Submitting new project:
       // Must be authenticated, creatorId must match UID, status must be PENDING_REVIEW or DRAFT,
@@ -185,7 +182,7 @@ service cloud.firestore {
     // 7. Categories Collection
     // -------------------------------------------------------------------------
     match /categories/{categoryId} {
-      allow read: if isAuthenticated();
+      allow read: if true;
       allow write: if isAdmin();
     }
 
@@ -231,7 +228,7 @@ service cloud.firestore {
     // 11. System Settings
     // -------------------------------------------------------------------------
     match /systemSettings/{settingId} {
-      allow read: if isAuthenticated();
+      allow read: if true;
       allow write: if isSuperAdmin() || isAdmin();
     }
 
@@ -243,7 +240,7 @@ service cloud.firestore {
     }
 
     match /arenaStats/{statId} {
-      allow read: if isAuthenticated();
+      allow read: if true;
       allow write: if false; // Maintained by Cloud Functions
     }
   }

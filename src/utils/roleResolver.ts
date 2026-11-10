@@ -28,3 +28,4 @@ export function resolveUserRoleByEmail(email: string | null | undefined): UserRo
 
   return 'EMPLOYEE';
 }
+

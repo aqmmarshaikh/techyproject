@@ -18,6 +18,11 @@ interface AuthContextType {
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   refreshProfile: () => Promise<void>;
+  // Auth Modal State
+  isAuthModalOpen: boolean;
+  authModalPrompt: string | undefined;
+  openAuthModal: (prompt?: string) => void;
+  closeAuthModal: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -100,6 +105,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Auth Modal State
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalPrompt, setAuthModalPrompt] = useState<string | undefined>(undefined);
+
+  const openAuthModal = (prompt?: string) => {
+    setAuthModalPrompt(prompt);
+    setIsAuthModalOpen(true);
+  };
+
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+    setAuthModalPrompt(undefined);
+  };
+
   // Synchronize active profile with localStorage
   useEffect(() => {
     if (userProfile) {
@@ -173,6 +192,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const profile = await authService.login(email, pass);
       setUserProfile(profile);
+      closeAuthModal();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Login failed';
       setError(msg);
@@ -188,6 +208,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const profile = await authService.loginWithGoogle();
       setUserProfile(profile);
+      closeAuthModal();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Google sign-in failed';
       setError(msg);
@@ -253,6 +274,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         logout,
         resetPassword,
         refreshProfile,
+        isAuthModalOpen,
+        authModalPrompt,
+        openAuthModal,
+        closeAuthModal,
       }}
     >
       {children}

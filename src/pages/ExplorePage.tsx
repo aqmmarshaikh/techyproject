@@ -15,7 +15,7 @@ import { ensureInitialSeedData } from '../utils/seedData';
 
 export const ExplorePage: React.FC = () => {
   const navigate = useNavigate();
-  const { userProfile } = useAuth();
+  const { userProfile, isAuthenticated, openAuthModal } = useAuth();
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -112,7 +112,13 @@ export const ExplorePage: React.FC = () => {
           variant="primary"
           size="md"
           leftIcon={<Plus className="w-4 h-4" />}
-          onClick={() => navigate('/submit')}
+          onClick={() => {
+            if (!isAuthenticated) {
+              openAuthModal('Sign in to submit your project to the showcase.');
+              return;
+            }
+            navigate('/submit');
+          }}
           className="self-start md:self-auto"
         >
           Submit New Project

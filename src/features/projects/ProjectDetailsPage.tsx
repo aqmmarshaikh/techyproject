@@ -34,7 +34,7 @@ import { ReportModal } from './ReportModal';
 export const ProjectDetailsPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
-  const { userProfile, isAuthenticated } = useAuth();
+  const { userProfile, isAuthenticated, openAuthModal } = useAuth();
   const { success: toastSuccess, error: toastError } = useToast();
 
   const [project, setProject] = useState<Project | null>(null);
@@ -110,7 +110,7 @@ export const ProjectDetailsPage: React.FC = () => {
 
   const handleToggleLike = async () => {
     if (!userProfile) {
-      toastError('Auth Required', 'Please log in to like this project.');
+      openAuthModal('Sign in to like this project.');
       return;
     }
     if (isOwner) {
@@ -131,7 +131,7 @@ export const ProjectDetailsPage: React.FC = () => {
 
   const handleToggleBookmark = async () => {
     if (!userProfile) {
-      toastError('Auth Required', 'Please log in to bookmark.');
+      openAuthModal('Sign in to save this project to your bookmarks.');
       return;
     }
 
@@ -205,7 +205,13 @@ export const ProjectDetailsPage: React.FC = () => {
 
           {!isOwner && (
             <button
-              onClick={() => setIsReportModalOpen(true)}
+              onClick={() => {
+                if (!userProfile) {
+                  openAuthModal('Sign in to report a concern about this project.');
+                  return;
+                }
+                setIsReportModalOpen(true);
+              }}
               className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-400 hover:text-rose-600 transition-colors"
               title="Report Concern"
             >

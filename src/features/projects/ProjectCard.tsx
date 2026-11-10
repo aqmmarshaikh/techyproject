@@ -20,7 +20,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   initialIsBookmarked = false,
 }) => {
   const navigate = useNavigate();
-  const { userProfile, isAuthenticated } = useAuth();
+  const { userProfile, isAuthenticated, openAuthModal } = useAuth();
   const { success: toastSuccess, error: toastError } = useToast();
 
   const [likeCount, setLikeCount] = useState(project.likeCount || 0);
@@ -39,7 +39,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleLike = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!isAuthenticated || !userProfile) {
-      toastError('Sign In Required', 'Please sign in to like projects.');
+      openAuthModal('Sign in to like projects and celebrate great work.');
       return;
     }
     if (isOwner) {
@@ -66,7 +66,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleBookmark = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!isAuthenticated || !userProfile) {
-      toastError('Sign In Required', 'Please sign in to save projects.');
+      openAuthModal('Sign in to save projects to your private collection.');
       return;
     }
 

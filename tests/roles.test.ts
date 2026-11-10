@@ -22,3 +22,4 @@ describe('Role Resolution & Access Differentiation', () => {
     expect(resolveUserRoleByEmail('')).toBe('EMPLOYEE');
   });
 });
+

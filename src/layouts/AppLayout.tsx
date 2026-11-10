@@ -16,7 +16,8 @@ import {
   X,
   Layers,
   Sparkles,
-  ExternalLink
+  ExternalLink,
+  LogIn
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { MAIN_NAV_ITEMS, ADMIN_NAV_ITEMS } from '../constants/navigation';
@@ -25,7 +26,7 @@ import { Button } from '../components/common/Button';
 import { notificationRepository } from '../repositories/notificationRepository';
 
 export const AppLayout: React.FC = () => {
-  const { userProfile, logout, isAdmin, isSuperAdmin } = useAuth();
+  const { userProfile, isAuthenticated, logout, isAdmin, isSuperAdmin, openAuthModal } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const navigate = useNavigate();
@@ -98,29 +99,38 @@ export const AppLayout: React.FC = () => {
         <div>
           <p className="px-3 mb-2 text-[10px] font-mono uppercase tracking-wider text-white/40">Navigation</p>
           <nav className="space-y-1">
-            {MAIN_NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-150 ${
-                    isActive
-                      ? 'bg-gradient-to-r from-[#FF3D88] to-[#E02D73] text-white shadow-md'
-                      : 'text-white/75 hover:text-white hover:bg-white/10'
-                  }`
-                }
-              >
-                <div className="flex items-center gap-3">
-                  {getIcon(item.iconName)}
-                  <span>{item.title}</span>
-                </div>
-                {item.title === 'Notifications' && unreadNotifications > 0 && (
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#FF3D88] text-white">
-                    {unreadNotifications}
-                  </span>
-                )}
-              </NavLink>
-            ))}
+            {MAIN_NAV_ITEMS.map((item) => {
+              const isAuthRequired = !['/explore', '/arena', '/directory'].includes(item.path);
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={(e) => {
+                    if (!isAuthenticated && isAuthRequired) {
+                      e.preventDefault();
+                      openAuthModal(`Sign in to access ${item.title}.`);
+                    }
+                  }}
+                  className={({ isActive }) =>
+                    `flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-150 ${
+                      isActive && (isAuthenticated || !isAuthRequired)
+                        ? 'bg-gradient-to-r from-[#FF3D88] to-[#E02D73] text-white shadow-md'
+                        : 'text-white/75 hover:text-white hover:bg-white/10'
+                    }`
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    {getIcon(item.iconName)}
+                    <span>{item.title}</span>
+                  </div>
+                  {item.title === 'Notifications' && unreadNotifications > 0 && isAuthenticated && (
+                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#FF3D88] text-white">
+                      {unreadNotifications}
+                    </span>
+                  )}
+                </NavLink>
+              );
+            })}
           </nav>
         </div>
 
@@ -150,30 +160,53 @@ export const AppLayout: React.FC = () => {
         )}
       </div>
 
-      {/* User Profile Footer */}
-      <div className="p-4 border-t border-white/10 bg-[#0A1229]">
-        <div className="flex items-center gap-3">
-          <img
-            src={
-              userProfile?.avatarUrl ||
-              'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
-            }
-            alt={userProfile?.fullName || 'User'}
-            className="w-10 h-10 rounded-xl object-cover ring-2 ring-[#FF3D88]/30"
-          />
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-semibold text-white truncate">{userProfile?.fullName || 'Authenticated User'}</h4>
-            <p className="text-xs text-white/50 truncate">{userProfile?.designation || 'Employee'}</p>
+      {/* User Profile Footer or Guest Sign In */}
+      {isAuthenticated ? (
+        <div className="p-4 border-t border-white/10 bg-[#0A1229]">
+          <div className="flex items-center gap-3">
+            <img
+              src={
+                userProfile?.avatarUrl ||
+                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
+              }
+              alt={userProfile?.fullName || 'User'}
+              className="w-10 h-10 rounded-xl object-cover ring-2 ring-[#FF3D88]/30"
+            />
+            <div className="flex-1 min-w-0">
+              <h4 className="text-sm font-semibold text-white truncate">{userProfile?.fullName || 'Authenticated User'}</h4>
+              <p className="text-xs text-white/50 truncate">{userProfile?.designation || 'Employee'}</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              title="Log out"
+              className="p-2 text-white/60 hover:text-[#FF3D88] hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
-          <button
-            onClick={handleLogout}
-            title="Log out"
-            className="p-2 text-white/60 hover:text-[#FF3D88] hover:bg-white/10 rounded-lg transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-          </button>
         </div>
-      </div>
+      ) : (
+        <div className="p-4 border-t border-white/10 bg-[#0A1229]">
+          <div className="rounded-2xl bg-white/5 p-4 border border-white/10">
+            <div className="flex items-center gap-2 mb-1.5">
+              <Sparkles className="w-4 h-4 text-[#FF3D88]" />
+              <span className="text-xs font-heading font-bold text-white">Join ProjectHub</span>
+            </div>
+            <p className="text-[11px] text-white/60 font-sans leading-relaxed">
+              Sign in to vote in the Arena, like peer innovations, and submit projects.
+            </p>
+            <Button
+              variant="primary"
+              size="sm"
+              className="w-full mt-3 font-semibold text-xs"
+              leftIcon={<LogIn className="w-3.5 h-3.5" />}
+              onClick={() => openAuthModal('Sign in to unlock all ProjectHub features.')}
+            >
+              Sign In
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 
@@ -216,25 +249,61 @@ export const AppLayout: React.FC = () => {
           <div className="flex items-center gap-3">
             {/* Quick Submit Project Action */}
             <Button
-              variant="primary"
+              variant={isAuthenticated ? 'primary' : 'outline'}
               size="sm"
-              leftIcon={<Plus className="w-4 h-4" />}
-              onClick={() => navigate('/submit')}
+              leftIcon={<Plus className={`w-4 h-4 ${!isAuthenticated ? 'text-[#FF3D88]' : ''}`} />}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  openAuthModal('Sign in to submit your project for review.');
+                  return;
+                }
+                navigate('/submit');
+              }}
             >
               <span className="hidden sm:inline">Submit Project</span>
               <span className="sm:hidden">Submit</span>
             </Button>
 
-            {/* Notification Bell */}
-            <NavLink
-              to="/notifications"
-              className="relative p-2.5 rounded-xl text-slate-600 hover:text-[#0F1B3D] hover:bg-slate-100 transition-colors"
-            >
-              <Bell className="w-5 h-5" />
-              {unreadNotifications > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#FF3D88] ring-2 ring-white" />
-              )}
-            </NavLink>
+            {isAuthenticated ? (
+              <>
+                {/* Notification Bell */}
+                <NavLink
+                  to="/notifications"
+                  className="relative p-2 rounded-xl text-slate-600 hover:text-[#0F1B3D] hover:bg-slate-100 transition-colors"
+                  title="Notifications"
+                >
+                  <Bell className="w-5 h-5" />
+                  {unreadNotifications > 0 && (
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#FF3D88] ring-2 ring-white" />
+                  )}
+                </NavLink>
+
+                {/* Profile mini avatar */}
+                <NavLink
+                  to="/profile"
+                  className="flex items-center gap-2 pl-2 border-l border-slate-200"
+                  title="View Profile"
+                >
+                  <img
+                    src={
+                      userProfile?.avatarUrl ||
+                      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
+                    }
+                    alt={userProfile?.fullName || 'User'}
+                    className="w-8 h-8 rounded-lg object-cover ring-1 ring-[#FF3D88]/30 hover:ring-[#FF3D88] transition-all"
+                  />
+                </NavLink>
+              </>
+            ) : (
+              <Button
+                variant="primary"
+                size="sm"
+                leftIcon={<LogIn className="w-4 h-4" />}
+                onClick={() => openAuthModal('Sign in to your ProjectHub account.')}
+              >
+                <span>Log In</span>
+              </Button>
+            )}
           </div>
         </header>
 

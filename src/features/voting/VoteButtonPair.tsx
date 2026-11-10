@@ -25,7 +25,7 @@ export const VoteButtonPair: React.FC<VoteButtonPairProps> = ({
   onVoteSuccess,
   compact = false,
 }) => {
-  const { userProfile, isAuthenticated } = useAuth();
+  const { userProfile, isAuthenticated, openAuthModal } = useAuth();
   const { error: toastError, success: toastSuccess } = useToast();
 
   const [goodCount, setGoodCount] = useState(initialGoodCount);
@@ -42,7 +42,7 @@ export const VoteButtonPair: React.FC<VoteButtonPairProps> = ({
 
   const handleVote = async (choice: VoteChoice) => {
     if (!isAuthenticated || !userProfile) {
-      toastError('Authentication Required', 'Please sign in to vote on projects.');
+      openAuthModal('Sign in to vote Good or Needs Improvement on team projects.');
       return;
     }
 
