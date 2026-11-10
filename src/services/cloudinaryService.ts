@@ -8,4 +8,5 @@ export type { ImageUploadOptions };
 export const cloudinaryService = {
   validateFile: imageUploadService.validateFile.bind(imageUploadService),
   uploadImage: imageUploadService.uploadImage.bind(imageUploadService),
+  deleteProjectAssets: imageUploadService.deleteProjectAssets.bind(imageUploadService),
 };

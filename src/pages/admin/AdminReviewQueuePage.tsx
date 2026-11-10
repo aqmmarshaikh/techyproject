@@ -12,7 +12,8 @@ import {
   RotateCcw,
   ExternalLink,
   Layers,
-  FileDiff
+  FileDiff,
+  Trash2
 } from 'lucide-react';
 import { projectRepository } from '../../repositories/projectRepository';
 import { revisionRepository } from '../../repositories/revisionRepository';
@@ -43,6 +44,11 @@ export const AdminReviewQueuePage: React.FC = () => {
   const [reviewAction, setReviewAction] = useState<'APPROVE' | 'REJECT' | 'CHANGES_REQUESTED' | null>(null);
   const [reviewText, setReviewText] = useState('');
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+
+  // Admin project deletion state
+  const [projectToDelete, setProjectToDelete] = useState<Project | null>(null);
+  const [deleteReason, setDeleteReason] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -181,6 +187,41 @@ export const AdminReviewQueuePage: React.FC = () => {
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Action failed';
       toastError('Error', msg);
+    }
+  };
+
+  const handleDeleteProject = async () => {
+    if (!projectToDelete || !userProfile) return;
+
+    if (!deleteReason || deleteReason.trim().length < 5) {
+      toastError(
+        'Reason Required',
+        'Please provide a documented reason (minimum 5 characters) for permanently deleting this project.'
+      );
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      await projectService.deleteProject({
+        projectId: projectToDelete.id,
+        requestor: userProfile,
+        reason: deleteReason.trim(),
+      });
+
+      toastSuccess(
+        'Project Deleted',
+        `"${projectToDelete.title}" and associated data have been permanently removed.`
+      );
+      setAllProjects((prev) => prev.filter((p) => p.id !== projectToDelete.id));
+      setPendingProjects((prev) => prev.filter((p) => p.id !== projectToDelete.id));
+      setProjectToDelete(null);
+      setDeleteReason('');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to delete project';
+      toastError('Deletion Failed', msg);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -408,6 +449,17 @@ export const AdminReviewQueuePage: React.FC = () => {
                       >
                         <Archive className="w-3.5 h-3.5" />
                       </button>
+
+                      <button
+                        onClick={() => {
+                          setProjectToDelete(p);
+                          setDeleteReason('');
+                        }}
+                        title="Permanently Delete Project"
+                        className="p-1.5 rounded-lg border border-slate-200 text-rose-500 hover:bg-rose-50 hover:border-rose-200 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -590,6 +642,71 @@ export const AdminReviewQueuePage: React.FC = () => {
               >
                 Approve & Merge Changes
               </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
+
+      {/* Admin Project Deletion Modal with Mandatory Reason */}
+      <Modal
+        isOpen={Boolean(projectToDelete)}
+        onClose={() => {
+          setProjectToDelete(null);
+          setDeleteReason('');
+        }}
+        title={`Permanently Delete "${projectToDelete?.title}"?`}
+        description="Permanently remove this project and all associated records from ProjectHub."
+        footer={
+          <>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setProjectToDelete(null);
+                setDeleteReason('');
+              }}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={handleDeleteProject}
+              isLoading={isDeleting}
+              leftIcon={<Trash2 className="w-4 h-4" />}
+            >
+              Permanently Delete
+            </Button>
+          </>
+        }
+      >
+        {projectToDelete && (
+          <div className="space-y-4">
+            <div className="p-3.5 bg-rose-50 rounded-xl border border-rose-200 text-xs text-rose-900 flex items-start gap-3">
+              <Trash2 className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-semibold">Destructive Action Warning</p>
+                <p className="leading-relaxed">
+                  Removing <strong>"{projectToDelete.title}"</strong> created by <strong>{projectToDelete.creatorName}</strong> will permanently remove all likes, votes, bookmarks, and screenshots from the platform. The creator will receive a formal notification with your reason.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
+                Mandatory Removal Reason <span className="text-[#FF3D88]">*</span>
+              </label>
+              <textarea
+                rows={3}
+                value={deleteReason}
+                onChange={(e) => setDeleteReason(e.target.value)}
+                placeholder="Explain why this project is being removed (e.g. policy violation, duplicated submission, employee request)..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/30 font-sans"
+              />
+              <p className="text-[11px] text-slate-400 mt-1">
+                {deleteReason.trim().length}/5 characters minimum
+              </p>
             </div>
           </div>
         )}

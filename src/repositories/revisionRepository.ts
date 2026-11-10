@@ -4,6 +4,7 @@ import {
   getDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   query,
   where,
   getDocs,
@@ -86,5 +87,17 @@ export const revisionRepository = {
       reviewedBy: reviewedBy || null,
       reviewedAt: new Date().toISOString(),
     });
+  },
+
+  async deleteByProject(projectId: string): Promise<void> {
+    try {
+      const colRef = collection(db, REVISIONS_COLLECTION);
+      const q = query(colRef, where('projectId', '==', projectId));
+      const snap = await getDocs(q);
+      const deletes = snap.docs.map((d) => deleteDoc(d.ref));
+      await Promise.allSettled(deletes);
+    } catch (err) {
+      console.warn('[revisionRepository] Non-fatal revision cleanup warning:', err);
+    }
   },
 };

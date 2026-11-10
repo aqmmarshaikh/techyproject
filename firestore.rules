@@ -116,8 +116,9 @@ service cloud.firestore {
       // Admins have permission to moderate (approve, reject, request changes, archive, feature)
       allow update: if isAdmin();
 
-      // Projects are never hard deleted by ordinary users
-      allow delete: if isSuperAdmin();
+      // Project deletion:
+      // Creator can delete their own project at any approval status; Admins & Super Admins can delete any project.
+      allow delete: if (isActiveUser() && resource.data.creatorId == request.auth.uid) || isAdmin() || isSuperAdmin();
     }
 
     // -------------------------------------------------------------------------
@@ -133,7 +134,7 @@ service cloud.firestore {
         request.resource.data.revisionStatus == 'PENDING_REVIEW';
 
       allow update: if isAdmin();
-      allow delete: if false;
+      allow delete: if (isAuthenticated() && resource.data.creatorId == request.auth.uid) || isAdmin() || isSuperAdmin();
     }
 
     // -------------------------------------------------------------------------
@@ -148,7 +149,7 @@ service cloud.firestore {
         exists(/databases/$(database)/documents/projects/$(request.resource.data.projectId)) &&
         get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.creatorId != request.auth.uid;
 
-      allow delete: if isActiveUser() && resource.data.userId == request.auth.uid;
+      allow delete: if (isActiveUser() && resource.data.userId == request.auth.uid) || isAdmin() || isSuperAdmin();
       allow update: if false;
     }
 
@@ -171,7 +172,7 @@ service cloud.firestore {
         request.resource.data.userId == request.auth.uid &&
         request.resource.data.choice in ['GOOD', 'NEEDS_IMPROVEMENT'];
 
-      allow delete: if false;
+      allow delete: if isAdmin() || isSuperAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
     }
 
     // -------------------------------------------------------------------------
@@ -180,7 +181,7 @@ service cloud.firestore {
     match /bookmarks/{bookmarkId} {
       allow read: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid || isAdmin());
       allow create: if isAuthenticated() && isActiveUser() && request.resource.data.userId == request.auth.uid;
-      allow delete: if isAuthenticated() && isActiveUser() && (resource.data.userId == request.auth.uid || isAdmin() || bookmarkId.matches('^' + request.auth.uid + '_.*'));
+      allow delete: if isAuthenticated() && isActiveUser() && (resource.data.userId == request.auth.uid || isAdmin() || isSuperAdmin() || bookmarkId.matches('^' + request.auth.uid + '_.*'));
       allow update: if false;
     }
 
@@ -203,7 +204,7 @@ service cloud.firestore {
 
       // Only admins can view and resolve reports
       allow read, update: if isAdmin();
-      allow delete: if isSuperAdmin();
+      allow delete: if isAdmin() || isSuperAdmin();
     }
 
     // -------------------------------------------------------------------------

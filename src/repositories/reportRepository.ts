@@ -3,6 +3,7 @@ import {
   doc,
   setDoc,
   updateDoc,
+  deleteDoc,
   query,
   where,
   getDocs,
@@ -51,6 +52,18 @@ export const reportRepository = {
       actionTaken: actionTaken || null,
       resolvedAt: status !== 'PENDING' ? new Date().toISOString() : null,
     });
+  },
+
+  async deleteByProject(projectId: string): Promise<void> {
+    try {
+      const colRef = collection(db, REPORTS_COLLECTION);
+      const q = query(colRef, where('projectId', '==', projectId));
+      const snap = await getDocs(q);
+      const deletes = snap.docs.map((d) => deleteDoc(d.ref));
+      await Promise.allSettled(deletes);
+    } catch (err) {
+      console.warn('[reportRepository] Non-fatal report cleanup warning:', err);
+    }
   },
 };
 

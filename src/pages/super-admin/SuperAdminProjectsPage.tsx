@@ -18,6 +18,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../components/common/Toast';
 import { Button } from '../../components/common/Button';
 import { ConfirmationModal } from '../../components/common/ConfirmationModal';
+import { Modal } from '../../components/common/Modal';
 import { ApprovalStatusBadge } from '../../components/common/Badge';
 import { formatDate } from '../../utils/formatters';
 import { NavLink } from 'react-router-dom';
@@ -33,6 +34,7 @@ export const SuperAdminProjectsPage: React.FC = () => {
 
   // Deletion modal
   const [deleteTarget, setDeleteTarget] = useState<Project | null>(null);
+  const [deleteReason, setDeleteReason] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   const loadProjects = async () => {
@@ -84,11 +86,24 @@ export const SuperAdminProjectsPage: React.FC = () => {
   const handleDeleteProject = async () => {
     if (!deleteTarget || !userProfile) return;
 
+    if (!deleteReason || deleteReason.trim().length < 5) {
+      toastError(
+        'Reason Required',
+        'Please enter a documented reason (at least 5 characters) for removing this project.'
+      );
+      return;
+    }
+
     setIsDeleting(true);
     try {
-      await projectRepository.delete(deleteTarget.id);
-      toastSuccess('Project Deleted', `"${deleteTarget.title}" has been permanently removed.`);
+      await projectService.deleteProject({
+        projectId: deleteTarget.id,
+        requestor: userProfile,
+        reason: deleteReason.trim(),
+      });
+      toastSuccess('Project Deleted', `"${deleteTarget.title}" and all related data have been permanently removed.`);
       setDeleteTarget(null);
+      setDeleteReason('');
       loadProjects();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Delete failed';
@@ -284,17 +299,70 @@ export const SuperAdminProjectsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Delete Confirmation Modal */}
-      <ConfirmationModal
+      {/* Delete Confirmation Modal with Mandatory Reason */}
+      <Modal
         isOpen={Boolean(deleteTarget)}
-        onClose={() => setDeleteTarget(null)}
-        onConfirm={handleDeleteProject}
-        title="Permanently Delete Project"
-        message={`Are you sure you want to permanently delete "${deleteTarget?.title}"? This will eradicate all project data, votes, and comments from the database. This action is irreversible.`}
-        confirmLabel="Permanently Delete"
-        variant="danger"
-        isLoading={isDeleting}
-      />
+        onClose={() => {
+          setDeleteTarget(null);
+          setDeleteReason('');
+        }}
+        title={`Permanently Delete "${deleteTarget?.title}"?`}
+        description="Permanently remove this project and all associated records across ProjectHub."
+        footer={
+          <>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setDeleteTarget(null);
+                setDeleteReason('');
+              }}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={handleDeleteProject}
+              isLoading={isDeleting}
+              leftIcon={<Trash2 className="w-4 h-4" />}
+            >
+              Permanently Delete
+            </Button>
+          </>
+        }
+      >
+        {deleteTarget && (
+          <div className="space-y-4">
+            <div className="p-3.5 bg-rose-50 rounded-xl border border-rose-200 text-xs text-rose-900 flex items-start gap-3">
+              <Trash2 className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-semibold">Irreversible Super Admin Action</p>
+                <p className="leading-relaxed">
+                  Removing <strong>"{deleteTarget.title}"</strong> by <strong>{deleteTarget.creatorName}</strong> will purge all interactions, votes, screenshots, and revisions. The creator will be notified of this action.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#0F1B3D] uppercase tracking-wider mb-1">
+                Administrative Reason <span className="text-[#FF3D88]">*</span>
+              </label>
+              <textarea
+                rows={3}
+                value={deleteReason}
+                onChange={(e) => setDeleteReason(e.target.value)}
+                placeholder="Specify the reason for this administrative removal (minimum 5 characters)..."
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/30 font-sans"
+              />
+              <p className="text-[11px] text-slate-400 mt-1">
+                {deleteReason.trim().length}/5 characters minimum
+              </p>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };

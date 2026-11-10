@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Check, CheckCheck, Clock, AlertTriangle, ArrowRight, Sparkles } from 'lucide-react';
+import { Bell, Check, CheckCheck, Clock, AlertTriangle, ArrowRight, Sparkles, Trash2 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { notificationRepository } from '../repositories/notificationRepository';
 import { AppNotification } from '../types';
@@ -73,6 +73,8 @@ export const NotificationsPage: React.FC = () => {
       case 'REJECTION':
       case 'CHANGES_REQUESTED':
         return <AlertTriangle className="w-4 h-4 text-amber-600" />;
+      case 'PROJECT_DELETED':
+        return <Trash2 className="w-4 h-4 text-rose-600" />;
       default:
         return <Sparkles className="w-4 h-4 text-[#FF3D88]" />;
     }

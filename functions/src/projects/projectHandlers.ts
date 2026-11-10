@@ -21,8 +21,8 @@ export async function submitProjectServer(
   if (!input.title || input.title.trim().length < 3) {
     throw new Error('Title must be at least 3 characters');
   }
-  if (!input.description || input.description.trim().length < 50) {
-    throw new Error('Description must contain approximately 3-4 meaningful lines (at least 50 characters)');
+  if (!input.description || input.description.trim().length < 25) {
+    throw new Error('Description must contain at least 2 lines (at least 25 characters)');
   }
   if (input.projectStatus === 'LIVE' && !input.liveWebsiteUrl) {
     throw new Error('Live website URL is mandatory when project status is LIVE');

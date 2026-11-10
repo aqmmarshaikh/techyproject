@@ -262,4 +262,27 @@ export const interactionRepository = {
       }
     );
   },
+
+  /**
+   * Cleans up all likes, votes, and bookmarks associated with a project.
+   */
+  async deleteProjectInteractions(projectId: string): Promise<void> {
+    try {
+      const [likesSnap, votesSnap, bookmarksSnap] = await Promise.all([
+        getDocs(query(collection(db, LIKES_COLLECTION), where('projectId', '==', projectId))),
+        getDocs(query(collection(db, VOTES_COLLECTION), where('projectId', '==', projectId))),
+        getDocs(query(collection(db, BOOKMARKS_COLLECTION), where('projectId', '==', projectId))),
+      ]);
+
+      const deletes = [
+        ...likesSnap.docs.map((d) => deleteDoc(d.ref)),
+        ...votesSnap.docs.map((d) => deleteDoc(d.ref)),
+        ...bookmarksSnap.docs.map((d) => deleteDoc(d.ref)),
+      ];
+
+      await Promise.allSettled(deletes);
+    } catch (err) {
+      console.warn('[interactionRepository] Non-fatal interactions cleanup warning:', err);
+    }
+  },
 };

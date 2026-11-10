@@ -3,6 +3,9 @@ import { revisionRepository } from '../repositories/revisionRepository';
 import { notificationRepository } from '../repositories/notificationRepository';
 import { adminRepository } from '../repositories/adminRepository';
 import { userRepository } from '../repositories/userRepository';
+import { interactionRepository } from '../repositories/interactionRepository';
+import { reportRepository } from '../repositories/reportRepository';
+import { imageUploadService } from './imageUploadService';
 import { 
   Project, 
   ProjectSubmissionInput, 
@@ -60,6 +63,22 @@ export const projectService = {
       console.warn('[projectService] Creator counter update non-fatal error:', err);
     }
 
+    // Dispatch submission notification to employee
+    try {
+      await notificationRepository.create({
+        id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+        recipientId: creator.id,
+        title: 'Project Submitted for Review',
+        message: `Your project "${newProject.title}" has been submitted and is currently Pending Review.`,
+        type: 'SYSTEM',
+        targetUrl: `/my-projects?tab=pending`,
+        isRead: false,
+        createdAt: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.warn('[projectService] Submission notification warning:', err);
+    }
+
     return newProject;
   },
 
@@ -114,6 +133,22 @@ export const projectService = {
     await projectRepository.update(projectId, {
       activeRevisionId: revisionId,
     });
+
+    // Dispatch revision submission notification
+    try {
+      await notificationRepository.create({
+        id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+        recipientId: creator.id,
+        title: 'Project Revision Submitted',
+        message: `Your revision for "${project.title}" was submitted and is pending administrator review.`,
+        type: 'REVISION_STATUS',
+        targetUrl: `/projects/${project.id}`,
+        isRead: false,
+        createdAt: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.warn('[projectService] Revision notification warning:', err);
+    }
 
     return revision;
   },
@@ -283,6 +318,133 @@ export const projectService = {
       targetId: projectId,
       metadata: { isFeatured },
     });
+  },
+
+  /**
+   * Complete, secure project deletion system.
+   * - Allows creator to delete their own project (at any lifecycle stage: DRAFT, PENDING, APPROVED, REJECTED, ARCHIVED)
+   * - Allows Admins/Super Admins to delete any project (requires documented reason)
+   * - Completely cleans up interactions, revisions, reports, creator aggregate stats, and media assets
+   * - Dispatches appropriate notifications & records immutable audit log
+   */
+  async deleteProject(params: {
+    projectId: string;
+    requestor: UserProfile;
+    reason?: string;
+  }): Promise<void> {
+    const { projectId, requestor, reason } = params;
+    const project = await projectRepository.getById(projectId);
+    if (!project) {
+      throw new Error('Project not found');
+    }
+
+    const isOwner = project.creatorId === requestor.id;
+    const isAdmin = requestor.role === 'ADMIN' || requestor.role === 'SUPER_ADMIN';
+
+    if (!isOwner && !isAdmin) {
+      throw new Error('Unauthorized to delete this project. Only the project owner or administrators can perform this action.');
+    }
+
+    if (isAdmin && !isOwner) {
+      if (!reason || reason.trim().length < 5) {
+        throw new Error('A detailed reason (at least 5 characters) is required when an administrator removes an employee project.');
+      }
+    }
+
+    // 1. Delete primary project document from Firestore
+    await projectRepository.delete(projectId);
+
+    // 2. Parallel cleanup tasks
+    const cleanupTasks: Promise<unknown>[] = [
+      // Clean up interactions (likes, votes, bookmarks)
+      interactionRepository.deleteProjectInteractions(projectId),
+
+      // Clean up revisions
+      revisionRepository.deleteByProject(projectId),
+
+      // Clean up reports
+      reportRepository.deleteByProject(projectId),
+
+      // Safely delete storage media assets
+      imageUploadService.deleteProjectAssets([
+        project.coverImageUrl,
+        ...(project.screenshots || []),
+      ]),
+    ];
+
+    // 3. Decrement creator counters appropriately
+    cleanupTasks.push(
+      (async () => {
+        try {
+          const creator = await userRepository.getById(project.creatorId);
+          if (creator) {
+            const updates: Partial<UserProfile> = {
+              totalSubmittedProjects: Math.max(0, (creator.totalSubmittedProjects || 1) - 1),
+            };
+            if (project.approvalStatus === 'APPROVED') {
+              updates.totalApprovedProjects = Math.max(0, (creator.totalApprovedProjects || 1) - 1);
+              updates.totalLikesReceived = Math.max(0, (creator.totalLikesReceived || 0) - (project.likeCount || 0));
+              updates.totalVotesReceived = Math.max(0, (creator.totalVotesReceived || 0) - (project.totalValidVotes || 0));
+            }
+            await userRepository.updateProfile(creator.id, updates);
+          }
+        } catch (err) {
+          console.warn('[projectService] Creator counters decrement warning:', err);
+        }
+      })()
+    );
+
+    // 4. Notifications
+    cleanupTasks.push(
+      (async () => {
+        try {
+          if (isOwner) {
+            await notificationRepository.create({
+              id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+              recipientId: requestor.id,
+              title: 'Project Deleted',
+              message: `Your project "${project.title}" has been permanently deleted from ProjectHub.`,
+              type: 'SYSTEM',
+              isRead: false,
+              createdAt: new Date().toISOString(),
+            });
+          } else {
+            // Admin removed project - send detailed notice with documented reason
+            await notificationRepository.create({
+              id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+              recipientId: project.creatorId,
+              title: 'Project Removed by Administration',
+              message: `Your project "${project.title}" was removed by an administrator. Reason: ${reason}`,
+              type: 'REJECTION',
+              isRead: false,
+              createdAt: new Date().toISOString(),
+            });
+          }
+        } catch (err) {
+          console.warn('[projectService] Deletion notification warning:', err);
+        }
+      })()
+    );
+
+    // 5. Immutable Audit Log
+    cleanupTasks.push(
+      adminRepository.createAuditLog({
+        actorId: requestor.id,
+        actorEmail: requestor.email,
+        action: 'PROJECT_DELETED',
+        targetEntity: 'projects',
+        targetId: projectId,
+        metadata: {
+          title: project.title,
+          creatorId: project.creatorId,
+          deletedBy: requestor.role,
+          isSelfDelete: isOwner,
+          reason: reason || 'Self deletion by creator',
+        },
+      })
+    );
+
+    await Promise.allSettled(cleanupTasks);
   },
 };
 

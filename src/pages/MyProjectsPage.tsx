@@ -10,12 +10,16 @@ import {
   Edit3, 
   Eye, 
   ExternalLink,
-  MessageSquare
+  MessageSquare,
+  Trash2
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { projectRepository } from '../repositories/projectRepository';
+import { projectService } from '../services/projectService';
 import { Project, ApprovalStatus } from '../types';
 import { Button } from '../components/common/Button';
+import { ConfirmationModal } from '../components/common/ConfirmationModal';
+import { useToast } from '../components/common/Toast';
 import { ProjectStatusBadge, ApprovalStatusBadge } from '../components/common/Badge';
 import { EmptyState } from '../components/common/EmptyState';
 import { formatDate } from '../utils/formatters';
@@ -26,9 +30,12 @@ export const MyProjectsPage: React.FC = () => {
   const { userProfile } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { success: toastSuccess, error: toastError } = useToast();
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [projectToDelete, setProjectToDelete] = useState<Project | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState<TabKey>(
     searchParams.get('tab') === 'action'
       ? 'ACTION'
@@ -66,6 +73,30 @@ export const MyProjectsPage: React.FC = () => {
 
     return () => unsubscribe();
   }, [userProfile?.id]);
+
+  const handleDeleteProject = async () => {
+    if (!projectToDelete || !userProfile) return;
+
+    setIsDeleting(true);
+    try {
+      await projectService.deleteProject({
+        projectId: projectToDelete.id,
+        requestor: userProfile,
+      });
+
+      toastSuccess(
+        'Project Deleted',
+        `"${projectToDelete.title}" has been permanently deleted.`
+      );
+      setProjects((prev) => prev.filter((p) => p.id !== projectToDelete.id));
+      setProjectToDelete(null);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to delete project';
+      toastError('Deletion Failed', msg);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   const filteredProjects = projects.filter((p) => {
     switch (activeTab) {
@@ -264,11 +295,40 @@ export const MyProjectsPage: React.FC = () => {
                   >
                     {p.approvalStatus === 'APPROVED' ? 'Propose Revision' : 'Edit'}
                   </Button>
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    leftIcon={<Trash2 className="w-4 h-4 text-rose-500" />}
+                    onClick={() => setProjectToDelete(p)}
+                    className="text-rose-600 hover:text-rose-700 hover:bg-rose-50"
+                  >
+                    Delete
+                  </Button>
                 </div>
               </div>
             </div>
           ))}
         </div>
+      )}
+
+      {/* Confirmation Modal for Project Deletion */}
+      {projectToDelete && (
+        <ConfirmationModal
+          isOpen={Boolean(projectToDelete)}
+          onClose={() => setProjectToDelete(null)}
+          onConfirm={handleDeleteProject}
+          title={`Delete "${projectToDelete.title}"?`}
+          message={
+            projectToDelete.approvalStatus === 'APPROVED'
+              ? 'Are you sure you want to permanently delete this project? Because it is currently Approved & Live, deleting it will permanently remove it from your portfolio, the public Explore showcase, and the Project Arena leaderboard. This action cannot be undone.'
+              : 'Are you sure you want to permanently delete this project? All submission details, uploaded screenshots, and revision histories will be permanently deleted. This action cannot be undone.'
+          }
+          confirmLabel="Permanently Delete"
+          cancelLabel="Keep Project"
+          variant="danger"
+          isLoading={isDeleting}
+        />
       )}
     </div>
   );

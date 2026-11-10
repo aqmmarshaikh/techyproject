@@ -1,6 +1,7 @@
 import { interactionRepository } from '../repositories/interactionRepository';
 import { projectRepository } from '../repositories/projectRepository';
 import { userRepository } from '../repositories/userRepository';
+import { notificationRepository } from '../repositories/notificationRepository';
 import { VoteChoice, Project } from '../types';
 import { calculateTrendingScore } from '../utils/trending';
 
@@ -26,6 +27,24 @@ export const interactionService = {
         await userRepository.updateProfile(creator.id, {
           totalLikesReceived: Math.max(0, (creator.totalLikesReceived || 0) + delta),
         });
+      }
+
+      // Check like milestone for creator notification (5, 10, 25, 50, 100, 250, 500)
+      if (result.isLiked && [5, 10, 25, 50, 100, 250, 500].includes(result.newCount)) {
+        try {
+          await notificationRepository.create({
+            id: `notif_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+            recipientId: project.creatorId,
+            title: '🔥 New Like Milestone!',
+            message: `Awesome! Your project "${project.title}" has reached ${result.newCount} likes!`,
+            type: 'SYSTEM',
+            targetUrl: `/projects/${project.id}`,
+            isRead: false,
+            createdAt: new Date().toISOString(),
+          });
+        } catch (err) {
+          console.warn('[interactionService] Milestone notification non-fatal warning:', err);
+        }
       }
     }
 
