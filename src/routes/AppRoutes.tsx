@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { AppLayout } from '../layouts/AppLayout';
 import { AdminLayout } from '../layouts/AdminLayout';
+import { SuperAdminLayout } from '../layouts/SuperAdminLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
 
 // Auth Pages
@@ -29,6 +30,12 @@ import { AdminCategoriesPage } from '../pages/admin/AdminCategoriesPage';
 import { AdminReportsPage } from '../pages/admin/AdminReportsPage';
 import { AdminAuditLogsPage } from '../pages/admin/AdminAuditLogsPage';
 import { AdminSettingsPage } from '../pages/admin/AdminSettingsPage';
+
+// Super Admin Pages
+import { SuperAdminOverviewPage } from '../pages/super-admin/SuperAdminOverviewPage';
+import { SuperAdminAdminsPage } from '../pages/super-admin/SuperAdminAdminsPage';
+import { SuperAdminProjectsPage } from '../pages/super-admin/SuperAdminProjectsPage';
+import { SuperAdminSecurityPage } from '../pages/super-admin/SuperAdminSecurityPage';
 
 // Route Guards
 const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -91,6 +98,7 @@ export const AppRoutes: React.FC = () => {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Navigate to="/explore" replace />} />
         <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/projects" element={<Navigate to="/explore" replace />} />
         <Route path="/arena" element={<ArenaPage />} />
         <Route path="/directory" element={<DirectoryPage />} />
         <Route path="/projects/:projectId" element={<ProjectDetailsPage />} />
@@ -162,22 +170,26 @@ export const AppRoutes: React.FC = () => {
         <Route path="employees" element={<AdminEmployeesPage />} />
         <Route path="categories" element={<AdminCategoriesPage />} />
         <Route path="reports" element={<AdminReportsPage />} />
-        <Route
-          path="audit-logs"
-          element={
+      </Route>
+
+      {/* Super Admin Protected Routes */}
+      <Route
+        path="/super-admin"
+        element={
+          <AuthGuard>
             <RoleGuard allowedRoles={['SUPER_ADMIN']}>
-              <AdminAuditLogsPage />
+              <SuperAdminLayout />
             </RoleGuard>
-          }
-        />
-        <Route
-          path="settings"
-          element={
-            <RoleGuard allowedRoles={['SUPER_ADMIN']}>
-              <AdminSettingsPage />
-            </RoleGuard>
-          }
-        />
+          </AuthGuard>
+        }
+      >
+        <Route index element={<SuperAdminOverviewPage />} />
+        <Route path="admins" element={<SuperAdminAdminsPage />} />
+        <Route path="employees" element={<AdminEmployeesPage />} />
+        <Route path="projects" element={<SuperAdminProjectsPage />} />
+        <Route path="settings" element={<AdminSettingsPage />} />
+        <Route path="audit-logs" element={<AdminAuditLogsPage />} />
+        <Route path="security" element={<SuperAdminSecurityPage />} />
       </Route>
 
       {/* Catch-all fallback */}

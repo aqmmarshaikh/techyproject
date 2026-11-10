@@ -1,14 +1,14 @@
 {
-  "0": "AppLayout.tsx",
+  "0": "useAuth.tsx",
   "1": "Button.tsx",
-  "2": "interactionService.ts",
+  "2": "ProjectDetailsPage.tsx",
   "3": "types/index.ts",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
   "7": "compilerOptions",
   "8": "devDependencies",
-  "9": "ProjectSubmitForm.tsx",
+  "9": "package.json",
   "10": "src/index.ts",
   "11": "manifest.json",
   "12": "2. Detailed Schema Definitions",
@@ -24,5 +24,9 @@
   "22": "tailwind.config.js",
   "23": "tailwindcss",
   "24": "vite.config.ts",
-  "25": "useAuth.tsx"
+  "25": "firebase.ts",
+  "26": "react",
+  "27": "react-hook-form",
+  "28": "@types/react",
+  "29": "vitest"
 }

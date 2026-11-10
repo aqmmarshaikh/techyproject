@@ -6,17 +6,19 @@ import {
   UserCog, 
   Tag, 
   Flag, 
-  FileText, 
-  Settings, 
   ArrowLeft,
   Lock
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { RoleBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
+import { RoleSwitcher } from '../components/common/RoleSwitcher';
+import { PreviewModeBanner } from '../components/common/PreviewModeBanner';
+import { useRolePreview } from '../contexts/RolePreviewContext';
 
 export const AdminLayout: React.FC = () => {
-  const { userProfile, isAdmin, isSuperAdmin } = useAuth();
+  const { userProfile, isAdmin } = useAuth();
+  const { effectiveRole } = useRolePreview();
   const navigate = useNavigate();
 
   // Route protection: If user is not an Admin or Super Admin, kick back to explore
@@ -30,30 +32,32 @@ export const AdminLayout: React.FC = () => {
     { title: 'Employees', path: '/admin/employees', icon: <UserCog className="w-4 h-4" /> },
     { title: 'Categories', path: '/admin/categories', icon: <Tag className="w-4 h-4" /> },
     { title: 'Reports & Flagged', path: '/admin/reports', icon: <Flag className="w-4 h-4" /> },
-    ...(isSuperAdmin ? [
-      { title: 'Audit Logs', path: '/admin/audit-logs', icon: <FileText className="w-4 h-4" /> },
-      { title: 'Platform Settings', path: '/admin/settings', icon: <Settings className="w-4 h-4" /> },
-    ] : []),
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
-      {/* Top Banner indicating elevated administrator permissions */}
+      {/* Role Preview Banner */}
+      <PreviewModeBanner />
+
+      {/* Top Banner indicating administrator operations */}
       <header className="bg-[#0F1B3D] text-white border-b border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-[#FF3D88] rounded-xl text-white">
+          <div className="p-2 bg-[#FF3D88] rounded-xl text-white shadow-md">
             <Lock className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h2 className="font-heading font-bold text-base sm:text-lg tracking-tight">Admin Control Center</h2>
-              <RoleBadge role={userProfile!.role} />
+              <RoleBadge role="ADMIN" />
             </div>
-            <p className="text-xs text-white/60 font-sans">Platform Governance, Moderation & System Security</p>
+            <p className="text-xs text-white/60 font-sans">Project Approvals, Moderation & Category Taxonomy</p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Integrated Role Switcher for Super Admin */}
+          <RoleSwitcher />
+
           <Button
             variant="outline"
             size="sm"
@@ -61,13 +65,13 @@ export const AdminLayout: React.FC = () => {
             onClick={() => navigate('/explore')}
             className="bg-white/10 border-white/20 text-white hover:bg-white/20"
           >
-            Back to Showcase
+            Showcase
           </Button>
         </div>
       </header>
 
       {/* Admin Tab Navigation Bar */}
-      <nav className="bg-white border-b border-slate-200 px-4 sm:px-8 overflow-x-auto">
+      <nav className="bg-white border-b border-slate-200 px-4 sm:px-8 overflow-x-auto shadow-2xs">
         <div className="flex items-center gap-1 sm:gap-2 min-w-max py-2">
           {adminNav.map((item) => (
             <NavLink

@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "src/app/App.tsx": {
-    "mtime": 1794308617.6999698,
-    "seen": 1794308928.4390628,
-    "ast_hash": "d567b389a77344056ea2a8f1e4381059",
+    "mtime": 1794312873.6969764,
+    "seen": 1794313122.4486403,
+    "ast_hash": "4e54acfcd6d33b46c9cf8479cc61a883",
     "semantic_hash": ""
   },
   "src/app/config.ts": {
@@ -204,21 +204,21 @@
     "semantic_hash": ""
   },
   "src/hooks/useAuth.tsx": {
-    "mtime": 1794310728.3678916,
-    "seen": 1794310756.210436,
-    "ast_hash": "c4a3b6faa082175a329453dd21c731b5",
+    "mtime": 1794312941.8059144,
+    "seen": 1794313122.4486666,
+    "ast_hash": "df2b4d620c3fbbcb751fab3541fb5c32",
     "semantic_hash": ""
   },
   "src/layouts/AdminLayout.tsx": {
-    "mtime": 1794304566.9044344,
-    "seen": 1794304719.5426972,
-    "ast_hash": "0d2a23e1a06b8de7f7cd21eaa85d71ab",
+    "mtime": 1794312719.9624438,
+    "seen": 1794313122.448667,
+    "ast_hash": "d0bcececfe23e2bb7e218af85f8ea310",
     "semantic_hash": ""
   },
   "src/layouts/AppLayout.tsx": {
-    "mtime": 1794308725.898813,
-    "seen": 1794308928.4390864,
-    "ast_hash": "f0c4a6d50e362a0f719e9b734f7b2f57",
+    "mtime": 1794312825.6595469,
+    "seen": 1794313122.448668,
+    "ast_hash": "ca79ae375848ae16c1dfa33daa48a182",
     "semantic_hash": ""
   },
   "src/layouts/AuthLayout.tsx": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794307336.8997905,
-    "seen": 1794307689.8257368,
-    "ast_hash": "12980222d2efa215f26968ec387dd265",
+    "mtime": 1794312956.6514127,
+    "seen": 1794313122.4486835,
+    "ast_hash": "625622198477c4e4e036178f086f2506",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
-    "mtime": 1794308652.7645378,
-    "seen": 1794308928.4391108,
-    "ast_hash": "6e9831808bfa07316f9f5694d9a608b0",
+    "mtime": 1794312863.1798012,
+    "seen": 1794313122.4486964,
+    "ast_hash": "709fea675b5de5787812e7ada80c243d",
     "semantic_hash": ""
   },
   "src/schemas/adminSchemas.ts": {
@@ -432,9 +432,9 @@
     "semantic_hash": ""
   },
   "src/services/authService.ts": {
-    "mtime": 1794307173.2177827,
-    "seen": 1794307689.8257518,
-    "ast_hash": "f6d5a4c88fcb25a724b248c790a9db87",
+    "mtime": 1794312915.9428344,
+    "seen": 1794313122.4487073,
+    "ast_hash": "698c0e6637a83d79f419056d14d17330",
     "semantic_hash": ""
   },
   "src/services/cloudinaryService.ts": {
@@ -732,9 +732,9 @@
     "semantic_hash": ""
   },
   "tests/roles.test.ts": {
-    "mtime": 1794307743.6542814,
-    "seen": 1794308928.4391398,
-    "ast_hash": "f719403cda7d454b6d08c2336122be5a",
+    "mtime": 1794313072.4330266,
+    "seen": 1794313122.4487293,
+    "ast_hash": "6fbda6b8be963b2e749ef459962621c7",
     "semantic_hash": ""
   },
   "src/components/common/AuthModal.tsx": {
@@ -744,9 +744,63 @@
     "semantic_hash": ""
   },
   "src/services/imageUploadService.ts": {
-    "mtime": 1794311368.5816197,
-    "seen": 1794312116.3339968,
-    "ast_hash": "7e1909a68c36084ea95fd433de0ab1ba",
+    "mtime": 1794312201.0550652,
+    "seen": 1794313122.448709,
+    "ast_hash": "4e2ea2ccf598f05de18179a8778c098b",
+    "semantic_hash": ""
+  },
+  "src/components/common/PreviewModeBanner.tsx": {
+    "mtime": 1794312559.4334693,
+    "seen": 1794313122.4486506,
+    "ast_hash": "17e14382664cab27cd47c848b92f2c94",
+    "semantic_hash": ""
+  },
+  "src/components/common/RoleSwitcher.tsx": {
+    "mtime": 1794312547.393028,
+    "seen": 1794313122.4486516,
+    "ast_hash": "c627b5f49850938a19029728c1913fb3",
+    "semantic_hash": ""
+  },
+  "src/contexts/RolePreviewContext.tsx": {
+    "mtime": 1794312525.0978148,
+    "seen": 1794313122.4486594,
+    "ast_hash": "611aea47065261bc62be10a73d07b23e",
+    "semantic_hash": ""
+  },
+  "src/layouts/SuperAdminLayout.tsx": {
+    "mtime": 1794312694.3047874,
+    "seen": 1794313122.4486697,
+    "ast_hash": "1d16013735af985f9d92b8e6b9b78f3e",
+    "semantic_hash": ""
+  },
+  "src/pages/super-admin/SuperAdminAdminsPage.tsx": {
+    "mtime": 1794312997.3557029,
+    "seen": 1794313122.4486854,
+    "ast_hash": "0b2788aa70bd76d1406015939b6235a3",
+    "semantic_hash": ""
+  },
+  "src/pages/super-admin/SuperAdminOverviewPage.tsx": {
+    "mtime": 1794313003.760669,
+    "seen": 1794313122.4486861,
+    "ast_hash": "9fd329f833dcb08cba434b9b5def7bdd",
+    "semantic_hash": ""
+  },
+  "src/pages/super-admin/SuperAdminProjectsPage.tsx": {
+    "mtime": 1794313033.546131,
+    "seen": 1794313122.448687,
+    "ast_hash": "e5ea0d592db444b7a9e6cf3dc754a7b5",
+    "semantic_hash": ""
+  },
+  "src/pages/super-admin/SuperAdminSecurityPage.tsx": {
+    "mtime": 1794312682.126679,
+    "seen": 1794313122.4486878,
+    "ast_hash": "9afebff59628890ca6b343325ee0754b",
+    "semantic_hash": ""
+  },
+  "tests/rolePreview.test.ts": {
+    "mtime": 1794313085.3555138,
+    "seen": 1794313122.4487286,
+    "ast_hash": "697204fd62ef59a4bcccad64fff322ca",
     "semantic_hash": ""
   }
 }

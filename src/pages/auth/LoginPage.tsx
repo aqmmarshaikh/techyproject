@@ -31,9 +31,15 @@ export const LoginPage: React.FC = () => {
   const onSubmit = async (data: LoginFormData) => {
     setAuthError(null);
     try {
-      await login(data.email, data.password);
+      const profile = await login(data.email, data.password);
       toastSuccess('Authenticated', 'Welcome back to Project Hub.');
-      navigate('/explore');
+      if (profile.role === 'SUPER_ADMIN') {
+        navigate('/super-admin');
+      } else if (profile.role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/explore');
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid credentials';
       setAuthError(msg);
@@ -45,9 +51,15 @@ export const LoginPage: React.FC = () => {
     setAuthError(null);
     setIsGoogleSubmitting(true);
     try {
-      await loginWithGoogle();
+      const profile = await loginWithGoogle();
       toastSuccess('Authenticated', 'Signed in successfully with your Google account.');
-      navigate('/explore');
+      if (profile.role === 'SUPER_ADMIN') {
+        navigate('/super-admin');
+      } else if (profile.role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/explore');
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Google sign-in failed. Please try again.';
       setAuthError(msg);

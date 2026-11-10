@@ -13,8 +13,8 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
   isSuperAdmin: boolean;
-  login: (email: string, pass: string) => Promise<void>;
-  loginWithGoogle: () => Promise<void>;
+  login: (email: string, pass: string) => Promise<UserProfile>;
+  loginWithGoogle: () => Promise<UserProfile>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   refreshProfile: () => Promise<void>;
@@ -92,10 +92,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               setUserProfile(null);
               setError('Your account is currently suspended.');
             } else {
-              // Ensure role strictly reflects email policy
-              if (profile.role !== expectedRole) {
-                await userRepository.updateProfile(profile.id, { role: expectedRole });
-                profile.role = expectedRole;
+              // Ensure role strictly adheres to role hierarchy and email policy:
+              // 1. SUPER_ADMIN takes absolute precedence if listed in superAdminEmails
+              // 2. ADMIN takes precedence if listed in adminEmails or already assigned in Firestore
+              // 3. Otherwise defaults to EMPLOYEE
+              let targetRole = profile.role || 'EMPLOYEE';
+              if (expectedRole === 'SUPER_ADMIN') {
+                targetRole = 'SUPER_ADMIN';
+              } else if (expectedRole === 'ADMIN' && profile.role !== 'SUPER_ADMIN') {
+                targetRole = 'ADMIN';
+              }
+
+              if (profile.role !== targetRole) {
+                await userRepository.updateProfile(profile.id, { role: targetRole });
+                profile.role = targetRole;
               }
               setUserProfile(profile);
             }
@@ -136,13 +146,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => unsubscribe();
   }, []);
 
-  const login = async (email: string, pass: string) => {
+  const login = async (email: string, pass: string): Promise<UserProfile> => {
     setIsLoading(true);
     setError(null);
     try {
       const profile = await authService.login(email, pass);
       setUserProfile(profile);
       closeAuthModal();
+      return profile;
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Login failed';
       setError(msg);
@@ -152,13 +163,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const loginWithGoogle = async () => {
+  const loginWithGoogle = async (): Promise<UserProfile> => {
     setIsLoading(true);
     setError(null);
     try {
       const profile = await authService.loginWithGoogle();
       setUserProfile(profile);
       closeAuthModal();
+      return profile;
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Google sign-in failed';
       setError(msg);

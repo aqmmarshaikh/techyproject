@@ -48,12 +48,23 @@ export const authService = {
       throw new Error('Your account is suspended. Please contact the platform administrator.');
     }
 
-    // Ensure role strictly adheres to email policy
+    // Ensure role strictly adheres to role hierarchy and email policy:
+    // 1. SUPER_ADMIN takes absolute precedence if listed in superAdminEmails
+    // 2. ADMIN takes precedence if listed in adminEmails or already assigned in Firestore
+    // 3. Otherwise defaults to EMPLOYEE
     const updates: Partial<UserProfile> = {
       lastLoginAt: new Date().toISOString(),
     };
-    if (profile.role !== expectedRole) {
-      updates.role = expectedRole;
+
+    let targetRole = profile.role || 'EMPLOYEE';
+    if (expectedRole === 'SUPER_ADMIN') {
+      targetRole = 'SUPER_ADMIN';
+    } else if (expectedRole === 'ADMIN' && profile.role !== 'SUPER_ADMIN') {
+      targetRole = 'ADMIN';
+    }
+
+    if (profile.role !== targetRole) {
+      updates.role = targetRole;
     }
     await userRepository.updateProfile(profile.id, updates);
     return { ...profile, ...updates };
@@ -62,6 +73,7 @@ export const authService = {
   /**
    * Google Sign-In with automatic role assignment:
    * ammarshaikh6100@gmail.com -> SUPER_ADMIN
+   * Designated admin emails or assigned admins -> ADMIN
    * All other users -> EMPLOYEE
    */
   async loginWithGoogle(): Promise<UserProfile> {
@@ -79,8 +91,16 @@ export const authService = {
       const updates: Partial<UserProfile> = {
         lastLoginAt: new Date().toISOString(),
       };
-      if (profile.role !== expectedRole) {
-        updates.role = expectedRole;
+
+      let targetRole = profile.role || 'EMPLOYEE';
+      if (expectedRole === 'SUPER_ADMIN') {
+        targetRole = 'SUPER_ADMIN';
+      } else if (expectedRole === 'ADMIN' && profile.role !== 'SUPER_ADMIN') {
+        targetRole = 'ADMIN';
+      }
+
+      if (profile.role !== targetRole) {
+        updates.role = targetRole;
       }
       if (!profile.avatarUrl && user.photoURL) {
         updates.avatarUrl = user.photoURL;

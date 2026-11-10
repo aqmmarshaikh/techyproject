@@ -23,10 +23,14 @@ import { useAuth } from '../hooks/useAuth';
 import { MAIN_NAV_ITEMS, ADMIN_NAV_ITEMS } from '../constants/navigation';
 import { RoleBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
+import { RoleSwitcher } from '../components/common/RoleSwitcher';
+import { PreviewModeBanner } from '../components/common/PreviewModeBanner';
+import { useRolePreview } from '../contexts/RolePreviewContext';
 import { notificationRepository } from '../repositories/notificationRepository';
 
 export const AppLayout: React.FC = () => {
   const { userProfile, isAuthenticated, logout, isAdmin, isSuperAdmin, openAuthModal } = useAuth();
+  const { effectiveRole } = useRolePreview();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const navigate = useNavigate();
@@ -134,14 +138,31 @@ export const AppLayout: React.FC = () => {
           </nav>
         </div>
 
-        {/* Admin Section (Conditional) */}
-        {isAdmin && (
+        {/* Admin Section (Hidden in Employee Preview) */}
+        {effectiveRole !== 'EMPLOYEE' && (
           <div className="pt-2 border-t border-white/10">
             <div className="flex items-center justify-between px-3 mb-2">
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#FF3D88] font-bold">Admin Center</p>
-              <RoleBadge role={userProfile!.role} />
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[#FF3D88] font-bold">
+                {effectiveRole === 'SUPER_ADMIN' ? 'Governance' : 'Admin Center'}
+              </p>
+              <RoleBadge role={effectiveRole} />
             </div>
             <nav className="space-y-1">
+              {effectiveRole === 'SUPER_ADMIN' && (
+                <NavLink
+                  to="/super-admin"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all ${
+                      isActive
+                        ? 'bg-purple-600/30 text-white border-l-4 border-purple-400'
+                        : 'text-white/75 hover:text-white hover:bg-white/10'
+                    }`
+                  }
+                >
+                  <ShieldAlert className="w-5 h-5 text-purple-400" />
+                  <span>Super Admin</span>
+                </NavLink>
+              )}
               <NavLink
                 to="/admin"
                 className={({ isActive }) =>
@@ -153,7 +174,7 @@ export const AppLayout: React.FC = () => {
                 }
               >
                 <ShieldAlert className="w-5 h-5 text-[#FF3D88]" />
-                <span>Control Center</span>
+                <span>Admin Panel</span>
               </NavLink>
             </nav>
           </div>
@@ -211,58 +232,65 @@ export const AppLayout: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-[#F8FAFC]">
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 shadow-sm fixed inset-y-0 left-0 z-30">
-        {sidebarContent}
-      </aside>
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
+      {/* Role Preview Banner */}
+      <PreviewModeBanner />
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden flex">
-          <div
-            className="fixed inset-0 bg-[#0F1B3D]/60 backdrop-blur-sm"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="relative w-80 max-w-[85%] bg-[#0F1B3D] h-full shadow-2xl z-10 flex flex-col">
-            {sidebarContent}
+      <div className="flex-1 flex">
+        {/* Desktop Sidebar */}
+        <aside className="hidden lg:block w-72 shrink-0 border-r border-slate-200 shadow-sm fixed inset-y-0 left-0 z-30">
+          {sidebarContent}
+        </aside>
+
+        {/* Mobile Drawer */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden flex">
+            <div
+              className="fixed inset-0 bg-[#0F1B3D]/60 backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="relative w-80 max-w-[85%] bg-[#0F1B3D] h-full shadow-2xl z-10 flex flex-col">
+              {sidebarContent}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 lg:pl-72">
-        {/* Top Navbar */}
-        <header className="sticky top-0 z-20 h-16 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="p-2 rounded-xl text-slate-600 hover:text-[#0F1B3D] hover:bg-slate-100 lg:hidden"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-            <span className="font-heading font-semibold text-base sm:text-lg text-[#0F1B3D] capitalize">
-              {location.pathname.replace('/', '').replace('-', ' ') || 'Explore'}
-            </span>
-          </div>
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-w-0 lg:pl-72">
+          {/* Top Navbar */}
+          <header className="sticky top-0 z-20 h-16 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 rounded-xl text-slate-600 hover:text-[#0F1B3D] hover:bg-slate-100 lg:hidden"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+              <span className="font-heading font-semibold text-base sm:text-lg text-[#0F1B3D] capitalize">
+                {location.pathname.replace('/', '').replace('-', ' ') || 'Explore'}
+              </span>
+            </div>
 
-          <div className="flex items-center gap-3">
-            {/* Quick Submit Project Action */}
-            <Button
-              variant={isAuthenticated ? 'primary' : 'outline'}
-              size="sm"
-              leftIcon={<Plus className={`w-4 h-4 ${!isAuthenticated ? 'text-[#FF3D88]' : ''}`} />}
-              onClick={() => {
-                if (!isAuthenticated) {
-                  openAuthModal('Sign in to submit your project for review.');
-                  return;
-                }
-                navigate('/submit');
-              }}
-            >
-              <span className="hidden sm:inline">Submit Project</span>
-              <span className="sm:hidden">Submit</span>
-            </Button>
+            <div className="flex items-center gap-3">
+              {/* Role Switcher for Super Admin */}
+              <RoleSwitcher />
+
+              {/* Quick Submit Project Action */}
+              <Button
+                variant={isAuthenticated ? 'primary' : 'outline'}
+                size="sm"
+                leftIcon={<Plus className={`w-4 h-4 ${!isAuthenticated ? 'text-[#FF3D88]' : ''}`} />}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    openAuthModal('Sign in to submit your project for review.');
+                    return;
+                  }
+                  navigate('/submit');
+                }}
+              >
+                <span className="hidden sm:inline">Submit Project</span>
+                <span className="sm:hidden">Submit</span>
+              </Button>
 
             {isAuthenticated ? (
               <>
@@ -313,6 +341,7 @@ export const AppLayout: React.FC = () => {
         </main>
       </div>
     </div>
+  </div>
   );
 };
 
