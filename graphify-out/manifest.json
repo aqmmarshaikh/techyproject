@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794319878.2886653,
-    "seen": 1794320225.699406,
-    "ast_hash": "e82a378eb99d0c2549478678f2ef7507",
+    "mtime": 1794378547.6432724,
+    "seen": 1794378680.6171658,
+    "ast_hash": "bd63616a78e443237f18c5aaa8836655",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
-    "mtime": 1794339893.6710684,
-    "seen": 1794340055.4784703,
-    "ast_hash": "bd434168f47eb7888b3e4acba629844e",
+    "mtime": 1794378614.2574067,
+    "seen": 1794378680.6171844,
+    "ast_hash": "570215c4e1dd8bb89b9ecbe95d6e5ca6",
     "semantic_hash": ""
   },
   "src/schemas/adminSchemas.ts": {
@@ -654,9 +654,9 @@
     "semantic_hash": ""
   },
   "vercel.json": {
-    "mtime": 1794306676.31671,
-    "seen": 1794307689.8257782,
-    "ast_hash": "cc4569614c3a0bb4c9124b8b38b6224b",
+    "mtime": 1794378573.2740693,
+    "seen": 1794378680.61723,
+    "ast_hash": "83e11019def7bc9b56db3df2e4bba6a9",
     "semantic_hash": ""
   },
   "public/robots.txt": {
@@ -810,9 +810,9 @@
     "semantic_hash": ""
   },
   "src/pages/LandingPage.tsx": {
-    "mtime": 1794339618.0280797,
-    "seen": 1794340055.4784408,
-    "ast_hash": "2ac0fe312c202e89a87fa459c0092c90",
+    "mtime": 1794378756.3079743,
+    "seen": 1794378794.6656938,
+    "ast_hash": "5bffcfe28e308a5b11e85507dbb3e065",
     "semantic_hash": ""
   },
   "tests/landingSession.test.ts": {
@@ -828,9 +828,9 @@
     "semantic_hash": ""
   },
   "src/components/common/LeaderboardPodium.tsx": {
-    "mtime": 1794339927.9498518,
-    "seen": 1794340055.4784114,
-    "ast_hash": "b8ac0a0fe1731321564f3c1d5fc15664",
+    "mtime": 1794378741.656973,
+    "seen": 1794378794.665665,
+    "ast_hash": "91e1a38aa3a63ea4af331c91d9f17d7c",
     "semantic_hash": ""
   },
   "src/components/common/UserAvatar.tsx": {
@@ -882,15 +882,27 @@
     "semantic_hash": ""
   },
   "src/components/common/ErrorBoundary.tsx": {
-    "mtime": 1794339504.8266428,
-    "seen": 1794340055.47841,
-    "ast_hash": "4908e8f0895b2b1af55a2b5dc06183d5",
+    "mtime": 1794340092.544381,
+    "seen": 1794378680.61712,
+    "ast_hash": "4704cb75acb1ed9c4e415da272dc9a6f",
     "semantic_hash": ""
   },
   "tests/auditImprovements.test.ts": {
     "mtime": 1794339991.6497338,
     "seen": 1794340055.4785016,
     "ast_hash": "16e34e66902c67f9b8c8f585989065a1",
+    "semantic_hash": ""
+  },
+  "src/pages/NotFoundPage.tsx": {
+    "mtime": 1794378521.0296538,
+    "seen": 1794378680.6171541,
+    "ast_hash": "5e58b947589ed9d2f3d79c8ef515bd4b",
+    "semantic_hash": ""
+  },
+  "tests/routingAndRefresh.test.ts": {
+    "mtime": 1794378644.1519828,
+    "seen": 1794378680.6172235,
+    "ast_hash": "34afd43f1e723f0693a065dec8705a9e",
     "semantic_hash": ""
   }
 }

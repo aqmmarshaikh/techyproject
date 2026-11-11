@@ -131,13 +131,18 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
             onClick={() => onUserClick?.(first)}
             className="flex-1 min-w-0 max-w-[160px] sm:max-w-[190px] flex flex-col items-center cursor-pointer group transition-transform duration-300 hover:-translate-y-2 z-10"
           >
-            {/* User Avatar with Crown */}
-            <div className="relative mb-3">
+            {/* User Avatar with Crown and Animated Winner Ring */}
+            <div className="relative mb-3 flex items-center justify-center">
+              {/* Slow rotating glow ring (8-12s) around 1st place avatar only with reduced-motion support */}
+              <div 
+                className="absolute -inset-1.5 rounded-full p-[2px] bg-gradient-to-tr from-[#FF3D88] via-pink-400 to-[#FF3D88] animate-spin motion-reduce:animate-none pointer-events-none opacity-85 shadow-[0_0_15px_rgba(255,61,136,0.4)]"
+                style={{ animationDuration: '10s' }}
+              />
               <UserAvatar
                 user={first}
                 size="podium-first"
                 showCrown={true}
-                className="ring-4 ring-[#FF3D88] shadow-[0_0_25px_rgba(255,61,136,0.5)]"
+                className="relative z-10 ring-2 ring-[#FF3D88] shadow-[0_0_20px_rgba(255,61,136,0.45)]"
               />
             </div>
 

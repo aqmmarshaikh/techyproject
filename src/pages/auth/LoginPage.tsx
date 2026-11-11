@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Mail, Lock, AlertCircle, ArrowRight } from 'lucide-react';
 import { loginSchema, LoginFormData } from '../../schemas/authSchemas';
 import { useAuth } from '../../hooks/useAuth';
@@ -11,7 +11,7 @@ import { useToast } from '../../components/common/Toast';
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login, loginWithGoogle } = useAuth();
+  const { isAuthenticated, userProfile, isLoading, login, loginWithGoogle } = useAuth();
   const { success: toastSuccess, error: toastError } = useToast();
   const [authError, setAuthError] = useState<string | null>(null);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
@@ -29,29 +29,78 @@ export const LoginPage: React.FC = () => {
     },
   });
 
+  // Smart post-login navigation handler
   const handlePostLoginRedirect = (role: string) => {
     try {
       sessionStorage.setItem('projecthub_entry_completed', 'true');
-    } catch {}
+    } catch {
+      // safe fallback
+    }
 
-    const intended = 
-      (location.state as any)?.from?.pathname || 
+    const stateFrom = (location.state as any)?.from;
+    const intendedPath = 
+      (typeof stateFrom === 'string' ? stateFrom : stateFrom?.pathname) || 
       sessionStorage.getItem('projecthub_intended_destination');
 
-    if (intended && intended !== '/' && intended !== '/welcome') {
-      sessionStorage.removeItem('projecthub_intended_destination');
-      navigate(intended);
+    // Reject open redirects, external protocols, and protocol-relative URLs
+    const isSafeInternalPath =
+      intendedPath &&
+      intendedPath.startsWith('/') &&
+      !intendedPath.startsWith('//') &&
+      !intendedPath.includes('://');
+
+    if (isSafeInternalPath && intendedPath !== '/' && intendedPath !== '/welcome' && intendedPath !== '/login') {
+      try {
+        sessionStorage.removeItem('projecthub_intended_destination');
+      } catch {
+        // safe fallback
+      }
+
+      // Verify role authorization before restoring intended destination to prevent unauthorized loops
+      if (intendedPath.startsWith('/admin')) {
+        if (role !== 'ADMIN' && role !== 'SUPER_ADMIN') {
+          navigate('/explore', { replace: true });
+          return;
+        }
+      }
+      if (intendedPath.startsWith('/super-admin')) {
+        if (role !== 'SUPER_ADMIN') {
+          navigate('/explore', { replace: true });
+          return;
+        }
+      }
+
+      const search = (stateFrom as any)?.search || '';
+      const hash = (stateFrom as any)?.hash || '';
+      navigate(`${intendedPath}${search}${hash}`, { replace: true });
       return;
     }
 
-    if (role === 'SUPER_ADMIN') {
-      navigate('/super-admin');
-    } else if (role === 'ADMIN') {
-      navigate('/admin');
-    } else {
-      navigate('/dashboard');
-    }
+    // Default destination is /explore as mandated by project requirements
+    navigate('/explore', { replace: true });
   };
+
+  // Case 0: Authentication state is initializing from Firebase
+  if (isLoading) {
+    return (
+      <div className="min-h-[280px] flex items-center justify-center p-8">
+        <div className="w-8 h-8 rounded-full border-2 border-[#FF3D88] border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  // Case 3: Already authenticated user visiting /login - smart redirect to explore
+  if (isAuthenticated && userProfile) {
+    const stateFrom = (location.state as any)?.from;
+    const intendedPath = typeof stateFrom === 'string' ? stateFrom : stateFrom?.pathname;
+    const isSafeInternalPath =
+      intendedPath &&
+      intendedPath.startsWith('/') &&
+      !intendedPath.startsWith('//') &&
+      !intendedPath.includes('://');
+    const destination = (isSafeInternalPath && intendedPath !== '/login') ? intendedPath : '/explore';
+    return <Navigate to={destination} replace />;
+  }
 
   const onSubmit = async (data: LoginFormData) => {
     setAuthError(null);
@@ -200,4 +249,3 @@ export const LoginPage: React.FC = () => {
     </div>
   );
 };
-

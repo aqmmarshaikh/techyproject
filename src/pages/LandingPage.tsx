@@ -351,7 +351,16 @@ export const LandingPage: React.FC = () => {
       {/* ========================================================= */}
       {/* SECTION 02 — HERO SECTION                                 */}
       {/* ========================================================= */}
-      <section id="hero" className="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="hero" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+        {/* Subtle Background Texture: Grid overlay (2.5-4% opacity) */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.035] -z-10"
+          style={{
+            backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+            backgroundSize: '36px 36px'
+          }}
+        />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Headline & Action */}
           <div className="lg:col-span-6 space-y-6 text-left">
@@ -408,7 +417,9 @@ export const LandingPage: React.FC = () => {
           </div>
 
           {/* Right Column: Top 3 User Leaderboard Podium */}
-          <div className="lg:col-span-6 w-full">
+          <div className="lg:col-span-6 w-full relative">
+            {/* Subtle Pink Ambient Glow (10-14% opacity) behind the leaderboard */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-[#FF3D88]/12 via-[#E02D73]/10 to-indigo-600/10 rounded-[48px] blur-3xl pointer-events-none -z-10" />
             <LeaderboardPodium
               users={topUsers}
               isLoading={isLoadingData}
