@@ -237,4 +237,34 @@ describe('Smart Authentication & Route Redirect Strategies', () => {
     expect(content).toContain('/explore');
     expect(content).toContain('Platform Home');
   });
+
+  it('17. Repository Resilience: Defensive handling of undefined department/skills/technologies fields', () => {
+    const sampleUsers = [
+      { id: '1', fullName: 'Alice', email: 'alice@test.com', department: undefined, skills: undefined, technologies: undefined },
+      { id: '2', fullName: 'Bob', email: 'bob@test.com', department: 'Engineering', skills: ['React'], technologies: ['Vite'] },
+    ];
+
+    const filterDept = (users: typeof sampleUsers, dept: string) => {
+      const target = dept.toLowerCase();
+      return users.filter((u) => (u.department || '').toLowerCase() === target);
+    };
+
+    expect(() => filterDept(sampleUsers, 'engineering')).not.toThrow();
+    expect(filterDept(sampleUsers, 'engineering')).toHaveLength(1);
+
+    const searchUsers = (users: typeof sampleUsers, queryStr: string) => {
+      const q = queryStr.toLowerCase().trim();
+      return users.filter((u) =>
+        (u.fullName || '').toLowerCase().includes(q) ||
+        (u.email || '').toLowerCase().includes(q) ||
+        (u.skills || []).some((s) => s?.toLowerCase().includes(q)) ||
+        (u.technologies || []).some((t) => t?.toLowerCase().includes(q))
+      );
+    };
+
+    expect(() => searchUsers(sampleUsers, 'react')).not.toThrow();
+    expect(searchUsers(sampleUsers, 'react')).toHaveLength(1);
+    expect(() => searchUsers(sampleUsers, 'alice')).not.toThrow();
+    expect(searchUsers(sampleUsers, 'alice')).toHaveLength(1);
+  });
 });

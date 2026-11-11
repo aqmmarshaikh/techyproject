@@ -63,9 +63,10 @@ export const userRepository = {
     const snap = await getDocs(q);
     let users = snap.docs.map((d) => d.data() as UserProfile);
 
-    // In-memory filter for department & search query to handle compound text searches
+    // In-memory filter for department & search query to handle compound text searches with safe fallback
     if (params?.department && params.department !== 'all') {
-      users = users.filter((u) => u.department.toLowerCase() === params.department?.toLowerCase());
+      const deptTarget = params.department.toLowerCase();
+      users = users.filter((u) => (u.department || '').toLowerCase() === deptTarget);
     }
 
     if (params?.role) {
@@ -75,11 +76,11 @@ export const userRepository = {
     if (params?.searchQuery && params.searchQuery.trim().length > 0) {
       const qLower = params.searchQuery.toLowerCase().trim();
       users = users.filter((u) => 
-        u.fullName.toLowerCase().includes(qLower) ||
-        u.email.toLowerCase().includes(qLower) ||
-        u.designation.toLowerCase().includes(qLower) ||
-        u.skills.some((s) => s.toLowerCase().includes(qLower)) ||
-        u.technologies.some((t) => t.toLowerCase().includes(qLower))
+        (u.fullName || '').toLowerCase().includes(qLower) ||
+        (u.email || '').toLowerCase().includes(qLower) ||
+        (u.designation || '').toLowerCase().includes(qLower) ||
+        (u.skills || []).some((s) => s?.toLowerCase().includes(qLower)) ||
+        (u.technologies || []).some((t) => t?.toLowerCase().includes(qLower))
       );
     }
 

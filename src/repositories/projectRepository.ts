@@ -87,8 +87,9 @@ export const projectRepository = {
 
     // Department filter
     if (criteria?.department && criteria.department !== 'all') {
+      const deptLower = criteria.department.toLowerCase();
       projects = projects.filter(
-        (p) => p.creatorDepartment?.toLowerCase() === criteria.department?.toLowerCase()
+        (p) => (p.creatorDepartment || '').toLowerCase() === deptLower
       );
     }
 

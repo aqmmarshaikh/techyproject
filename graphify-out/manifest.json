@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "src/pages/auth/LoginPage.tsx": {
-    "mtime": 1794378547.6432724,
-    "seen": 1794378680.6171658,
-    "ast_hash": "bd63616a78e443237f18c5aaa8836655",
+    "mtime": 1794379058.255788,
+    "seen": 1794380132.6690984,
+    "ast_hash": "b5804e8528f21e259e6750b19da7e13c",
     "semantic_hash": ""
   },
   "src/pages/auth/ResetPasswordPage.tsx": {
@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "src/repositories/projectRepository.ts": {
-    "mtime": 1794311406.7682734,
-    "seen": 1794312116.3339381,
-    "ast_hash": "c87acac899fcac066ab7b672f198057b",
+    "mtime": 1794380070.6138275,
+    "seen": 1794380132.6691082,
+    "ast_hash": "651c235a457167f81990329390233c81",
     "semantic_hash": ""
   },
   "src/repositories/reportRepository.ts": {
@@ -384,9 +384,9 @@
     "semantic_hash": ""
   },
   "src/repositories/userRepository.ts": {
-    "mtime": 1794310475.4689634,
-    "seen": 1794310756.2104619,
-    "ast_hash": "f08c53195a779cec73fb79ab47725ee4",
+    "mtime": 1794380041.1508932,
+    "seen": 1794380132.6691108,
+    "ast_hash": "de80ddb77b80e2e5156db6cd1fa07fa5",
     "semantic_hash": ""
   },
   "src/routes/AppRoutes.tsx": {
@@ -828,9 +828,9 @@
     "semantic_hash": ""
   },
   "src/components/common/LeaderboardPodium.tsx": {
-    "mtime": 1794378741.656973,
-    "seen": 1794378794.665665,
-    "ast_hash": "91e1a38aa3a63ea4af331c91d9f17d7c",
+    "mtime": 1794379031.7266798,
+    "seen": 1794380132.6690555,
+    "ast_hash": "f9c8b1be5aed8b204020d11624447b56",
     "semantic_hash": ""
   },
   "src/components/common/UserAvatar.tsx": {
@@ -894,15 +894,15 @@
     "semantic_hash": ""
   },
   "src/pages/NotFoundPage.tsx": {
-    "mtime": 1794378521.0296538,
-    "seen": 1794378680.6171541,
-    "ast_hash": "5e58b947589ed9d2f3d79c8ef515bd4b",
+    "mtime": 1794378824.0047193,
+    "seen": 1794380132.6690874,
+    "ast_hash": "0f2206ef842cd16b3de5322bc94ca420",
     "semantic_hash": ""
   },
   "tests/routingAndRefresh.test.ts": {
-    "mtime": 1794378644.1519828,
-    "seen": 1794378680.6172235,
-    "ast_hash": "34afd43f1e723f0693a065dec8705a9e",
+    "mtime": 1794380094.7253828,
+    "seen": 1794380132.66915,
+    "ast_hash": "07d3d0c4152a8236d606c510d36e04b9",
     "semantic_hash": ""
   }
 }
