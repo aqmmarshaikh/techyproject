@@ -10,7 +10,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "navitem",
       "source_file": "src/constants/navigation.ts",
@@ -23,24 +23,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "rolepreviewcontexttype",
       "source_file": "src/contexts/RolePreviewContext.tsx",
       "source_location": "L6"
     },
     {
-      "id": "src_types_user_accountstatus",
-      "label": "AccountStatus",
+      "id": "src_hooks_useauth_authcontexttype",
+      "label": "AuthContextType",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "accountstatus",
-      "source_file": "src/types/user.ts",
-      "source_location": "L3"
+      "norm_label": "authcontexttype",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L8"
     },
     {
       "id": "src_types_user_userrole",
@@ -49,24 +49,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "userrole",
       "source_file": "src/types/user.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_types_user_usersummary",
-      "label": "UserSummary",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "UserRole",
-      "file_type": "code",
-      "norm_label": "usersummary",
-      "source_file": "src/types/user.ts",
-      "source_location": "L29"
     },
     {
       "id": "tests_rolepreview_test_rolepreviewsimulator",
@@ -75,11 +62,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "rolepreviewsimulator",
       "source_file": "tests/rolePreview.test.ts",
       "source_location": "L7"
+    },
+    {
+      "id": "src_components_common_button_buttonprops",
+      "label": "ButtonProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "buttonprops",
+      "source_file": "src/components/common/Button.tsx",
+      "source_location": "L5"
     },
     {
       "id": "src_components_common_confirmationmodal_confirmationmodalprops",
@@ -88,11 +88,37 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "confirmationmodalprops",
       "source_file": "src/components/common/ConfirmationModal.tsx",
       "source_location": "L6"
+    },
+    {
+      "id": "src_components_common_errorboundary_props",
+      "label": "Props",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "props",
+      "source_file": "src/components/common/ErrorBoundary.tsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_components_common_errorboundary_state",
+      "label": "State",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "state",
+      "source_file": "src/components/common/ErrorBoundary.tsx",
+      "source_location": "L9"
     },
     {
       "id": "src_components_common_modal_modalprops",
@@ -101,7 +127,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "modalprops",
       "source_file": "src/components/common/Modal.tsx",
@@ -114,7 +140,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "toastcontexttype",
       "source_file": "src/components/common/Toast.tsx",
@@ -127,7 +153,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "toastitem",
       "source_file": "src/components/common/Toast.tsx",
@@ -140,7 +166,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "toasttype",
       "source_file": "src/components/common/Toast.tsx",
@@ -153,24 +179,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportmodalprops",
       "source_file": "src/features/projects/ReportModal.tsx",
       "source_location": "L13"
-    },
-    {
-      "id": "src_pages_myprojectspage_tabkey",
-      "label": "TabKey",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "tabkey",
-      "source_file": "src/pages/MyProjectsPage.tsx",
-      "source_location": "L27"
     },
     {
       "id": "src_schemas_adminschemas_categoryformdata",
@@ -179,7 +192,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "categoryformdata",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -192,7 +205,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportsubmissionformdata",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -205,11 +218,50 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "systemsettingsformdata",
       "source_file": "src/schemas/adminSchemas.ts",
       "source_location": "L57"
+    },
+    {
+      "id": "src_schemas_authschemas_inviteemployeeformdata",
+      "label": "InviteEmployeeFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "inviteemployeeformdata",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L48"
+    },
+    {
+      "id": "src_schemas_authschemas_loginformdata",
+      "label": "LoginFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "loginformdata",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_schemas_authschemas_passwordresetformdata",
+      "label": "PasswordResetFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "passwordresetformdata",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L24"
     },
     {
       "id": "src_types_report_projectreport",
@@ -218,7 +270,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "projectreport",
       "source_file": "src/types/report.ts",
@@ -231,7 +283,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportreason",
       "source_file": "src/types/report.ts",
@@ -244,7 +296,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportstatus",
       "source_file": "src/types/report.ts",
@@ -316,32 +368,6 @@
       "source_location": "L6"
     },
     {
-      "id": "src_features_projects_projectcard_projectcardprops",
-      "label": "ProjectCardProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "projectcardprops",
-      "source_file": "src/features/projects/ProjectCard.tsx",
-      "source_location": "L12"
-    },
-    {
-      "id": "src_features_voting_votebuttonpair_votebuttonpairprops",
-      "label": "VoteButtonPairProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "votebuttonpairprops",
-      "source_file": "src/features/voting/VoteButtonPair.tsx",
-      "source_location": "L9"
-    },
-    {
       "id": "src_services_leaderboardservice_leaderboarduser",
       "label": "LeaderboardUser",
       "_callable": true,
@@ -394,71 +420,6 @@
       "source_location": "L12"
     },
     {
-      "id": "src_types_interaction_arenasection",
-      "label": "ArenaSection",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "arenasection",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L29"
-    },
-    {
-      "id": "src_types_interaction_bookmarkrecord",
-      "label": "BookmarkRecord",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "bookmarkrecord",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_types_interaction_likerecord",
-      "label": "LikeRecord",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "likerecord",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L12"
-    },
-    {
-      "id": "src_types_interaction_votechoice",
-      "label": "VoteChoice",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "votechoice",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_types_interaction_voterecord",
-      "label": "VoteRecord",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "voterecord",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L3"
-    },
-    {
       "id": "src_types_notification_appnotification",
       "label": "AppNotification",
       "_callable": true,
@@ -498,6 +459,32 @@
       "source_location": "L10"
     },
     {
+      "id": "src_types_revision_revisionstatus",
+      "label": "RevisionStatus",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "revisionstatus",
+      "source_file": "src/types/revision.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_types_user_accountstatus",
+      "label": "AccountStatus",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "accountstatus",
+      "source_file": "src/types/user.ts",
+      "source_location": "L3"
+    },
+    {
       "id": "src_types_user_userprofile",
       "label": "UserProfile",
       "_callable": true,
@@ -511,69 +498,56 @@
       "source_location": "L5"
     },
     {
-      "id": "src_features_projects_projectsubmitform_projectsubmitformprops",
-      "label": "ProjectSubmitFormProps",
+      "id": "src_types_user_usersummary",
+      "label": "UserSummary",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "usersummary",
+      "source_file": "src/types/user.ts",
+      "source_location": "L29"
+    },
+    {
+      "id": "src_features_projects_projectcard_projectcardprops",
+      "label": "ProjectCardProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "projectsubmitformprops",
-      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
-      "source_location": "L17"
+      "norm_label": "projectcardprops",
+      "source_file": "src/features/projects/ProjectCard.tsx",
+      "source_location": "L12"
     },
     {
-      "id": "src_schemas_projectschemas_adminreviewformdata",
-      "label": "AdminReviewFormData",
+      "id": "src_features_voting_votebuttonpair_votebuttonpairprops",
+      "label": "VoteButtonPairProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "adminreviewformdata",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L167"
+      "norm_label": "votebuttonpairprops",
+      "source_file": "src/features/voting/VoteButtonPair.tsx",
+      "source_location": "L9"
     },
     {
-      "id": "src_schemas_projectschemas_projectrevisionformdata",
-      "label": "ProjectRevisionFormData",
+      "id": "src_types_interaction_votechoice",
+      "label": "VoteChoice",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "projectrevisionformdata",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L144"
-    },
-    {
-      "id": "src_schemas_projectschemas_projectsubmissionformdata",
-      "label": "ProjectSubmissionFormData",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "projectsubmissionformdata",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L125"
-    },
-    {
-      "id": "src_services_imageuploadservice_imageuploadoptions",
-      "label": "ImageUploadOptions",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "imageuploadoptions",
-      "source_file": "src/services/imageUploadService.ts",
-      "source_location": "L5"
+      "norm_label": "votechoice",
+      "source_file": "src/types/interaction.ts",
+      "source_location": "L1"
     },
     {
       "id": "tests_landingsession_test_mocksessionstorage",
@@ -587,6 +561,19 @@
       "norm_label": "mocksessionstorage",
       "source_file": "tests/landingSession.test.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "tests_routingandrefresh_test_mockstorage",
+      "label": "MockStorage",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": "mockstorage",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L47"
     },
     {
       "id": "src_components_common_emptystate_emptystateprops",
@@ -628,6 +615,45 @@
       "source_location": "L1"
     },
     {
+      "id": "src_types_interaction_arenasection",
+      "label": "ArenaSection",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "arenasection",
+      "source_file": "src/types/interaction.ts",
+      "source_location": "L29"
+    },
+    {
+      "id": "src_types_interaction_bookmarkrecord",
+      "label": "BookmarkRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "bookmarkrecord",
+      "source_file": "src/types/interaction.ts",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_types_interaction_likerecord",
+      "label": "LikeRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "likerecord",
+      "source_file": "src/types/interaction.ts",
+      "source_location": "L12"
+    },
+    {
       "id": "src_types_interaction_projectfiltercriteria",
       "label": "ProjectFilterCriteria",
       "_callable": true,
@@ -641,13 +667,26 @@
       "source_location": "L36"
     },
     {
+      "id": "src_types_interaction_voterecord",
+      "label": "VoteRecord",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "voterecord",
+      "source_file": "src/types/interaction.ts",
+      "source_location": "L3"
+    },
+    {
       "id": "src_components_common_badge_badgeprops",
       "label": "BadgeProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "badgeprops",
       "source_file": "src/components/common/Badge.tsx",
@@ -660,7 +699,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "mediaitem",
       "source_file": "src/components/common/ProjectMediaGalleryModal.tsx",
@@ -673,7 +712,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectmediagallerymodalprops",
       "source_file": "src/components/common/ProjectMediaGalleryModal.tsx",
@@ -686,11 +725,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "revisiondiffprops",
       "source_file": "src/features/projects/RevisionDiff.tsx",
       "source_location": "L5"
+    },
+    {
+      "id": "src_pages_myprojectspage_tabkey",
+      "label": "TabKey",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "ProjectDetailsPage.tsx",
+      "file_type": "code",
+      "norm_label": "tabkey",
+      "source_file": "src/pages/MyProjectsPage.tsx",
+      "source_location": "L27"
     },
     {
       "id": "src_types_project_approvalstatus",
@@ -699,7 +751,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "approvalstatus",
       "source_file": "src/types/project.ts",
@@ -712,7 +764,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectstatus",
       "source_file": "src/types/project.ts",
@@ -725,7 +777,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectsubmissioninput",
       "source_file": "src/types/project.ts",
@@ -738,24 +790,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectrevision",
       "source_file": "src/types/revision.ts",
       "source_location": "L5"
-    },
-    {
-      "id": "src_types_revision_revisionstatus",
-      "label": "RevisionStatus",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
-      "file_type": "code",
-      "norm_label": "revisionstatus",
-      "source_file": "src/types/revision.ts",
-      "source_location": "L3"
     },
     {
       "id": "src_components_common_techmarquee_techitem",
@@ -784,95 +823,17 @@
       "source_location": "L14"
     },
     {
-      "id": "src_components_common_button_buttonprops",
-      "label": "ButtonProps",
+      "id": "src_features_projects_projectsubmitform_projectsubmitformprops",
+      "label": "ProjectSubmitFormProps",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "buttonprops",
-      "source_file": "src/components/common/Button.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_common_errorboundary_props",
-      "label": "Props",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "props",
-      "source_file": "src/components/common/ErrorBoundary.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_common_errorboundary_state",
-      "label": "State",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "state",
-      "source_file": "src/components/common/ErrorBoundary.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_hooks_useauth_authcontexttype",
-      "label": "AuthContextType",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "authcontexttype",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_schemas_authschemas_inviteemployeeformdata",
-      "label": "InviteEmployeeFormData",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "inviteemployeeformdata",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L48"
-    },
-    {
-      "id": "src_schemas_authschemas_loginformdata",
-      "label": "LoginFormData",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "loginformdata",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L14"
-    },
-    {
-      "id": "src_schemas_authschemas_passwordresetformdata",
-      "label": "PasswordResetFormData",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "passwordresetformdata",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L24"
+      "norm_label": "projectsubmitformprops",
+      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
+      "source_location": "L17"
     },
     {
       "id": "src_schemas_profileschemas_profileupdateformdata",
@@ -888,12 +849,220 @@
       "source_location": "L48"
     },
     {
+      "id": "src_schemas_projectschemas_adminreviewformdata",
+      "label": "AdminReviewFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "adminreviewformdata",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L167"
+    },
+    {
+      "id": "src_schemas_projectschemas_projectrevisionformdata",
+      "label": "ProjectRevisionFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectrevisionformdata",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L144"
+    },
+    {
+      "id": "src_schemas_projectschemas_projectsubmissionformdata",
+      "label": "ProjectSubmissionFormData",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectsubmissionformdata",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L125"
+    },
+    {
+      "id": "src_services_imageuploadservice_imageuploadoptions",
+      "label": "ImageUploadOptions",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "imageuploadoptions",
+      "source_file": "src/services/imageUploadService.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_app_app_app",
+      "label": "App()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "app()",
+      "source_file": "src/app/App.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_components_common_badge_rolebadge",
+      "label": "RoleBadge()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "rolebadge()",
+      "source_file": "src/components/common/Badge.tsx",
+      "source_location": "L100"
+    },
+    {
+      "id": "src_components_common_previewmodebanner_previewmodebanner",
+      "label": "PreviewModeBanner()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "previewmodebanner()",
+      "source_file": "src/components/common/PreviewModeBanner.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_components_common_roleswitcher_roleswitcher",
+      "label": "RoleSwitcher()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roleswitcher()",
+      "source_file": "src/components/common/RoleSwitcher.tsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_components_common_toast_toastprovider",
+      "label": "ToastProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "toastprovider()",
+      "source_file": "src/components/common/Toast.tsx",
+      "source_location": "L24"
+    },
+    {
+      "id": "src_contexts_rolepreviewcontext_rolepreviewprovider",
+      "label": "RolePreviewProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "rolepreviewprovider()",
+      "source_file": "src/contexts/RolePreviewContext.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_contexts_rolepreviewcontext_userolepreview",
+      "label": "useRolePreview()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "userolepreview()",
+      "source_file": "src/contexts/RolePreviewContext.tsx",
+      "source_location": "L122"
+    },
+    {
+      "id": "src_hooks_useauth_authprovider",
+      "label": "AuthProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "authprovider()",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L30"
+    },
+    {
+      "id": "src_layouts_adminlayout_adminlayout",
+      "label": "AdminLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "adminlayout()",
+      "source_file": "src/layouts/AdminLayout.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_layouts_applayout_applayout",
+      "label": "AppLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "applayout()",
+      "source_file": "src/layouts/AppLayout.tsx",
+      "source_location": "L32"
+    },
+    {
+      "id": "src_layouts_superadminlayout_superadminlayout",
+      "label": "SuperAdminLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "superadminlayout()",
+      "source_file": "src/layouts/SuperAdminLayout.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_routes_approutes_approutes",
+      "label": "AppRoutes()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "approutes()",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L167"
+    },
+    {
+      "id": "src_utils_roleresolver_resolveuserrolebyemail",
+      "label": "resolveUserRoleByEmail()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "resolveuserrolebyemail()",
+      "source_file": "src/utils/roleResolver.ts",
+      "source_location": "L9"
+    },
+    {
       "id": "tests_rolepreview_test_rolepreviewsimulator_effectiverole",
       "label": ".effectiveRole()",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".effectiverole()",
       "source_file": "tests/rolePreview.test.ts",
@@ -905,7 +1074,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".exitpreview()",
       "source_file": "tests/rolePreview.test.ts",
@@ -917,7 +1086,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".ispreviewactive()",
       "source_file": "tests/rolePreview.test.ts",
@@ -929,7 +1098,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".isrealsuperadmin()",
       "source_file": "tests/rolePreview.test.ts",
@@ -941,7 +1110,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".setuser()",
       "source_file": "tests/rolePreview.test.ts",
@@ -953,7 +1122,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": ".switchpreviewrole()",
       "source_file": "tests/rolePreview.test.ts",
@@ -965,7 +1134,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "confirmationmodal()",
       "source_file": "src/components/common/ConfirmationModal.tsx",
@@ -977,167 +1146,71 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "modal()",
       "source_file": "src/components/common/Modal.tsx",
       "source_location": "L15"
     },
     {
-      "id": "src_components_common_toast_usetoast",
-      "label": "useToast()",
+      "id": "src_components_common_skeleton_projectcardskeleton",
+      "label": "ProjectCardSkeleton()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "usetoast()",
-      "source_file": "src/components/common/Toast.tsx",
-      "source_location": "L99"
+      "norm_label": "projectcardskeleton()",
+      "source_file": "src/components/common/Skeleton.tsx",
+      "source_location": "L16"
     },
     {
-      "id": "src_features_projects_projectdetailspage_projectdetailspage",
-      "label": "ProjectDetailsPage()",
+      "id": "src_components_common_skeleton_skeleton",
+      "label": "Skeleton()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "projectdetailspage()",
-      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
-      "source_location": "L35"
+      "norm_label": "skeleton()",
+      "source_file": "src/components/common/Skeleton.tsx",
+      "source_location": "L4"
     },
     {
-      "id": "src_features_projects_reportmodal_reportmodal",
-      "label": "ReportModal()",
+      "id": "src_components_common_skeleton_tablerowskeleton",
+      "label": "TableRowSkeleton()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "reportmodal()",
-      "source_file": "src/features/projects/ReportModal.tsx",
-      "source_location": "L20"
+      "norm_label": "tablerowskeleton()",
+      "source_file": "src/components/common/Skeleton.tsx",
+      "source_location": "L41"
     },
     {
-      "id": "src_pages_admin_admincategoriespage_admincategoriespage",
-      "label": "AdminCategoriesPage()",
+      "id": "src_pages_auth_resetpasswordpage_resetpasswordpage",
+      "label": "ResetPasswordPage()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "admincategoriespage()",
-      "source_file": "src/pages/admin/AdminCategoriesPage.tsx",
-      "source_location": "L15"
+      "norm_label": "resetpasswordpage()",
+      "source_file": "src/pages/auth/ResetPasswordPage.tsx",
+      "source_location": "L10"
     },
     {
-      "id": "src_pages_admin_adminreportspage_adminreportspage",
-      "label": "AdminReportsPage()",
+      "id": "src_utils_cn_cn",
+      "label": "cn()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "adminreportspage()",
-      "source_file": "src/pages/admin/AdminReportsPage.tsx",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_pages_admin_adminreviewqueuepage_adminreviewqueuepage",
-      "label": "AdminReviewQueuePage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "adminreviewqueuepage()",
-      "source_file": "src/pages/admin/AdminReviewQueuePage.tsx",
-      "source_location": "L34"
-    },
-    {
-      "id": "src_pages_admin_adminsettingspage_adminsettingspage",
-      "label": "AdminSettingsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "adminsettingspage()",
-      "source_file": "src/pages/admin/AdminSettingsPage.tsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_pages_myprojectspage_myprojectspage",
-      "label": "MyProjectsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "myprojectspage()",
-      "source_file": "src/pages/MyProjectsPage.tsx",
-      "source_location": "L29"
-    },
-    {
-      "id": "src_pages_profilepage_profilepage",
-      "label": "ProfilePage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "profilepage()",
-      "source_file": "src/pages/ProfilePage.tsx",
-      "source_location": "L25"
-    },
-    {
-      "id": "src_pages_savedprojectspage_savedprojectspage",
-      "label": "SavedProjectsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "savedprojectspage()",
-      "source_file": "src/pages/SavedProjectsPage.tsx",
-      "source_location": "L12"
-    },
-    {
-      "id": "src_pages_super_admin_superadminadminspage_superadminadminspage",
-      "label": "SuperAdminAdminsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "superadminadminspage()",
-      "source_file": "src/pages/super-admin/SuperAdminAdminsPage.tsx",
-      "source_location": "L25"
-    },
-    {
-      "id": "src_pages_super_admin_superadminprojectspage_superadminprojectspage",
-      "label": "SuperAdminProjectsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "superadminprojectspage()",
-      "source_file": "src/pages/super-admin/SuperAdminProjectsPage.tsx",
-      "source_location": "L28"
-    },
-    {
-      "id": "src_utils_formatters_formatdate",
-      "label": "formatDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "formatdate()",
-      "source_file": "src/utils/formatters.ts",
-      "source_location": "L32"
+      "norm_label": "cn()",
+      "source_file": "src/utils/cn.ts",
+      "source_location": "L4"
     },
     {
       "id": "functions_src_cloudinary_signer_createcloudinarysignature",
@@ -1224,66 +1297,6 @@
       "source_location": "L36"
     },
     {
-      "id": "src_features_projects_projectcard_projectcard",
-      "label": "ProjectCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "projectcard()",
-      "source_file": "src/features/projects/ProjectCard.tsx",
-      "source_location": "L18"
-    },
-    {
-      "id": "src_features_voting_votebuttonpair_votebuttonpair",
-      "label": "VoteButtonPair()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "votebuttonpair()",
-      "source_file": "src/features/voting/VoteButtonPair.tsx",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_pages_admin_adminauditlogspage_adminauditlogspage",
-      "label": "AdminAuditLogsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "adminauditlogspage()",
-      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_pages_admin_adminoverviewpage_adminoverviewpage",
-      "label": "AdminOverviewPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "adminoverviewpage()",
-      "source_file": "src/pages/admin/AdminOverviewPage.tsx",
-      "source_location": "L21"
-    },
-    {
-      "id": "src_pages_dashboardpage_dashboardpage",
-      "label": "DashboardPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "dashboardpage()",
-      "source_file": "src/pages/DashboardPage.tsx",
-      "source_location": "L23"
-    },
-    {
       "id": "src_pages_directorypage_directorypage",
       "label": "DirectoryPage()",
       "_callable": true,
@@ -1296,30 +1309,6 @@
       "source_location": "L14"
     },
     {
-      "id": "src_pages_notificationspage_notificationspage",
-      "label": "NotificationsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "notificationspage()",
-      "source_file": "src/pages/NotificationsPage.tsx",
-      "source_location": "L14"
-    },
-    {
-      "id": "src_pages_super_admin_superadminoverviewpage_superadminoverviewpage",
-      "label": "SuperAdminOverviewPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "superadminoverviewpage()",
-      "source_file": "src/pages/super-admin/SuperAdminOverviewPage.tsx",
-      "source_location": "L26"
-    },
-    {
       "id": "src_utils_cleanfirestoredata_cleanfirestoredata",
       "label": "cleanFirestoreData()",
       "_callable": true,
@@ -1330,42 +1319,6 @@
       "norm_label": "cleanfirestoredata()",
       "source_file": "src/utils/cleanFirestoreData.ts",
       "source_location": "L5"
-    },
-    {
-      "id": "src_utils_formatters_calculatevotepercentages",
-      "label": "calculateVotePercentages()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "calculatevotepercentages()",
-      "source_file": "src/utils/formatters.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_utils_formatters_formatcompactnumber",
-      "label": "formatCompactNumber()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "formatcompactnumber()",
-      "source_file": "src/utils/formatters.ts",
-      "source_location": "L77"
-    },
-    {
-      "id": "src_utils_formatters_formatrelativetime",
-      "label": "formatRelativeTime()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "formatrelativetime()",
-      "source_file": "src/utils/formatters.ts",
-      "source_location": "L50"
     },
     {
       "id": "src_utils_userdisplay_getuserdisplayname",
@@ -1428,16 +1381,232 @@
       "source_location": "L156"
     },
     {
-      "id": "src_features_projects_projectsubmitform_projectsubmitform",
-      "label": "ProjectSubmitForm()",
+      "id": "src_components_common_authmodal_authmodal",
+      "label": "AuthModal()",
       "_callable": true,
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "projectsubmitform()",
-      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
-      "source_location": "L24"
+      "norm_label": "authmodal()",
+      "source_file": "src/components/common/AuthModal.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_components_common_toast_usetoast",
+      "label": "useToast()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "usetoast()",
+      "source_file": "src/components/common/Toast.tsx",
+      "source_location": "L99"
+    },
+    {
+      "id": "src_features_projects_projectcard_projectcard",
+      "label": "ProjectCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "projectcard()",
+      "source_file": "src/features/projects/ProjectCard.tsx",
+      "source_location": "L18"
+    },
+    {
+      "id": "src_features_projects_projectdetailspage_projectdetailspage",
+      "label": "ProjectDetailsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "projectdetailspage()",
+      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
+      "source_location": "L35"
+    },
+    {
+      "id": "src_features_projects_reportmodal_reportmodal",
+      "label": "ReportModal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "reportmodal()",
+      "source_file": "src/features/projects/ReportModal.tsx",
+      "source_location": "L20"
+    },
+    {
+      "id": "src_features_voting_votebuttonpair_votebuttonpair",
+      "label": "VoteButtonPair()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "votebuttonpair()",
+      "source_file": "src/features/voting/VoteButtonPair.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "src_hooks_useauth_useauth",
+      "label": "useAuth()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "useauth()",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L250"
+    },
+    {
+      "id": "src_pages_admin_admincategoriespage_admincategoriespage",
+      "label": "AdminCategoriesPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "admincategoriespage()",
+      "source_file": "src/pages/admin/AdminCategoriesPage.tsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_pages_admin_adminemployeespage_adminemployeespage",
+      "label": "AdminEmployeesPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "adminemployeespage()",
+      "source_file": "src/pages/admin/AdminEmployeesPage.tsx",
+      "source_location": "L31"
+    },
+    {
+      "id": "src_pages_admin_adminoverviewpage_adminoverviewpage",
+      "label": "AdminOverviewPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "adminoverviewpage()",
+      "source_file": "src/pages/admin/AdminOverviewPage.tsx",
+      "source_location": "L21"
+    },
+    {
+      "id": "src_pages_admin_adminreportspage_adminreportspage",
+      "label": "AdminReportsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "adminreportspage()",
+      "source_file": "src/pages/admin/AdminReportsPage.tsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_pages_admin_adminreviewqueuepage_adminreviewqueuepage",
+      "label": "AdminReviewQueuePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "adminreviewqueuepage()",
+      "source_file": "src/pages/admin/AdminReviewQueuePage.tsx",
+      "source_location": "L34"
+    },
+    {
+      "id": "src_pages_admin_adminsettingspage_adminsettingspage",
+      "label": "AdminSettingsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "adminsettingspage()",
+      "source_file": "src/pages/admin/AdminSettingsPage.tsx",
+      "source_location": "L13"
+    },
+    {
+      "id": "src_pages_auth_loginpage_loginpage",
+      "label": "LoginPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "loginpage()",
+      "source_file": "src/pages/auth/LoginPage.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_pages_dashboardpage_dashboardpage",
+      "label": "DashboardPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "dashboardpage()",
+      "source_file": "src/pages/DashboardPage.tsx",
+      "source_location": "L23"
+    },
+    {
+      "id": "src_pages_myprojectspage_myprojectspage",
+      "label": "MyProjectsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "myprojectspage()",
+      "source_file": "src/pages/MyProjectsPage.tsx",
+      "source_location": "L29"
+    },
+    {
+      "id": "src_pages_notificationspage_notificationspage",
+      "label": "NotificationsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "notificationspage()",
+      "source_file": "src/pages/NotificationsPage.tsx",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_pages_profilepage_profilepage",
+      "label": "ProfilePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "profilepage()",
+      "source_file": "src/pages/ProfilePage.tsx",
+      "source_location": "L25"
+    },
+    {
+      "id": "src_pages_savedprojectspage_savedprojectspage",
+      "label": "SavedProjectsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "savedprojectspage()",
+      "source_file": "src/pages/SavedProjectsPage.tsx",
+      "source_location": "L12"
     },
     {
       "id": "src_pages_submitprojectpage_submitprojectpage",
@@ -1445,59 +1614,107 @@
       "_callable": true,
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
       "norm_label": "submitprojectpage()",
       "source_file": "src/pages/SubmitProjectPage.tsx",
       "source_location": "L10"
     },
     {
-      "id": "src_hooks_useauth_authprovider",
-      "label": "AuthProvider()",
+      "id": "src_pages_super_admin_superadminadminspage_superadminadminspage",
+      "label": "SuperAdminAdminsPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
+      "community": 25,
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "authprovider()",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L30"
+      "norm_label": "superadminadminspage()",
+      "source_file": "src/pages/super-admin/SuperAdminAdminsPage.tsx",
+      "source_location": "L25"
     },
     {
-      "id": "src_pages_super_admin_superadminsecuritypage_superadminsecuritypage",
-      "label": "SuperAdminSecurityPage()",
+      "id": "src_pages_super_admin_superadminoverviewpage_superadminoverviewpage",
+      "label": "SuperAdminOverviewPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
+      "community": 25,
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "superadminsecuritypage()",
-      "source_file": "src/pages/super-admin/SuperAdminSecurityPage.tsx",
-      "source_location": "L16"
+      "norm_label": "superadminoverviewpage()",
+      "source_file": "src/pages/super-admin/SuperAdminOverviewPage.tsx",
+      "source_location": "L26"
     },
     {
-      "id": "src_services_imageuploadservice_compressimage",
-      "label": "compressImage()",
+      "id": "src_pages_super_admin_superadminprojectspage_superadminprojectspage",
+      "label": "SuperAdminProjectsPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
+      "community": 25,
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "compressimage()",
-      "source_file": "src/services/imageUploadService.ts",
-      "source_location": "L20"
+      "norm_label": "superadminprojectspage()",
+      "source_file": "src/pages/super-admin/SuperAdminProjectsPage.tsx",
+      "source_location": "L28"
     },
     {
-      "id": "src_utils_roleresolver_resolveuserrolebyemail",
-      "label": "resolveUserRoleByEmail()",
+      "id": "src_utils_formatters_calculatevotepercentages",
+      "label": "calculateVotePercentages()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "calculatevotepercentages()",
+      "source_file": "src/utils/formatters.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_utils_formatters_formatcompactnumber",
+      "label": "formatCompactNumber()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "formatcompactnumber()",
+      "source_file": "src/utils/formatters.ts",
+      "source_location": "L77"
+    },
+    {
+      "id": "src_utils_formatters_formatdate",
+      "label": "formatDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "formatdate()",
+      "source_file": "src/utils/formatters.ts",
+      "source_location": "L32"
+    },
+    {
+      "id": "src_utils_formatters_formatrelativetime",
+      "label": "formatRelativeTime()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "useAuth",
+      "file_type": "code",
+      "norm_label": "formatrelativetime()",
+      "source_file": "src/utils/formatters.ts",
+      "source_location": "L50"
+    },
+    {
+      "id": "src_utils_trending_calculatetrendingscore",
+      "label": "calculateTrendingScore()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
-      "community_name": "firebase.ts",
+      "community_name": "trending.ts",
       "file_type": "code",
-      "norm_label": "resolveuserrolebyemail()",
-      "source_file": "src/utils/roleResolver.ts",
-      "source_location": "L9"
+      "norm_label": "calculatetrendingscore()",
+      "source_file": "src/utils/trending.ts",
+      "source_location": "L12"
     },
     {
       "id": "tests_landingsession_test_mocksessionstorage_clear",
@@ -1548,6 +1765,54 @@
       "source_location": "L11"
     },
     {
+      "id": "tests_routingandrefresh_test_mockstorage_clear",
+      "label": ".clear()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": ".clear()",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L58"
+    },
+    {
+      "id": "tests_routingandrefresh_test_mockstorage_getitem",
+      "label": ".getItem()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": ".getitem()",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L49"
+    },
+    {
+      "id": "tests_routingandrefresh_test_mockstorage_removeitem",
+      "label": ".removeItem()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": ".removeitem()",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L55"
+    },
+    {
+      "id": "tests_routingandrefresh_test_mockstorage_setitem",
+      "label": ".setItem()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": ".setitem()",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L52"
+    },
+    {
       "id": "src_components_common_emptystate_emptystate",
       "label": "EmptyState()",
       "_callable": true,
@@ -1558,42 +1823,6 @@
       "norm_label": "emptystate()",
       "source_file": "src/components/common/EmptyState.tsx",
       "source_location": "L14"
-    },
-    {
-      "id": "src_components_common_skeleton_projectcardskeleton",
-      "label": "ProjectCardSkeleton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "projectcardskeleton()",
-      "source_file": "src/components/common/Skeleton.tsx",
-      "source_location": "L16"
-    },
-    {
-      "id": "src_components_common_skeleton_skeleton",
-      "label": "Skeleton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "skeleton()",
-      "source_file": "src/components/common/Skeleton.tsx",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_components_common_skeleton_tablerowskeleton",
-      "label": "TableRowSkeleton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "tablerowskeleton()",
-      "source_file": "src/components/common/Skeleton.tsx",
-      "source_location": "L41"
     },
     {
       "id": "src_features_projects_projectfilterbar_projectfilterbar",
@@ -1608,6 +1837,30 @@
       "source_location": "L14"
     },
     {
+      "id": "src_pages_admin_adminauditlogspage_adminauditlogspage",
+      "label": "AdminAuditLogsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "adminauditlogspage()",
+      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "src_pages_arenapage_arenapage",
+      "label": "ArenaPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "arenapage()",
+      "source_file": "src/pages/ArenaPage.tsx",
+      "source_location": "L24"
+    },
+    {
       "id": "src_pages_explorepage_explorepage",
       "label": "ExplorePage()",
       "_callable": true,
@@ -1618,18 +1871,6 @@
       "norm_label": "explorepage()",
       "source_file": "src/pages/ExplorePage.tsx",
       "source_location": "L16"
-    },
-    {
-      "id": "src_utils_cn_cn",
-      "label": "cn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "cn()",
-      "source_file": "src/utils/cn.ts",
-      "source_location": "L4"
     },
     {
       "id": "src_utils_seeddata_cleanupdummydata",
@@ -1656,24 +1897,12 @@
       "source_location": "L78"
     },
     {
-      "id": "src_utils_trending_calculatetrendingscore",
-      "label": "calculateTrendingScore()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "calculatetrendingscore()",
-      "source_file": "src/utils/trending.ts",
-      "source_location": "L12"
-    },
-    {
       "id": "src_components_common_badge_approvalstatusbadge",
       "label": "ApprovalStatusBadge()",
       "_callable": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "approvalstatusbadge()",
       "source_file": "src/components/common/Badge.tsx",
@@ -1685,7 +1914,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "badge()",
       "source_file": "src/components/common/Badge.tsx",
@@ -1697,7 +1926,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectstatusbadge()",
       "source_file": "src/components/common/Badge.tsx",
@@ -1709,7 +1938,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectmediagallerymodal()",
       "source_file": "src/components/common/ProjectMediaGalleryModal.tsx",
@@ -1721,7 +1950,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "revisiondiff()",
       "source_file": "src/features/projects/RevisionDiff.tsx",
@@ -1800,30 +2029,6 @@
       "source_location": "L37"
     },
     {
-      "id": "src_app_app_app",
-      "label": "App()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "app()",
-      "source_file": "src/app/App.tsx",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_components_common_authmodal_authmodal",
-      "label": "AuthModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "authmodal()",
-      "source_file": "src/components/common/AuthModal.tsx",
-      "source_location": "L11"
-    },
-    {
       "id": "src_components_common_badge_accountstatusbadge",
       "label": "AccountStatusBadge()",
       "_callable": true,
@@ -1836,112 +2041,16 @@
       "source_location": "L113"
     },
     {
-      "id": "src_components_common_badge_rolebadge",
-      "label": "RoleBadge()",
+      "id": "src_features_projects_projectsubmitform_projectsubmitform",
+      "label": "ProjectSubmitForm()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "rolebadge()",
-      "source_file": "src/components/common/Badge.tsx",
-      "source_location": "L100"
-    },
-    {
-      "id": "src_components_common_previewmodebanner_previewmodebanner",
-      "label": "PreviewModeBanner()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "previewmodebanner()",
-      "source_file": "src/components/common/PreviewModeBanner.tsx",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_components_common_roleswitcher_roleswitcher",
-      "label": "RoleSwitcher()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "roleswitcher()",
-      "source_file": "src/components/common/RoleSwitcher.tsx",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_components_common_toast_toastprovider",
-      "label": "ToastProvider()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "toastprovider()",
-      "source_file": "src/components/common/Toast.tsx",
+      "norm_label": "projectsubmitform()",
+      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
       "source_location": "L24"
-    },
-    {
-      "id": "src_contexts_rolepreviewcontext_rolepreviewprovider",
-      "label": "RolePreviewProvider()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "rolepreviewprovider()",
-      "source_file": "src/contexts/RolePreviewContext.tsx",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_contexts_rolepreviewcontext_userolepreview",
-      "label": "useRolePreview()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "userolepreview()",
-      "source_file": "src/contexts/RolePreviewContext.tsx",
-      "source_location": "L122"
-    },
-    {
-      "id": "src_hooks_useauth_useauth",
-      "label": "useAuth()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "useauth()",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L250"
-    },
-    {
-      "id": "src_layouts_adminlayout_adminlayout",
-      "label": "AdminLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "adminlayout()",
-      "source_file": "src/layouts/AdminLayout.tsx",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_layouts_applayout_applayout",
-      "label": "AppLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "applayout()",
-      "source_file": "src/layouts/AppLayout.tsx",
-      "source_location": "L32"
     },
     {
       "id": "src_layouts_authlayout_authlayout",
@@ -1956,66 +2065,6 @@
       "source_location": "L5"
     },
     {
-      "id": "src_layouts_superadminlayout_superadminlayout",
-      "label": "SuperAdminLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "superadminlayout()",
-      "source_file": "src/layouts/SuperAdminLayout.tsx",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_pages_admin_adminemployeespage_adminemployeespage",
-      "label": "AdminEmployeesPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "adminemployeespage()",
-      "source_file": "src/pages/admin/AdminEmployeesPage.tsx",
-      "source_location": "L31"
-    },
-    {
-      "id": "src_pages_arenapage_arenapage",
-      "label": "ArenaPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "arenapage()",
-      "source_file": "src/pages/ArenaPage.tsx",
-      "source_location": "L24"
-    },
-    {
-      "id": "src_pages_auth_loginpage_loginpage",
-      "label": "LoginPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "loginpage()",
-      "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_pages_auth_resetpasswordpage_resetpasswordpage",
-      "label": "ResetPasswordPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "resetpasswordpage()",
-      "source_file": "src/pages/auth/ResetPasswordPage.tsx",
-      "source_location": "L10"
-    },
-    {
       "id": "src_pages_landingpage_landingpage",
       "label": "LandingPage()",
       "_callable": true,
@@ -2028,16 +2077,28 @@
       "source_location": "L37"
     },
     {
-      "id": "src_routes_approutes_approutes",
-      "label": "AppRoutes()",
+      "id": "src_pages_notfoundpage_notfoundpage",
+      "label": "NotFoundPage()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "approutes()",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L173"
+      "norm_label": "notfoundpage()",
+      "source_file": "src/pages/NotFoundPage.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_pages_super_admin_superadminsecuritypage_superadminsecuritypage",
+      "label": "SuperAdminSecurityPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "superadminsecuritypage()",
+      "source_file": "src/pages/super-admin/SuperAdminSecurityPage.tsx",
+      "source_location": "L16"
     },
     {
       "id": "src_routes_approutes_authguard",
@@ -2049,7 +2110,7 @@
       "file_type": "code",
       "norm_label": "authguard()",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L84"
+      "source_location": "L85"
     },
     {
       "id": "src_routes_approutes_roleguard",
@@ -2061,7 +2122,7 @@
       "file_type": "code",
       "norm_label": "roleguard()",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L116"
+      "source_location": "L117"
     },
     {
       "id": "src_routes_approutes_routefallback",
@@ -2073,7 +2134,7 @@
       "file_type": "code",
       "norm_label": "routefallback()",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L77"
+      "source_location": "L78"
     },
     {
       "id": "src_routes_approutes_sessionentrygate",
@@ -2085,17 +2146,62 @@
       "file_type": "code",
       "norm_label": "sessionentrygate()",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L137"
+      "source_location": "L138"
     },
     {
-      "id": "src_constants_index",
-      "label": "constants/index.ts",
+      "id": "src_services_imageuploadservice_compressimage",
+      "label": "compressImage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "compressimage()",
+      "source_file": "src/services/imageUploadService.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "src_app_app",
+      "label": "App.tsx",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "constants/index.ts",
-      "source_file": "src/constants/index.ts",
+      "norm_label": "app.tsx",
+      "source_file": "src/app/App.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_main",
+      "label": "main.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "main.tsx",
+      "source_file": "src/app/main.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_previewmodebanner",
+      "label": "PreviewModeBanner.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "previewmodebanner.tsx",
+      "source_file": "src/components/common/PreviewModeBanner.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_roleswitcher",
+      "label": "RoleSwitcher.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roleswitcher.tsx",
+      "source_file": "src/components/common/RoleSwitcher.tsx",
       "source_location": "L1"
     },
     {
@@ -2103,7 +2209,7 @@
       "label": "navigation.ts",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "navigation.ts",
       "source_file": "src/constants/navigation.ts",
@@ -2114,7 +2220,7 @@
       "label": "ADMIN_NAV_ITEMS",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "admin_nav_items",
       "source_file": "src/constants/navigation.ts",
@@ -2125,54 +2231,109 @@
       "label": "MAIN_NAV_ITEMS",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "main_nav_items",
       "source_file": "src/constants/navigation.ts",
       "source_location": "L11"
     },
     {
-      "id": "src_constants_theme",
-      "label": "theme.ts",
+      "id": "src_contexts_rolepreviewcontext",
+      "label": "RolePreviewContext.tsx",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "theme.ts",
-      "source_file": "src/constants/theme.ts",
+      "norm_label": "rolepreviewcontext.tsx",
+      "source_file": "src/contexts/RolePreviewContext.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_constants_theme_brand_colors",
-      "label": "BRAND_COLORS",
+      "id": "src_contexts_rolepreviewcontext_rolepreviewcontext",
+      "label": "RolePreviewContext",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "brand_colors",
-      "source_file": "src/constants/theme.ts",
+      "norm_label": "rolepreviewcontext",
+      "source_file": "src/contexts/RolePreviewContext.tsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_hooks_useauth",
+      "label": "useAuth.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "useauth.tsx",
+      "source_file": "src/hooks/useAuth.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_constants_theme_fonts",
-      "label": "FONTS",
+      "id": "src_hooks_useauth_authcontext",
+      "label": "AuthContext",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "fonts",
-      "source_file": "src/constants/theme.ts",
-      "source_location": "L16"
+      "norm_label": "authcontext",
+      "source_file": "src/hooks/useAuth.tsx",
+      "source_location": "L28"
     },
     {
-      "id": "src_types_user",
-      "label": "user.ts",
+      "id": "src_layouts_adminlayout",
+      "label": "AdminLayout.tsx",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
-      "norm_label": "user.ts",
-      "source_file": "src/types/user.ts",
+      "norm_label": "adminlayout.tsx",
+      "source_file": "src/layouts/AdminLayout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_layouts_applayout",
+      "label": "AppLayout.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "applayout.tsx",
+      "source_file": "src/layouts/AppLayout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_layouts_superadminlayout",
+      "label": "SuperAdminLayout.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "superadminlayout.tsx",
+      "source_file": "src/layouts/SuperAdminLayout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_services_authservice_authservice",
+      "label": "authService",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "authservice",
+      "source_file": "src/services/authService.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_utils_roleresolver",
+      "label": "roleResolver.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roleresolver.ts",
+      "source_file": "src/utils/roleResolver.ts",
       "source_location": "L1"
     },
     {
@@ -2180,21 +2341,76 @@
       "label": "rolePreview.test.ts",
       "_origin": "ast",
       "community": 0,
-      "community_name": "UserRole",
+      "community_name": "useAuth.tsx",
       "file_type": "code",
       "norm_label": "rolepreview.test.ts",
       "source_file": "tests/rolePreview.test.ts",
       "source_location": "L1"
     },
     {
+      "id": "tests_roles_test",
+      "label": "roles.test.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "useAuth.tsx",
+      "file_type": "code",
+      "norm_label": "roles.test.ts",
+      "source_file": "tests/roles.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_authmodal",
+      "label": "AuthModal.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "authmodal.tsx",
+      "source_file": "src/components/common/AuthModal.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_button",
+      "label": "Button.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "button.tsx",
+      "source_file": "src/components/common/Button.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_button_button",
+      "label": "Button",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "button",
+      "source_file": "src/components/common/Button.tsx",
+      "source_location": "L13"
+    },
+    {
       "id": "src_components_common_confirmationmodal",
       "label": "ConfirmationModal.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "confirmationmodal.tsx",
       "source_file": "src/components/common/ConfirmationModal.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_errorboundary",
+      "label": "ErrorBoundary.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "errorboundary.tsx",
+      "source_file": "src/components/common/ErrorBoundary.tsx",
       "source_location": "L1"
     },
     {
@@ -2202,7 +2418,7 @@
       "label": "common/index.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "common/index.ts",
       "source_file": "src/components/common/index.ts",
@@ -2213,10 +2429,21 @@
       "label": "Modal.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "modal.tsx",
       "source_file": "src/components/common/Modal.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_common_skeleton",
+      "label": "Skeleton.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "skeleton.tsx",
+      "source_file": "src/components/common/Skeleton.tsx",
       "source_location": "L1"
     },
     {
@@ -2224,7 +2451,7 @@
       "label": "Toast.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "toast.tsx",
       "source_file": "src/components/common/Toast.tsx",
@@ -2235,7 +2462,7 @@
       "label": "ToastContext",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "toastcontext",
       "source_file": "src/components/common/Toast.tsx",
@@ -2246,7 +2473,7 @@
       "label": "ReportModal.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportmodal.tsx",
       "source_file": "src/features/projects/ReportModal.tsx",
@@ -2257,10 +2484,21 @@
       "label": "AdminCategoriesPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "admincategoriespage.tsx",
       "source_file": "src/pages/admin/AdminCategoriesPage.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_admin_adminemployeespage",
+      "label": "AdminEmployeesPage.tsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "adminemployeespage.tsx",
+      "source_file": "src/pages/admin/AdminEmployeesPage.tsx",
       "source_location": "L1"
     },
     {
@@ -2268,7 +2506,7 @@
       "label": "AdminReportsPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminreportspage.tsx",
       "source_file": "src/pages/admin/AdminReportsPage.tsx",
@@ -2279,32 +2517,32 @@
       "label": "AdminSettingsPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminsettingspage.tsx",
       "source_file": "src/pages/admin/AdminSettingsPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_pages_myprojectspage",
-      "label": "MyProjectsPage.tsx",
+      "id": "src_pages_auth_loginpage",
+      "label": "LoginPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "myprojectspage.tsx",
-      "source_file": "src/pages/MyProjectsPage.tsx",
+      "norm_label": "loginpage.tsx",
+      "source_file": "src/pages/auth/LoginPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_pages_savedprojectspage",
-      "label": "SavedProjectsPage.tsx",
+      "id": "src_pages_auth_resetpasswordpage",
+      "label": "ResetPasswordPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
-      "norm_label": "savedprojectspage.tsx",
-      "source_file": "src/pages/SavedProjectsPage.tsx",
+      "norm_label": "resetpasswordpage.tsx",
+      "source_file": "src/pages/auth/ResetPasswordPage.tsx",
       "source_location": "L1"
     },
     {
@@ -2312,7 +2550,7 @@
       "label": "SuperAdminAdminsPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "superadminadminspage.tsx",
       "source_file": "src/pages/super-admin/SuperAdminAdminsPage.tsx",
@@ -2323,7 +2561,7 @@
       "label": "SuperAdminProjectsPage.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "superadminprojectspage.tsx",
       "source_file": "src/pages/super-admin/SuperAdminProjectsPage.tsx",
@@ -2334,7 +2572,7 @@
       "label": "reportRepository.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportrepository.ts",
       "source_file": "src/repositories/reportRepository.ts",
@@ -2345,51 +2583,51 @@
       "label": "reportRepository",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportrepository",
       "source_file": "src/repositories/reportRepository.ts",
       "source_location": "L18"
     },
     {
-      "id": "src_routes_approutes_admincategoriespage",
-      "label": "AdminCategoriesPage",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "useToast",
-      "file_type": "code",
-      "norm_label": "admincategoriespage",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L50"
-    },
-    {
       "id": "src_routes_approutes_adminreportspage",
       "label": "AdminReportsPage",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminreportspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L53"
+      "source_location": "L54"
     },
     {
       "id": "src_routes_approutes_adminsettingspage",
       "label": "AdminSettingsPage",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminsettingspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L59"
+      "source_location": "L60"
+    },
+    {
+      "id": "src_routes_approutes_resetpasswordpage",
+      "label": "ResetPasswordPage",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "resetpasswordpage",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L19"
     },
     {
       "id": "src_schemas_adminschemas",
       "label": "adminSchemas.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminschemas.ts",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -2400,7 +2638,7 @@
       "label": "categorySchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "categoryschema",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -2411,7 +2649,7 @@
       "label": "reportSubmissionSchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "reportsubmissionschema",
       "source_file": "src/schemas/adminSchemas.ts",
@@ -2422,18 +2660,62 @@
       "label": "systemSettingsSchema",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "systemsettingsschema",
       "source_file": "src/schemas/adminSchemas.ts",
       "source_location": "L48"
     },
     {
+      "id": "src_schemas_authschemas",
+      "label": "authSchemas.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "authschemas.ts",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_schemas_authschemas_inviteemployeeschema",
+      "label": "inviteEmployeeSchema",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "inviteemployeeschema",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "src_schemas_authschemas_loginschema",
+      "label": "loginSchema",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "loginschema",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_schemas_authschemas_passwordresetschema",
+      "label": "passwordResetSchema",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "passwordresetschema",
+      "source_file": "src/schemas/authSchemas.ts",
+      "source_location": "L16"
+    },
+    {
       "id": "src_services_adminservice",
       "label": "adminService.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminservice.ts",
       "source_file": "src/services/adminService.ts",
@@ -2444,7 +2726,7 @@
       "label": "adminService",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "adminservice",
       "source_file": "src/services/adminService.ts",
@@ -2455,10 +2737,21 @@
       "label": "report.ts",
       "_origin": "ast",
       "community": 1,
-      "community_name": "useToast",
+      "community_name": "Button.tsx",
       "file_type": "code",
       "norm_label": "report.ts",
       "source_file": "src/types/report.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_cn",
+      "label": "cn.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Button.tsx",
+      "file_type": "code",
+      "norm_label": "cn.ts",
+      "source_file": "src/utils/cn.ts",
       "source_location": "L1"
     },
     {
@@ -3352,17 +3645,6 @@
       "source_location": "L1"
     },
     {
-      "id": "vercel_cleanurls",
-      "label": "cleanUrls",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "vercel.json",
-      "file_type": "code",
-      "norm_label": "cleanurls",
-      "source_file": "vercel.json",
-      "source_location": "L3"
-    },
-    {
       "id": "vercel_framework",
       "label": "framework",
       "_origin": "ast",
@@ -3371,7 +3653,7 @@
       "file_type": "code",
       "norm_label": "framework",
       "source_file": "vercel.json",
-      "source_location": "L2"
+      "source_location": "L3"
     },
     {
       "id": "vercel_headers",
@@ -3394,6 +3676,17 @@
       "norm_label": "rewrites",
       "source_file": "vercel.json",
       "source_location": "L4"
+    },
+    {
+      "id": "vercel_schema",
+      "label": "$schema",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "vercel.json",
+      "file_type": "code",
+      "norm_label": "$schema",
+      "source_file": "vercel.json",
+      "source_location": "L2"
     },
     {
       "id": "docs_security",
@@ -3675,6 +3968,50 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_firebase",
+      "label": "firebase.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "firebase.ts",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_firebase_analytics",
+      "label": "analytics",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "analytics",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L47"
+    },
+    {
+      "id": "src_app_firebase_app",
+      "label": "app",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "app",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "src_app_firebase_auth",
+      "label": "auth",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "auth",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L27"
+    },
+    {
       "id": "src_app_firebase_db",
       "label": "db",
       "_origin": "ast",
@@ -3684,6 +4021,39 @@
       "norm_label": "db",
       "source_file": "src/app/firebase.ts",
       "source_location": "L36"
+    },
+    {
+      "id": "src_app_firebase_firebaseconfig",
+      "label": "firebaseConfig",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "firebaseconfig",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_app_firebase_functions",
+      "label": "functions",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "functions",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L38"
+    },
+    {
+      "id": "src_app_firebase_googleprovider",
+      "label": "googleProvider",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "googleprovider",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L41"
     },
     {
       "id": "src_components_common_leaderboardpodium",
@@ -3719,50 +4089,6 @@
       "source_location": "L24"
     },
     {
-      "id": "src_features_projects_projectcard",
-      "label": "ProjectCard.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "projectcard.tsx",
-      "source_file": "src/features/projects/ProjectCard.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_features_projects_projectdetailspage",
-      "label": "ProjectDetailsPage.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "projectdetailspage.tsx",
-      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_features_voting_votebuttonpair",
-      "label": "VoteButtonPair.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "votebuttonpair.tsx",
-      "source_file": "src/features/voting/VoteButtonPair.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_adminauditlogspage",
-      "label": "AdminAuditLogsPage.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "adminauditlogspage.tsx",
-      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_pages_admin_adminoverviewpage",
       "label": "AdminOverviewPage.tsx",
       "_origin": "ast",
@@ -3771,17 +4097,6 @@
       "file_type": "code",
       "norm_label": "adminoverviewpage.tsx",
       "source_file": "src/pages/admin/AdminOverviewPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_dashboardpage",
-      "label": "DashboardPage.tsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "dashboardpage.tsx",
-      "source_file": "src/pages/DashboardPage.tsx",
       "source_location": "L1"
     },
     {
@@ -3950,17 +4265,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_repositories_revisionrepository_revisionrepository",
-      "label": "revisionRepository",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "revisionrepository",
-      "source_file": "src/repositories/revisionRepository.ts",
-      "source_location": "L20"
-    },
-    {
       "id": "src_repositories_userrepository",
       "label": "userRepository.ts",
       "_origin": "ast",
@@ -3983,6 +4287,28 @@
       "source_location": "L21"
     },
     {
+      "id": "src_routes_approutes_adminoverviewpage",
+      "label": "AdminOverviewPage",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "adminoverviewpage",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L42"
+    },
+    {
+      "id": "src_services_authservice",
+      "label": "authService.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "authservice.ts",
+      "source_file": "src/services/authService.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_services_imageuploadservice_imageuploadservice",
       "label": "imageUploadService",
       "_origin": "ast",
@@ -3992,6 +4318,17 @@
       "norm_label": "imageuploadservice",
       "source_file": "src/services/imageUploadService.ts",
       "source_location": "L85"
+    },
+    {
+      "id": "src_services_index",
+      "label": "services/index.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "services/index.ts",
+      "source_file": "src/services/index.ts",
+      "source_location": "L1"
     },
     {
       "id": "src_services_interactionservice",
@@ -4049,17 +4386,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_services_projectservice_projectservice",
-      "label": "projectService",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "projectservice",
-      "source_file": "src/services/projectService.ts",
-      "source_location": "L17"
-    },
-    {
       "id": "src_types_admin",
       "label": "admin.ts",
       "_origin": "ast",
@@ -4082,17 +4408,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_types_interaction",
-      "label": "interaction.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "interaction.ts",
-      "source_file": "src/types/interaction.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_types_notification",
       "label": "notification.ts",
       "_origin": "ast",
@@ -4104,6 +4419,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_types_user",
+      "label": "user.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "types/index.ts",
+      "file_type": "code",
+      "norm_label": "user.ts",
+      "source_file": "src/types/user.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_utils_cleanfirestoredata",
       "label": "cleanFirestoreData.ts",
       "_origin": "ast",
@@ -4112,17 +4438,6 @@
       "file_type": "code",
       "norm_label": "cleanfirestoredata.ts",
       "source_file": "src/utils/cleanFirestoreData.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_formatters",
-      "label": "formatters.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "formatters.ts",
-      "source_file": "src/utils/formatters.ts",
       "source_location": "L1"
     },
     {
@@ -4159,17 +4474,6 @@
       "source_location": "L1"
     },
     {
-      "id": "tests_bookmarks_test",
-      "label": "bookmarks.test.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "bookmarks.test.ts",
-      "source_file": "tests/bookmarks.test.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "tests_deletion_test",
       "label": "deletion.test.ts",
       "_origin": "ast",
@@ -4200,17 +4504,6 @@
       "file_type": "code",
       "norm_label": "likenotificationsandmedia.test.ts",
       "source_file": "tests/likeNotificationsAndMedia.test.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_voting_test",
-      "label": "voting.test.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "types/index.ts",
-      "file_type": "code",
-      "norm_label": "voting.test.ts",
-      "source_file": "tests/voting.test.ts",
       "source_location": "L1"
     },
     {
@@ -4269,124 +4562,69 @@
       "source_location": "L1"
     },
     {
-      "id": "src_features_projects_projectsubmitform",
-      "label": "ProjectSubmitForm.tsx",
+      "id": "src_features_projects_projectcard",
+      "label": "ProjectCard.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "projectsubmitform.tsx",
-      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
+      "norm_label": "projectcard.tsx",
+      "source_file": "src/features/projects/ProjectCard.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_pages_submitprojectpage",
-      "label": "SubmitProjectPage.tsx",
+      "id": "src_features_voting_votebuttonpair",
+      "label": "VoteButtonPair.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "submitprojectpage.tsx",
-      "source_file": "src/pages/SubmitProjectPage.tsx",
+      "norm_label": "votebuttonpair.tsx",
+      "source_file": "src/features/voting/VoteButtonPair.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_routes_approutes_submitprojectpage",
-      "label": "SubmitProjectPage",
+      "id": "src_pages_dashboardpage",
+      "label": "DashboardPage.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "submitprojectpage",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L33"
-    },
-    {
-      "id": "src_schemas_projectschemas",
-      "label": "projectSchemas.ts",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "projectschemas.ts",
-      "source_file": "src/schemas/projectSchemas.ts",
+      "norm_label": "dashboardpage.tsx",
+      "source_file": "src/pages/DashboardPage.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_schemas_projectschemas_adminreviewschema",
-      "label": "adminReviewSchema",
+      "id": "src_pages_savedprojectspage",
+      "label": "SavedProjectsPage.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "adminreviewschema",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L146"
+      "norm_label": "savedprojectspage.tsx",
+      "source_file": "src/pages/SavedProjectsPage.tsx",
+      "source_location": "L1"
     },
     {
-      "id": "src_schemas_projectschemas_imageurlschema",
-      "label": "imageUrlSchema",
+      "id": "src_utils_formatters",
+      "label": "formatters.ts",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "imageurlschema",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L9"
+      "norm_label": "formatters.ts",
+      "source_file": "src/utils/formatters.ts",
+      "source_location": "L1"
     },
     {
-      "id": "src_schemas_projectschemas_projectrevisionschema",
-      "label": "projectRevisionSchema",
+      "id": "tests_voting_test",
+      "label": "voting.test.ts",
       "_origin": "ast",
       "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
+      "community_name": "useAuth",
       "file_type": "code",
-      "norm_label": "projectrevisionschema",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L127"
-    },
-    {
-      "id": "src_schemas_projectschemas_projectstatuses",
-      "label": "projectStatuses",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "projectstatuses",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_schemas_projectschemas_projectsubmissionschema",
-      "label": "projectSubmissionSchema",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "projectsubmissionschema",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L43"
-    },
-    {
-      "id": "src_schemas_projectschemas_screenshoturlschema",
-      "label": "screenshotUrlSchema",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "screenshoturlschema",
-      "source_file": "src/schemas/projectSchemas.ts",
-      "source_location": "L26"
-    },
-    {
-      "id": "tests_schemas_test",
-      "label": "schemas.test.ts",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "ProjectSubmitForm.tsx",
-      "file_type": "code",
-      "norm_label": "schemas.test.ts",
-      "source_file": "tests/schemas.test.ts",
+      "norm_label": "voting.test.ts",
+      "source_file": "tests/voting.test.ts",
       "source_location": "L1"
     },
     {
@@ -4478,234 +4716,36 @@
       "source_location": "L34"
     },
     {
-      "id": "src_app_config",
-      "label": "config.ts",
+      "id": "src_utils_index",
+      "label": "utils/index.ts",
       "_origin": "ast",
       "community": 3,
-      "community_name": "firebase.ts",
+      "community_name": "trending.ts",
       "file_type": "code",
-      "norm_label": "config.ts",
-      "source_file": "src/app/config.ts",
+      "norm_label": "utils/index.ts",
+      "source_file": "src/utils/index.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_app_config_app_config",
-      "label": "APP_CONFIG",
+      "id": "src_utils_trending",
+      "label": "trending.ts",
       "_origin": "ast",
       "community": 3,
-      "community_name": "firebase.ts",
+      "community_name": "trending.ts",
       "file_type": "code",
-      "norm_label": "app_config",
-      "source_file": "src/app/config.ts",
+      "norm_label": "trending.ts",
+      "source_file": "src/utils/trending.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_app_firebase",
-      "label": "firebase.ts",
+      "id": "tests_trending_test",
+      "label": "trending.test.ts",
       "_origin": "ast",
       "community": 3,
-      "community_name": "firebase.ts",
+      "community_name": "trending.ts",
       "file_type": "code",
-      "norm_label": "firebase.ts",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_firebase_analytics",
-      "label": "analytics",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "analytics",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L47"
-    },
-    {
-      "id": "src_app_firebase_app",
-      "label": "app",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "app",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L26"
-    },
-    {
-      "id": "src_app_firebase_auth",
-      "label": "auth",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "auth",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L27"
-    },
-    {
-      "id": "src_app_firebase_firebaseconfig",
-      "label": "firebaseConfig",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "firebaseconfig",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_app_firebase_functions",
-      "label": "functions",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "functions",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L38"
-    },
-    {
-      "id": "src_app_firebase_googleprovider",
-      "label": "googleProvider",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "googleprovider",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L41"
-    },
-    {
-      "id": "src_app_firebase_storage",
-      "label": "storage",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "storage",
-      "source_file": "src/app/firebase.ts",
-      "source_location": "L37"
-    },
-    {
-      "id": "src_pages_super_admin_superadminsecuritypage",
-      "label": "SuperAdminSecurityPage.tsx",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "superadminsecuritypage.tsx",
-      "source_file": "src/pages/super-admin/SuperAdminSecurityPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_routes_approutes_superadminsecuritypage",
-      "label": "SuperAdminSecurityPage",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "superadminsecuritypage",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L73"
-    },
-    {
-      "id": "src_services_authservice",
-      "label": "authService.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "authservice.ts",
-      "source_file": "src/services/authService.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_services_authservice_authservice",
-      "label": "authService",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "authservice",
-      "source_file": "src/services/authService.ts",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_services_cloudinaryservice",
-      "label": "cloudinaryService.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "cloudinaryservice.ts",
-      "source_file": "src/services/cloudinaryService.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_services_cloudinaryservice_cloudinaryservice",
-      "label": "cloudinaryService",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "cloudinaryservice",
-      "source_file": "src/services/cloudinaryService.ts",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_services_imageuploadservice",
-      "label": "imageUploadService.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "imageuploadservice.ts",
-      "source_file": "src/services/imageUploadService.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_services_imageuploadservice_allowed_mime_types",
-      "label": "ALLOWED_MIME_TYPES",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "allowed_mime_types",
-      "source_file": "src/services/imageUploadService.ts",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_services_index",
-      "label": "services/index.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "services/index.ts",
-      "source_file": "src/services/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_roleresolver",
-      "label": "roleResolver.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "roleresolver.ts",
-      "source_file": "src/utils/roleResolver.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_roles_test",
-      "label": "roles.test.ts",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "firebase.ts",
-      "file_type": "code",
-      "norm_label": "roles.test.ts",
-      "source_file": "tests/roles.test.ts",
+      "norm_label": "trending.test.ts",
+      "source_file": "tests/trending.test.ts",
       "source_location": "L1"
     },
     {
@@ -4742,6 +4782,17 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_routingandrefresh_test",
+      "label": "routingAndRefresh.test.ts",
+      "_origin": "ast",
+      "community": 30,
+      "community_name": "MockSessionStorage",
+      "file_type": "code",
+      "norm_label": "routingandrefresh.test.ts",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_components_common_emptystate",
       "label": "EmptyState.tsx",
       "_origin": "ast",
@@ -4750,17 +4801,6 @@
       "file_type": "code",
       "norm_label": "emptystate.tsx",
       "source_file": "src/components/common/EmptyState.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_common_skeleton",
-      "label": "Skeleton.tsx",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "skeleton.tsx",
-      "source_file": "src/components/common/Skeleton.tsx",
       "source_location": "L1"
     },
     {
@@ -4786,6 +4826,50 @@
       "source_location": "L3"
     },
     {
+      "id": "src_constants_index",
+      "label": "constants/index.ts",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "constants/index.ts",
+      "source_file": "src/constants/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme",
+      "label": "theme.ts",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "theme.ts",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme_brand_colors",
+      "label": "BRAND_COLORS",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "brand_colors",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_constants_theme_fonts",
+      "label": "FONTS",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "fonts",
+      "source_file": "src/constants/theme.ts",
+      "source_location": "L16"
+    },
+    {
       "id": "src_features_projects_projectfilterbar",
       "label": "ProjectFilterBar.tsx",
       "_origin": "ast",
@@ -4794,6 +4878,17 @@
       "file_type": "code",
       "norm_label": "projectfilterbar.tsx",
       "source_file": "src/features/projects/ProjectFilterBar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_admin_adminauditlogspage",
+      "label": "AdminAuditLogsPage.tsx",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "adminauditlogspage.tsx",
+      "source_file": "src/pages/admin/AdminAuditLogsPage.tsx",
       "source_location": "L1"
     },
     {
@@ -4841,6 +4936,17 @@
       "source_location": "L21"
     },
     {
+      "id": "src_routes_approutes_adminauditlogspage",
+      "label": "AdminAuditLogsPage",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "ExplorePage.tsx",
+      "file_type": "code",
+      "norm_label": "adminauditlogspage",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L57"
+    },
+    {
       "id": "src_types_category",
       "label": "category.ts",
       "_origin": "ast",
@@ -4852,25 +4958,14 @@
       "source_location": "L1"
     },
     {
-      "id": "src_utils_cn",
-      "label": "cn.ts",
+      "id": "src_types_interaction",
+      "label": "interaction.ts",
       "_origin": "ast",
       "community": 31,
       "community_name": "ExplorePage.tsx",
       "file_type": "code",
-      "norm_label": "cn.ts",
-      "source_file": "src/utils/cn.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_utils_index",
-      "label": "utils/index.ts",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "utils/index.ts",
-      "source_file": "src/utils/index.ts",
+      "norm_label": "interaction.ts",
+      "source_file": "src/types/interaction.ts",
       "source_location": "L1"
     },
     {
@@ -4918,25 +5013,14 @@
       "source_location": "L5"
     },
     {
-      "id": "src_utils_trending",
-      "label": "trending.ts",
+      "id": "tests_bookmarks_test",
+      "label": "bookmarks.test.ts",
       "_origin": "ast",
       "community": 31,
       "community_name": "ExplorePage.tsx",
       "file_type": "code",
-      "norm_label": "trending.ts",
-      "source_file": "src/utils/trending.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_trending_test",
-      "label": "trending.test.ts",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "ExplorePage.tsx",
-      "file_type": "code",
-      "norm_label": "trending.test.ts",
-      "source_file": "tests/trending.test.ts",
+      "norm_label": "bookmarks.test.ts",
+      "source_file": "tests/bookmarks.test.ts",
       "source_location": "L1"
     },
     {
@@ -4944,7 +5028,7 @@
       "label": "Badge.tsx",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "badge.tsx",
       "source_file": "src/components/common/Badge.tsx",
@@ -4955,10 +5039,21 @@
       "label": "ProjectMediaGalleryModal.tsx",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "projectmediagallerymodal.tsx",
       "source_file": "src/components/common/ProjectMediaGalleryModal.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_features_projects_projectdetailspage",
+      "label": "ProjectDetailsPage.tsx",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "ProjectDetailsPage.tsx",
+      "file_type": "code",
+      "norm_label": "projectdetailspage.tsx",
+      "source_file": "src/features/projects/ProjectDetailsPage.tsx",
       "source_location": "L1"
     },
     {
@@ -4966,7 +5061,7 @@
       "label": "RevisionDiff.tsx",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "revisiondiff.tsx",
       "source_file": "src/features/projects/RevisionDiff.tsx",
@@ -4977,18 +5072,51 @@
       "label": "AdminReviewQueuePage.tsx",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "adminreviewqueuepage.tsx",
       "source_file": "src/pages/admin/AdminReviewQueuePage.tsx",
       "source_location": "L1"
     },
     {
+      "id": "src_pages_myprojectspage",
+      "label": "MyProjectsPage.tsx",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "ProjectDetailsPage.tsx",
+      "file_type": "code",
+      "norm_label": "myprojectspage.tsx",
+      "source_file": "src/pages/MyProjectsPage.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_repositories_revisionrepository_revisionrepository",
+      "label": "revisionRepository",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "ProjectDetailsPage.tsx",
+      "file_type": "code",
+      "norm_label": "revisionrepository",
+      "source_file": "src/repositories/revisionRepository.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "src_services_projectservice_projectservice",
+      "label": "projectService",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "ProjectDetailsPage.tsx",
+      "file_type": "code",
+      "norm_label": "projectservice",
+      "source_file": "src/services/projectService.ts",
+      "source_location": "L17"
+    },
+    {
       "id": "src_types_project",
       "label": "project.ts",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "project.ts",
       "source_file": "src/types/project.ts",
@@ -4999,7 +5127,7 @@
       "label": "revision.ts",
       "_origin": "ast",
       "community": 32,
-      "community_name": "AdminReviewQueuePage.tsx",
+      "community_name": "ProjectDetailsPage.tsx",
       "file_type": "code",
       "norm_label": "revision.ts",
       "source_file": "src/types/revision.ts",
@@ -5567,157 +5695,47 @@
       "source_location": "L22"
     },
     {
-      "id": "src_app_app",
-      "label": "App.tsx",
+      "id": "src_app_config",
+      "label": "config.ts",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "app.tsx",
-      "source_file": "src/app/App.tsx",
+      "norm_label": "config.ts",
+      "source_file": "src/app/config.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_app_main",
-      "label": "main.tsx",
+      "id": "src_app_config_app_config",
+      "label": "APP_CONFIG",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "main.tsx",
-      "source_file": "src/app/main.tsx",
+      "norm_label": "app_config",
+      "source_file": "src/app/config.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_components_common_authmodal",
-      "label": "AuthModal.tsx",
+      "id": "src_app_firebase_storage",
+      "label": "storage",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "authmodal.tsx",
-      "source_file": "src/components/common/AuthModal.tsx",
-      "source_location": "L1"
+      "norm_label": "storage",
+      "source_file": "src/app/firebase.ts",
+      "source_location": "L37"
     },
     {
-      "id": "src_components_common_button",
-      "label": "Button.tsx",
+      "id": "src_features_projects_projectsubmitform",
+      "label": "ProjectSubmitForm.tsx",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "button.tsx",
-      "source_file": "src/components/common/Button.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_common_button_button",
-      "label": "Button",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "button",
-      "source_file": "src/components/common/Button.tsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_components_common_errorboundary",
-      "label": "ErrorBoundary.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "errorboundary.tsx",
-      "source_file": "src/components/common/ErrorBoundary.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_common_previewmodebanner",
-      "label": "PreviewModeBanner.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "previewmodebanner.tsx",
-      "source_file": "src/components/common/PreviewModeBanner.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_common_roleswitcher",
-      "label": "RoleSwitcher.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "roleswitcher.tsx",
-      "source_file": "src/components/common/RoleSwitcher.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_contexts_rolepreviewcontext",
-      "label": "RolePreviewContext.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "rolepreviewcontext.tsx",
-      "source_file": "src/contexts/RolePreviewContext.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_contexts_rolepreviewcontext_rolepreviewcontext",
-      "label": "RolePreviewContext",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "rolepreviewcontext",
-      "source_file": "src/contexts/RolePreviewContext.tsx",
-      "source_location": "L15"
-    },
-    {
-      "id": "src_hooks_useauth",
-      "label": "useAuth.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "useauth.tsx",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_hooks_useauth_authcontext",
-      "label": "AuthContext",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "authcontext",
-      "source_file": "src/hooks/useAuth.tsx",
-      "source_location": "L28"
-    },
-    {
-      "id": "src_layouts_adminlayout",
-      "label": "AdminLayout.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "adminlayout.tsx",
-      "source_file": "src/layouts/AdminLayout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_layouts_applayout",
-      "label": "AppLayout.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "applayout.tsx",
-      "source_file": "src/layouts/AppLayout.tsx",
+      "norm_label": "projectsubmitform.tsx",
+      "source_file": "src/features/projects/ProjectSubmitForm.tsx",
       "source_location": "L1"
     },
     {
@@ -5732,47 +5750,14 @@
       "source_location": "L1"
     },
     {
-      "id": "src_layouts_superadminlayout",
-      "label": "SuperAdminLayout.tsx",
+      "id": "src_pages_notfoundpage",
+      "label": "NotFoundPage.tsx",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "superadminlayout.tsx",
-      "source_file": "src/layouts/SuperAdminLayout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_admin_adminemployeespage",
-      "label": "AdminEmployeesPage.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "adminemployeespage.tsx",
-      "source_file": "src/pages/admin/AdminEmployeesPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_auth_loginpage",
-      "label": "LoginPage.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "loginpage.tsx",
-      "source_file": "src/pages/auth/LoginPage.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_pages_auth_resetpasswordpage",
-      "label": "ResetPasswordPage.tsx",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "resetpasswordpage.tsx",
-      "source_file": "src/pages/auth/ResetPasswordPage.tsx",
+      "norm_label": "notfoundpage.tsx",
+      "source_file": "src/pages/NotFoundPage.tsx",
       "source_location": "L1"
     },
     {
@@ -5787,6 +5772,28 @@
       "source_location": "L1"
     },
     {
+      "id": "src_pages_submitprojectpage",
+      "label": "SubmitProjectPage.tsx",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "submitprojectpage.tsx",
+      "source_file": "src/pages/SubmitProjectPage.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_pages_super_admin_superadminsecuritypage",
+      "label": "SuperAdminSecurityPage.tsx",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "superadminsecuritypage.tsx",
+      "source_file": "src/pages/super-admin/SuperAdminSecurityPage.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_routes_approutes",
       "label": "AppRoutes.tsx",
       "_origin": "ast",
@@ -5798,15 +5805,15 @@
       "source_location": "L1"
     },
     {
-      "id": "src_routes_approutes_adminauditlogspage",
-      "label": "AdminAuditLogsPage",
+      "id": "src_routes_approutes_admincategoriespage",
+      "label": "AdminCategoriesPage",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "adminauditlogspage",
+      "norm_label": "admincategoriespage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L56"
+      "source_location": "L51"
     },
     {
       "id": "src_routes_approutes_adminemployeespage",
@@ -5817,18 +5824,7 @@
       "file_type": "code",
       "norm_label": "adminemployeespage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L47"
-    },
-    {
-      "id": "src_routes_approutes_adminoverviewpage",
-      "label": "AdminOverviewPage",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "adminoverviewpage",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L41"
+      "source_location": "L48"
     },
     {
       "id": "src_routes_approutes_adminreviewqueuepage",
@@ -5839,7 +5835,7 @@
       "file_type": "code",
       "norm_label": "adminreviewqueuepage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L44"
+      "source_location": "L45"
     },
     {
       "id": "src_routes_approutes_directorypage",
@@ -5850,7 +5846,7 @@
       "file_type": "code",
       "norm_label": "directorypage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L24"
+      "source_location": "L25"
     },
     {
       "id": "src_routes_approutes_notificationspage",
@@ -5861,7 +5857,7 @@
       "file_type": "code",
       "norm_label": "notificationspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L30"
+      "source_location": "L31"
     },
     {
       "id": "src_routes_approutes_profilepage",
@@ -5872,7 +5868,7 @@
       "file_type": "code",
       "norm_label": "profilepage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L27"
+      "source_location": "L28"
     },
     {
       "id": "src_routes_approutes_projectdetailspage",
@@ -5883,18 +5879,7 @@
       "file_type": "code",
       "norm_label": "projectdetailspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L36"
-    },
-    {
-      "id": "src_routes_approutes_resetpasswordpage",
-      "label": "ResetPasswordPage",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "resetpasswordpage",
-      "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L18"
+      "source_location": "L37"
     },
     {
       "id": "src_routes_approutes_savedprojectspage",
@@ -5905,7 +5890,18 @@
       "file_type": "code",
       "norm_label": "savedprojectspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L21"
+      "source_location": "L22"
+    },
+    {
+      "id": "src_routes_approutes_submitprojectpage",
+      "label": "SubmitProjectPage",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "submitprojectpage",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L34"
     },
     {
       "id": "src_routes_approutes_superadminadminspage",
@@ -5916,7 +5912,7 @@
       "file_type": "code",
       "norm_label": "superadminadminspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L67"
+      "source_location": "L68"
     },
     {
       "id": "src_routes_approutes_superadminoverviewpage",
@@ -5927,7 +5923,7 @@
       "file_type": "code",
       "norm_label": "superadminoverviewpage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L64"
+      "source_location": "L65"
     },
     {
       "id": "src_routes_approutes_superadminprojectspage",
@@ -5938,51 +5934,18 @@
       "file_type": "code",
       "norm_label": "superadminprojectspage",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L70"
+      "source_location": "L71"
     },
     {
-      "id": "src_schemas_authschemas",
-      "label": "authSchemas.ts",
+      "id": "src_routes_approutes_superadminsecuritypage",
+      "label": "SuperAdminSecurityPage",
       "_origin": "ast",
       "community": 6,
       "community_name": "AppRoutes.tsx",
       "file_type": "code",
-      "norm_label": "authschemas.ts",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_schemas_authschemas_inviteemployeeschema",
-      "label": "inviteEmployeeSchema",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "inviteemployeeschema",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L26"
-    },
-    {
-      "id": "src_schemas_authschemas_loginschema",
-      "label": "loginSchema",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "loginschema",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_schemas_authschemas_passwordresetschema",
-      "label": "passwordResetSchema",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "AppRoutes.tsx",
-      "file_type": "code",
-      "norm_label": "passwordresetschema",
-      "source_file": "src/schemas/authSchemas.ts",
-      "source_location": "L16"
+      "norm_label": "superadminsecuritypage",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L74"
     },
     {
       "id": "src_schemas_index",
@@ -6016,6 +5979,138 @@
       "norm_label": "profileupdateschema",
       "source_file": "src/schemas/profileSchemas.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "src_schemas_projectschemas",
+      "label": "projectSchemas.ts",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectschemas.ts",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_schemas_projectschemas_adminreviewschema",
+      "label": "adminReviewSchema",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "adminreviewschema",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L146"
+    },
+    {
+      "id": "src_schemas_projectschemas_imageurlschema",
+      "label": "imageUrlSchema",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "imageurlschema",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_schemas_projectschemas_projectrevisionschema",
+      "label": "projectRevisionSchema",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectrevisionschema",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L127"
+    },
+    {
+      "id": "src_schemas_projectschemas_projectstatuses",
+      "label": "projectStatuses",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectstatuses",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_schemas_projectschemas_projectsubmissionschema",
+      "label": "projectSubmissionSchema",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "projectsubmissionschema",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L43"
+    },
+    {
+      "id": "src_schemas_projectschemas_screenshoturlschema",
+      "label": "screenshotUrlSchema",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "screenshoturlschema",
+      "source_file": "src/schemas/projectSchemas.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "src_services_cloudinaryservice",
+      "label": "cloudinaryService.ts",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "cloudinaryservice.ts",
+      "source_file": "src/services/cloudinaryService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_services_cloudinaryservice_cloudinaryservice",
+      "label": "cloudinaryService",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "cloudinaryservice",
+      "source_file": "src/services/cloudinaryService.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "src_services_imageuploadservice",
+      "label": "imageUploadService.ts",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "imageuploadservice.ts",
+      "source_file": "src/services/imageUploadService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_services_imageuploadservice_allowed_mime_types",
+      "label": "ALLOWED_MIME_TYPES",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "allowed_mime_types",
+      "source_file": "src/services/imageUploadService.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "tests_schemas_test",
+      "label": "schemas.test.ts",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "AppRoutes.tsx",
+      "file_type": "code",
+      "norm_label": "schemas.test.ts",
+      "source_file": "tests/schemas.test.ts",
+      "source_location": "L1"
     },
     {
       "id": "tsconfig",
@@ -7692,7 +7787,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L174",
+      "source_location": "L168",
       "weight": 1.0
     },
     {
@@ -7704,7 +7799,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -7716,7 +7811,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -8473,7 +8568,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -8486,7 +8581,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -8499,7 +8594,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -8512,7 +8607,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -8525,7 +8620,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -8538,7 +8633,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -8551,7 +8646,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -8564,7 +8659,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -8577,7 +8672,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -8590,7 +8685,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -8603,7 +8698,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -8616,7 +8711,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -8629,7 +8724,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -8642,7 +8737,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8655,7 +8750,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L68",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -8668,7 +8763,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -8681,7 +8776,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -8694,7 +8789,7 @@
       "context": "import",
       "deferred": true,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L74",
+      "source_location": "L75",
       "weight": 1.0
     },
     {
@@ -12466,6 +12561,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_pages_notfoundpage",
+      "target": "src_components_common_button_button",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/NotFoundPage.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
       "source": "src_pages_notificationspage",
       "target": "src_components_common_toast_usetoast",
       "relation": "imports",
@@ -13823,6 +13930,18 @@
     },
     {
       "source": "src_routes_approutes",
+      "target": "src_pages_notfoundpage_notfoundpage",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_approutes",
       "target": "src_hooks_useauth_useauth",
       "relation": "imports",
       "_origin": "ast",
@@ -14971,6 +15090,30 @@
       "context": "import",
       "source_file": "tests/roles.test.ts",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test",
+      "target": "src_pages_landingpage_intended_destination_key",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test",
+      "target": "src_pages_landingpage_session_entry_key",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -17770,6 +17913,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_pages_notfoundpage",
+      "target": "src_components_common_button",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/NotFoundPage.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
       "source": "src_pages_notificationspage",
       "target": "src_components_common_toast",
       "relation": "imports_from",
@@ -18839,6 +18994,18 @@
     },
     {
       "source": "src_routes_approutes",
+      "target": "src_pages_notfoundpage",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/routes/AppRoutes.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_approutes",
       "target": "src_hooks_useauth",
       "relation": "imports_from",
       "_origin": "ast",
@@ -19687,6 +19854,18 @@
       "context": "import",
       "source_file": "tests/roles.test.ts",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test",
+      "target": "src_pages_landingpage",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -22392,6 +22571,17 @@
       "weight": 1.0
     },
     {
+      "source": "src_pages_notfoundpage",
+      "target": "src_pages_notfoundpage_notfoundpage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/NotFoundPage.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "src_pages_notificationspage",
       "target": "src_pages_notificationspage_notificationspage",
       "relation": "contains",
@@ -22586,7 +22776,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -22597,7 +22787,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L137",
+      "source_location": "L138",
       "weight": 1.0
     },
     {
@@ -22608,7 +22798,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L173",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -22619,7 +22809,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -22630,7 +22820,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -22641,7 +22831,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -22652,7 +22842,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -22663,7 +22853,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -22674,7 +22864,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -22685,7 +22875,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -22696,7 +22886,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -22707,7 +22897,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -22718,7 +22908,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -22729,7 +22919,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -22740,7 +22930,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -22751,7 +22941,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -22762,7 +22952,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -22773,7 +22963,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -22784,7 +22974,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -22795,7 +22985,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L70",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -22806,7 +22996,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L73",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
@@ -22817,7 +23007,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L77",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -22828,7 +23018,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/routes/AppRoutes.tsx",
-      "source_location": "L84",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -23701,6 +23891,17 @@
       "weight": 1.0
     },
     {
+      "source": "tests_routingandrefresh_test",
+      "target": "tests_routingandrefresh_test_mockstorage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
       "source": "tsconfig",
       "target": "tsconfig_compileroptions",
       "relation": "contains",
@@ -24010,7 +24211,7 @@
     },
     {
       "source": "vercel",
-      "target": "vercel_framework",
+      "target": "vercel_schema",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -24021,7 +24222,7 @@
     },
     {
       "source": "vercel",
-      "target": "vercel_cleanurls",
+      "target": "vercel_framework",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -24367,8 +24568,52 @@
       "source_file": "tests/rolePreview.test.ts",
       "source_location": "L45",
       "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test_mockstorage",
+      "target": "tests_routingandrefresh_test_mockstorage_getitem",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test_mockstorage",
+      "target": "tests_routingandrefresh_test_mockstorage_setitem",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test_mockstorage",
+      "target": "tests_routingandrefresh_test_mockstorage_removeitem",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_routingandrefresh_test_mockstorage",
+      "target": "tests_routingandrefresh_test_mockstorage_clear",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/routingAndRefresh.test.ts",
+      "source_location": "L58",
+      "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0c3da1fe6ecdf1033cc58933059e730c1ef77c71"
+  "built_at_commit": "8f266e5d87e60c638f3078761b0074d2caa3cf03"
 }

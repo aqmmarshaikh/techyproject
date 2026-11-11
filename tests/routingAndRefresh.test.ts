@@ -40,6 +40,12 @@ describe('Vercel Routing & SPA Configuration Audit', () => {
     expect(headerKeys).toContain('X-Content-Type-Options');
     expect(headerKeys).toContain('X-XSS-Protection');
     expect(headerKeys).toContain('Referrer-Policy');
+    expect(headerKeys).toContain('Cross-Origin-Opener-Policy');
+
+    const coopHeader = globalHeaders.headers.find(
+      (h: any) => h.key === 'Cross-Origin-Opener-Policy'
+    );
+    expect(coopHeader?.value).toBe('same-origin-allow-popups');
   });
 });
 

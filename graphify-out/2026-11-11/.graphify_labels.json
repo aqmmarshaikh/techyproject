@@ -1,8 +1,8 @@
 {
-  "0": "UserRole",
-  "1": "useToast",
+  "0": "useAuth.tsx",
+  "1": "Button.tsx",
   "2": "types/index.ts",
-  "3": "firebase.ts",
+  "3": "trending.ts",
   "4": "scripts",
   "5": "dependencies",
   "6": "AppRoutes.tsx",
@@ -24,14 +24,14 @@
   "22": "tailwind.config.js",
   "23": "tailwindcss",
   "24": "vite.config.ts",
-  "25": "ProjectSubmitForm.tsx",
+  "25": "useAuth",
   "26": "react",
   "27": "react-hook-form",
   "28": "@types/react",
   "29": "vitest",
   "30": "MockSessionStorage",
   "31": "ExplorePage.tsx",
-  "32": "AdminReviewQueuePage.tsx",
+  "32": "ProjectDetailsPage.tsx",
   "33": "TechMarquee.tsx",
   "34": "ErrorBoundary"
 }
